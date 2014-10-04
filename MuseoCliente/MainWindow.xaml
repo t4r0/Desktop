@@ -15,15 +15,39 @@
 				</Button>
 			</DockPanel>
 			<Path Data="M3,5 L167,5" Fill="{DynamicResource Gris}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gris}" Width="165"/>
-			<MenuItem Height="34.96" Width="184" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource NegroB}" Style="{DynamicResource CustomMenuItem}" FocusVisualStyle="{DynamicResource CustomFocus}" FontSize="16">
+			<MenuItem Height="34.96" Width="184" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource Negro}" Style="{DynamicResource CustomMenuItem}" FocusVisualStyle="{DynamicResource CustomFocus}" FontSize="16">
 				<MenuItem.Header>
-					<TextBlock Style="{DynamicResource Iconos}" FontSize="32">&#128101;<TextBlock Style="{DynamicResource SourceSans}" FontSize="18.667">Usuarios</TextBlock></TextBlock>
+					<TextBlock Style="{DynamicResource Iconos}" FontSize="32" Foreground="{DynamicResource Negro}">&#128203;<TextBlock Style="{DynamicResource SourceSans}" FontSize="18.667">Inventario</TextBlock></TextBlock>
+				</MenuItem.Header>
+			</MenuItem>
+			<Path Data="M3,5 L167,5" Fill="{DynamicResource Gris}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gris}" Width="165"/>
+			<MenuItem Height="34.96" Width="184" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource Negro}" Style="{DynamicResource CustomMenuItem}" FocusVisualStyle="{DynamicResource CustomFocus}" FontSize="16">
+				<MenuItem.Header>
+					<TextBlock Style="{DynamicResource Iconos}" FontSize="32" Foreground="{DynamicResource Negro}">&#59392;<TextBlock Style="{DynamicResource SourceSans}" FontSize="18.667">Operaciones</TextBlock></TextBlock>
+				</MenuItem.Header>
+			</MenuItem>
+			<Path Data="M3,5 L167,5" Fill="{DynamicResource Gris}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gris}" Width="165"/>
+			<MenuItem Height="34.96" Width="184" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource Negro}" Style="{DynamicResource CustomMenuItem}" FocusVisualStyle="{DynamicResource CustomFocus}" FontSize="16">
+				<MenuItem.Header>
+					<TextBlock Style="{DynamicResource Iconos}" FontSize="32" Foreground="{DynamicResource Negro}">&#127748;<TextBlock Style="{DynamicResource SourceSans}" FontSize="18.667">Fotografías</TextBlock></TextBlock>
+				</MenuItem.Header>
+			</MenuItem>
+			<Path Data="M3,5 L167,5" Fill="{DynamicResource Gris}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gris}" Width="165"/>
+			<MenuItem Height="34.96" Width="184" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource Negro}" Style="{DynamicResource CustomMenuItem}" FocusVisualStyle="{DynamicResource CustomFocus}" FontSize="16">
+				<MenuItem.Header>
+					<TextBlock Style="{DynamicResource Iconos}" FontSize="32" Foreground="{DynamicResource Negro}">&#128101;<TextBlock Style="{DynamicResource SourceSans}" FontSize="18.667">Usuarios</TextBlock></TextBlock>
+				</MenuItem.Header>
+			</MenuItem>
+			<Path Data="M3,5 L167,5" Fill="{DynamicResource Gris}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gris}" Width="165"/>
+			<MenuItem Height="34.96" Width="184" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{DynamicResource Negro}" Style="{DynamicResource CustomMenuItem}" FocusVisualStyle="{DynamicResource CustomFocus}" FontSize="16">
+				<MenuItem.Header>
+					<TextBlock Style="{DynamicResource Iconos}" FontSize="32" Foreground="{DynamicResource Negro}">&#128240;<TextBlock Style="{DynamicResource SourceSans}" FontSize="18.667">Investigaciones</TextBlock></TextBlock>
 				</MenuItem.Header>
 			</MenuItem>
 		</Menu>
 		<Border Height="45" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="-184,0,0,0" BorderBrush="{DynamicResource GrisDark}" BorderThickness="0,0,0,1" >
 			<DockPanel LastChildFill="False" Background="{DynamicResource Blanco}">
-				<Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,10" Style="{DynamicResource MenuLabel}">
+				<Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,10" Style="{DynamicResource MenuLabel}">
 					<TextBlock HorizontalAlignment="Center" FontSize="26.667" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" Style="{DynamicResource Iconos}">&#8962;</TextBlock>
 				</Label>
 				<Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,10" Style="{DynamicResource MenuLabel}" DockPanel.Dock="Right">
