@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MuseoCliente.Connection;
+using MuseoCliente.Connection.Objects;
 namespace MuseoCliente
 {
     /// <summary>
@@ -23,6 +24,11 @@ namespace MuseoCliente
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        {
+         
         }
     }
 }
