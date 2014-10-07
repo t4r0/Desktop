@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection
 {
@@ -47,26 +48,45 @@ namespace MuseoCliente.Connection
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(server);
             client.DefaultRequestHeaders.Add("Authorization", "oAuth " + token);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
         }
 
         public string fetch()
         {
             HttpClient client = CreateRequest();
-            string content = client.GetStringAsync(client.BaseAddress.AbsoluteUri + ResourceUri).Result;
-            return content;
+            HttpResponseMessage message = client.GetAsync(client.BaseAddress.AbsoluteUri + ResourceUri).Result;
+            string content = message.Content.ReadAsStringAsync().Result;
+            if(message.StatusCode == HttpStatusCode.OK)
+                return content;
+            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string,string>>(content);
+            throw new Exception(error["error"]);
         }
 
         public void create(string content)
         {
             HttpClient client = CreateRequest();
-            client.PostAsync(client.BaseAddress.AbsoluteUri + ResourceUri, new StringContent(content));
+            HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, ResourceUri);
+            reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
+            HttpResponseMessage message = client.SendAsync(reqMessage).Result;
+            string responseContent = message.Content.ReadAsStringAsync().Result;
+            if (message.StatusCode != HttpStatusCode.OK)
+            {
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                throw new Exception(error["error"]);
+            }
         }
 
         public void edit(string id, string content)
         {
             HttpClient client = CreateRequest();           
-            client.PutAsync(client.BaseAddress.AbsoluteUri + ResourceUri + "/" + id + "/", new StringContent(content));
+            HttpResponseMessage message =client.PutAsync(client.BaseAddress.AbsoluteUri + ResourceUri + "/" + id + "/", new StringContent(content)).Result;
+            string responseContent = message.Content.ReadAsStringAsync().Result;
+            if (message.StatusCode != HttpStatusCode.Accepted)
+            {
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                throw new Exception(error["error"]);
+            }
         }
 
     }
