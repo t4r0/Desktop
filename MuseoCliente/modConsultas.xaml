@@ -4,48 +4,53 @@
 	x:Class="MuseoCliente.modConsultas"
 	x:Name="Window"
 	Title="Consultar Piezas"
-	Width="533" Height="424">
+	Width="533" Height="459">
 
 	<Border x:Name="LayoutRoot">
 		<StackPanel Margin="0" Orientation="Vertical">
-			<DockPanel LastChildFill="False" Background="{DynamicResource StrongBlue}" Height="30">
-				<Label Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,5" Style="{DynamicResource MenuLabel}" Foreground="{DynamicResource Blanco}" FontWeight="Bold">
+			<DockPanel LastChildFill="False" Background="{DynamicResource White}" Height="30">
+				<Label Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold">
 					Buscar por:
 				</Label>
-				<TextBlock Height="23" Background="{DynamicResource PureBlue}" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-					<Button Height="25" Width="50" Style="{DynamicResource BlueButton}" Foreground="{DynamicResource Blanco}">Todas</Button>
-					<Button Height="25" Width="70" Style="{DynamicResource BlueButton}" Foreground="{DynamicResource Blanco}">Categoría</Button>
-					<Button Height="25" Width="70" Style="{DynamicResource BlueButton}" Foreground="{DynamicResource Blanco}">Exhibición</Button>
-					<Button Height="25" Width="60" Style="{DynamicResource BlueButton}" Foreground="{DynamicResource Blanco}">Almacén</Button>
-					<Button Height="25" Width="60" Style="{DynamicResource BlueButton}" Foreground="{DynamicResource Blanco}">Últimas</Button>
+				<TextBlock Height="23" Background="{DynamicResource DarkGray}" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<Button Height="23" Width="50" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Todas</Button>
+					<Button Height="23" Width="70" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Categoría</Button>
+					<Button Height="23" Width="70" Foreground="{DynamicResource DarkGray}" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}" FontWeight="Bold">Exhibición</Button>
+					<Button Height="23" Width="60" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Almacén</Button>
+					<Button Height="23" Width="60" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Últimas</Button>
 				</TextBlock>
 			</DockPanel>
-			<ScrollViewer >
-				<StackPanel Height="360">
-					<DockPanel Background="{DynamicResource PureBlue}" Height="30">
-						<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource MenuLabel}" Foreground="{DynamicResource Blanco}">Summary</Label>
+			<StackPanel Height="360">
+				<Border Height="30" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,1">
+					<DockPanel Background="{DynamicResource White}">
+						<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,70,10" DockPanel.Dock="Right">
+							<TextBlock Style="{DynamicResource GrayIcons}" FontSize="20"><Run Text="✎"/><InlineUIContainer>
+									<TextBlock Style="{DynamicResource SourceSans}" FontSize="11"><Run Text="Editar"/></TextBlock>
+								</InlineUIContainer></TextBlock>
+						</Label>
+						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Summary"/>
 					</DockPanel>
-					<Grid Background="{DynamicResource Gris}" Height="155">
-						<Label Width="60" Margin="59.477,18.958,388.522,104.042">Codigo:</Label>
-						<TextBox HorizontalAlignment="Left" Height="23" Margin="124.479,22.958,0,0" TextWrapping="Wrap" Text="1.1.1.2.3" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-						<Path Data="M3,5 L167,5" Fill="{DynamicResource Negro}" Height="1" Stretch="Fill" Stroke="{DynamicResource GrisDark}" Margin="45.001,55.955,239.999,98.045"/>
-						<Label Width="60" Margin="59.477,60.749,388.522,62.251" Content="Nombre:"/>
-						<TextBox HorizontalAlignment="Left" Height="23" Margin="124.479,64.749,0,0" TextWrapping="Wrap" Text="Chivo bicefalo" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-						<Path Data="M3,5 L167,5" Fill="{DynamicResource Negro}" Height="1" Stretch="Fill" Stroke="{DynamicResource GrisDark}" Margin="45.001,97.746,239.999,56.254"/>
-						<Label Width="60" Margin="59.477,106.958,388.522,16.042" Content="Estado:"/>
-						<TextBox HorizontalAlignment="Left" Height="23" Margin="124.479,110.958,0,0" TextWrapping="Wrap" Text="Exhibicion" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-						<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="135" Margin="323.373,10,0,0" VerticalAlignment="Top" Width="146.269"/>
+				</Border>
+				<Border Height="155" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,1">
+					<Grid Background="{DynamicResource White}">
+						<Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="135" Margin="50,10,0,0" VerticalAlignment="Top" Width="146.269"/>
+						<Label Width="60" Margin="266.977,18.958,0,104.042" Content="Codigo:" HorizontalAlignment="Left"/>
+						<TextBox HorizontalAlignment="Left" Height="23" Margin="323.479,22.958,0,0" TextWrapping="Wrap" Text="1.1.1.2.3" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+						<Label Width="60" Margin="266.977,60.749,0,62.251" Content="Nombre:" HorizontalAlignment="Left"/>
+						<TextBox HorizontalAlignment="Left" Height="23" Margin="323.479,64.749,0,0" TextWrapping="Wrap" Text="Chivo bicefalo" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+						<Label Width="60" Margin="266.977,106.958,0,16.042" Content="Estado:" HorizontalAlignment="Left"/>
+						<TextBox HorizontalAlignment="Left" Height="23" Margin="323.479,110.958,0,0" TextWrapping="Wrap" Text="Exhibicion" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
 					</Grid>
-					<StackPanel Height="173.134">
-						<DockPanel Background="{DynamicResource PureBlue}" Height="30">
-							<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource MenuLabel}" Foreground="{DynamicResource Blanco}">Resultados</Label>
-						</DockPanel>
-						<DockPanel Height="130">
-							<GridViewColumnHeader Content="GridViewColumnHeader" Height="130" VerticalAlignment="Top"/>
-						</DockPanel>
-					</StackPanel>
+				</Border>
+				<StackPanel Height="210.134">
+					<DockPanel Background="{DynamicResource White}" Height="30">
+						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Resultados"/>
+					</DockPanel>
+					<DockPanel Height="180">
+						<GridViewColumnHeader Content="GridViewColumnHeader" Height="149.448" VerticalAlignment="Top" Margin="0,20.552,0,0" Width="442"/>
+					</DockPanel>
 				</StackPanel>
-			</ScrollViewer>
+			</StackPanel>
 		</StackPanel>
 	</Border>
 </Window>

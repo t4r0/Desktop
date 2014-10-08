@@ -7,31 +7,22 @@
 	Width="640" Height="480">
 
 	<DockPanel x:Name="LayoutRoot">
-		<Border HorizontalAlignment="Left" Width="631.761" Margin="0,45,0,0" Background="{x:Null}">
-			<DockPanel Height="45" LastChildFill="False" Background="{DynamicResource Blanco}" Margin="0,10,0,349">
-				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,5" Style="{DynamicResource MenuLabel}" FontWeight="Bold" FontSize="20">
-					Piezas
+		<Border DockPanel.Dock="Top" Height="50" Margin="0" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
+			<DockPanel LastChildFill="False" Background="{DynamicResource White}">
+				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,15,0,0" Style="{DynamicResource CustomLabel}" FontWeight="Bold" FontSize="20" Content="Piezas" Foreground="{DynamicResource Black}"/>
+				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
 				</Label>
-				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource MenuLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="30" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" Style="{DynamicResource Iconos}">&#9998;</TextBlock>
-				</Label>
-				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource MenuLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="30" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" Style="{DynamicResource Iconos}">&#10133;</TextBlock>
-				</Label>
-				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource MenuLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="30" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" Style="{DynamicResource Iconos}">&#128269;</TextBlock>
+				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<TextBlock HorizontalAlignment="Center" FontSize="35" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="➕"/></TextBlock>
 				</Label>
 			</DockPanel>
 		</Border>
-		<Border BorderBrush="{DynamicResource GrisDark}" BorderThickness="0,0,0,1" Height="45" VerticalAlignment="Top" Width="629.85" Margin="-630,0,0,0">
-			<DockPanel Height="45" LastChildFill="False" Background="{DynamicResource Blanco}">
-				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,5" Style="{DynamicResource MenuLabel}" FontWeight="Bold" FontSize="20">
-					Bienvenido
-				</Label>
-				<Label Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,10,0" Style="{DynamicResource MenuLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="30" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" Style="{DynamicResource Iconos}">&#10227;</TextBlock>
-				</Label>
-			</DockPanel>
-		</Border>
+		<Grid DockPanel.Dock="Top" RenderTransformOrigin="0.5,0.5">
+			<Label Content="En Exhibición:" HorizontalAlignment="Left" Margin="35,10,0,0" Style="{DynamicResource CustomLabel}" VerticalAlignment="Top" FontSize="20"/>
+			<DataGrid HorizontalAlignment="Left" Margin="35,41.6,0,0" VerticalAlignment="Top" Height="133" Width="531"/>
+			<Label Content="En Almacén:" HorizontalAlignment="Left" Margin="35,204.4,0,0" Style="{DynamicResource CustomLabel}" VerticalAlignment="Top" FontSize="20"/>
+			<DataGrid HorizontalAlignment="Left" Margin="35,236,0,0" VerticalAlignment="Top" Height="133" Width="531"/>
+		</Grid>
 	</DockPanel>
 </Window>
