@@ -65,7 +65,7 @@
     <Compile Include="Connection\Objects\Eventos.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
     <Compile Include="Test\Test.cs" />
-    <Page Include="Custom Styles.xaml" />
+    <Page Include="Custom Styles.xaml"/>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

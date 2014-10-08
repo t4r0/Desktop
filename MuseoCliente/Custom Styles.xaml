@@ -103,6 +103,7 @@ xmlns:local="clr-namespace:MuseoCliente">
 			<SolidColorBrush x:Key="OverPink" Color="#ff4796"/>
 			<SolidColorBrush x:Key="PressedPink" Color="#bc0051"/>
 			<SolidColorBrush x:Key="WeakPink" Color="#ff86b9"/>
+			<SolidColorBrush x:Key="BrightRed" Color="#d92924"/>
 	<Style x:Key="PinkButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
 				<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
 				<Setter Property="Background" Value="{DynamicResource DarkPink}"/>
@@ -137,7 +138,7 @@ xmlns:local="clr-namespace:MuseoCliente">
 									</VisualStateGroup>
 								</VisualStateManager.VisualStateGroups>
 					
-								<Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" Background="{DynamicResource StrongPink}" BorderBrush="{DynamicResource StrongPink}"/>
+								<Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" Background="{DynamicResource DarkPink}" BorderBrush="{DynamicResource DarkPink}"/>
 						
 						<!-- Los enlaces sirven para que el control se pueda parametrizar sin editar la plantilla -->
 								<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
@@ -1285,7 +1286,6 @@ xmlns:local="clr-namespace:MuseoCliente">
 			<SolidColorBrush x:Key="DarkCyan" Color="#00834b"/>
 			<SolidColorBrush x:Key="StrongBlue" Color="#006abc"/>
 			<SolidColorBrush x:Key="SoftRed" Color="#e2524e"/>
-			<SolidColorBrush x:Key="BrightRed" Color="#d92924"/>
 			<SolidColorBrush x:Key="Yellow" Color="#fad46b"/>
 			<SolidColorBrush x:Key="DarkYellow" Color="#f8c63a"/>
 			<SolidColorBrush x:Key="WeakBlue" Color="#7adaff"/>
@@ -1313,7 +1313,8 @@ xmlns:local="clr-namespace:MuseoCliente">
 		<GradientStop Color="#ABADB3" Offset="0.05"/>
 		<GradientStop Color="#E2E3EA" Offset="0.07"/>
 		<GradientStop Color="#E3E9EF" Offset="1"/>
-	</LinearGradientBrush>			
+	</LinearGradientBrush>
+				
     <Style x:Key="Icons" TargetType="{x:Type TextBlock}">
         <Setter Property="TextElement.FontFamily" Value="/MuseoCliente;component/Font/#Entypo"/>       
     </Style>
@@ -1325,4 +1326,19 @@ xmlns:local="clr-namespace:MuseoCliente">
         <Setter Property="FontFamily" Value="/MuseoCliente;component/Font/#Entypo"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
+	<Style x:Key="WhiteTextBlock" TargetType="{x:Type TextBlock}">
+				<Setter Property="TextWrapping" Value="NoWrap"/>
+				<Setter Property="TextTrimming" Value="None"/>
+				<Setter Property="Foreground" Value="{DynamicResource Gray}"/>
+				<Style.Triggers>
+					<Trigger Property="IsMouseOver" Value="True">
+						<Setter Property="Foreground" Value="{DynamicResource White}"/>
+					</Trigger>
+				</Style.Triggers>
+	</Style>
+	<Style x:Key="WhiteIcons" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource WhiteTextBlock}">
+        <Setter Property="FontFamily" Value="/MuseoCliente;component/Font/#Entypo"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+	
 </ResourceDictionary>

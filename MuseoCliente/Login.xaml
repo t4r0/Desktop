@@ -9,15 +9,20 @@
 	<Border x:Name="LayoutRoot" >
 		<StackPanel Margin="0" Orientation="Vertical">
 			<Label Height="20"/>
-			<Label FontSize="20" Foreground="{DynamicResource PureBlue}" Content="Bienvenido" HorizontalContentAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontWeight="Bold"/>
-			<Grid Height="174">
-				<PasswordBox x:Name="txtPassword" Height="31" VerticalAlignment="Center" Margin="30,92,35,52.96" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource GrisDark}" VerticalContentAlignment="Center"/>
-				<Button Height="{Binding Height, ElementName=textBox}" Margin="30,143,185,-0.04" Style="{DynamicResource BlueButton}" Foreground="White" Content="Iniciar Sesión" FontWeight="Bold" Click="Button_Click_2"/>				
-                <Button Margin="180,143,35,-0.04" Style="{DynamicResource PinkButton}" Foreground="White" Content="Salir" FontWeight="Bold" IsCancel="True" Click="Button_Click_1"/>
-                <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="32" Margin="30,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="273"/>
-            </Grid>
-            
-            <Label Height="10"/>
-        </StackPanel>
+			<Label FontSize="16.888" Foreground="{DynamicResource Black}" Content="Bienvenido" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+			<Grid Height="175.96">
+				<Label Margin="30,10,0,138.5" Height="27.46" Width="53" HorizontalAlignment="Left">Usuario</Label>
+				<TextBox x:Name="txtUsuario" Height="20" TextWrapping="Wrap" Text="UserName" VerticalAlignment="Center" Margin="30,37.46,35,118.5" Style="{DynamicResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" VerticalContentAlignment="Center"/>
+				<Label Margin="30,64.75,0,83.75" Height="27.46" Width="73" HorizontalAlignment="Left">Contraseña</Label>
+				<TextBox x:Name="txtPassword" Height="20" TextWrapping="Wrap" Text="Password" VerticalAlignment="Center" Margin="30,92.21,35,63.75" Style="{DynamicResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" VerticalContentAlignment="Center"/>
+				<Button Height="{Binding Height, ElementName=textBox}" Margin="56,134,177.668,19" Style="{DynamicResource BlueButton}" Foreground="White" FontSize="26.667">
+					<TextBlock Style="{DynamicResource Icons}" FontSize="13">Iniciar Sesión</TextBlock>
+				</Button>
+				<Button Height="{Binding Height, ElementName=textBox}" Margin="179.834,134,53.834,19" Style="{DynamicResource BlueButton}" Foreground="White" FontSize="26.667">
+					<TextBlock Style="{DynamicResource Icons}" FontSize="13">Salir</TextBlock>
+				</Button>
+			</Grid>
+			<Label Height="10"/>
+		</StackPanel>
 	</Border>
 </Window>
