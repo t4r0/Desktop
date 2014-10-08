@@ -28,7 +28,12 @@ namespace MuseoCliente
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-         
+            Login log = new Login();
+            log.ShowDialog();
+            if (log.DialogResult != true)
+            {
+                this.Close();
+            }
         }
     }
 }
