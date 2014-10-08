@@ -62,9 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Connection\IResourceObject.cs" />
+    <Compile Include="Connection\Objects\Eventos.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
     <Compile Include="Test\Test.cs" />
-    <Page Include="Custom Styles.xaml"/>
+    <Page Include="Custom Styles.xaml" />
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,9 +78,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Connection\Objects\Campo.cs" />
+    <Compile Include="Connection\Objects\Estructura\Campo.cs" />
     <Compile Include="Connection\Connector.cs" />
-    <Compile Include="Connection\Objects\Estructura.cs" />
+    <Compile Include="Connection\Objects\Estructura\Estructura.cs" />
     <Compile Include="Connection\Objects\Ficha.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

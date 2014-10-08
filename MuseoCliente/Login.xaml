@@ -14,7 +14,8 @@
 				<PasswordBox x:Name="txtPassword" Height="31" VerticalAlignment="Center" Margin="30,92,35,52.96" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource GrisDark}" VerticalContentAlignment="Center"/>
 				<Button Height="{Binding Height, ElementName=textBox}" Margin="30,143,185,-0.04" Style="{DynamicResource BlueButton}" Foreground="White" Content="Iniciar Sesión" FontWeight="Bold" Click="Button_Click_2"/>				
                 <Button Margin="180,143,35,-0.04" Style="{DynamicResource PinkButton}" Foreground="White" Content="Salir" FontWeight="Bold" IsCancel="True" Click="Button_Click_1"/>
-			</Grid>
+                <TextBox x:Name="txtUsuario" HorizontalAlignment="Left" Height="32" Margin="30,35,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="273"/>
+            </Grid>
             
             <Label Height="10"/>
         </StackPanel>
