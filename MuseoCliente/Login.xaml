@@ -4,7 +4,7 @@
 	x:Class="MuseoCliente.Login"
 	x:Name="Window"
 	Title="Login"
-	Width="344" Height="352" ResizeMode="NoResize">
+	Width="344" Height="277" ResizeMode="NoResize">
 
 	<Border x:Name="LayoutRoot" >
 		<StackPanel Margin="0" Orientation="Vertical">
