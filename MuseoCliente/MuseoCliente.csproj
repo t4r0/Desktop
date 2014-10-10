@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)HR\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -62,7 +62,18 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Connection\IResourceObject.cs" />
+    <Compile Include="Connection\Objects\Campo.cs" />
+    <Compile Include="Connection\Objects\Categoria.cs" />
+    <Compile Include="Connection\Objects\Coleccion.cs" />
+    <Compile Include="Connection\Objects\Eventos.cs" />
+    <Compile Include="Connection\Objects\Investigacion.cs" />
+    <Compile Include="Connection\Objects\LinkInvestigacion.cs"/>
+    <Compile Include="Connection\Objects\Registro.cs" />
+    <Compile Include="Connection\Objects\ResourceObject.cs" />
+    <Compile Include="Connection\Objects\Traslado.cs" />
+    <Compile Include="Connection\Objects\ValorCheck.cs" />
     <Compile Include="Connection\Objects\Autor.cs" />
+
     <Compile Include="Connection\Objects\Caja.cs" />
     <Compile Include="Connection\Objects\Clasificacion.cs" />
     <Compile Include="Connection\Objects\Consolidacion.cs" />
