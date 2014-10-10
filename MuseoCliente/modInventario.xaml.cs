@@ -15,7 +15,7 @@ namespace MuseoCliente
 	/// <summary>
 	/// Lógica de interacción para modInventario.xaml
 	/// </summary>
-	public partial class modInventario : Window
+	public partial class modInventario : UserControl
 	{
 		public modInventario()
 		{

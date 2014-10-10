@@ -15,7 +15,7 @@ namespace MuseoCliente
 	/// <summary>
 	/// Lógica de interacción para modResultados.xaml
 	/// </summary>
-	public partial class modResultados : Window
+	public partial class modResultados : UserControl
 	{
 		public modResultados()
 		{
