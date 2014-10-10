@@ -37,7 +37,7 @@ namespace MuseoCliente
             try
             {
                 dict["username"] = txtUsuario.Text;
-                dict["password"] = txtPassword.Password;
+                //dict["password"] = txtPassword.Password;
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
                 Connector conector = new Connector("v1/login/");
                 conector.create(content);
