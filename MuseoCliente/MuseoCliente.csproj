@@ -62,8 +62,16 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Connection\IResourceObject.cs" />
+    <Compile Include="Connection\Objects\Campo.cs" />
+    <Compile Include="Connection\Objects\Categoria.cs" />
+    <Compile Include="Connection\Objects\Coleccion.cs" />
     <Compile Include="Connection\Objects\Eventos.cs" />
+    <Compile Include="Connection\Objects\Investigacion.cs" />
+    <Compile Include="Connection\Objects\LinkInvestigacion.cs" />
+    <Compile Include="Connection\Objects\Registro.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
+    <Compile Include="Connection\Objects\Traslado.cs" />
+    <Compile Include="Connection\Objects\ValorCheck.cs" />
     <Compile Include="Test\Test.cs" />
     <Page Include="Custom Styles.xaml" />
     <Page Include="Login.xaml">
