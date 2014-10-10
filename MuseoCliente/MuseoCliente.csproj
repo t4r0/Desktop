@@ -62,11 +62,20 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Connection\IResourceObject.cs" />
+    <Compile Include="Connection\Objects\Autor.cs" />
+    <Compile Include="Connection\Objects\Caja.cs" />
+    <Compile Include="Connection\Objects\Clasificacion.cs" />
+    <Compile Include="Connection\Objects\Consolidacion.cs" />
     <Compile Include="Connection\Objects\Eventos.cs" />
+    <Compile Include="Connection\Objects\Fotografia.cs" />
+    <Compile Include="Connection\Objects\Mantenimiento.cs" />
+    <Compile Include="Connection\Objects\Pieza.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
     <Compile Include="modResultados.xaml.cs">
       <DependentUpon>modResultados.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connection\Objects\Sala.cs" />
+    <Compile Include="Connection\Objects\Vitrina.cs" />
     <Compile Include="Test\Test.cs" />
     <Page Include="Custom Styles.xaml" />
     <Page Include="Login.xaml">

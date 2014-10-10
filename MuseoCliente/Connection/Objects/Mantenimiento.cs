@@ -7,24 +7,20 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Eventos:ResourceObject<Eventos>
+    class Mantenimiento:ResourceObject<Mantenimiento>
     {
         [JsonProperty]
-        public String  nombre { get; set; }
+        public int procedimiento { get; set; }
         [JsonProperty]
-        public String descripcion { get; set; }
-        [JsonProperty]
-        public String aficeh { get; set; }
+        public String metodoMaterial { get; set; }
         [JsonProperty]
         public DateTime fecha { get; set; }
         [JsonProperty]
-        public int sala { get; set; }
-        [JsonProperty]
-        public int usuario { get; set; }
+        public int consolidacion { get; set; }
 
-        public Eventos():base("asld/asl/asd")
+        public Mantenimiento()
+            : base("kas/asjd/las")
         {
-
         }
     }
 }
