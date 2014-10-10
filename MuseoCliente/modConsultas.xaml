@@ -44,7 +44,7 @@
 				</Border>
 				<StackPanel Height="210.134">
 					<DockPanel Background="{DynamicResource White}" Height="30">
-						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Resultados"/>
+						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Detalle:"/>
 					</DockPanel>
 					<DockPanel Height="180">
 						<GridViewColumnHeader Content="GridViewColumnHeader" Height="149.448" VerticalAlignment="Top" Margin="0,20.552,0,0" Width="442"/>

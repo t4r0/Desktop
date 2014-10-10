@@ -64,8 +64,11 @@
     <Compile Include="Connection\IResourceObject.cs" />
     <Compile Include="Connection\Objects\Eventos.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
+    <Compile Include="modResultados.xaml.cs">
+      <DependentUpon>modResultados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Test\Test.cs" />
-    <Page Include="Custom Styles.xaml"/>
+    <Page Include="Custom Styles.xaml" />
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,6 +97,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="modInventario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modResultados.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
