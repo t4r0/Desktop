@@ -81,6 +81,9 @@
     <Compile Include="Connection\Objects\Mantenimiento.cs" />
     <Compile Include="Connection\Objects\Pieza.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
+    <Compile Include="modinvestigacion.xaml.cs">
+      <DependentUpon>modinvestigacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="modLimpieza.xaml.cs">
       <DependentUpon>modLimpieza.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="modInventario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modinvestigacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
