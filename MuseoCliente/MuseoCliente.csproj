@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)HR\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -62,6 +62,16 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Connection\IResourceObject.cs" />
+    <Compile Include="Connection\Objects\Campo.cs" />
+    <Compile Include="Connection\Objects\Categoria.cs" />
+    <Compile Include="Connection\Objects\Coleccion.cs" />
+    <Compile Include="Connection\Objects\Eventos.cs" />
+    <Compile Include="Connection\Objects\Investigacion.cs" />
+    <Compile Include="Connection\Objects\LinkInvestigacion.cs" />
+    <Compile Include="Connection\Objects\Registro.cs" />
+    <Compile Include="Connection\Objects\ResourceObject.cs" />
+    <Compile Include="Connection\Objects\Traslado.cs" />
+    <Compile Include="Connection\Objects\ValorCheck.cs" />
     <Compile Include="Connection\Objects\Autor.cs" />
     <Compile Include="Connection\Objects\Caja.cs" />
     <Compile Include="Connection\Objects\Clasificacion.cs" />
@@ -71,6 +81,15 @@
     <Compile Include="Connection\Objects\Mantenimiento.cs" />
     <Compile Include="Connection\Objects\Pieza.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs" />
+    <Compile Include="modinvestigacion.xaml.cs">
+      <DependentUpon>modinvestigacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modLimpieza.xaml.cs">
+      <DependentUpon>modLimpieza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modResultados.xaml.cs">
+      <DependentUpon>modResultados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Connection\Objects\Sala.cs" />
     <Compile Include="Connection\Objects\Vitrina.cs" />
     <Compile Include="Designer\frmDesigner.xaml.cs">
@@ -78,10 +97,6 @@
     </Compile>
     <Compile Include="Test\Test.cs" />
     <Page Include="Custom Styles.xaml" />
-    <Page Include="Designer\frmDesigner.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +125,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="modInventario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modinvestigacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modLimpieza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modResultados.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

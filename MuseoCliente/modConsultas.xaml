@@ -1,25 +1,12 @@
-﻿<Window
+﻿<UserControl
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	x:Class="MuseoCliente.modConsultas"
 	x:Name="Window"
-	Title="Consultar Piezas"
-	Width="533" Height="459">
+	Width="533" Height="459" Background="{DynamicResource White}">
 
 	<Border x:Name="LayoutRoot">
 		<StackPanel Margin="0" Orientation="Vertical">
-			<DockPanel LastChildFill="False" Background="{DynamicResource White}" Height="30">
-				<Label Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold">
-					Buscar por:
-				</Label>
-				<TextBlock Height="23" Background="{DynamicResource DarkGray}" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-					<Button Height="23" Width="50" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Todas</Button>
-					<Button Height="23" Width="70" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Categoría</Button>
-					<Button Height="23" Width="70" Foreground="{DynamicResource DarkGray}" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}" FontWeight="Bold">Exhibición</Button>
-					<Button Height="23" Width="60" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Almacén</Button>
-					<Button Height="23" Width="60" Foreground="{DynamicResource Gray}" Background="{DynamicResource DarkGray}" BorderBrush="{DynamicResource DarkGray}">Últimas</Button>
-				</TextBlock>
-			</DockPanel>
 			<StackPanel Height="360">
 				<Border Height="30" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,1">
 					<DockPanel Background="{DynamicResource White}">
@@ -28,7 +15,7 @@
 									<TextBlock Style="{DynamicResource SourceSans}" FontSize="11"><Run Text="Editar"/></TextBlock>
 								</InlineUIContainer></TextBlock>
 						</Label>
-						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Summary"/>
+						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Resumen"/>
 					</DockPanel>
 				</Border>
 				<Border Height="155" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,1">
@@ -44,7 +31,7 @@
 				</Border>
 				<StackPanel Height="210.134">
 					<DockPanel Background="{DynamicResource White}" Height="30">
-						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Resultados"/>
+						<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="Detalle:"/>
 					</DockPanel>
 					<DockPanel Height="180">
 						<GridViewColumnHeader Content="GridViewColumnHeader" Height="149.448" VerticalAlignment="Top" Margin="0,20.552,0,0" Width="442"/>
@@ -53,4 +40,4 @@
 			</StackPanel>
 		</StackPanel>
 	</Border>
-</Window>
+</UserControl>

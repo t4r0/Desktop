@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace MuseoCliente
 {
 	/// <summary>
-	/// Lógica de interacción para modConsultas.xaml
+	/// Lógica de interacción para modResultados.xaml
 	/// </summary>
-	public partial class modConsultas : UserControl
+	public partial class modResultados : UserControl
 	{
-		public modConsultas()
+		public modResultados()
 		{
 			this.InitializeComponent();
 			
