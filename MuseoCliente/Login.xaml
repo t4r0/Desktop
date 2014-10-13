@@ -14,7 +14,7 @@
 				<Label Margin="30,10,0,138.5" Height="27.46" Width="53" HorizontalAlignment="Left">Usuario</Label>
 				<TextBox x:Name="txtUsuario" Height="20" TextWrapping="Wrap" Text="UserName" VerticalAlignment="Center" Margin="30,37.46,35,118.5" Style="{DynamicResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" VerticalContentAlignment="Center"/>
 				<Label Margin="30,64.75,0,83.75" Height="27.46" Width="73" HorizontalAlignment="Left">Contraseña</Label>
-				<TextBox x:Name="txtPassword" Height="20" TextWrapping="Wrap" Text="Password" VerticalAlignment="Center" Margin="30,92.21,35,63.75" Style="{DynamicResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" VerticalContentAlignment="Center"/>
+				<PasswordBox x:Name="txtPassword" Height="20" VerticalAlignment="Center" Margin="30,92.21,35,63.75" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" VerticalContentAlignment="Center"/>
 				<Button Height="{Binding Height, ElementName=textBox}" Margin="56,134,177.668,19" Style="{DynamicResource BlueButton}" Foreground="White" FontSize="26.667">
 					<TextBlock Style="{DynamicResource Icons}" FontSize="13">Iniciar Sesión</TextBlock>
 				</Button>

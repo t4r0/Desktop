@@ -73,8 +73,15 @@
     <Compile Include="Connection\Objects\ResourceObject.cs" />
     <Compile Include="Connection\Objects\Sala.cs" />
     <Compile Include="Connection\Objects\Vitrina.cs" />
+    <Compile Include="Designer\frmDesigner.xaml.cs">
+      <DependentUpon>frmDesigner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Test\Test.cs" />
-    <Page Include="Custom Styles.xaml"/>
+    <Page Include="Custom Styles.xaml" />
+    <Page Include="Designer\frmDesigner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
