@@ -64,12 +64,34 @@ namespace MuseoCliente.Connection.Objects
 
 		public void guardar()
 		{
-			this.Create();
+			try
+			{
+				this.Create();
+			}
+			catch( Exception e)
+			{
+				if (e.Source != null)
+                {
+                    string error = e.Source; // para ver el nombre del error.
+					Error.ingresarError(3,"No se ha guardado en la Informacion en la base de datos");
+                }
+			}
 		}
 		
 		public void modificar(int id)
 		{
-			this.Save(id);			
+			try
+			{
+				this.Save(id);
+			}
+			catch( Exception e)
+			{
+				if (e.Source != null)
+                {
+                    string error = e.Source;// para ver el nombre del error
+					Error.ingresarError(3,"No se ha modifico en la Informacion en la base de datos");
+                }
+			}		
 		}
 			
 		
