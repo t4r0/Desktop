@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Collections;
+
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Pieza:ResourceObject<Pieza>
+    class Pieza: ResourceObject<Pieza>
     {
         [JsonProperty]
         public String codigo { get; set; }
@@ -58,6 +60,24 @@ namespace MuseoCliente.Connection.Objects
         public Pieza()
             : base("we/ewa/s")
         {
+        }
+
+		public void guardar()
+		{
+			this.Create();
+		}
+		
+		public void modificar(int id)
+		{
+			this.Save(id);			
+		}
+			
+		
+        public ArrayList ConsultarNombre(String nombre)
+        {
+            List<T> lista = null;
+            lista = this.GetAsCollection();			
+            return new ArrayList(lista);
         }
     }
 }
