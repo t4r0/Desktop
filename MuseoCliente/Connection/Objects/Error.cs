@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Collections;
+
+/*
+No Modificar esta Clase.
+Cualquier duda comunicarse Con Victor Betancohurt 56912907
+
+INSTRUCCIONES.
+
+Todas las funciones son staticas para no declararlas.
+Solo se ingresa el Error con el numero identificador y la descripcion de Error.
+	La descripcion de Error es regresada por la Clase de Taro para manejar mejor los Errores.
+Cada Error tendra un Texto. Que sera ingresado por la funcion ingresarError
+Que estara de la siguiente Manera.
+________________________________
+|numero|	NombreError  		|
+|-------------------------------|
+|  1   |	numero Incorrecto	|
+|  2   |	id No encontrado	|
+|  3   |	No se Guarda		|
+
+IMPORTANTE MATUL
+isActivo() es True si existe Error, de lo contrario regresa un False, Ademas Cuando regresa el True. 
+	Automaticamente vuelve a poner el activo en False, tomar en cuenta esta situacion.
+
+
+
+*/
+namespace MuseoCliente.Connection.Objects
+{
+    class  Error
+    {
+    	public static string nombreError { get{return nombre;} }
+        public static string descripcionError { get{return descripcion;} }
+        private static bool activo=false;
+		private static string nombre="";
+		private static string descripcion="";
+		
+
+        public static void ingresarError(int numero, string error)
+        {
+            descripcion = error;
+            activo = true;
+			switch(numero)
+			{
+				case 1:
+					nombre ="Numero Incorrecto";
+					break;	
+				case 2:
+					nombre ="No existe";
+					break;	
+				case 3:
+					nombre ="Error Guardar";
+					break;
+				
+				default:
+					nombre = "Error";
+					descripcion ="Ha ocurrido un error";
+				break;
+			}
+        }
+		
+		 public static void ingresarError( string nombreError,string error)
+        {
+            nombre = nombreError;
+            descripcion = error;
+            activo = true;
+            
+        }
+
+        public static bool isActivo()
+        {
+            bool variable = activo;
+            activo = false;
+            return variable;
+        }
+		
+	}
+}

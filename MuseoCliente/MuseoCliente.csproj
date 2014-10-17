@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>4.0.20621.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,6 +65,7 @@
     <Compile Include="Connection\Objects\Campo.cs" />
     <Compile Include="Connection\Objects\Categoria.cs" />
     <Compile Include="Connection\Objects\Coleccion.cs" />
+    <Compile Include="Connection\Objects\Error.cs" />
     <Compile Include="Connection\Objects\Eventos.cs" />
     <Compile Include="Connection\Objects\Investigacion.cs" />
     <Compile Include="Connection\Objects\LinkInvestigacion.cs" />
