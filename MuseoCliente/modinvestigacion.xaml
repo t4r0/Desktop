@@ -18,17 +18,17 @@
 		</DockPanel>
 		<Grid Background="{DynamicResource White}" Margin="0,83,31,246" RenderTransformOrigin="0.497,0.364" HorizontalAlignment="Right" Width="583">
 			<Label Width="60" Margin="13.977,14.749,0,108.251" Content="Autor:" HorizontalAlignment="Left"/>
-			<TextBox HorizontalAlignment="Left" Height="23" Margin="70.479,18.749,0,0" TextWrapping="Wrap" Text="Agatha Christie" VerticalAlignment="Top" Width="277" IsEnabled="False"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="70.479,18.749,0,0" TextWrapping="Wrap" Text="Agatha Christie" VerticalAlignment="Top" Width="277" IsEnabled="False" Style="{DynamicResource CustomTextBox}"/>
 			<Label Width="60" Margin="13.977,60.958,0,62.042" Content="Titulo:" HorizontalAlignment="Left"/>
-			<TextBox HorizontalAlignment="Left" Height="23" Margin="70.479,64.958,0,0" TextWrapping="Wrap" Text="Exhibicion" VerticalAlignment="Top" Width="277" IsEnabled="False"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="70.479,64.958,0,0" TextWrapping="Wrap" Text="Exhibicion" VerticalAlignment="Top" Width="277" IsEnabled="False" Style="{DynamicResource CustomTextBox}"/>
 		</Grid>
 		<DockPanel Background="{DynamicResource White}" Margin="10,188,0,263">
 			<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,70,10" DockPanel.Dock="Right"/>
 			<Label Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource CustomLabel}" Foreground="{DynamicResource DarkGray}" FontWeight="Bold" Content="datos investigación"/>
 		</DockPanel>
-		<RichTextBox HorizontalAlignment="Left" Height="169" Margin="26,234,0,0" VerticalAlignment="Top" Width="573">
+		<RichTextBox HorizontalAlignment="Left" Height="169" Margin="26,234,0,0" VerticalAlignment="Top" Width="573" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Style="{DynamicResource SourceSans}">
 			<FlowDocument>
-				<Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,6.67"><Run Text="Es de resaltar la caja de piedra descubierta en la cueva Hun Nal Ye, en Alta Verapaz. En el mismo curso, esta la exposición temporal de Naachtun, relacionada a la restauración de una colección de cerámica Maya, con exhibición de piezas del sitio tal y como se encontraron y luego del proceso de restauración."/><Span FontSize="16" FontFamily="Times New Roman"><LineBreak/></Span><Span FontSize="16" FontFamily="Times New Roman"><LineBreak/></Span></Paragraph>
+				<Paragraph FontSize="16" Margin="0,6.67"><Run Text="Es de resaltar la caja de piedra descubierta en la cueva Hun Nal Ye, en Alta Verapaz. En el mismo curso, esta la exposición temporal de Naachtun, relacionada a la restauración de una colección de cerámica Maya, con exhibición de piezas del sitio tal y como se encontraron y luego del proceso de restauración."/><Span FontSize="16"><LineBreak/></Span><Span FontSize="16"><LineBreak/></Span></Paragraph>
 				<Paragraph><Run Language="es-es" Text=""/></Paragraph>
 
 			</FlowDocument>

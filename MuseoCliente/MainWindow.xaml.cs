@@ -21,6 +21,8 @@ namespace MuseoCliente
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Sala sala = new Sala();
         public MainWindow()
         {
             InitializeComponent();

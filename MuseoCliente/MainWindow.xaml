@@ -21,19 +21,17 @@
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
-            <Expander Height="41" Width="199" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomExpander}" FontSize="16" Margin="5,0">
+            <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165"/>
+            <Expander Height="98" Width="199" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomExpander}" FontSize="16" Margin="5,0">
                 <Expander.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32"><Run Text="&#xE800;"/><InlineUIContainer>
-							<TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><Run Text="Operaciones"/></TextBlock>
-						</InlineUIContainer></TextBlock>
+                    		<TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><Run Text="Operaciones"/></TextBlock>
+                    	</InlineUIContainer></TextBlock>
                 </Expander.Header>
-                <Expander.Content>
                 <Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,-2,25" Width="199">
                     <TextBlock HorizontalAlignment="Center" FontSize="26.667" FontWeight="Bold" Style="{DynamicResource WhiteIcons}"><Run Text="⌂"/></TextBlock>
                 </Label>
-                </Expander.Content>
             </Expander>
-            <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165"/>
             <MenuItem Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">&#128247;<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Fotografías</TextBlock></TextBlock>
@@ -68,7 +66,7 @@
 				</Label>
 			</DockPanel>
 		</Border>
-		<Border BorderThickness="1,0,0,0" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}"/>
-        
-	</DockPanel>
+        <Border BorderThickness="1,0,0,0" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}">
+        </Border>
+    </DockPanel>
 </Window>
