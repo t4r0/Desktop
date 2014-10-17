@@ -20,7 +20,7 @@ namespace MuseoCliente.Connection
             set{server=value;}
         }
 
-        private string token = "13ec27baad98b29e5e8034287f0e55a78847fa7d";
+        private string token = "7a2c8077843348ce14ef03405929a669ae4ab6db";
 
         public string ResourceUri
         {
