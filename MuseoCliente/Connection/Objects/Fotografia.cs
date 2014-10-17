@@ -13,7 +13,7 @@ namespace MuseoCliente.Connection.Objects
         public int mantenimiento { get; set; }
         [JsonProperty]
         public int pieza { get; set; }
-        [JsonArrayAttribute]
+        [JsonProperty]
         public Int16 tipo { get; set; }
         [JsonProperty]
         public String ruta { get; set; }

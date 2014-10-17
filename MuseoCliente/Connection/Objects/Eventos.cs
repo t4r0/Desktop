@@ -14,7 +14,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String descripcion { get; set; }
         [JsonProperty]
-        public String aficeh { get; set; }
+        public String afiche { get; set; }
         [JsonProperty]
         public DateTime fecha { get; set; }
         [JsonProperty]

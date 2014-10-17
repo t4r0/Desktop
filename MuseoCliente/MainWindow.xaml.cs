@@ -21,6 +21,8 @@ namespace MuseoCliente
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        Sala sala = new Sala();
         public MainWindow()
         {
             InitializeComponent();
@@ -28,12 +30,12 @@ namespace MuseoCliente
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            Login log = new Login();
+            /*Login log = new Login();
             log.ShowDialog();
             if (log.DialogResult != true)
             {
                 this.Close();
-            }
+            }*/
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MuseoCliente.Connection
             set{server=value;}
         }
 
-        private string token = "82ca4127c5bdac3e61aacd47bda9bf7d32e4e4d6";
+        private string token = "7a2c8077843348ce14ef03405929a669ae4ab6db";
 
         public string ResourceUri
         {
@@ -46,7 +46,6 @@ namespace MuseoCliente.Connection
         public HttpClient CreateRequest()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(server);
             client.DefaultRequestHeaders.Add("Authorization", "oAuth " + token);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
@@ -55,7 +54,7 @@ namespace MuseoCliente.Connection
         public string fetch()
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(client.BaseAddress.AbsoluteUri + ResourceUri).Result;
+            HttpResponseMessage message = client.GetAsync(server + ResourceUri).Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if(message.StatusCode == HttpStatusCode.OK)
                 return content;

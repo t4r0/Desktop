@@ -15,7 +15,7 @@ namespace MuseoCliente
 	/// <summary>
 	/// Lógica de interacción para modConsultas.xaml
 	/// </summary>
-	public partial class modConsultas : Window
+	public partial class modConsultas : UserControl
 	{
 		public modConsultas()
 		{
