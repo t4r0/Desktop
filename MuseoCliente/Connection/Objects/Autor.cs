@@ -52,11 +52,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Autor> todasAutor = (ICollection<Autor>)this.GetAsCollection();
-                var autorNombre = from autor in todasAutor
-                                  where autor.nombre.Contains(nombre)
-                                  select autor;
-                listaNueva.AddRange((ICollection)autorNombre);
+                List<Autor> todasAutor = this.GetAsCollection();
+                foreach (Autor hol in todasAutor)
+                {
+                    if (hol.nombre.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -75,11 +76,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Autor> todasAutor = (ICollection<Autor>)this.GetAsCollection();
-                var autorApellido = from autor in todasAutor
-                                    where autor.apellido.Contains(apellido)
-                                    select autor;
-                listaNueva.AddRange((ICollection)autorApellido);
+                List<Autor> todasAutor = this.GetAsCollection();
+                foreach (Autor hol in todasAutor)
+                {
+                    if (hol.apellido.Contains(apellido))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");

@@ -59,15 +59,17 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(String nombre)
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = new ArrayList(); 
+          
             try
             {
 
-                ICollection<Publicacion> todasPublicaciones = (ICollection<Publicacion>)this.GetAsCollection();
-                var publicacionNombre = from publicacion in todasPublicaciones 
-                                  where publicacion.nombre.Contains(nombre)
-                                  select nombre;
-                listaNueva.AddRange((ICollection)publicacionNombre);
+                List<Publicacion> todasPublicaciones = this.GetAsCollection();
+                foreach (Publicacion hol in todasPublicaciones)
+                {
+                    if (hol.nombre.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro publicacion");

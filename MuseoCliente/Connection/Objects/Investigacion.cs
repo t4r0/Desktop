@@ -77,7 +77,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = new ArrayList();
             try
             {
-                var lista = this.GetAsCollection();
+                List<Investigacion> lista = this.GetAsCollection();
                 foreach (Investigacion investigacion in lista)
                 {
                     if (investigacion.titulo.Contains(titulo))
@@ -100,14 +100,12 @@ namespace MuseoCliente.Connection.Objects
 
             try
             {
-                //colleccion para permitir uso de linq
-                ICollection<Autor> todas_investigaciones = (ICollection<Autor>)this.GetAsCollection();
-                // expresion linq para obtener la lista de investigaciones por autor solicitado
-                var investigaciones_autor = from investigacion in todas_investigaciones
-                                            where investigacion.nombre == autor
-                                            select investigacion;
-                //añadir coleccion a la lista de retorno sin utilizar ciclos foreach
-                listaNueva.AddRange((ICollection)investigaciones_autor);
+                List<Investigacion> lista = this.GetAsCollection();
+                foreach (Investigacion investigacion in lista)
+                {
+                    if (investigacion.autor.Contains(autor))
+                        listaNueva.Add(investigacion);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
