@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="MuseoCliente.roomView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="340.637" Width="501.992">
+    <Grid>
+            
+    </Grid>
+</UserControl>
