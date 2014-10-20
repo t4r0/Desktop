@@ -15,7 +15,7 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
 
         public Coleccion()
-            : base("v1/colecciones/")
+            : base("/v1/colecciones/")
         {
 
         }

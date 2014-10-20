@@ -15,7 +15,7 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
 
         public Categoria()
-            : base("v1/categorias/")
+            : base("/v1/categorias/")
         {
             
         }

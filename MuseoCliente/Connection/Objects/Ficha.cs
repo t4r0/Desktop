@@ -22,7 +22,7 @@ namespace MuseoCliente.Connection.Objects
         public bool consolidacion{get; set;}
 
         public Ficha()
-            : base("v1/fichas/")
+            : base("/v1/fichas/")
         {
             this.estructura = new Estructura();
            
@@ -58,11 +58,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Ficha> todasFichas = (ICollection<Ficha>)this.GetAsCollection();
-                var fichaNomre = from ficha in todasFichas
-                                 where ficha.nombre.Contains(nombre)
-                                 select ficha;
-                listaNueva.AddRange((ICollection)fichaNomre);
+                List<Ficha> todasFichas = this.GetAsCollection();
+                foreach (Ficha hol in todasFichas)
+                {
+                    if (hol.nombre.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -81,11 +82,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Ficha> todasFichas = (ICollection<Ficha>)this.GetAsCollection();
-                var fichaConsolidacion = from ficha in todasFichas
-                                         where ficha.consolidacion == consolidacion
-                                         select ficha;
-                listaNueva.AddRange((ICollection)fichaConsolidacion);
+                List<Ficha> todasFichas = this.GetAsCollection();
+                foreach (Ficha hol in todasFichas)
+                {
+                    if (hol.consolidacion == consolidacion)
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");

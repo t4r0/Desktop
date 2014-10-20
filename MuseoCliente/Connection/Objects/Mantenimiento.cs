@@ -20,7 +20,7 @@ namespace MuseoCliente.Connection.Objects
         public int consolidacion { get; set; }
 
         public Mantenimiento()
-            : base("v1/mantenimientos/")
+            : base("/v1/mantenimientos/")
         {
         }
 
@@ -56,12 +56,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarProcedimiento(int procedimiento)
         {
-            ArrayList listaNueva = null;
+            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
             try
             {
-                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
-                var Mantenimientos = from mantenimiento in lista where mantenimiento.procedimiento == procedimiento select mantenimiento;
-                listaNueva.AddRange((ICollection)Mantenimientos);
+                List<Mantenimiento> todasPiezas = this.GetAsCollection();
+                foreach (Mantenimiento mantenimiento in todasPiezas)
+                {
+                    if (mantenimiento.procedimiento == procedimiento)
+                        listaNueva.Add(mantenimiento);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
             }
@@ -74,12 +77,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarMetodoMaterial(string metodoMaterial)
         {
-            ArrayList listaNueva = null;
+            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
             try
             {
-                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
-                var Mantenimientos = from mantenimiento in lista where mantenimiento.metodoMaterial == metodoMaterial select mantenimiento;
-                listaNueva.AddRange((ICollection)Mantenimientos);
+                List<Mantenimiento> todasPiezas = this.GetAsCollection();
+                foreach (Mantenimiento mantenimiento in todasPiezas)
+                {
+                    if (mantenimiento.metodoMaterial.Contains(metodoMaterial))
+                        listaNueva.Add(mantenimiento);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con metodoMaterial: " + metodoMaterial);
             }
@@ -92,12 +98,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarFecha(DateTime fecha)
         {
-            ArrayList listaNueva = null;
+            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
             try
             {
-                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
-                var Mantenimientos = from mantenimiento in lista where mantenimiento.fecha.Date == fecha.Date select mantenimiento;
-                listaNueva.AddRange((ICollection)Mantenimientos);
+                List<Mantenimiento> todasPiezas = this.GetAsCollection();
+                foreach (Mantenimiento mantenimiento in todasPiezas)
+                {
+                    if (mantenimiento.fecha.Date == fecha.Date)
+                        listaNueva.Add(mantenimiento);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + fecha.Date);
             }
@@ -110,12 +119,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarConsolidacion(int consolidacion)
         {
-            ArrayList listaNueva = null;
+            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
             try
             {
-                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
-                var Mantenimientos = from mantenimiento in lista where mantenimiento.consolidacion == consolidacion select mantenimiento;
-                listaNueva.AddRange((ICollection)Mantenimientos);
+                List<Mantenimiento> todasPiezas = this.GetAsCollection();
+                foreach (Mantenimiento mantenimiento in todasPiezas)
+                {
+                    if (mantenimiento.consolidacion == consolidacion)
+                        listaNueva.Add(mantenimiento);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con consolidacion: " + consolidacion);
             }

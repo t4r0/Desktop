@@ -51,12 +51,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNumero( string numero )
         {
-            ArrayList listaNueva = null;
+            List<Vitrina> listaNueva = new List<Vitrina>();
             try
             {
-                ICollection<Vitrina> lista = (ICollection<Vitrina>)this.GetAsCollection();
-                var Vitrinas = from vitrina in lista where vitrina.numero == numero select vitrina;
-                listaNueva.AddRange((ICollection)Vitrinas);
+                List<Vitrina> todasPiezas = this.GetAsCollection();
+                foreach (Vitrina vitrina in todasPiezas)
+                {
+                    if (vitrina.numero.Contains(numero))
+                        listaNueva.Add(vitrina);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
             }
@@ -69,12 +72,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarSala(int sala)
         {
-            ArrayList listaNueva = null;
+            List<Vitrina> listaNueva = new List<Vitrina>();
             try
             {
-                ICollection<Vitrina> lista = (ICollection<Vitrina>)this.GetAsCollection();
-                var Vitrinas = from vitrina in lista where vitrina.sala == sala select vitrina;
-                listaNueva.AddRange((ICollection)Vitrinas);
+                List<Vitrina> todasPiezas = this.GetAsCollection();
+                foreach (Vitrina vitrina in todasPiezas)
+                {
+                    if (vitrina.sala == sala)
+                        listaNueva.Add(vitrina);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
             }

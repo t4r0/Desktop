@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Campo : ResourceObject<Campo>
     {
-         public Campo():base("v1/categoria/")
+         public Campo():base("/v1/categoria/")
         {
 
         }
@@ -69,12 +69,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarTipoCampo(int tipoCampo)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.tipoCampo == tipoCampo select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach(Campo campo in todosCampos)
+                 {
+                     if (campo.tipoCampo == tipoCampo)
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con tipo de campo: " + tipoCampo);
              }
@@ -87,12 +90,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarCampoEstructura(int campoEstructura)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.campoEstructura == campoEstructura select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach (Campo campo in todosCampos)
+                 {
+                     if (campo.campoEstructura == campoEstructura)
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con campoEstructura: " + campoEstructura);
              }
@@ -105,12 +111,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarValorTexto(string valorTexto)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.valorTexto == valorTexto select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach (Campo campo in todosCampos)
+                 {
+                     if (campo.valorTexto.Contains(valorTexto))
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con valorTexto: " + valorTexto);
              }
@@ -123,12 +132,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarValorTextoLargo(string valorTextoLargo)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.valorTextoLargo == valorTextoLargo select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach (Campo campo in todosCampos)
+                 {
+                     if (campo.valorTextoLargo.Contains(valorTextoLargo))
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con valorTextoLargo: " + valorTextoLargo);
              }
@@ -141,12 +153,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarValorFecha(DateTime valorFecha)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.valorFecha.Date == valorFecha.Date select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach (Campo campo in todosCampos)
+                 {
+                     if (campo.valorFecha.Date == valorFecha.Date)
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + valorFecha.Date);
              }
@@ -159,12 +174,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarValorNumerico(float valorNumerico)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.valorNumerico == valorNumerico select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach (Campo campo in todosCampos)
+                 {
+                     if (campo.valorNumerico == valorNumerico)
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con valorNumerico: " + valorNumerico);
              }
@@ -177,12 +195,15 @@ namespace MuseoCliente.Connection.Objects
 
          public ArrayList consultarValorRadio(int valorRadio)
          {
-             ArrayList listaNueva = null;
+             List<Campo> listaNueva = new List<Campo>();
              try
              {
-                 ICollection<Campo> lista = (ICollection<Campo>)this.GetAsCollection();
-                 var Campos = from campo in lista where campo.valorRadio == valorRadio select campo;
-                 listaNueva.AddRange((ICollection)Campos);
+                 List<Campo> todosCampos = this.GetAsCollection();
+                 foreach (Campo campo in todosCampos)
+                 {
+                     if (campo.valorRadio == valorRadio)
+                         listaNueva.Add(campo);
+                 }
                  if (listaNueva == null)
                      Error.ingresarError(2, "no se encontraron coincidencias con valorRadio: " + valorRadio);
              }
