@@ -59,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
 
 
         public Pieza()
-            : base("we/ewa/s")
+            : base("/v1/piezas/")
         {
         }
 
@@ -71,11 +71,8 @@ namespace MuseoCliente.Connection.Objects
 			}
 			catch( Exception e)
 			{
-				if (e.Source != null)
-                {
-                    string error = e.Source; // para ver el nombre del error.
-					Error.ingresarError(3,"No se ha guardado en la Informacion en la base de datos");
-                }
+                //string error = e.Source;// para ver el nombre del error
+				Error.ingresarError(3,"No se ha guardado en la Informacion en la base de datos");
 			}
 		}
 		
@@ -87,28 +84,22 @@ namespace MuseoCliente.Connection.Objects
 			}
 			catch( Exception e)
 			{
-				if (e.Source != null)
-                {
-                    string error = e.Source;// para ver el nombre del error
-					Error.ingresarError(3,"No se ha modifico en la Informacion en la base de datos");
-                }
+				Error.ingresarError(4,"No se ha modifico en la Informacion en la base de datos");
 			}		
 		}
 			
 		
         public ArrayList consultarNombre(String nombre)
         {
-			List<Pieza> listaNueva= null;
+			ArrayList listaNueva= new ArrayList();
 			try{
-				
-				ArrayList  lista = null;
-				listaNueva = new List<Pieza>();
-				lista = this.GetAsCollection();	
-				foreach(Pieza pieza in lista)
-				{
-						if(pieza.nombre.Contains(nombre))
-							listaNueva.Add(pieza);
-				}
+
+                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
+                var piezaNombre = from pieza in todasPiezas
+                                  where pieza.nombre.Contains(nombre)
+                                  select pieza;
+                listaNueva.AddRange((ICollection)piezaNombre);
+
                 if(listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
 			}catch(Exception e)
@@ -121,18 +112,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarCodigo(String codigo)
         {
-			List<Pieza> listaNueva= null;
+            ArrayList listaNueva = new ArrayList();
             try
             {
 
-                ArrayList lista = new ArrayList();
-                listaNueva = new List<Pieza>();
-                lista = this.GetAsCollection();
-                foreach (Pieza pieza in lista)
-                {
-                    if (pieza.codigo.Contains(codigo))
-                        listaNueva.Add(pieza);
-                }
+                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
+                var piezaCodigo = from pieza in todasPiezas
+                                  where pieza.codigo.Contains(codigo)
+                                  select pieza;
+                listaNueva.AddRange((ICollection)piezaCodigo);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -146,18 +134,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarClasificacion(int idClasificacion)
         {
-             List<Pieza> listaNueva = null;
+            ArrayList listaNueva = new ArrayList();
             try
             {
 
-                ArrayList lista = null;
-                listaNueva = new List<Pieza>();
-                lista = this.GetAsCollection();
-                foreach (Pieza pieza in lista)
-                {
-                    if (pieza.clasificacion == idClasificacion)
-                        listaNueva.Add(pieza);
-                }
+                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
+                var piezaClasificacion = from pieza in todasPiezas
+                                  where pieza.clasificacion == idClasificacion
+                                  select pieza;
+                listaNueva.AddRange((ICollection)piezaClasificacion);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -171,18 +156,39 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarAutor(int idAutor)
         {
-             List<Pieza> listaNueva = null;
+            ArrayList listaNueva = new ArrayList();
             try
             {
 
-                ArrayList lista = null;
-                listaNueva = new List<Pieza>();
-                lista = this.GetAsCollection();
-                foreach (Pieza pieza in lista)
-                {
-                    if (pieza.autor == idAutor)
-                        listaNueva.Add(pieza);
-                }
+                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
+                var piezaAutor = from pieza in todasPiezas
+                                         where pieza.autor == idAutor
+                                         select pieza;
+                listaNueva.AddRange((ICollection)piezaAutor);
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarResponsableEquipo(int idResponsable)
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+
+                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
+                var piezaResponsable = from pieza in todasPiezas
+                                 where pieza.responsableRegistro == idResponsable
+                                 select pieza;
+                listaNueva.AddRange((ICollection)piezaResponsable);
+
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
