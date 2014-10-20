@@ -69,11 +69,10 @@ namespace MuseoCliente.Connection
             reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage message = client.SendAsync(reqMessage).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode != HttpStatusCode.OK)
-            {
-                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-                throw new Exception(error["error"]);
-            }
+            if (message.StatusCode == HttpStatusCode.Created)
+                return;
+            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+            throw new Exception(error["error"]);
         }
 
         public void edit(string id, string content)
