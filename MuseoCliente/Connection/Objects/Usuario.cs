@@ -10,7 +10,7 @@ namespace MuseoCliente.Connection.Objects
     public class Usuario : ResourceObject<Usuario>
     {
         public Usuario()
-            : base("v1/fichas/")
+            : base("/v1/usuarios/")
         {
 
         }
