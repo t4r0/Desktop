@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
@@ -19,8 +20,110 @@ namespace MuseoCliente.Connection.Objects
         public int consolidacion { get; set; }
 
         public Mantenimiento()
-            : base("kas/asjd/las")
+            : base("v1/mantenimientos/")
         {
+        }
+
+        public void guardar()
+        {
+            try
+            {
+                this.Create();
+            }
+            catch (Exception e)
+            {
+                if (e.Source != null)
+                {
+                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos");
+                }
+            }
+        }
+
+        public void modificar(string id)
+        {
+            try
+            {
+                this.Save(id);
+            }
+            catch (Exception e)
+            {
+                if (e.Source != null)
+                {
+                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
+                }
+            }
+        }
+
+        public ArrayList consultarLink(int procedimiento)
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
+                var Mantenimientos = from mantenimiento in lista where mantenimiento.procedimiento == procedimiento select mantenimiento;
+                listaNueva.AddRange((ICollection)Mantenimientos);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
+            }
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarLink(string metodoMaterial)
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
+                var Mantenimientos = from mantenimiento in lista where mantenimiento.metodoMaterial == metodoMaterial select mantenimiento;
+                listaNueva.AddRange((ICollection)Mantenimientos);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "no se encontraron coincidencias con metodoMaterial: " + metodoMaterial);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con metodoMaterial: " + metodoMaterial);
+            }
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarLink(DateTime fecha)
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
+                var Mantenimientos = from mantenimiento in lista where mantenimiento.fecha.Date == fecha.Date select mantenimiento;
+                listaNueva.AddRange((ICollection)Mantenimientos);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + fecha.Date);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + fecha.Date);
+            }
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarLink(int consolidacion)
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                ICollection<Mantenimiento> lista = (ICollection<Mantenimiento>)this.GetAsCollection();
+                var Mantenimientos = from mantenimiento in lista where mantenimiento.consolidacion == consolidacion select mantenimiento;
+                listaNueva.AddRange((ICollection)Mantenimientos);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "no se encontraron coincidencias con consolidacion: " + consolidacion);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con consolidacion: " + consolidacion);
+            }
+            return new ArrayList(listaNueva);
         }
     }
 }

@@ -55,8 +55,8 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 ICollection<Vitrina> lista = (ICollection<Vitrina>)this.GetAsCollection();
-                var Traslados = from vitrina in lista where vitrina.numero == numero select vitrina;
-                listaNueva.AddRange((ICollection)lista);
+                var Vitrinas = from vitrina in lista where vitrina.numero == numero select vitrina;
+                listaNueva.AddRange((ICollection)Vitrinas);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
             }
@@ -73,8 +73,8 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 ICollection<Vitrina> lista = (ICollection<Vitrina>)this.GetAsCollection();
-                var Traslados = from vitrina in lista where vitrina.sala == sala select vitrina;
-                listaNueva.AddRange((ICollection)lista);
+                var Vitrinas = from vitrina in lista where vitrina.sala == sala select vitrina;
+                listaNueva.AddRange((ICollection)Vitrinas);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
             }
