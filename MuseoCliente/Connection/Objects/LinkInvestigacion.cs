@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class LinkInvestigacion:ResourceObject<LinkInvestigacion>
     {
-        public LinkInvestigacion():base("v1/linkInvestigacion/")
+        public LinkInvestigacion():base("/v1/linkInvestigacion/")
         {
 
         }

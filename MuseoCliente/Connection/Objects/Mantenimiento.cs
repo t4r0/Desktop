@@ -20,7 +20,7 @@ namespace MuseoCliente.Connection.Objects
         public int consolidacion { get; set; }
 
         public Mantenimiento()
-            : base("v1/mantenimientos/")
+            : base("/v1/mantenimientos/")
         {
         }
 

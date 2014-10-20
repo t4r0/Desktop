@@ -19,7 +19,7 @@ namespace MuseoCliente.Connection.Objects
         public Boolean seleccionado { get; set; }
 
         public ValorCheck()
-            : base("v1/fichas/")
+            : base("/v1/fichas/")
         {
 
         }

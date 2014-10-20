@@ -21,7 +21,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String codigo { get; set; }
 
-        public Clasificacion() : base("v1/clasificacion/")
+        public Clasificacion() : base("/v1/clasificacion/")
         {
 
         }

@@ -12,7 +12,7 @@ namespace MuseoCliente.Connection.Objects
     {
 
         public Publicacion()
-            : base("v1/publicacion/")
+            : base("/v1/publicacion/")
         {
             
 

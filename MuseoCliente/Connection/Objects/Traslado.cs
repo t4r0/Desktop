@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Traslado : ResourceObject<Traslado>
     {
-        public Traslado(): base("v1/traslado/")
+        public Traslado(): base("/v1/traslado/")
         {
 
         }

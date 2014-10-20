@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Campo : ResourceObject<Campo>
     {
-         public Campo():base("v1/categoria/")
+         public Campo():base("/v1/categoria/")
         {
 
         }
