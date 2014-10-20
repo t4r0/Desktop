@@ -37,11 +37,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                if (e.Source != null)
-                {
-                    string error = e.Source; // para ver el nombre del error.
-                    Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
-                }
+                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
             }
         }
 
@@ -53,17 +49,13 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                if (e.Source != null)
-                {
-                    string error = e.Source;// para ver el nombre del error
-                    Error.ingresarError(3, "No se ha modifico en la Informacion en la base de datos");
-                }
+                Error.ingresarError(4, "No se ha modifico en la Informacion en la base de datos");
             }
         }
 
 
 
-        public ArrayList consultaevento(String nombrevento)
+        public ArrayList consultarEvento(String nombrevento)
         {
             ArrayList listaNueva = new ArrayList();
             try
