@@ -57,12 +57,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarColeccion(int coleccion)
         {
-            ArrayList listaNueva = null;
+            List<Clasificacion> listaNueva = new List<Clasificacion>();
             try
             {
-                ICollection<Clasificacion> lista = (ICollection<Clasificacion>)this.GetAsCollection();
-                var Clasificaiones = from clasificacion in lista where clasificacion.coleccion == coleccion select clasificacion;
-                listaNueva.AddRange((ICollection)Clasificaiones);
+                List<Clasificacion> todasPiezas = this.GetAsCollection();
+                foreach (Clasificacion clasificaion in todasPiezas)
+                {
+                    if (clasificaion.coleccion == coleccion)
+                        listaNueva.Add(clasificaion);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con coleccion: " + coleccion);
             }
@@ -75,12 +78,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarCategoria(int categoria)
         {
-            ArrayList listaNueva = null;
+            List<Clasificacion> listaNueva = new List<Clasificacion>();
             try
             {
-                ICollection<Clasificacion> lista = (ICollection<Clasificacion>)this.GetAsCollection();
-                var Clasificaiones = from clasificacion in lista where clasificacion.categoria == categoria select clasificacion;
-                listaNueva.AddRange((ICollection)Clasificaiones);
+                List<Clasificacion> todasPiezas = this.GetAsCollection();
+                foreach (Clasificacion clasificaion in todasPiezas)
+                {
+                    if (clasificaion.categoria == categoria)
+                        listaNueva.Add(clasificaion);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con categoria: " + categoria);
             }
@@ -93,12 +99,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarFicha(int ficha)
         {
-            ArrayList listaNueva = null;
+            List<Clasificacion> listaNueva = new List<Clasificacion>();
             try
             {
-                ICollection<Clasificacion> lista = (ICollection<Clasificacion>)this.GetAsCollection();
-                var Clasificaiones = from clasificacion in lista where clasificacion.ficha == ficha select clasificacion;
-                listaNueva.AddRange((ICollection)Clasificaiones);
+                List<Clasificacion> todasPiezas = this.GetAsCollection();
+                foreach (Clasificacion clasificaion in todasPiezas)
+                {
+                    if (clasificaion.ficha == ficha)
+                        listaNueva.Add(clasificaion);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con ficha: " + ficha);
             }
@@ -111,12 +120,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(string nombre)
         {
-            ArrayList listaNueva = null;
+            List<Clasificacion> listaNueva = new List<Clasificacion>();
             try
             {
-                ICollection<Clasificacion> lista = (ICollection<Clasificacion>)this.GetAsCollection();
-                var Clasificaiones = from clasificacion in lista where clasificacion.nombre == nombre select clasificacion;
-                listaNueva.AddRange((ICollection)Clasificaiones);
+                List<Clasificacion> todasPiezas = this.GetAsCollection();
+                foreach (Clasificacion clasificaion in todasPiezas)
+                {
+                    if (clasificaion.nombre.Contains(nombre))
+                        listaNueva.Add(clasificaion);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
             }
@@ -129,12 +141,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarCodigo(string codigo)
         {
-            ArrayList listaNueva = null;
+            List<Clasificacion> listaNueva = new List<Clasificacion>();
             try
             {
-                ICollection<Clasificacion> lista = (ICollection<Clasificacion>)this.GetAsCollection();
-                var Clasificaiones = from clasificacion in lista where clasificacion.codigo == codigo select clasificacion;
-                listaNueva.AddRange((ICollection)Clasificaiones);
+                List<Clasificacion> todasPiezas = this.GetAsCollection();
+                foreach (Clasificacion clasificaion in todasPiezas)
+                {
+                    if (clasificaion.codigo.Contains(codigo))
+                        listaNueva.Add(clasificaion);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con codigo: " + codigo);
             }
