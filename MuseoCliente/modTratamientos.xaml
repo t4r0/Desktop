@@ -6,7 +6,7 @@
 	mc:Ignorable="d"
 	x:Class="MuseoCliente.modLimpieza"
 	x:Name="UserControl"
-	d:DesignWidth="700" Height="717.313">
+	d:DesignWidth="700" Height="715">
 
 	<Border x:Name="LayoutRoot" Background="{DynamicResource White}" Height="717.313" VerticalAlignment="Top">
 		<StackPanel Margin="10" Orientation="Vertical">

@@ -23,6 +23,7 @@ ________________________________
 |  1   |	numero Incorrecto	|
 |  2   |	id No encontrado	|
 |  3   |	No se Guarda		|
+|  4   |	No modificacion		|
 
 IMPORTANTE MATUL
 isActivo() es True si existe Error, de lo contrario regresa un False, Ademas Cuando regresa el True. 
@@ -57,6 +58,10 @@ namespace MuseoCliente.Connection.Objects
 				case 3:
 					nombre ="Error Guardar";
 					break;
+
+                case 4:
+                    nombre = "Modificacion Incorrecta";
+                    break;
 				
 				default:
 					nombre = "Error";

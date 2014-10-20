@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
 
 
         public Pieza()
-            : base("we/ewa/s")
+            : base("/v1/piezas/")
         {
         }
 
@@ -70,15 +71,12 @@ namespace MuseoCliente.Connection.Objects
 			}
 			catch( Exception e)
 			{
-				if (e.Source != null)
-                {
-                    string error = e.Source; // para ver el nombre del error.
-					Error.ingresarError(3,"No se ha guardado en la Informacion en la base de datos");
-                }
+                //string error = e.Source;// para ver el nombre del error
+				Error.ingresarError(3,"No se ha guardado en la Informacion en la base de datos");
 			}
 		}
 		
-		public void modificar(int id)
+		public void modificar(string id)
 		{
 			try
 			{
@@ -86,20 +84,126 @@ namespace MuseoCliente.Connection.Objects
 			}
 			catch( Exception e)
 			{
-				if (e.Source != null)
-                {
-                    string error = e.Source;// para ver el nombre del error
-					Error.ingresarError(3,"No se ha modifico en la Informacion en la base de datos");
-                }
+				Error.ingresarError(4,"No se ha modifico en la Informacion en la base de datos");
 			}		
 		}
 			
 		
-        public ArrayList ConsultarNombre(String nombre)
+        public ArrayList consultarNombre(String nombre)
         {
-            List<T> lista = null;
-            lista = this.GetAsCollection();			
-            return new ArrayList(lista);
+			List<Pieza> listaNueva= new List<Pieza>();
+			try{
+
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.nombre.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
+
+                if(listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+			}catch(Exception e)
+			{
+				Error.ingresarError(2,"No se encontro nombre similares");
+			}
+			
+            return new ArrayList(listaNueva);
         }
+
+        public ArrayList consultarCodigo(String codigo)
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.codigo.Contains(codigo))
+                        listaNueva.Add(hol);
+                }
+               
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarClasificacion(int idClasificacion)
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.clasificacion == idClasificacion)
+                        listaNueva.Add(hol);
+                }
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarAutor(int idAutor)
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.autor == idAutor)
+                        listaNueva.Add(hol);
+                }
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarResponsableEquipo(int idResponsable)
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.responsableRegistro == idResponsable)
+                        listaNueva.Add(hol);
+                }
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
     }
 }
