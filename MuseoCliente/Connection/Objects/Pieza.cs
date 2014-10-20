@@ -59,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
 
 
         public Pieza()
-            : base("we/ewa/s")
+            : base("/v1/piezas/")
         {
         }
 
