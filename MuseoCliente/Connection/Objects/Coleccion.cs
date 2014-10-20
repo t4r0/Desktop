@@ -28,7 +28,8 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
+
+                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos"+ e.Message.ToString());
             }
         }
 
