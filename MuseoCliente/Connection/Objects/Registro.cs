@@ -11,10 +11,6 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Registro : ResourceObject<Registro>
     {
-         public Registro():base("v1/fichas/")
-        {
-           
-        }  
         
         [JsonProperty]
         public DateTime fecha { get; set; }

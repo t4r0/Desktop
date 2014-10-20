@@ -108,7 +108,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarLink(int consolidacion)
+        public ArrayList consultarConsolidacion(int consolidacion)
         {
             ArrayList listaNueva = null;
             try

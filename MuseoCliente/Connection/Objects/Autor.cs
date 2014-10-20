@@ -77,8 +77,8 @@ namespace MuseoCliente.Connection.Objects
 
                 ICollection<Autor> todasAutor = (ICollection<Autor>)this.GetAsCollection();
                 var autorApellido = from autor in todasAutor
-                                  where autor.apellido.Contains(apellido)
-                                  select autor;
+                                    where autor.apellido.Contains(apellido)
+                                    select autor;
                 listaNueva.AddRange((ICollection)autorApellido);
 
                 if (listaNueva == null)
@@ -89,6 +89,7 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError(2, "No se encontro nombre similares");
             }
 
-            return new Arr
+            return new ArrayList(listaNueva);
+        }
     }
 }
