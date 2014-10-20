@@ -62,6 +62,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
+                lista = this.GetAsCollection();
                 foreach (Traslado traslado in lista)
                 {
                     if (traslado.bodega)
