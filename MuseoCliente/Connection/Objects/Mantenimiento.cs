@@ -90,7 +90,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarLink(DateTime fecha)
+        public ArrayList consultarFecha(DateTime fecha)
         {
             ArrayList listaNueva = null;
             try
