@@ -91,14 +91,15 @@ namespace MuseoCliente.Connection.Objects
 		
         public ArrayList consultarNombre(String nombre)
         {
-			ArrayList listaNueva= new ArrayList();
+			List<Pieza> listaNueva= new List<Pieza>();
 			try{
 
-                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
-                var piezaNombre = from pieza in todasPiezas
-                                  where pieza.nombre.Contains(nombre)
-                                  select pieza;
-                listaNueva.AddRange((ICollection)piezaNombre);
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.nombre.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if(listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
