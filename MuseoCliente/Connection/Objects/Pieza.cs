@@ -79,7 +79,7 @@ namespace MuseoCliente.Connection.Objects
 			}
 		}
 		
-		public void modificar(int id)
+		public void modificar(string id)
 		{
 			try
 			{
@@ -98,10 +98,11 @@ namespace MuseoCliente.Connection.Objects
 		
         public ArrayList consultarNombre(String nombre)
         {
+			List<Pieza> listaNueva= null;
 			try{
 				
-				List<Pieza> lista = null;
-				List<Pieza> listaNueva = new List<Pieza>();
+				ArrayList  lista = null;
+				listaNueva = new List<Pieza>();
 				lista = this.GetAsCollection();	
 				foreach(Pieza pieza in lista)
 				{
@@ -120,11 +121,12 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarCodigo(String codigo)
         {
+			List<Pieza> listaNueva= null;
             try
             {
 
-                List<Pieza> lista = null;
-                List<Pieza> listaNueva = new List<Pieza>();
+                ArrayList lista = new ArrayList();
+                listaNueva = new List<Pieza>();
                 lista = this.GetAsCollection();
                 foreach (Pieza pieza in lista)
                 {
@@ -144,15 +146,16 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarClasificacion(int idClasificacion)
         {
+             List<Pieza> listaNueva = null;
             try
             {
 
-                List<Pieza> lista = null;
-                List<Pieza> listaNueva = new List<Pieza>();
+                ArrayList lista = null;
+                listaNueva = new List<Pieza>();
                 lista = this.GetAsCollection();
                 foreach (Pieza pieza in lista)
                 {
-                    if (pieza.codigo.clasificacion = idClasificacion)
+                    if (pieza.clasificacion == idClasificacion)
                         listaNueva.Add(pieza);
                 }
                 if (listaNueva == null)
@@ -168,15 +171,16 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarAutor(int idAutor)
         {
+             List<Pieza> listaNueva = null;
             try
             {
 
-                List<Pieza> lista = null;
-                List<Pieza> listaNueva = new List<Pieza>();
+                ArrayList lista = null;
+                listaNueva = new List<Pieza>();
                 lista = this.GetAsCollection();
                 foreach (Pieza pieza in lista)
                 {
-                    if (pieza.codigo.autor = idAutor)
+                    if (pieza.autor == idAutor)
                         listaNueva.Add(pieza);
                 }
                 if (listaNueva == null)
