@@ -14,7 +14,7 @@ namespace MuseoCliente.Connection.Objects
         public Publicacion()
             : base("v1/publicacion/")
         {
-            this.estructura = new Estructura();
+            
 
         }
 
@@ -30,11 +30,6 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string link { get; set; }
 
-        public Ficha()
-            : base("v1/fichas/")
-        {
-            this.estructura = new Estructura();
-
-        }
+       
     }
 }
