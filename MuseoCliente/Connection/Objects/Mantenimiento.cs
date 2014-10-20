@@ -54,7 +54,7 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarLink(int procedimiento)
+        public ArrayList consultarProcedimiento(int procedimiento)
         {
             ArrayList listaNueva = null;
             try
@@ -72,7 +72,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarLink(string metodoMaterial)
+        public ArrayList consultarMetodoMaterial(string metodoMaterial)
         {
             ArrayList listaNueva = null;
             try
