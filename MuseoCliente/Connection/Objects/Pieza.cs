@@ -116,12 +116,13 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = new ArrayList();
             try
             {
-
-                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
-                var piezaCodigo = from pieza in todasPiezas
-                                  where pieza.codigo.Contains(codigo)
-                                  select pieza;
-                listaNueva.AddRange((ICollection)piezaCodigo);
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.codigo.Contains(codigo))
+                        listaNueva.Add(hol);
+                }
+               
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -139,11 +140,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
-                var piezaClasificacion = from pieza in todasPiezas
-                                  where pieza.clasificacion == idClasificacion
-                                  select pieza;
-                listaNueva.AddRange((ICollection)piezaClasificacion);
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.clasificacion == idClasificacion)
+                        listaNueva.Add(hol);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -161,11 +163,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
-                var piezaAutor = from pieza in todasPiezas
-                                         where pieza.autor == idAutor
-                                         select pieza;
-                listaNueva.AddRange((ICollection)piezaAutor);
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.autor == idAutor)
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -184,11 +187,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Pieza> todasPiezas = (ICollection<Pieza>)this.GetAsCollection();
-                var piezaResponsable = from pieza in todasPiezas
-                                 where pieza.responsableRegistro == idResponsable
-                                 select pieza;
-                listaNueva.AddRange((ICollection)piezaResponsable);
+                List<Pieza> todasPiezas = this.GetAsCollection();
+                foreach (Pieza hol in todasPiezas)
+                {
+                    if (hol.responsableRegistro == idResponsable)
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
