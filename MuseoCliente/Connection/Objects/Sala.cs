@@ -58,8 +58,8 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 ICollection<Sala> lista = (ICollection<Sala>)this.GetAsCollection();
-                var Traslados = from sala in lista where sala.nombre == nombre select sala;
-                listaNueva.AddRange((ICollection)lista);
+                var Salas = from sala in lista where sala.nombre == nombre select sala;
+                listaNueva.AddRange((ICollection)Salas);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
             }
@@ -76,8 +76,8 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 ICollection<Sala> lista = (ICollection<Sala>)this.GetAsCollection();
-                var Traslados = from sala in lista where sala.descripcion == descripcion select sala;
-                listaNueva.AddRange((ICollection)lista);
+                var Salas = from sala in lista where sala.descripcion == descripcion select sala;
+                listaNueva.AddRange((ICollection)Salas);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con descripcion: " + descripcion);
             }
@@ -88,14 +88,14 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarDescripcion(string fotografia)
+        public ArrayList consultarFotografia(string fotografia)
         {
             ArrayList listaNueva = null;
             try
             {
                 ICollection<Sala> lista = (ICollection<Sala>)this.GetAsCollection();
-                var Traslados = from sala in lista where sala.fotografia == fotografia select sala;
-                listaNueva.AddRange((ICollection)lista);
+                var Salas = from sala in lista where sala.fotografia == fotografia select sala;
+                listaNueva.AddRange((ICollection)Salas);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con fotografia: " + fotografia);
             }
