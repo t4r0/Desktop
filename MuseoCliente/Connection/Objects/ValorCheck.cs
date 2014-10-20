@@ -19,7 +19,7 @@ namespace MuseoCliente.Connection.Objects
         public Boolean seleccionado { get; set; }
 
         public ValorCheck()
-            : base("v1/fichas/")
+            : base("/v1/fichas/")
         {
 
         }
@@ -53,12 +53,12 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = new ArrayList();
             try
             {
-
-                ICollection<ValorCheck> todasValor = (ICollection<ValorCheck>)this.GetAsCollection();
-                var valorNombres = from valor in todasValor
-                                   where valor.nombre.Contains(nombre)
-                                   select valor;
-                listaNueva.AddRange((ICollection)valorNombres);
+                List<ValorCheck> todasValor = this.GetAsCollection();
+                foreach (ValorCheck hol in todasValor)
+                {
+                    if (hol.nombre.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -77,11 +77,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<ValorCheck> todasValor = (ICollection<ValorCheck>)this.GetAsCollection();
-                var valorSeleccionado = from valor in todasValor
-                                        where valor.seleccionado == seleccionado
-                                        select valor;
-                listaNueva.AddRange((ICollection)valorSeleccionado);
+                List<ValorCheck> todasValor = this.GetAsCollection();
+                foreach (ValorCheck hol in todasValor)
+                {
+                    if (hol.seleccionado == seleccionado)
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");

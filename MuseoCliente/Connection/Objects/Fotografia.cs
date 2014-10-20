@@ -57,11 +57,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Fotografia> todasFotografia = (ICollection<Fotografia>)this.GetAsCollection();
-                var fotoTipo = from foto in todasFotografia
-                               where foto.tipo == tipo
-                               select foto;
-                listaNueva.AddRange((ICollection)fotoTipo);
+                List<Fotografia> todasFotografia = this.GetAsCollection();
+                foreach (Fotografia hol in todasFotografia)
+                {
+                    if (hol.tipo == tipo)
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -79,11 +80,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Fotografia> todasFotografia = (ICollection<Fotografia>)this.GetAsCollection();
-                var fotoPerfil = from foto in todasFotografia
-                                 where foto.perfil == perfil
-                                 select foto;
-                listaNueva.AddRange((ICollection)fotoPerfil);
+                List<Fotografia> todasFotografia = this.GetAsCollection();
+                foreach (Fotografia hol in todasFotografia)
+                {
+                    if (hol.perfil == perfil)
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");

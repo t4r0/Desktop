@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Traslado : ResourceObject<Traslado>
     {
-        public Traslado(): base("v1/traslado/")
+        public Traslado(): base("/v1/traslado/")
         {
 
         }
@@ -57,12 +57,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarBodega()
         {
-            ArrayList listaNueva = null;
+            List<Traslado> listaNueva = new List<Traslado>();
             try
             {
-                ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
-                var Traslados = from traslado in lista where traslado.bodega == true select traslado;
-                listaNueva.AddRange((ICollection)Traslados);
+                List<Traslado> todasPiezas = this.GetAsCollection();
+                foreach (Traslado traslado in todasPiezas)
+                {
+                    if (traslado.bodega)
+                        listaNueva.Add(traslado);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontraron bodegas");
             }
@@ -76,12 +79,15 @@ namespace MuseoCliente.Connection.Objects
         // hace las consultas solo por fecha sin incluir tiempo
         public ArrayList consultarFecha(DateTime Fecha)
         {
-            ArrayList listaNueva = null;
+            List<Traslado> listaNueva = new List<Traslado>();
             try
             {
-                ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
-                var Traslados = from traslado in lista where traslado.fecha.Date == Fecha.Date select traslado;
-                listaNueva.AddRange((ICollection)Traslados);
+                List<Traslado> todasPiezas = this.GetAsCollection();
+                foreach (Traslado traslado in todasPiezas)
+                {
+                    if (traslado.fecha.Date == Fecha.Date)
+                        listaNueva.Add(traslado);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias para la fecha: " + Fecha);
             }
@@ -94,12 +100,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(string Nombre)
         {
-            ArrayList listaNueva = null;
+            List<Traslado> listaNueva = new List<Traslado>();
             try
             {
-                ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
-                var Traslados = from traslado in lista where traslado.nombre == Nombre select traslado;
-                listaNueva.AddRange((ICollection)Traslados);
+                List<Traslado> todasPiezas = this.GetAsCollection();
+                foreach (Traslado traslado in todasPiezas)
+                {
+                    if (traslado.nombre.Contains(Nombre))
+                        listaNueva.Add(traslado);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
             }

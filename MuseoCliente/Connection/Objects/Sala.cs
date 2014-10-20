@@ -18,7 +18,7 @@ namespace MuseoCliente.Connection.Objects
         public String fotografia { get; set; }
 
 
-        public Sala(): base("v1/salas/")
+        public Sala(): base("/v1/salas/")
         {
         }
 
@@ -54,12 +54,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(string nombre)
         {
-            ArrayList listaNueva = null;
+            List<Sala> listaNueva = new List<Sala>();
             try
             {
-                ICollection<Sala> lista = (ICollection<Sala>)this.GetAsCollection();
-                var Salas = from sala in lista where sala.nombre == nombre select sala;
-                listaNueva.AddRange((ICollection)Salas);
+                List<Sala> todasPiezas = this.GetAsCollection();
+                foreach (Sala sala in todasPiezas)
+                {
+                    if (sala.nombre.Contains(nombre))
+                        listaNueva.Add(sala);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
             }
@@ -72,12 +75,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarDescripcion(string descripcion)
         {
-            ArrayList listaNueva = null;
+            List<Sala> listaNueva = new List<Sala>();
             try
             {
-                ICollection<Sala> lista = (ICollection<Sala>)this.GetAsCollection();
-                var Salas = from sala in lista where sala.descripcion == descripcion select sala;
-                listaNueva.AddRange((ICollection)Salas);
+                List<Sala> todasPiezas = this.GetAsCollection();
+                foreach (Sala sala in todasPiezas)
+                {
+                    if (sala.descripcion.Contains(descripcion))
+                        listaNueva.Add(sala);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con descripcion: " + descripcion);
             }
@@ -90,12 +96,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarFotografia(string fotografia)
         {
-            ArrayList listaNueva = null;
+            List<Sala> listaNueva = new List<Sala>();
             try
             {
-                ICollection<Sala> lista = (ICollection<Sala>)this.GetAsCollection();
-                var Salas = from sala in lista where sala.fotografia == fotografia select sala;
-                listaNueva.AddRange((ICollection)Salas);
+                List<Sala> todasPiezas = this.GetAsCollection();
+                foreach (Sala sala in todasPiezas)
+                {
+                    if (sala.fotografia.Contains(fotografia))
+                        listaNueva.Add(sala);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con fotografia: " + fotografia);
             }
