@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <ExpressionBlendVersion>4.0.20621.0</ExpressionBlendVersion>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +61,18 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="modClasificacion\modCategoria.xaml.cs">
+      <DependentUpon>modCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modClasificacion\modClasificaciones.xaml.cs">
+      <DependentUpon>modClasificaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modClasificacion\modColeccion.xaml.cs">
+      <DependentUpon>modColeccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modClasificacion\modResultadosClas.xaml.cs">
+      <DependentUpon>modResultadosClas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Connection\IResourceObject.cs" />
     <Compile Include="Connection\Objects\Campo.cs" />
     <Compile Include="Connection\Objects\Categoria.cs" />
@@ -87,11 +99,65 @@
     <Compile Include="Connection\Objects\Fotografia.cs" />
     <Compile Include="Connection\Objects\Mantenimiento.cs" />
     <Compile Include="Connection\Objects\Pieza.cs" />
-    <Compile Include="modinvestigacion.xaml.cs">
-      <DependentUpon>modinvestigacion.xaml</DependentUpon>
+    <Compile Include="modEventos\modEvento.xaml.cs">
+      <DependentUpon>modEvento.xaml</DependentUpon>
     </Compile>
-    <Compile Include="modLimpieza.xaml.cs">
-      <DependentUpon>modLimpieza.xaml</DependentUpon>
+    <Compile Include="modEventos\modEventos.xaml.cs">
+      <DependentUpon>modEventos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modEventos\modResultadosEvs.xaml.cs">
+      <DependentUpon>modResultadosEvs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modFotografias\modGaleria.xaml.cs">
+      <DependentUpon>modGaleria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInstalaciones\modInstalaciones.xaml.cs">
+      <DependentUpon>modInstalaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInstalaciones\modResultadosInst.xaml.cs">
+      <DependentUpon>modResultadosInst.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInstalaciones\modCaja.xaml.cs">
+      <DependentUpon>modCaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInstalaciones\modSala.xaml.cs">
+      <DependentUpon>modSala.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInstalaciones\modTraslado.xaml.cs">
+      <DependentUpon>modTraslado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInstalaciones\modVitrina.xaml.cs">
+      <DependentUpon>modVitrina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInvestigaciones\modInvestigacion.xaml.cs">
+      <DependentUpon>modInvestigacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInvestigaciones\modInvestigaciones.xaml.cs">
+      <DependentUpon>modInvestigaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modInvestigaciones\modResultadosInv.xaml.cs">
+      <DependentUpon>modResultadosInv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modTratamientos.xaml.cs">
+      <DependentUpon>modTratamientos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modOperaciones\modConsolidacion.xaml.cs">
+      <DependentUpon>modConsolidacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modOperaciones\modOperaciones.xaml.cs">
+      <DependentUpon>modOperaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modPiezas\modClasificacion.xaml.cs">
+      <DependentUpon>modClasificacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modPiezas\modInventario.xaml.cs">
+      <DependentUpon>modInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modPiezas\modPieza.xaml.cs">
+      <DependentUpon>modPieza.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modPiezas\modResultadosPiezas.xaml.cs">
+      <DependentUpon>modResultadosPiezas.xaml</DependentUpon>
     </Compile>
     <Compile Include="modResultados.xaml.cs">
       <DependentUpon>modResultados.xaml</DependentUpon>
@@ -101,7 +167,41 @@
     <Compile Include="Designer\frmDesigner.xaml.cs">
       <DependentUpon>frmDesigner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="modUsuarios\modAutor.xaml.cs">
+      <DependentUpon>modAutor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modUsuarios\modPublicacion.xaml.cs">
+      <DependentUpon>modPublicacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modUsuarios\modResultadosUsers.xaml.cs">
+      <DependentUpon>modResultadosUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modUsuarios\modUsuario.xaml.cs">
+      <DependentUpon>modUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modUsuarios\modUsuarios.xaml.cs">
+      <DependentUpon>modUsuarios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="modUsuarios\modVoluntario.xaml.cs">
+      <DependentUpon>modVoluntario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Test\Test.cs" />
+    <Page Include="modClasificacion\modCategoria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modClasificacion\modClasificaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modClasificacion\modColeccion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modClasificacion\modResultadosClas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Custom Styles.xaml" />
     <Page Include="Designer\frmDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -134,19 +234,115 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="modEventos\modEvento.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modEventos\modEventos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modEventos\modResultadosEvs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modFotografias\modGaleria.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInstalaciones\modInstalaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInstalaciones\modResultadosInst.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInstalaciones\modCaja.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInstalaciones\modSala.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInstalaciones\modTraslado.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInstalaciones\modVitrina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="modInventario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="modinvestigacion.xaml">
+    <Page Include="modInvestigaciones\modInvestigacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="modLimpieza.xaml">
+    <Page Include="modInvestigaciones\modInvestigaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modInvestigaciones\modResultadosInv.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modTratamientos.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modOperaciones\modConsolidacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modOperaciones\modOperaciones.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modPiezas\modClasificacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modPiezas\modInventario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modPiezas\modPieza.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modPiezas\modResultadosPiezas.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="modResultados.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modAutor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modPublicacion.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modResultadosUsers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modUsuario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modUsuarios.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modVoluntario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -190,7 +386,6 @@
     <Resource Include="Font\Entypo.ttf" />
     <Resource Include="Font\SourceSansPro-Regular.ttf" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
