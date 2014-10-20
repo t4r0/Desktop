@@ -59,7 +59,8 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(String nombre)
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = new ArrayList(); 
+          
             try
             {
 
