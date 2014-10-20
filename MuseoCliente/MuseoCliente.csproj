@@ -71,11 +71,14 @@
     </Compile>
     <Compile Include="Connection\Objects\Investigacion.cs" />
     <Compile Include="Connection\Objects\LinkInvestigacion.cs" />
+    <Compile Include="Connection\Objects\Pais.cs" />
+    <Compile Include="Connection\Objects\Publicacion.cs" />
     <Compile Include="Connection\Objects\Registro.cs" />
     <Compile Include="Connection\Objects\ResourceObject.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Connection\Objects\Traslado.cs" />
+    <Compile Include="Connection\Objects\Usuario.cs" />
     <Compile Include="Connection\Objects\ValorCheck.cs" />
     <Compile Include="Connection\Objects\Autor.cs" />
     <Compile Include="Connection\Objects\Caja.cs" />

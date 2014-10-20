@@ -13,14 +13,14 @@ namespace MuseoCliente.Connection
 {
     public class Connector
     {
-        private string server="http://localhost:8000/";
+        private string server="http://104.131.99.190/api";// al final no lleva el slash para no crear dos veces el mismo
 
         public string Server{
             get{return server;}
             set{server=value;}
         }
 
-        private string token = "7a2c8077843348ce14ef03405929a669ae4ab6db";
+        private string token = "93cfa0141a9ee3790728c90838089024a2006e7a";
 
         public string ResourceUri
         {
@@ -65,21 +65,20 @@ namespace MuseoCliente.Connection
         public void create(string content)
         {
             HttpClient client = CreateRequest();
-            HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, ResourceUri);
+            HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, server + ResourceUri);
             reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage message = client.SendAsync(reqMessage).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode != HttpStatusCode.OK)
-            {
-                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-                throw new Exception(error["error"]);
-            }
+            if (message.StatusCode == HttpStatusCode.Created)
+                return;
+            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+            throw new Exception(error["error"]);
         }
 
         public void edit(string id, string content)
         {
             HttpClient client = CreateRequest();           
-            HttpResponseMessage message =client.PutAsync(client.BaseAddress.AbsoluteUri + ResourceUri + "/" + id + "/", new StringContent(content)).Result;
+            HttpResponseMessage message =client.PutAsync(server + ResourceUri + "/" + id + "/", new StringContent(content)).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
             if (message.StatusCode != HttpStatusCode.Accepted)
             {

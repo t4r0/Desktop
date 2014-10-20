@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Collections;
-
 namespace MuseoCliente.Connection.Objects
 {
-    public class ValorCheck : ResourceObject<ValorCheck>
+    public class Publicacion : ResourceObject<Publicacion>
     {
+
+        public Publicacion()
+            : base("/v1/publicacion/")
+        {
+            
+
+        }
+
+        [JsonProperty]
+        public DateTime fecha { get; set; }
 
         [JsonProperty]
         public string nombre { get; set; }
 
         [JsonProperty]
-        public Boolean seleccionado { get; set; }
+        public string publicacion { get; set; }
 
-        public ValorCheck()
-            : base("/v1/fichas/")
-        {
+        [JsonProperty]
+        public string link { get; set; }
 
-        }
 
         public void guardar()
         {
@@ -32,6 +39,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
+             
                 Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
             }
         }
@@ -48,51 +56,32 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
+
         public ArrayList consultarNombre(String nombre)
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = new ArrayList(); 
+          
             try
             {
-                List<ValorCheck> todasValor = this.GetAsCollection();
-                foreach (ValorCheck hol in todasValor)
+
+                List<Publicacion> todasPublicaciones = this.GetAsCollection();
+                foreach (Publicacion hol in todasPublicaciones)
                 {
                     if (hol.nombre.Contains(nombre))
                         listaNueva.Add(hol);
                 }
 
                 if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                    Error.ingresarError(2, "No se encontro publicacion");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError(2, "No se encontro publicacion");
             }
 
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarSeleccionado(Boolean seleccionado)
-        {
-            ArrayList listaNueva = new ArrayList();
-            try
-            {
-
-                List<ValorCheck> todasValor = this.GetAsCollection();
-                foreach (ValorCheck hol in todasValor)
-                {
-                    if (hol.seleccionado == seleccionado)
-                        listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontro nombre similares");
-            }
-
-            return new ArrayList(listaNueva);
-        }
+       
     }
 }

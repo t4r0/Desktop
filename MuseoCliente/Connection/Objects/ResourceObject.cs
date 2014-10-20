@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    public class ResourceObject<T> : IResourceObject<T>
+    public  class ResourceObject<T> : IResourceObject<T>
     {
 
         [JsonIgnore]
@@ -38,11 +38,11 @@ namespace MuseoCliente.Connection.Objects
             return JsonConvert.DeserializeObject<T>(content);
         }
 
-        public ArrayList GetAsCollection()
+        public  List<T> GetAsCollection()
         {
             string content = conector.fetch();
             List<T> list = JsonConvert.DeserializeObject<List<T>>(content);
-            return new ArrayList(list);
+            return list;
         }
     }
 }

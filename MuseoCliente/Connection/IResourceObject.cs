@@ -15,6 +15,6 @@ namespace MuseoCliente.Connection
 
         T Get(string id);
 
-        ArrayList GetAsCollection();
+        List<T> GetAsCollection();
     }
 }

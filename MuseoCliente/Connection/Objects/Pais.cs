@@ -9,25 +9,32 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Consolidacion:ResourceObject<Consolidacion>
+    public class Pais : ResourceObject<Pais>
     {
-        [JsonProperty]
-        public Boolean limpieza { get; set; }
-        [JsonProperty]
-        public DateTime fechaInicio { get; set; }
-        [JsonProperty]
-        public DateTime fechaFinal { get; set; }
-        [JsonProperty]
-        public int responsable { get; set; }
-        [JsonProperty]
-        public int codigoPieza { get; set; }
-
-        public Consolidacion()
-            : base("/v1/consolidacion/")
+ 
+        public Pais()
+            : base("/v1/paises/")
         {
+
         }
 
-         public void guardar() //Crear un Usuario
+        [JsonProperty]
+        public string name { get; set; }
+
+        [JsonProperty]
+        public string printable_name { get; set; }
+
+        [JsonProperty]
+        public string iso3 { get; set; }
+
+        [JsonProperty]
+        public string iso { get; set; }
+
+        [JsonProperty]
+        public int numcode { get; set; }
+
+
+        public void guardar() //Crear un Usuario
         {
             try
             {
@@ -52,29 +59,31 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarConsolidacion(String dia)
+
+        public ArrayList consultarPaises(String nombre) //Devuelve lista de todos los paises ingresados
         {
-            List<Consolidacion> listaNueva = new List<Consolidacion>();
+            ArrayList listaNueva = new ArrayList();
             try
             {
 
-                List<Consolidacion> todoConsolidacion = this.GetAsCollection();
-                foreach (Consolidacion hol in todoConsolidacion)
+                List<Pais> todosPaises = this.GetAsCollection();
+                foreach (Pais hol in todosPaises)
                 {
-                    //if (hol.fechaInicio .Contains(dia))
-                     //   listaNueva.Add(hol);
+                    if (hol.name.Contains(nombre))
+                        listaNueva.Add(hol);
                 }
 
                 if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                    Error.ingresarError(2, "No hay paises existentes");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError(2, "No hay paises existentes");
             }
 
             return new ArrayList(listaNueva);
         }
-        
+
+
     }
 }
