@@ -49,18 +49,22 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(string codigo)
         {
-            ArrayList listaNueva = null;
+            List<Caja> listaNueva = new List<Caja>();
             try
             {
-                ICollection<Caja> lista = (ICollection<Caja>)this.GetAsCollection();
-                var Cajas = from caja in lista where caja.codigo == codigo select caja;
-                listaNueva.AddRange((ICollection)Cajas);
+                List<Caja> todasPiezas = this.GetAsCollection();
+                foreach (Caja caja in todasPiezas)
+                {
+                    if (caja.codigo.Contains(codigo))
+                        listaNueva.Add(caja);
+                }
+
                 if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con codigo: " + codigo);
+                    Error.ingresarError(2, "No se encontro codigo similar");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con codigo: " + codigo);
+                Error.ingresarError(2, "No se encontro codigo similar");
             }
             return new ArrayList(listaNueva);
         }

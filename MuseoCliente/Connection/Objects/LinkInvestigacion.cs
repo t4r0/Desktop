@@ -51,12 +51,15 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarLink(string link)
         {
-            ArrayList listaNueva = null;
+            List<LinkInvestigacion> listaNueva = new List<LinkInvestigacion>();
             try
             {
-                ICollection<LinkInvestigacion> lista = (ICollection<LinkInvestigacion>)this.GetAsCollection();
-                var links = from linkInvestigacion in lista where linkInvestigacion.link == link select linkInvestigacion;
-                listaNueva.AddRange((ICollection)links);
+                List<LinkInvestigacion> todasPiezas = this.GetAsCollection();
+                foreach (LinkInvestigacion Link in todasPiezas)
+                {
+                    if (Link.link.Contains(link))
+                        listaNueva.Add(Link);
+                }
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con link: " + link);
             }
