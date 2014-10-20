@@ -76,10 +76,11 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Pieza> todosUsuarios = (ICollection<Pieza>)this.GetAsCollection();
-                var usuarioNombre = from auth_user in todosUsuarios
-                                 select username   ;
-                listaNueva.AddRange((ICollection)usuarioNombre);
+                List<Usuario> todosUsuarios = this.GetAsCollection();
+                foreach (Usuario hol in todosUsuarios)
+                {
+                    listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No hay paises existentes");
@@ -99,12 +100,12 @@ namespace MuseoCliente.Connection.Objects
             try
             {
 
-                ICollection<Usuario> todosUsuarios = (ICollection<Usuario>)this.GetAsCollection();
-                var usuarioNombre = from auth_user in todosUsuarios
-                                    where auth_user.username.Contains(nombre)
-                                    select username, password, first_name,last_name, email, is_staff, 
-                                    is_active;
-                listaNueva.AddRange((ICollection)usuarioNombre);
+                List<Usuario> todosUsuarios = this.GetAsCollection();
+                foreach (Usuario hol in todosUsuarios)
+                {
+                    if (hol.username.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No hay Usuarios existentes");

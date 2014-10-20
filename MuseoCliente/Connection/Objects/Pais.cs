@@ -28,7 +28,10 @@ namespace MuseoCliente.Connection.Objects
         public string iso3 { get; set; }
 
         [JsonProperty]
-        public int num_code { get; set; }
+        public string iso { get; set; }
+
+        [JsonProperty]
+        public int numcode { get; set; }
 
 
         public void guardar() //Crear un Usuario
@@ -57,16 +60,18 @@ namespace MuseoCliente.Connection.Objects
         }
 
 
-        public ArrayList consultarPaises() //Devuelve lista de todos los paises ingresados
+        public ArrayList consultarPaises(String nombre) //Devuelve lista de todos los paises ingresados
         {
             ArrayList listaNueva = new ArrayList();
             try
             {
 
-                ICollection<Pais> todosPaises = (ICollection<Pais>)this.GetAsCollection();
-                var paisNombre = from country in todosPaises
-                                  select name;
-                listaNueva.AddRange((ICollection)paisNombre);
+                List<Pais> todosPaises = this.GetAsCollection();
+                foreach (Pais hol in todosPaises)
+                {
+                    if (hol.name.Contains(nombre))
+                        listaNueva.Add(hol);
+                }
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No hay paises existentes");
