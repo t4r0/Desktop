@@ -22,7 +22,7 @@ namespace MuseoCliente.Connection.Objects
         public bool consolidacion{get; set;}
 
         public Ficha()
-            : base("v1/fichas/")
+            : base("/v1/fichas/")
         {
             this.estructura = new Estructura();
            

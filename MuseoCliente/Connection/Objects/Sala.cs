@@ -18,7 +18,7 @@ namespace MuseoCliente.Connection.Objects
         public String fotografia { get; set; }
 
 
-        public Sala(): base("v1/salas/")
+        public Sala(): base("/v1/salas/")
         {
         }
 

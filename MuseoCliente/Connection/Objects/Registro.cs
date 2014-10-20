@@ -19,7 +19,7 @@ namespace MuseoCliente.Connection.Objects
         public Boolean consolidacion { get; set; }
 
         public Registro()
-            : base("v1/fichas/")
+            : base("/v1/fichas/")
         {
 
         }
