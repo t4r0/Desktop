@@ -15,8 +15,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int sala { get; set; }
 
-        public Vitrina()
-            : base("/v1/vitrinas/")
+        public Vitrina() : base("/v1/vitrinas/")
         {
         }
 
@@ -45,61 +44,45 @@ namespace MuseoCliente.Connection.Objects
             {
                 if (e.Source != null)
                 {
-                    Error.ingresarError(3, "No se ha modificado la Informacion en la base de datos");
+                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
                 }
             }
         }
 
-        public ArrayList listarPorNumero( string numero )
+        public ArrayList consultarNumero( string numero )
         {
-            ArrayList lista = null;
             ArrayList listaNueva = null;
             try
             {
-                lista = this.GetAsCollection();
-                foreach( Vitrina vitrina in lista )
-                {
-                    if( vitrina.numero == numero )
-                    {
-                        listaNueva.Add( vitrina );
-                    }
-                }
-                if(listaNueva == null)
-                {
-                Error.ingresarError( 2, "no se encontraron vitrinas con numero " + numero );
-                }
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError( 2, "no se encontraron vitrinas con numero " + numero );
-            }
-            return listaNueva;
-        }
-
-        public ArrayList listarPorSala(int sala)
-        {
-            ArrayList lista = null;
-            ArrayList listaNueva = null;
-            try
-            {
-                lista = this.GetAsCollection();
-                foreach (Vitrina vitrina in lista)
-                {
-                    if (vitrina.sala == sala)
-                    {
-                        listaNueva.Add(vitrina);
-                    }
-                }
+                ICollection<Vitrina> lista = (ICollection<Vitrina>)this.GetAsCollection();
+                var Traslados = from vitrina in lista where vitrina.numero == numero select vitrina;
+                listaNueva.AddRange((ICollection)lista);
                 if (listaNueva == null)
-                {
-                    Error.ingresarError(2, "no se encontraron vitrinas con sala " + sala);
-                }
+                    Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron vitrinas con numero " + sala );
+                Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
             }
-            return listaNueva;
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList consultarSala(int sala)
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                ICollection<Vitrina> lista = (ICollection<Vitrina>)this.GetAsCollection();
+                var Traslados = from vitrina in lista where vitrina.sala == sala select vitrina;
+                listaNueva.AddRange((ICollection)lista);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
+            }
+            return new ArrayList(listaNueva);
         }
 
     }

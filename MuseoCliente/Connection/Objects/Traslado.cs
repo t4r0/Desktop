@@ -11,8 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Traslado : ResourceObject<Traslado>
     {
-        public Traslado()
-            : base("v1/fichas/")
+        public Traslado(): base("v1/traslado/")
         {
 
         }
@@ -51,25 +50,19 @@ namespace MuseoCliente.Connection.Objects
             {
                 if (e.Source != null)
                 {
-                    Error.ingresarError(3, "No se ha modificado la Informacion en la base de datos");
+                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
                 }
             }
         }
 
-        public ArrayList listarBodegas()
+        public ArrayList consultarBodega()
         {
-            ArrayList lista = null;
             ArrayList listaNueva = null;
             try
             {
-                lista = this.GetAsCollection();
-                foreach (Traslado traslado in lista)
-                {
-                    if (traslado.bodega)
-                    {
-                        listaNueva.Add(traslado);
-                    }
-                }
+                ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
+                var Traslados = from traslado in lista where traslado.bodega == true select traslado;
+                listaNueva.AddRange((ICollection)lista);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontraron bodegas");
             }
@@ -77,60 +70,44 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontraron bodegas");
             }
-            return listaNueva;
+            return new ArrayList(listaNueva);
         }
 
         // hace las consultas solo por fecha sin incluir tiempo
         public ArrayList consultarFecha(DateTime Fecha)
         {
-            ArrayList lista = null;
             ArrayList listaNueva = null;
             try
             {
-                lista = this.GetAsCollection();
-                foreach (Traslado traslado in lista)
-                {
-                    if (traslado.fecha.Date == fecha.Date)
-                    {
-                        listaNueva.Add(traslado);
-                    }
-                }
+                ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
+                var Traslados = from traslado in lista where traslado.fecha.Date == Fecha.Date select traslado;
+                listaNueva.AddRange((ICollection)lista);
                 if (listaNueva == null)
-                {
                     Error.ingresarError(2, "no se encontraron coincidencias para la fecha: " + Fecha);
-                }
             }
             catch (Exception e)
             {
                 Error.ingresarError(2, "no se encontraron coincidencias para la fecha: " + Fecha);
             }
-            return listaNueva;
+            return new ArrayList(listaNueva);
         }
 
         public ArrayList consultarNombre(string Nombre)
         {
-            ArrayList lista = null;
             ArrayList listaNueva = null;
             try
             {
-                lista = this.GetAsCollection();
-                foreach (Traslado traslado in lista)
-                {
-                    if (traslado.nombre == Nombre)
-                    {
-                        listaNueva.Add(traslado);
-                    }
-                }
+                ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
+                var Traslados = from traslado in lista where traslado.nombre == Nombre select traslado;
+                listaNueva.AddRange((ICollection)lista);
                 if (listaNueva == null)
-                {
-                    Error.ingresarError(2, "no se encontraron Traslados con el nombre: " + Nombre);
-                }
+                    Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron Traslados con el nombre: " + Nombre);
+                Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
             }
-            return listaNueva;
+            return new ArrayList(listaNueva);
         }
     }
 }

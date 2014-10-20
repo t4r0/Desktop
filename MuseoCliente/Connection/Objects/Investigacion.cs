@@ -72,7 +72,7 @@ namespace MuseoCliente.Connection.Objects
         }
 
 
-        public ArrayList consultartitulo(String titulo)
+        public ArrayList consultaArtitulo(String titulo)
         {
             ArrayList listaNueva = new ArrayList();
             try
@@ -94,7 +94,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultaautor(String autor)
+        public ArrayList consultaAutor(String autor)
         {
             ArrayList listaNueva = new ArrayList();
 
