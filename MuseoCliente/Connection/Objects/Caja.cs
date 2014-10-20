@@ -53,8 +53,8 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 ICollection<Caja> lista = (ICollection<Caja>)this.GetAsCollection();
-                var Traslados = from caja in lista where caja.codigo == codigo select caja;
-                listaNueva.AddRange((ICollection)lista);
+                var Cajas = from caja in lista where caja.codigo == codigo select caja;
+                listaNueva.AddRange((ICollection)Cajas);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con codigo: " + codigo);
             }

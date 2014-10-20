@@ -62,7 +62,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
                 var Traslados = from traslado in lista where traslado.bodega == true select traslado;
-                listaNueva.AddRange((ICollection)lista);
+                listaNueva.AddRange((ICollection)Traslados);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontraron bodegas");
             }
@@ -81,7 +81,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
                 var Traslados = from traslado in lista where traslado.fecha.Date == Fecha.Date select traslado;
-                listaNueva.AddRange((ICollection)lista);
+                listaNueva.AddRange((ICollection)Traslados);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias para la fecha: " + Fecha);
             }
@@ -99,7 +99,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 ICollection<Traslado> lista = (ICollection<Traslado>)this.GetAsCollection();
                 var Traslados = from traslado in lista where traslado.nombre == Nombre select traslado;
-                listaNueva.AddRange((ICollection)lista);
+                listaNueva.AddRange((ICollection)Traslados);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
             }
