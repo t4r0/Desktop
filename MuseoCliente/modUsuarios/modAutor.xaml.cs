@@ -18,7 +18,8 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modAutor : UserControl
 	{
-		public modAutor()
+        Connection.Objects.Autor autor = new Connection.Objects.Autor();
+        public modAutor()
 		{
 			this.InitializeComponent();
 		}

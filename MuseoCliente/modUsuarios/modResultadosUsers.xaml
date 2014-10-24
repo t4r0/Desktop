@@ -13,19 +13,19 @@
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Resultados</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#9998;</Button>
+					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#9998;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton VerticalAlignment="Center" Margin="10,0,10,0">Usuarios</RadioButton>
-				<RadioButton VerticalAlignment="Center" Margin="0,0,10,0">Voluntarios</RadioButton>
+				<RadioButton x:Name="rbUsuarios" VerticalAlignment="Center" Margin="10,0,10,0">Usuarios</RadioButton>
+				<RadioButton x:Name="rbVoluntarios" VerticalAlignment="Center" Margin="0,0,10,0">Voluntarios</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">
-					<GridViewColumnHeader Height="355"/>
+					<GridViewColumnHeader x:Name="gvResultados" Height="355"/>
 				</StackPanel>
 			</DockPanel>
 			<Label Height="20"></Label>

@@ -12,21 +12,21 @@
 		<StackPanel>
 			<Label Height="10"/>
 			<DockPanel Height="35" Width="490" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,55,0"/>
+				<TextBox x:Name="txtFiliacion" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,55,0"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center">Filiación Académica:</Label>
 			</DockPanel>
 			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
+				<ComboBox x:Name="cmbPais" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0">País:</Label>
 			</DockPanel>
 			<DockPanel Height="35" Width="440" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<Button Height="25" Width="30" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center">...</Button>
-				<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+				<Button x:Name="btnBuscar" Height="25" Width="30" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center">...</Button>
+				<TextBox x:Name="txtFoto" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">Fotografía:</Label>
 			</DockPanel>
 			<StackPanel Height="230" Width="550" HorizontalAlignment="Center">
 				<Label HorizontalAlignment="Left" VerticalAlignment="Center">Biografía:</Label>
-				<RichTextBox Height="190" Margin="0"/>
+				<RichTextBox x:Name="rtxtBiografia" Height="190" Margin="0"/>
 			</StackPanel>
 			<Label Height="20"></Label>
 		</StackPanel>
