@@ -12,22 +12,22 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Instalaciones</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnNuevaSala" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
 				</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnNuevaVitrina" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
 				</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnNuevaCaja" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
 				</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnTraslado" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#8646;</Button>
 				</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128269;</Button>
 				</Label>
-				<TextBox Height="20" Width="150" HorizontalAlignment="Right"/>
+				<TextBox x:Name="txtBuscar" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 			</DockPanel>
 		</Border>
 		<StackPanel>
@@ -35,21 +35,21 @@
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Piezas en Bodega:</Label>
-					<GridViewColumnHeader Margin="10" Height="160"/>
+					<GridViewColumnHeader x:Name="gvPiezas" Margin="10" Height="160"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Salas del Museo:</Label>
-					<GridViewColumnHeader Margin="10" Height="160"/>
+					<GridViewColumnHeader x:Name="gvSalas" Margin="10" Height="160"/>
 				</StackPanel>
 			</DockPanel>
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Cajas Existentes:</Label>
-					<GridViewColumnHeader Margin="10" Height="160"/>
+					<GridViewColumnHeader x:Name="gvCajas" Margin="10" Height="160"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Vitrinas por Sala:</Label>
-					<GridViewColumnHeader Margin="10" Height="160"/>
+					<GridViewColumnHeader x:Name="gvVitrinas" Margin="10" Height="160"/>
 				</StackPanel>
 			</DockPanel>
 			<Label Height="20"></Label>
