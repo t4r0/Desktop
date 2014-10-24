@@ -12,24 +12,21 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Galería de Fotografías</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
-				</Label>
 			</DockPanel>
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Seleccione Clasificación:</Label>
-				<ComboBox Height="25" Width="300" Margin="5,0,0,0"/>
+				<ComboBox x:Name="cmbClasificacion" Height="25" Width="300" Margin="5,0,0,0"/>
 			</DockPanel>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<Button Height="25" Width="105">Cargar Imagenes</Button>
+				<Button x:Name="btnCargar" Height="25" Width="105">Cargar Imagenes</Button>
 			</DockPanel>
 			<DockPanel Height="300" Width="400" HorizontalAlignment="Center" Margin="0,20,0,0">
-				<Button Height="25" Width="45" VerticalAlignment="Bottom" Margin="10,0,0,10">Izq</Button>
+				<Button x:Name="btnIzq" Height="25" Width="45" VerticalAlignment="Bottom" Margin="10,0,0,10">Izq</Button>
 				<Border Height="250" Width="250" Margin="15,0,0,0" BorderBrush="{DynamicResource Gray}" BorderThickness="2"/>
-				<Button Height="25" Width="45" VerticalAlignment="Bottom" Margin="0,0,0,10">Der</Button>
+				<Button x:Name="btnDer" Height="25" Width="45" VerticalAlignment="Bottom" Margin="0,0,0,10">Der</Button>
 			</DockPanel>
 			<Label Height="20"></Label>
 		</StackPanel>

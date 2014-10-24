@@ -11,12 +11,12 @@
 	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
-				<Label DockPanel.Dock="Left">[Op] Usuario</Label>
+				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Usuario</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
+					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
+					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
@@ -28,11 +28,11 @@
 						<Label Content="ACERCA DE"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="380" HorizontalAlignment="Center">
-						<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+						<TextBox x:Name="txtNombres" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 						<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Nombres:"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="380" HorizontalAlignment="Center">
-						<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+						<TextBox x:Name="txtApellidos" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 						<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Apellidos:"/>
 					</DockPanel>
 				</StackPanel>
@@ -43,11 +43,11 @@
 						<Label Content="USUARIO"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="380" HorizontalAlignment="Center">
-						<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+						<TextBox x:Name="txtUserName" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 						<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Content="UserName:"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="380" HorizontalAlignment="Center">
-						<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+						<TextBox x:Name="txtContra" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 						<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Contraseña:"/>
 					</DockPanel>
 				</StackPanel>
@@ -58,7 +58,7 @@
 						<Label Content="CORREO"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="380" HorizontalAlignment="Center">
-						<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+						<TextBox x:Name="txtCorreo" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
 						<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Content="e-mail:"/>
 					</DockPanel>
 				</StackPanel>
@@ -69,15 +69,15 @@
 						<Label Content="INFORMACION"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="430" HorizontalAlignment="Center">
-						<ComboBox Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
+						<ComboBox x:Name="cmbGrupo" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
 						<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Content="Grupo usuario:"/>
 					</DockPanel>
 					<DockPanel Height="35" Width="430" HorizontalAlignment="Center">
 						<DockPanel Margin="0" Width="320">
-							<CheckBox VerticalAlignment="Center" Margin="10,0,0,0" Content="Super Usuario"/>
-							<CheckBox VerticalAlignment="Center" Margin="10,0,0,0" Content="Staff"/>
-							<CheckBox VerticalAlignment="Center" Margin="10,0,0,0" Content="Activo"/>
-							<CheckBox VerticalAlignment="Center" Margin="10,0,0,0" Content="Voluntario"/>
+							<CheckBox x:Name="chkSuperUsuario" VerticalAlignment="Center" Margin="10,0,0,0" Content="Super Usuario"/>
+							<CheckBox x:Name="chkStaff" VerticalAlignment="Center" Margin="10,0,0,0" Content="Staff"/>
+							<CheckBox x:Name="chkActivo" VerticalAlignment="Center" Margin="10,0,0,0" Content="Activo"/>
+							<CheckBox x:Name="chkVoluntario" VerticalAlignment="Center" Margin="10,0,0,0" Content="Voluntario"/>
 						</DockPanel>
 					</DockPanel>
 				</StackPanel>

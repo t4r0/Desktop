@@ -12,8 +12,8 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Operaciones</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnNuevaCons" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10133;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
@@ -21,7 +21,7 @@
 			<Label Height="20"/>
 			<StackPanel Height="410">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0">Últimas Consolidaciones:</Label>
-				<GridViewColumnHeader Margin="10" Width="580" Height="350"/>
+				<GridViewColumnHeader x:Name="gvConsolidaciones" Margin="10" Width="580" Height="350"/>
 			</StackPanel>
 			<Label Height="20"></Label>
 		</StackPanel>

@@ -12,23 +12,23 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Resultados</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#9998;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton VerticalAlignment="Center" Margin="10,0,10,0">Todas</RadioButton>
-				<RadioButton VerticalAlignment="Center" Margin="0,0,10,0">Clasificación</RadioButton>
-				<RadioButton VerticalAlignment="Center" Margin="0,0,10,0">Exhibición</RadioButton>
-				<RadioButton VerticalAlignment="Center" Margin="0,0,10,0">Bodega</RadioButton>
-				<RadioButton VerticalAlignment="Center" Margin="0,0,10,0">Últimas</RadioButton>
+				<RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0">Todas</RadioButton>
+				<RadioButton x:Name="rbClasif" VerticalAlignment="Center" Margin="0,0,10,0">Clasificación</RadioButton>
+				<RadioButton x:Name="rbExhibicion" VerticalAlignment="Center" Margin="0,0,10,0">Exhibición</RadioButton>
+				<RadioButton x:Name="rbBodega" VerticalAlignment="Center" Margin="0,0,10,0">Bodega</RadioButton>
+				<RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0">Últimas</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">
-					<GridViewColumnHeader Height="355"/>
+					<GridViewColumnHeader x:Name="gvResultados" Height="355"/>
 				</StackPanel>
 			</DockPanel>
 			<Label Height="20"></Label>

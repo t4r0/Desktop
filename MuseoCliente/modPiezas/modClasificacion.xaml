@@ -11,35 +11,35 @@
 	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
-				<Label DockPanel.Dock="Left">[Op] Clasificación</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Clasificación</Label>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
 				</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+				<TextBox x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0">Código:</Label>
 			</DockPanel>
 			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
+				<ComboBox x:Name="cmbFicha" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0">Ficha:</Label>
 			</DockPanel>
 			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
+				<ComboBox x:Name="cmbCategoria" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0">Categoría:</Label>
 			</DockPanel>
 			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
+				<ComboBox x:Name="cmbColeccion" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0">Colección:</Label>
 			</DockPanel>
 			<DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<TextBox Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+				<TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0">Nombre:</Label>
 			</DockPanel>
 			<Label Height="20"></Label>

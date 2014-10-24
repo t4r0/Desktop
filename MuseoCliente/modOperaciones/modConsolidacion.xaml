@@ -12,11 +12,11 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Consolidación</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
 				</Label>
-				<Label Height="30" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<TextBlock HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" Style="{DynamicResource GrayIcons}"><Run Text="✎"/></TextBlock>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
@@ -26,36 +26,36 @@
 				<StackPanel>
 					<DockPanel Height="35" Width="500" HorizontalAlignment="Center">
 						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Codigo Pieza:</Label>
-						<TextBox Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-						<Button DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right">Seleccionar</Button>
+						<TextBox x:Name="txtCodigo" Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<Button x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right">Seleccionar</Button>
 					</DockPanel>
 					<DockPanel Height="95" Width="510">
 						<StackPanel Margin="10">
-							<GridViewColumnHeader Height="85"/>
+							<GridViewColumnHeader x:Name="gvPiezas" Height="85"/>
 						</StackPanel>
 					</DockPanel>
 					<DockPanel Height="35" HorizontalAlignment="Center">
 						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Pieza para tratamiento:</Label>
-						<TextBox Height="25" Width="100" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-						<TextBox Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+						<TextBox x:Name="txtCodigoPieza" Height="25" Width="100" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+						<TextBox x:Name="txtNombrePieza" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
 					</DockPanel>
 				</StackPanel>
 			</Border>
 			<StackPanel>
 			<DockPanel Height="35" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<RadioButton VerticalAlignment="Center" Margin="10,0,10,0">Limpieza</RadioButton>
-				<RadioButton VerticalAlignment="Center" Margin="0,0,10,0">Restauración</RadioButton>
+				<RadioButton x:Name="rbLimpieza" VerticalAlignment="Center" Margin="10,0,10,0">Limpieza</RadioButton>
+				<RadioButton x:Name="rbRestaurar" VerticalAlignment="Center" Margin="0,0,10,0">Restauración</RadioButton>
 			</DockPanel>
 			<DockPanel Height="35" Width="400" HorizontalAlignment="Center" Margin="0,10,0,0">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Fecha de Inicio:</Label>
-				<DatePicker Height="25"/>
+				<DatePicker x:Name="dpInicio" Height="25"/>
 			</DockPanel>
 			<DockPanel Height="35" Width="400" HorizontalAlignment="Center" Margin="0,10,0,0">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">Fecha Fin:</Label>
-				<DatePicker Height="25" Margin="0,0,0,0"/>
+				<DatePicker x:Name="dpFin" Height="25" Margin="0,0,0,0"/>
 			</DockPanel>
 			<DockPanel Height="35" HorizontalAlignment="Center" Margin="0,10">
-				<Button Height="25" Width="90">Tratamientos</Button>
+				<Button x:Name="btnTratamientos" Height="25" Width="90">Tratamientos</Button>
 			</DockPanel>
 		</StackPanel>
 			<Label Height="20"></Label>
