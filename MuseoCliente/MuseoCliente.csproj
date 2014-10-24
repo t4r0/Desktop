@@ -159,9 +159,6 @@
     <Compile Include="modPiezas\modResultadosPiezas.xaml.cs">
       <DependentUpon>modResultadosPiezas.xaml</DependentUpon>
     </Compile>
-    <Compile Include="modResultados.xaml.cs">
-      <DependentUpon>modResultados.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Connection\Objects\Sala.cs" />
     <Compile Include="Connection\Objects\Vitrina.cs" />
     <Compile Include="Designer\frmDesigner.xaml.cs">
@@ -274,10 +271,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="modInventario.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="modInvestigaciones\modInvestigacion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -318,10 +311,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="modResultados.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="modUsuarios\modAutor.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -350,9 +339,6 @@
   <ItemGroup>
     <Compile Include="modConsultas.xaml.cs">
       <DependentUpon>modConsultas.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="modInventario.xaml.cs">
-      <DependentUpon>modInventario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
