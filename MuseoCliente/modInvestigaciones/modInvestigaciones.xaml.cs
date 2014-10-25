@@ -8,20 +8,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MuseoCliente
 {
 	/// <summary>
-	/// Lógica de interacción para modResultados.xaml
+	/// Lógica de interacción para modInvestigaciones.xaml
 	/// </summary>
-	public partial class modResultados : UserControl
+	public partial class modInvestigaciones : UserControl
 	{
-		public modResultados()
+		public modInvestigaciones()
 		{
 			this.InitializeComponent();
-			
-			// A partir de este punto se requiere la inserción de código para la creación del objeto.
 		}
 	}
 }

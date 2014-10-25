@@ -1,0 +1,73 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="MuseoCliente.modInvestigacion"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="640">
+
+	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
+		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
+			<DockPanel>
+				<Label x:Name="lblOperaciones" DockPanel.Dock="Left">[Op] Investigación</Label>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
+				</Label>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
+				</Label>
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnPublicar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#59213;</Button>
+				</Label>
+			</DockPanel>
+		</Border>
+		<StackPanel>
+			<Border BorderBrush="{DynamicResource DarkGray}" BorderThickness="1,1,1,0">
+				<StackPanel>
+					<DockPanel Height="35" Width="500" HorizontalAlignment="Center">
+						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Codigo Pieza:</Label>
+						<TextBox x:Name="txtCodigo" Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+						<Button x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right">Seleccionar</Button>
+					</DockPanel>
+					<DockPanel Height="95" Width="510">
+						<StackPanel Margin="10">
+							<GridViewColumnHeader x:Name="gvPiezas" Height="85"/>
+						</StackPanel>
+					</DockPanel>
+					<DockPanel Height="35" HorizontalAlignment="Center">
+						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Pieza a investigar:</Label>
+						<TextBox x:Name="txtCodigoPieza" Height="25" Width="100" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+						<TextBox x:Name="txtNombrePieza" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+					</DockPanel>
+				</StackPanel>
+			</Border>
+			<StackPanel>
+				<Label Height="20"/>
+				<DockPanel Height="35" HorizontalAlignment="Center">
+					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Editor:</Label>
+					<ComboBox x:Name="cmbEditor" Height="25" Width="300" Margin="5,0,0,0"/>
+				</DockPanel>
+				<DockPanel Height="35" HorizontalAlignment="Center">
+					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Autor:</Label>
+					<ComboBox x:Name="cmbAutor" Height="25" Width="300" Margin="5,0,0,0"/>
+				</DockPanel>
+				<DockPanel Height="35" HorizontalAlignment="Center">
+					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Título:</Label>
+					<TextBox x:Name="txtTitulo" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+				</DockPanel>
+				<StackPanel HorizontalAlignment="Center" Margin="80,0,80,0">
+					<Label>Descripción:</Label>
+					<RichTextBox x:Name="rtxtDescripcion" Height="150"/>
+				</StackPanel>
+				<StackPanel HorizontalAlignment="Center" Margin="80,0,80,0">
+					<Label>Resumen:</Label>
+					<RichTextBox x:Name="rtxtResumen" Height="75"/>
+				</StackPanel>
+				<Label Height="20"></Label>
+			</StackPanel>
+			<Label Height="20"></Label>
+		</StackPanel>
+	</DockPanel>
+</UserControl>
