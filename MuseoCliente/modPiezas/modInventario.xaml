@@ -25,11 +25,11 @@
 			<Label Height="20"/>
 			<StackPanel Height="205">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0">En Exhibición:</Label>
-				<GridViewColumnHeader x:Name="gvExhibicion" Margin="10" Width="580" Height="150"/>
+				<GridViewColumnHeader x:Name="gvExhibicion" Margin="15,0,15,0" Height="150"/>
 			</StackPanel>
 			<StackPanel Height="205">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0">En Bodega:</Label>
-				<GridViewColumnHeader x:Name="gvBodega" Margin="10" Width="580" Height="150"/>
+				<GridViewColumnHeader x:Name="gvBodega" Margin="15,0,15,0" Height="150"/>
 			</StackPanel>
 			<Label Height="20"></Label>
 		</StackPanel>
