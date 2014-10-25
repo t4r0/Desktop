@@ -181,7 +181,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarResponsableEquipo(int idResponsable)
+        public ArrayList consultarResponsableEquipo(int idResponsable) //
         {
             ArrayList listaNueva = new ArrayList();
             try
