@@ -8,37 +8,48 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    public class ResourceObject<T> : IResourceObject<T>
+    public  class ResourceObject<T> 
     {
 
         [JsonIgnore]
         Connector conector = new Connector();
 
-        public ResourceObject(string resourceUri)
+        [JsonProperty]
+        public String resource_uri { get; set; }
+
+        [JsonProperty]
+        public int id { get; set; }
+
+        protected ResourceObject(string resourceUri)
         {
-            conector.ResourceUri = resourceUri;
+            conector.BaseUri = resourceUri;
         }
 
-        public void Save(string id)
+        //protected void setResourceUri(string resourceUri)
+        //{
+        //    conector.BaseUri = resourceUri;
+        //}
+
+        protected void Save(string id)
         {            
             string content = JsonConvert.SerializeObject(this);
             conector.edit(id, content);
         }
 
-        public void Create()
+        protected void Create()
         {
             string content = JsonConvert.SerializeObject(this);
             conector.create(content);
         }
 
-        public T Get(string id)
+        protected T Get(string id)
         {
-            conector.ResourceUri += '/' + id + '/';
+            conector.BaseUri += '/' + id + '/';
             string content=conector.fetch();
             return JsonConvert.DeserializeObject<T>(content);
         }
 
-        public List<T> GetAsCollection()
+        protected List<T> GetAsCollection()
         {
             string content = conector.fetch();
             List<T> list = JsonConvert.DeserializeObject<List<T>>(content);
