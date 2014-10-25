@@ -21,7 +21,7 @@
 			<Label Height="20"/>
 			<StackPanel Height="410">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0">Últimas Consolidaciones:</Label>
-				<GridViewColumnHeader x:Name="gvConsolidaciones" Margin="10" Width="580" Height="350"/>
+				<GridViewColumnHeader x:Name="gvConsolidaciones" Margin="15,0,15,0" Height="350"/>
 			</StackPanel>
 			<Label Height="20"></Label>
 		</StackPanel>
