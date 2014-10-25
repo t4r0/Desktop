@@ -16,9 +16,9 @@ namespace MuseoCliente
 	/// <summary>
 	/// Lógica de interacción para ucCaja.xaml
 	/// </summary>
-	public partial class ucCaja : UserControl
+	public partial class modCaja : UserControl
 	{
-		public ucCaja()
+		public modCaja()
 		{
 			this.InitializeComponent();
 		}

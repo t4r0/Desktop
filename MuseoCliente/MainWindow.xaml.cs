@@ -35,7 +35,7 @@ namespace MuseoCliente
 
         private void itemClasif_Click(object sender, RoutedEventArgs e)
         {
-            bdrContenedor.Child = new modClasificaciones();
+            bdrContenedor.Child = new modVoluntario();
         }
 
         private void itemPiezas_Click(object sender, RoutedEventArgs e)
