@@ -16,6 +16,7 @@ namespace MuseoCliente.Connection.Objects
         public String descripcion { get; set; }
         [JsonProperty]
         public String fotografia { get; set; }
+       
 
 
         public Sala(): base("/v1/salas/")
@@ -37,11 +38,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -51,6 +52,33 @@ namespace MuseoCliente.Connection.Objects
                 }
             }
         }
+
+        public void regresarObjeto(int ide)
+        {
+            try
+            {
+                Sala salaTemporal = this.Get(ide.ToString());
+                if (salaTemporal == null)
+                {
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
+                }
+                this.nombre = salaTemporal.nombre;
+                this.id = salaTemporal.id;
+                this.descripcion = salaTemporal.descripcion;
+                this.fotografia = salaTemporal.fotografia;
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
+        }
+
 
         public ArrayList consultarNombre(string nombre)
         {
