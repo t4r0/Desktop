@@ -55,5 +55,12 @@ namespace MuseoCliente.Connection.Objects
             List<T> list = JsonConvert.DeserializeObject<List<T>>(content);
             return list;
         }
+
+        protected List<T> GetAsCollection(string direccion)
+        {
+            string content = conector.fetch(direccion);
+            List<T> list = JsonConvert.DeserializeObject<List<T>>(content);
+            return list;
+        }
     }
 }
