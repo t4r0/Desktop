@@ -30,12 +30,17 @@ namespace MuseoCliente
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            /*Login log = new Login();
-            log.ShowDialog();
-            if (log.DialogResult != true)
-            {
-                this.Close();
-            }*/
+            
+        }
+
+        private void itemClasif_Click(object sender, RoutedEventArgs e)
+        {
+            bdrContenedor.Child = new modVoluntario();
+        }
+
+        private void itemPiezas_Click(object sender, RoutedEventArgs e)
+        {
+            //bdrContenedor.Child = new modInventario();
         }
     }
 }

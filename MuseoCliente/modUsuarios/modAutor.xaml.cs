@@ -14,11 +14,12 @@ using System.Windows.Shapes;
 namespace MuseoCliente
 {
 	/// <summary>
-	/// Lógica de interacción para UserControl1.xaml
+	/// Lógica de interacción para modAutor.xaml
 	/// </summary>
-	public partial class UserControl1 : UserControl
+	public partial class modAutor : UserControl
 	{
-		public UserControl1()
+        Connection.Objects.Autor autor = new Connection.Objects.Autor();
+        public modAutor()
 		{
 			this.InitializeComponent();
 		}

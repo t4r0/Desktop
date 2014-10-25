@@ -24,7 +24,7 @@ namespace MuseoCliente.Connection.Objects
         public int usuario { get; set; }
 
         public Eventos()
-            : base("/v1/exhibicion/")
+            : base("/v1/eventos/")
         {
 
         }
