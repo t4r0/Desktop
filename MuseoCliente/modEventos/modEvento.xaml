@@ -22,15 +22,15 @@
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
-			<DockPanel Height="35" Width="421" HorizontalAlignment="Center">
+            <DockPanel Margin="80,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="81,0,0,0">Sala:</Label>
 				<ComboBox x:Name="cmbSala" Height="25" Width="300" Margin="0" HorizontalAlignment="Right"/>
 			</DockPanel>
-			<DockPanel Height="35" Width="421" HorizontalAlignment="Center">
+            <DockPanel Margin="80,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Nombre del Evento:</Label>
 				<TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
 			</DockPanel>
-			<DockPanel Height="35" Width="421" HorizontalAlignment="Center">
+            <DockPanel Margin="80,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="13,0,0,0">Fecha del Evento:</Label>
 				<DatePicker x:Name="dpFecha" Height="25" Width="300" HorizontalAlignment="Right"/>
 			</DockPanel>
@@ -42,7 +42,7 @@
 				<Label>Afiche:</Label>
                 <DockPanel>
                     <TextBox x:Name="txtAfiche" Width="440"/>
-                    <Button x:Name="btnBuscar">...</Button>
+                    <Button x:Name="btnBuscar" Width="39">...</Button>
                 </DockPanel>
 			</StackPanel>
 			<Label Height="20"></Label>
