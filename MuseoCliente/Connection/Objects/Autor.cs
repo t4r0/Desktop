@@ -10,9 +10,9 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string pais { get; set; }
         [JsonProperty]
-        public String nombre { get; set; }
+        public string nombre { get; set; }
         [JsonProperty]
-        public String apellido { get; set; }
+        public string apellido { get; set; }
 
         public Autor()
             : base( "/v1/autores/" )

@@ -23,9 +23,7 @@ namespace MuseoCliente
         public modAutor()
 		{
 			this.InitializeComponent();
-            cmbPais.DisplayMemberPath = "name";
-            cmbPais.SelectedValuePath = "iso";
-            cmbPais.ItemsSource = paises.todosPaises();
+     
 		}
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
@@ -33,7 +31,22 @@ namespace MuseoCliente
             autor.nombre = txtNombre.Text;
             autor.apellido = txtApellido.Text;
             autor.pais = cmbPais.SelectedValue.ToString();
-            MessageBox.Show(cmbPais.SelectedValue.ToString());
+            autor.guardar();
+            if (Connection.Objects.Error.isActivo())
+            {
+                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+            }
+            else
+            {
+                MessageBox.Show("Bien puto Ursaring");
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbPais.DisplayMemberPath = "name";
+            cmbPais.SelectedValuePath = "iso";
+            cmbPais.ItemsSource = paises.regresarTodos();
         }
 	}
 }

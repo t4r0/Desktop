@@ -25,7 +25,7 @@
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">
-					<GridViewColumnHeader x:Name="gvResultados" Height="355"/>
+                    <DataGrid x:Name="gvResultados" Height="355"/>
 				</StackPanel>
 			</DockPanel>
 			<Label Height="20"></Label>

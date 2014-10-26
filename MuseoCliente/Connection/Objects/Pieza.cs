@@ -37,7 +37,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String procedencia { get; set; }
         [JsonProperty]
-        public int pais { get; set; }
+        public string pais { get; set; }
         [JsonProperty]
         public Int16 regionCultural { get; set; }
         [JsonProperty]
@@ -76,31 +76,88 @@ namespace MuseoCliente.Connection.Objects
 			}
 		}
 		
-		public void modificar(string id)
+		public void modificar()
 		{
 			try
 			{
-				this.Save(id);
+				this.Save(this.codigo);
 			}
 			catch( Exception e)
 			{
 				Error.ingresarError(4,"No se ha modifico en la Informacion en la base de datos");
 			}		
 		}
-			
-		
-        public ArrayList consultarNombre(String nombre)
+        /* FUNCINES ESCENCIALES*/
+
+        public ArrayList regresarTodos()
         {
-			List<Pieza> listaNueva= new List<Pieza>();
-			try{
+            List<Pieza> listaNueva = null;
+            try
+            {
+                listaNueva = this.GetAsCollection();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            return new ArrayList(listaNueva);
+        }
 
-                List<Pieza> todasPiezas = this.GetAsCollection();
-                foreach (Pieza hol in todasPiezas)
+        public void regresarObjeto(int id)
+        {
+            try
+            {
+                Pieza temp = this.Get(id.ToString());
+                if (temp == null)
                 {
-                    if (hol.nombre.Contains(nombre))
-                        listaNueva.Add(hol);
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
                 }
+                this.codigo = temp.codigo;
+                this.codigoSlug = temp.codigoSlug;
+                this.clasificacion = temp.clasificacion;
+                this.autor = temp.autor;
+                this.responsableRegistro = temp.responsableRegistro;
+                this.registroIDAEH = temp.registroIDAEH;
+                this.codigoIDAEH = temp.codigoIDAEH;
+                this.archivoIDAEH = temp.archivoIDAEH;
+                this.nombre = temp.nombre;
+                this.descripcion = temp.descripcion;
+                this.fechaIngreso = temp.fechaIngreso;
+                this.procedencia = temp.procedencia;
+                this.pais = temp.pais;
+                this.regionCultural = temp.regionCultural;
+                this.observaciones = temp.observaciones;
+                this.maestra = temp.maestra;
+                this.exhibicion = temp.exhibicion;
+                this.altura = temp.altura;
+                this.ancho = temp.ancho;
+                this.grosor = temp.grosor;
+                this.largo = temp.largo;
+                this.diametro = temp.diametro;
 
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
+        }
+
+        /*  CONSULTAS */
+        
+
+
+        public ArrayList buscarNombre(String nombre)
+        {
+            List<Pieza> listaNueva = null;
+			try{
+                string consultar = "?nombre=" + nombre;
+                listaNueva = this.GetAsCollection(consultar);
                 if(listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
 			}catch(Exception e)
@@ -111,18 +168,13 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarCodigo(String codigo)
+        public ArrayList buscarResponsableEquipo(int responsable)
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Pieza> listaNueva = null;
             try
             {
-                List<Pieza> todasPiezas = this.GetAsCollection();
-                foreach (Pieza hol in todasPiezas)
-                {
-                    if (hol.codigo.Contains(codigo))
-                        listaNueva.Add(hol);
-                }
-               
+                string consultar = "?responsableRegistro=" + responsable.ToString();
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -134,18 +186,13 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarClasificacion(int idClasificacion)
+        public ArrayList buscarFechaIngreso(DateTime fecha)
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Pieza> listaNueva = null;
             try
             {
-
-                List<Pieza> todasPiezas = this.GetAsCollection();
-                foreach (Pieza hol in todasPiezas)
-                {
-                    if (hol.clasificacion == idClasificacion)
-                        listaNueva.Add(hol);
-                }
+                string consultar = "?fechaIngreso=" + fecha.Date.ToString();
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -157,19 +204,13 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarAutor(int idAutor)
+        public ArrayList buscarRegionCultural(int regionCultural)
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Pieza> listaNueva = null;
             try
             {
-
-                List<Pieza> todasPiezas = this.GetAsCollection();
-                foreach (Pieza hol in todasPiezas)
-                {
-                    if (hol.autor == idAutor)
-                        listaNueva.Add(hol);
-                }
-
+                string consultar = "?regionCultural=" + regionCultural;
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
@@ -181,25 +222,134 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarResponsableEquipo(int idResponsable)
+        public ArrayList  buscarExibicion(bool exib)
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Pieza> listaNueva = null;
             try
             {
-
-                List<Pieza> todasPiezas = this.GetAsCollection();
-                foreach (Pieza hol in todasPiezas)
-                {
-                    if (hol.responsableRegistro == idResponsable)
-                        listaNueva.Add(hol);
-                }
-
+                string consultar = "?exhibicion=" + exib.ToString();
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch (Exception e)
             {
                 Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        
+        /*  CONSULTAS DE PADRES*/
+        public Consolidacion regresarClasificaciones()
+        {
+            Consolidacion consol = new Consolidacion();
+            try
+            {
+                //consol.regresarObjeto(this.consolidacion)
+                if (consol == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return (consol);
+        }
+
+        public Autor consultarAutor()
+        {
+            Autor autor = new Autor();
+            try
+            {
+                //autor.regresarObjeto();
+
+                if (autor == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+
+            return (autor);
+        }
+
+        /*CONSULTAS DE HIJOS*/
+
+        public ArrayList regresarConsolidacion()
+        {
+            List<Consolidacion> listaNueva = null;
+            try
+            {
+                Consolidacion clase = new Consolidacion();
+                string consulta = "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro Consolidacion");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarTraslados()
+        {
+            List<Traslado> listaNueva = null;
+            try
+            {
+                Traslado clase = new Traslado();
+                string consulta = "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarRegistro()
+        {
+            List<Registro> listaNueva = null;
+            try
+            {
+                Registro clase = new Registro();
+                string consulta = "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarFotografia()
+        {
+            List<Fotografia> listaNueva = null;
+            try
+            {
+                Fotografia clase = new Fotografia();
+                string consulta = "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
             return new ArrayList(listaNueva);
