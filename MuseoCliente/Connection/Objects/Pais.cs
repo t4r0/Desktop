@@ -84,6 +84,11 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
+        public ArrayList todosPaises()
+        {
+            List<Pais> todosPaises = this.GetAsCollection();
+            return new ArrayList(todosPaises);
+        }
 
     }
 }

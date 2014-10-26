@@ -142,5 +142,11 @@ namespace MuseoCliente.Connection.Objects
             }
             return new ArrayList(listaNueva);
         }
+
+        public ArrayList todasSalas()
+        {
+            List<Sala> todasSalas = this.GetAsCollection();
+            return new ArrayList(todasSalas);
+        }
     }
 }
