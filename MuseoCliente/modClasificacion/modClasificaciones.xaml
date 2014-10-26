@@ -28,11 +28,11 @@
 			<Label Height="20"/>
 			<StackPanel Height="190" Margin="0">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0">Colecciones Existentes:</Label>
-				<GridViewColumnHeader x:Name="gvColecciones" Margin="15,0,15,0" Height="143"/>
+                <DataGrid x:Name="gvColecciones" Margin="15,0,15,0" Height="143"/>
 			</StackPanel>
 			<StackPanel Height="190">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0">Categorías Existentes:</Label>
-				<GridViewColumnHeader x:Name="gvCategorias" Margin="15,0,15,0" Height="143"/>
+                <DataGrid x:Name="gvCategorias" Margin="15,0,15,0" Height="143"/>
 			</StackPanel>
 			<Label Height="20"></Label>
 		</StackPanel>
