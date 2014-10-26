@@ -54,11 +54,22 @@ namespace MuseoCliente.Connection
         public string fetch()
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + BaseUri).Result;
+            HttpResponseMessage message = client.GetAsync(server + BaseUri + "/?limit=999").Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if(message.StatusCode == HttpStatusCode.OK)
                 return content;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string,string>>(content);
+            throw new Exception(error["error"]);
+        }
+
+        public string fetch(string direccion)
+        {
+            HttpClient client = CreateRequest();
+            HttpResponseMessage message = client.GetAsync(server + direccion + "/?limit=999").Result;
+            string content = message.Content.ReadAsStringAsync().Result;
+            if (message.StatusCode == HttpStatusCode.OK)
+                return content;
+            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
             throw new Exception(error["error"]);
         }
 
