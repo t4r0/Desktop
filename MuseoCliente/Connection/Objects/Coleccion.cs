@@ -66,5 +66,7 @@ namespace MuseoCliente.Connection.Objects
 
             return new ArrayList(listaNueva);
         }
+
+        
     }
 }

@@ -75,6 +75,38 @@ namespace MuseoCliente.Connection.Objects
 
             return new ArrayList(listaNueva);
         }
-        
+
+        public ArrayList regresarMantenimiento()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                Mantenimiento Mantenimiento = new Mantenimiento();
+                List<Mantenimiento> Mantenimientos = Mantenimiento.GetAsCollection(Mantenimiento.resource_uri + "?autor=" + this.id);
+                listaNueva = new ArrayList(Mantenimientos);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontraron piezas de este autor");
+            }
+            return listaNueva;
+        }
+
+        public ArrayList regresarRegistro()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                Registro Registro = new Registro();
+                List<Registro> Registros = Registro.GetAsCollection(Registro.resource_uri + "?consolidacion=" + this.id);
+                listaNueva = new ArrayList(Registros);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontraron piezas de este autor");
+            }
+            return listaNueva;
+        }
+
     }
 }
