@@ -18,9 +18,24 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modCategoria : UserControl
 	{
-		public modCategoria()
+        Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
+        public modCategoria()
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            categ.nombre = txtNombre.Text;
+            categ.guardar();
+            if (Connection.Objects.Error.isActivo())
+            {
+                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+            }
+            else
+            {
+                MessageBox.Show("Bien puto Ursaring");
+            }
+        }
 	}
 }
