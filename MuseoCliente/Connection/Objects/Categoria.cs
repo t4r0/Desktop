@@ -28,11 +28,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar( int id )
+        public void modificar()
         {
             try
             {
-                this.Save( id.ToString() );
+                this.Save( this.id.ToString() );
             }
             catch( Exception e )
             {
@@ -43,25 +43,18 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre( String nombre )
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = null;
 
             try
             {
-                var lista = this.GetAsCollection();
-                foreach( Categoria categoria in lista )
-                {
-                    if( categoria.nombre.Contains( nombre ) )
-                        listaNueva.Add( categoria );
-                }
-                if( listaNueva == null )
-                    Error.ingresarError( 2, "No se encontro nombre similares" );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?nombre=" + nombre ) );
             }
             catch( Exception e )
             {
                 Error.ingresarError( 2, "No se encontro nombre similares" );
             }
 
-            return new ArrayList( listaNueva );
+            return listaNueva;
         }
 
         public ArrayList regresarClasificacion()
@@ -75,6 +68,20 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "No se encontraron clasificaciones para esta categoria" );
+            }
+            return listaNueva;
+        }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "tabla vacia" );
             }
             return listaNueva;
         }
