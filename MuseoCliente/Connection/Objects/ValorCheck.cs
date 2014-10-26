@@ -48,29 +48,6 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarNombre(String nombre)
-        {
-            ArrayList listaNueva = new ArrayList();
-            try
-            {
-                List<ValorCheck> todasValor = this.GetAsCollection();
-                foreach (ValorCheck hol in todasValor)
-                {
-                    if (hol.nombre.Contains(nombre))
-                        listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontro nombre similares");
-            }
-
-            return new ArrayList(listaNueva);
-        }
-
         public ArrayList consultarSeleccionado(Boolean seleccionado)
         {
             ArrayList listaNueva = new ArrayList();
