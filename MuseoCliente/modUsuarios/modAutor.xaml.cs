@@ -19,9 +19,21 @@ namespace MuseoCliente
 	public partial class modAutor : UserControl
 	{
         Connection.Objects.Autor autor = new Connection.Objects.Autor();
+        Connection.Objects.Pais paises = new Connection.Objects.Pais();
         public modAutor()
 		{
 			this.InitializeComponent();
+            cmbPais.DisplayMemberPath = "name";
+            cmbPais.SelectedValuePath = "iso";
+            cmbPais.ItemsSource = paises.todosPaises();
 		}
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            autor.nombre = txtNombre.Text;
+            autor.apellido = txtApellido.Text;
+            autor.pais = cmbPais.SelectedValue.ToString();
+            MessageBox.Show(cmbPais.SelectedValue.ToString());
+        }
 	}
 }

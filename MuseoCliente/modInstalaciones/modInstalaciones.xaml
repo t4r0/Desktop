@@ -35,21 +35,21 @@
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Piezas en Bodega:</Label>
-					<GridViewColumnHeader x:Name="gvPiezas" Margin="10" Height="160"/>
+					<DataGrid x:Name="gvPiezas" Margin="10" Height="160"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Salas del Museo:</Label>
-					<GridViewColumnHeader x:Name="gvSalas" Margin="10" Height="160"/>
+                    <DataGrid x:Name="gvSalas" Margin="10" Height="160"/>
 				</StackPanel>
 			</DockPanel>
 			<DockPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Cajas Existentes:</Label>
-					<GridViewColumnHeader x:Name="gvCajas" Margin="10" Height="160"/>
+                    <DataGrid x:Name="gvCajas" Margin="10" Height="160"/>
 				</StackPanel>
 				<StackPanel DockPanel.Dock="Left" Height="205" Width="300">
 					<Label VerticalAlignment="Center" Margin="10,0,0,0">Vitrinas por Sala:</Label>
-					<GridViewColumnHeader x:Name="gvVitrinas" Margin="10" Height="160"/>
+                    <DataGrid x:Name="gvVitrinas" Margin="10" Height="160"/>
 				</StackPanel>
 			</DockPanel>
 			<Label Height="20"></Label>
