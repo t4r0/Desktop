@@ -20,7 +20,7 @@ namespace MuseoCliente.Connection.Objects
         public int consolidacion { get; set; }
 
         public Mantenimiento()
-            : base("/v1/mantenimientos/")
+            : base("/v1/mantenimiento/")
         {
         }
 
@@ -39,11 +39,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -54,17 +54,56 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarProcedimiento(int procedimiento)
+        /*CONSULTAS*/
+
+        public ArrayList regresarTodos()
         {
-            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
+            List<Mantenimiento> listaNueva = null;
             try
             {
-                List<Mantenimiento> todasPiezas = this.GetAsCollection();
-                foreach (Mantenimiento mantenimiento in todasPiezas)
+                listaNueva = this.GetAsCollection();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            return new ArrayList(listaNueva);
+        }
+
+        public void regresarObjeto(int id)
+        {
+            try
+            {
+                Mantenimiento fichaTemp = this.Get(id.ToString());
+                if (fichaTemp == null)
                 {
-                    if (mantenimiento.procedimiento == procedimiento)
-                        listaNueva.Add(mantenimiento);
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
                 }
+                this.id = fichaTemp.id;
+                this.procedimiento = fichaTemp.procedimiento;
+                this.metodoMaterial = fichaTemp.metodoMaterial;
+                this.fecha = fichaTemp.fecha;
+                this.consolidacion = fichaTemp.consolidacion;
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
+        }
+
+        public ArrayList consultarProcedimiento(int procedimiento)
+        {
+            List<Mantenimiento> listaNueva = null;
+            try
+            {
+                string consultar = "?procedimiento=" + procedimiento.ToString();
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
             }
@@ -77,65 +116,52 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarMetodoMaterial(string metodoMaterial)
         {
-            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
+            List<Mantenimiento> listaNueva = null;
             try
             {
-                List<Mantenimiento> todasPiezas = this.GetAsCollection();
-                foreach (Mantenimiento mantenimiento in todasPiezas)
-                {
-                    if (mantenimiento.metodoMaterial.Contains(metodoMaterial))
-                        listaNueva.Add(mantenimiento);
-                }
+                string consultar = "?metodoMaterial=" + metodoMaterial;
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con metodoMaterial: " + metodoMaterial);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con metodoMaterial: " + metodoMaterial);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
             return new ArrayList(listaNueva);
         }
 
         public ArrayList consultarFecha(DateTime fecha)
         {
-            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
+            List<Mantenimiento> listaNueva = null;
             try
             {
-                List<Mantenimiento> todasPiezas = this.GetAsCollection();
-                foreach (Mantenimiento mantenimiento in todasPiezas)
-                {
-                    if (mantenimiento.fecha.Date == fecha.Date)
-                        listaNueva.Add(mantenimiento);
-                }
+                string consultar = "?fecha=" + fecha.Date.ToString();
+                listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + fecha.Date);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + fecha.Date);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarConsolidacion(int consolidacion)
+        public Consolidacion consultarConsolidacion()
         {
-            List<Mantenimiento> listaNueva = new List<Mantenimiento>();
+            Consolidacion consol = new Consolidacion();
             try
             {
-                List<Mantenimiento> todasPiezas = this.GetAsCollection();
-                foreach (Mantenimiento mantenimiento in todasPiezas)
-                {
-                    if (mantenimiento.consolidacion == consolidacion)
-                        listaNueva.Add(mantenimiento);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con consolidacion: " + consolidacion);
+                //consol.regresarObjeto(this.consolidacion)
+                if (consol == null)
+                    Error.ingresarError(2, "No se encontro la consolidacion: " );
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con consolidacion: " + consolidacion);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-            return new ArrayList(listaNueva);
+            return consol;
         }
     }
 }

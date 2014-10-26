@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -55,6 +56,17 @@ namespace MuseoCliente
             // The Text property on a TextRange object returns a string 
             // representing the plain text content of the TextRange. 
             return textRange.Text;
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
+            dialogo.InitialDirectory = "C:";
+            dialogo.Title = "Seleccione la Imagen del Afiche";
+            dialogo.ShowDialog();
+            if (dialogo.ShowDialog() == true)
+                txtAfiche.Text = dialogo.FileName;
         }
 	}
 }

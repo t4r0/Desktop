@@ -18,9 +18,11 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modInstalaciones : UserControl
 	{
-		public modInstalaciones()
+        Connection.Objects.Sala salas = new Connection.Objects.Sala();
+        public modInstalaciones()
 		{
 			this.InitializeComponent();
+            gvSalas.ItemsSource = salas.regresarTodos();
 		}
 	}
 }
