@@ -40,11 +40,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -52,25 +52,21 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarNombre(String nombre)
+        public ArrayList consultarNombre(string nombre)
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Ficha> listaNueva = null;
             try
             {
+                string consultarNombre = "?nombre=" + nombre;
+                listaNueva = this.GetAsCollection(consultarNombre);
 
-                List<Ficha> todasFichas = this.GetAsCollection();
-                foreach (Ficha hol in todasFichas)
-                {
-                    if (hol.nombre.Contains(nombre))
-                        listaNueva.Add(hol);
-                }
 
                 if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                    Error.ingresarError(2, "No se encontro Clasi");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
             return new ArrayList(listaNueva);
@@ -78,26 +74,85 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarConsolidacion(bool consolidacion)
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Ficha> listaNueva = null;
             try
             {
-
-                List<Ficha> todasFichas = this.GetAsCollection();
-                foreach (Ficha hol in todasFichas)
-                {
-                    if (hol.consolidacion == consolidacion)
-                        listaNueva.Add(hol);
-                }
-
+                string consultar = "?consolidacion=" + consolidacion.ToString();
+                listaNueva = this.GetAsCollection(consultar);               
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
             return new ArrayList(listaNueva);
         }
+
+        public void regresarObjeto(int id)
+        {
+            try
+            {
+                Ficha fichaTemp = this.Get(id.ToString());
+                if (fichaTemp == null)
+                {
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
+                }
+                this.id = fichaTemp.id;
+                this.nombre = fichaTemp.nombre;
+                this.estructura = fichaTemp.estructura;
+                this.consolidacion = fichaTemp.consolidacion;
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
+        }
+
+        public ArrayList regresarTodos()
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+
+                List<Ficha> todasFichas = this.GetAsCollection();
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+            }
+            catch (Exception e)
+            {
+                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarClasificaciones()
+        {
+            List<Clasificacion> listaNueva = null;
+            try
+            {
+                Clasificacion clas = new Clasificacion();
+                string consulta = "?ficha=" + this.id.ToString();
+                listaNueva = clas.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+        
     }
 }
