@@ -159,5 +159,23 @@ namespace MuseoCliente.Connection.Objects
             }
             return new ArrayList(listaNueva);
         }
-    }
+
+        public ArrayList regresarPieza()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                Pieza Pieza = new Pieza();
+                List<Pieza> Piezas = Pieza.GetAsCollection(Pieza.resource_uri + "?clasificacion=" + this.id);
+                listaNueva = new ArrayList(Piezas);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontraron piezas de este autor");
+            }
+            return listaNueva;
+        }
+
+
+      }
 }

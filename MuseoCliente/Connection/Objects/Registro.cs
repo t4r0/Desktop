@@ -47,5 +47,21 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError(4, "No se ha modifico en la Informacion en la base de datos");
             }
         }
+
+        public ArrayList regresarCampo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                Campo Campo = new Campo();
+                List<Campo> Campos = Campo.GetAsCollection(Campo.resource_uri + "?registro=" + this.id);
+                listaNueva = new ArrayList(Campos);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontraron piezas de este autor");
+            }
+            return listaNueva;
+        }
     }
 }
