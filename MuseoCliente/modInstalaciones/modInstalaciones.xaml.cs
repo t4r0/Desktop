@@ -22,6 +22,7 @@ namespace MuseoCliente
         public modInstalaciones()
 		{
 			this.InitializeComponent();
+            gvSalas.ItemsSource = salas.todasSalas();
 		}
 	}
 }

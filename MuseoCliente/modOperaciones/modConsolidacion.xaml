@@ -31,7 +31,7 @@
 					</DockPanel>
 					<DockPanel Height="95" Width="510">
 						<StackPanel Margin="10">
-							<GridViewColumnHeader x:Name="gvPiezas" Height="85"/>
+                            <DataGrid x:Name="gvPiezas" Height="85"/>
 						</StackPanel>
 					</DockPanel>
 					<DockPanel Height="35" HorizontalAlignment="Center">
