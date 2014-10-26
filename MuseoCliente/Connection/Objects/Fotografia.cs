@@ -60,7 +60,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string tipo2 = tipo.ToString();
                 //fecha.Date.ToString();
-                string consultartipo = "?tipo=" + tipo2;
+                string consultartipo = this.resource_uri+"?tipo=" + tipo2;
                 listaNueva = this.GetAsCollection(consultartipo);
 
                 
@@ -88,7 +88,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string mantenimiento2 = mantenimiento.ToString();
                 //fecha.Date.ToString();
-                string consultapormantenimiento = "?mantenimiento=" + mantenimiento2;
+                string consultapormantenimiento = this.resource_uri + "?mantenimiento=" + mantenimiento2;
                 listaNueva = this.GetAsCollection(consultapormantenimiento);
                                 
             }
@@ -112,7 +112,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string pieza2 = pieza.ToString();
                 //fecha.Date.ToString();
-                string consultapormantenimiento = "?pieza=" + pieza2;
+                string consultapormantenimiento = this.resource_uri + "?pieza=" + pieza2;
                 listaNueva = this.GetAsCollection(consultapormantenimiento);
 
                
@@ -136,7 +136,7 @@ namespace MuseoCliente.Connection.Objects
             List<Fotografia> listaNueva = null;
             try
             {
-                string consultaporruta = "?ruta=" + ruta;
+                string consultaporruta = this.resource_uri + "?ruta=" + ruta;
                 listaNueva = this.GetAsCollection(consultaporruta);
                                 
             }
@@ -159,7 +159,7 @@ namespace MuseoCliente.Connection.Objects
             List<Fotografia> listaNueva = null;
             try
             {
-                string consultar = "?perfil=" + perfil.ToString();
+                string consultar = this.resource_uri + "?perfil=" + perfil.ToString();
                 listaNueva = this.GetAsCollection(consultar);
                 
             }
@@ -206,7 +206,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Clasificacion clas = new Clasificacion();
-                string consulta = "?fotografia=" + this.id.ToString();
+                string consulta = this.resource_uri + "?fotografia=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                 
             }
@@ -230,7 +230,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Eventos clas = new Eventos();
-                string consulta = "?eventos=" + this.id.ToString();
+                string consulta = this.resource_uri + "?eventos=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
 
             }
