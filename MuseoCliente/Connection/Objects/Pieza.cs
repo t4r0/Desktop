@@ -87,8 +87,10 @@ namespace MuseoCliente.Connection.Objects
 				Error.ingresarError(4,"No se ha modifico en la Informacion en la base de datos");
 			}		
 		}
-			
-		
+
+        
+
+
         public ArrayList consultarNombre(String nombre)
         {
 			List<Pieza> listaNueva= new List<Pieza>();
@@ -181,7 +183,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarResponsableEquipo(int idResponsable)
+        public ArrayList consultarResponsableEquipo(int idResponsable) //
         {
             ArrayList listaNueva = new ArrayList();
             try
