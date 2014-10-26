@@ -108,5 +108,93 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
+
+        public ArrayList consultarNombre(string responsable)//1
+        {
+            List<Consolidacion> listaNueva = null;
+            try
+            {
+                string consultarResponsable = "?responsable=" + responsable;
+                listaNueva = this.GetAsCollection(consultarResponsable);
+
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+
+        public void regresarObjeto(int id)//2
+        {
+            try
+            {
+                Consolidacion consolidacionTemp = this.Get(id.ToString());
+                if (consolidacionTemp == null)
+                {
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
+                }
+                this.id = consolidacionTemp.id;
+                this.limpieza = consolidacionTemp.limpieza;
+                this.fechaInicio = consolidacionTemp.fechaInicio;
+                this.fechaFinal = consolidacionTemp.fechaFinal;
+                this.responsable = consolidacionTemp.responsable;
+                this.codigoPieza = consolidacionTemp.codigoPieza;
+
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+
+        public void regresarObjeto()//3
+        {
+            regresarObjeto(this.id);
+        }
+
+        public ArrayList regresarMantenimiento()//4  Mantenimiento
+        {
+            List<Mantenimiento> listaNueva = null;
+            try
+            {
+                Mantenimiento clas = new Mantenimiento();
+                string consulta = "?consolidacion=" + this.id.ToString();
+                listaNueva = clas.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarRegistro()//4 Registro
+        {
+            List<Registro> listaNueva = null;
+            try
+            {
+                Registro clas = new Registro();
+                string consulta = "?consolidacion=" + this.id.ToString();
+                listaNueva = clas.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
     }
 }
