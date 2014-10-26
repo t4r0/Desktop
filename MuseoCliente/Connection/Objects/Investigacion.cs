@@ -7,7 +7,7 @@ namespace MuseoCliente.Connection.Objects
     public class Investigacion : ResourceObject<Investigacion>
     {
         public Investigacion()
-            : base( "/v1/mantenimiento/" )
+            : base( "/v1/investigaciones/" )
         {
 
         }
