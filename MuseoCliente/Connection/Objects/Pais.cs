@@ -47,11 +47,11 @@ namespace MuseoCliente.Connection.Objects
         }
 
 
-        public void modificar(int id) //Modifica datos de un pais
+        public void modificar() //Modifica datos de un pais
         {
             try
             {
-                this.Save(id.ToString());
+                this.Save(this.iso);
             }
             catch (Exception e)
             {
@@ -59,19 +59,60 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
+        /*FUNCIONES ESCENCIALES*/
 
-        public ArrayList consultarPaises(String nombre) //Devuelve lista de todos los paises ingresados
+        public ArrayList regresarTodos()
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Pais> lista = null;
             try
             {
+                lista = this.GetAsCollection();
+                if (lista == null)
+                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
 
-                List<Pais> todosPaises = this.GetAsCollection();
-                foreach (Pais hol in todosPaises)
+            return new ArrayList(lista);
+        }
+
+        public void regresarObjeto(int ide)
+        {
+            try
+            {
+                Pais salaTemporal = this.Get(ide.ToString());
+                if (salaTemporal == null)
                 {
-                    if (hol.name.Contains(nombre))
-                        listaNueva.Add(hol);
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
                 }
+                this.name = salaTemporal.name;
+                this.printable_name = salaTemporal.printable_name;
+                this.iso3 = salaTemporal.iso3;
+                this.iso = salaTemporal.iso;
+                this.numcode = salaTemporal.numcode;
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
+        }
+
+
+        public ArrayList buscarNombre(String nombre) //Devuelve lista de todos los paises ingresados
+        {
+            List<Pais> listaNueva = null;
+            try
+            {
+                string consultar = "?name=" + nombre;
+                listaNueva = this.GetAsCollection(consultar); 
 
                 if (listaNueva == null)
                     Error.ingresarError(2, "No hay paises existentes");
@@ -84,11 +125,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList todosPaises()
-        {
-            List<Pais> todosPaises = this.GetAsCollection();
-            return new ArrayList(todosPaises);
-        }
+        
 
     }
 }

@@ -46,7 +46,7 @@ namespace MuseoCliente
         {
             cmbPais.DisplayMemberPath = "name";
             cmbPais.SelectedValuePath = "iso";
-            cmbPais.ItemsSource = paises.todosPaises();
+            cmbPais.ItemsSource = paises.regresarTodos();
         }
 	}
 }
