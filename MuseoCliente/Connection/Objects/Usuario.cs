@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net.Http;
 using System.Collections;
+using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
     public class Usuario : ResourceObject<Usuario>
     {
         public Usuario()
-            : base("/v1/usuarios/")
+            : base( "/v1/usuarios/" )
         {
 
         }
@@ -51,71 +46,38 @@ namespace MuseoCliente.Connection.Objects
             {
                 this.Create();
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
+                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
             }
         }
 
-        public void modificar(string id) //Modifica un usuario
+        public void modificar() //Modifica un usuario
         {
             try
             {
-                this.Save(id);
+                this.Save( this.username );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(4, "No se ha modifico en la Informacion en la base de datos");
+                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos" );
             }
         }
 
 
-        public ArrayList Usuarios() //Devuelve lista de todos los usuarios ingresados
+        public ArrayList regresarTodos() //Devuelve lista de todos los usuarios ingresados
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = null;
             try
             {
-
-                List<Usuario> todosUsuarios = this.GetAsCollection();
-                foreach (Usuario hol in todosUsuarios)
-                {
-                    listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No hay paises existentes");
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No hay paises existentes");
+                Error.ingresarError( 2, "No hay paises existentes" );
             }
 
-            return new ArrayList(listaNueva);
-        }
-
-
-        public ArrayList Usuarios(String nombre) //Devuelve lista de todos los usuarios ingresados
-        {
-            ArrayList listaNueva = new ArrayList();
-            try
-            {
-
-                List<Usuario> todosUsuarios = this.GetAsCollection();
-                foreach (Usuario hol in todosUsuarios)
-                {
-                    if (hol.username.Contains(nombre))
-                        listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No hay Usuarios existentes");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No hay Usuarios existentes");
-            }
-
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
     }
 }
