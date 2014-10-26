@@ -109,5 +109,19 @@ namespace MuseoCliente.Connection.Objects
 
             return new ArrayList(listaNueva);
         }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList(this.GetAsCollection());
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "tabla vacia");
+            }
+            return listaNueva;
+        }
     }
 }
