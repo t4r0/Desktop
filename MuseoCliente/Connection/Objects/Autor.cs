@@ -8,7 +8,7 @@ namespace MuseoCliente.Connection.Objects
     class Autor : ResourceObject<Autor>
     {
         [JsonProperty]
-        public int pais { get; set; }
+        public string pais { get; set; }
         [JsonProperty]
         public String nombre { get; set; }
         [JsonProperty]
