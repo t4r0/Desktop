@@ -53,6 +53,24 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
+        /*FUNCIONES ESCENCIALES*/
+        public ArrayList regresarTodos()
+        {
+            List<Sala> lista = null;
+            try
+            {
+                lista = this.GetAsCollection();
+                if (lista == null)
+                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(lista);
+        }
+
         public void regresarObjeto(int ide)
         {
             try
@@ -79,18 +97,15 @@ namespace MuseoCliente.Connection.Objects
             regresarObjeto(this.id);
         }
 
+        /*CONSULTAS*/
 
         public ArrayList consultarNombre(string nombre)
         {
-            List<Sala> listaNueva = new List<Sala>();
+            List<Sala> listaNueva = null;
             try
             {
-                List<Sala> todasPiezas = this.GetAsCollection();
-                foreach (Sala sala in todasPiezas)
-                {
-                    if (sala.nombre.Contains(nombre))
-                        listaNueva.Add(sala);
-                }
+                string consultar = "?nombre=" + nombre;
+                listaNueva = this.GetAsCollection(consultar); 
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
             }
@@ -101,52 +116,45 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarDescripcion(string descripcion)
+        /*CONSULTAS DE HIJOS*/
+        public ArrayList consultarVitrina()
         {
-            List<Sala> listaNueva = new List<Sala>();
+            List<Vitrina> vitrina = null;
             try
             {
-                List<Sala> todasPiezas = this.GetAsCollection();
-                foreach (Sala sala in todasPiezas)
-                {
-                    if (sala.descripcion.Contains(descripcion))
-                        listaNueva.Add(sala);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con descripcion: " + descripcion);
+                Vitrina clas = new Vitrina();
+                string consulta = "?sala" + this.id.ToString();
+                vitrina = clas.GetAsCollection(consulta);
+                if (vitrina == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con descripcion: " + descripcion);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-            return new ArrayList(listaNueva);
+
+            return new ArrayList(vitrina);
         }
 
-        public ArrayList consultarFotografia(string fotografia)
+        public ArrayList consultarEventos()
         {
-            List<Sala> listaNueva = new List<Sala>();
+            List<Eventos> evento = null;
             try
             {
-                List<Sala> todasPiezas = this.GetAsCollection();
-                foreach (Sala sala in todasPiezas)
-                {
-                    if (sala.fotografia.Contains(fotografia))
-                        listaNueva.Add(sala);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con fotografia: " + fotografia);
+                Eventos clas = new Eventos();
+                string consulta = "?sala" + this.id.ToString();
+                evento = clas.GetAsCollection(consulta);
+                if (evento == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con fotografia: " + fotografia);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-            return new ArrayList(listaNueva);
+
+            return new ArrayList(evento);
         }
 
-        public ArrayList todasSalas()
-        {
-            List<Sala> todasSalas = this.GetAsCollection();
-            return new ArrayList(todasSalas);
-        }
+        
     }
 }
