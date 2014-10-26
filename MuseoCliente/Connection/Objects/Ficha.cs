@@ -118,13 +118,13 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList regresarTodos()
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Ficha> todasFichas = null;
             try
             {
 
-                List<Ficha> todasFichas = this.GetAsCollection();
+                 todasFichas = this.GetAsCollection();
 
-                if (listaNueva == null)
+                if (todasFichas == null)
                     Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
             }
             catch (Exception e)
@@ -132,7 +132,7 @@ namespace MuseoCliente.Connection.Objects
                  Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
-            return new ArrayList(listaNueva);
+            return new ArrayList(todasFichas);
         }
 
         public ArrayList regresarClasificaciones()//4

@@ -70,6 +70,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Connection\Objects\Grupo.cs" />
     <Compile Include="Connection\Objects\UtilidadS3.cs" />
     <Compile Include="modClasificacion\modCategoria.xaml.cs">
       <DependentUpon>modCategoria.xaml</DependentUpon>
