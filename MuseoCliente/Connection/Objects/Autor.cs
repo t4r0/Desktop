@@ -31,11 +31,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar( string id )
+        public void modificar()
         {
             try
             {
-                this.Save( id );
+                this.Save( this.id.ToString() );
             }
             catch( Exception e )
             {
@@ -45,19 +45,10 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre( String nombre )
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = null;
             try
             {
-
-                List<Autor> todasAutor = this.GetAsCollection();
-                foreach( Autor hol in todasAutor )
-                {
-                    if( hol.nombre.Contains( nombre ) )
-                        listaNueva.Add( hol );
-                }
-
-                if( listaNueva == null )
-                    Error.ingresarError( 2, "No se encontro nombre similares" );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?nombre=" + nombre ) );
             }
             catch( Exception e )
             {
@@ -69,19 +60,10 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarApellido( String apellido )
         {
-            ArrayList listaNueva = new ArrayList();
+            ArrayList listaNueva = null;
             try
             {
-
-                List<Autor> todasAutor = this.GetAsCollection();
-                foreach( Autor hol in todasAutor )
-                {
-                    if( hol.apellido.Contains( apellido ) )
-                        listaNueva.Add( hol );
-                }
-
-                if( listaNueva == null )
-                    Error.ingresarError( 2, "No se encontro nombre similares" );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?apellido" + apellido ) );
             }
             catch( Exception e )
             {
@@ -119,6 +101,20 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "No se encontraron investigacion de este autor" );
+            }
+            return listaNueva;
+        }
+
+        public ArrayList regresarTodos()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "tabla vacia" );
             }
             return listaNueva;
         }
