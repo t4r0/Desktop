@@ -52,7 +52,7 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarNombre(string nombre)
+        public ArrayList consultarNombre(string nombre)//1
         {
             List<Ficha> listaNueva = null;
             try
@@ -90,7 +90,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public void regresarObjeto(int id)
+        public void regresarObjeto(int id)//2
         {
             try
             {
@@ -111,20 +111,20 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void regresarObjeto()
+        public void regresarObjeto()//3
         {
             regresarObjeto(this.id);
         }
 
         public ArrayList regresarTodos()
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Ficha> todasFichas = null;
             try
             {
 
-                List<Ficha> todasFichas = this.GetAsCollection();
+                 todasFichas = this.GetAsCollection();
 
-                if (listaNueva == null)
+                if (todasFichas == null)
                     Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
             }
             catch (Exception e)
@@ -132,10 +132,10 @@ namespace MuseoCliente.Connection.Objects
                  Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
-            return new ArrayList(listaNueva);
+            return new ArrayList(todasFichas);
         }
 
-        public ArrayList regresarClasificaciones()
+        public ArrayList regresarClasificaciones()//4
         {
             List<Clasificacion> listaNueva = null;
             try

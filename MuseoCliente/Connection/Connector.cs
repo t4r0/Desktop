@@ -54,7 +54,7 @@ namespace MuseoCliente.Connection
         public string fetch()
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + BaseUri + "/?limit=999").Result;
+            HttpResponseMessage message = client.GetAsync(server + BaseUri + "?limit=999").Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if(message.StatusCode == HttpStatusCode.OK)
                 return content;
@@ -65,7 +65,7 @@ namespace MuseoCliente.Connection
         public string fetch(string direccion)
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + direccion + "/?limit=999").Result;
+            HttpResponseMessage message = client.GetAsync(server + direccion + "/?limit=90").Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if (message.StatusCode == HttpStatusCode.OK)
                 return content;

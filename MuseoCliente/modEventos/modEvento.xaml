@@ -42,7 +42,7 @@
 				<Label>Afiche:</Label>
                 <DockPanel>
                     <TextBox x:Name="txtAfiche" Width="440"/>
-                    <Button x:Name="btnBuscar" Width="39">...</Button>
+                    <Button x:Name="btnBuscar" Width="39" Click="btnBuscar_Click">...</Button>
                 </DockPanel>
 			</StackPanel>
 			<Label Height="20"></Label>
