@@ -52,7 +52,7 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarNombre(string nombre)
+        public ArrayList consultarNombre(string nombre)//1
         {
             List<Ficha> listaNueva = null;
             try
@@ -90,7 +90,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public void regresarObjeto(int id)
+        public void regresarObjeto(int id)//2
         {
             try
             {
@@ -111,7 +111,7 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void regresarObjeto()
+        public void regresarObjeto()//3
         {
             regresarObjeto(this.id);
         }
@@ -135,7 +135,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList regresarClasificaciones()
+        public ArrayList regresarClasificaciones()//4
         {
             List<Clasificacion> listaNueva = null;
             try
