@@ -168,14 +168,13 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
+        /*CLASE PADRE*/
         public Consolidacion consultarConsolidacion()
         {
             Consolidacion consol = new Consolidacion();
             try
             {
-                //consol.regresarObjeto(this.consolidacion)
-                if (consol == null)
-                    Error.ingresarError(2, "No se encontro la consolidacion: " );
+                consol.regresarObjeto(this.consolidacion);
             }
             catch (Exception e)
             {
