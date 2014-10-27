@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
@@ -11,7 +10,7 @@ namespace MuseoCliente.Connection.Objects
         public String codigo { get; set; }
 
         public Caja()
-            : base( "v1/cajas/" )
+            : base( "/api/v1/cajas/" )
         {
         }
 
@@ -47,16 +46,21 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre( string codigo )
         {
-            List<Caja> listaNueva = new List<Caja>();
+            ArrayList listaNueva = null;
             try
             {
-                listaNueva = this.GetAsCollection( this.resource_uri + "?codigo=" + codigo );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?codigo=" + codigo ) );
             }
             catch( Exception e )
             {
                 Error.ingresarError( 2, "No se encontro codigo similar" );
             }
-            return new ArrayList( listaNueva );
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
         }
 
         public ArrayList regresarTraslado()
@@ -71,6 +75,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontraron coincidencias" );
             }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
             return listaNueva;
         }
 
@@ -84,6 +93,11 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "tabla vacia" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
             }
             return listaNueva;
         }
