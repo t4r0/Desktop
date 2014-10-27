@@ -286,10 +286,7 @@ namespace MuseoCliente.Connection.Objects
             Autor autor = new Autor();
             try
             {
-                //
-
-                if (autor == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                autor.regresarObjecto(this.autor);
             }
             catch (Exception e)
             {

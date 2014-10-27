@@ -128,9 +128,7 @@ namespace MuseoCliente.Connection.Objects
             Sala clase = new Sala();
             try
             {
-                //clase.regresarObjeto();
-                if (clase == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
+                clase.regresarObjeto(this.sala);
             }
             catch (Exception e)
             {
