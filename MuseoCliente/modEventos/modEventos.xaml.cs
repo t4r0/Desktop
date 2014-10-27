@@ -18,9 +18,16 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modEventos : UserControl
 	{
-		public modEventos()
+        Connection.Objects.Eventos eventos = new Connection.Objects.Eventos();
+        public modEventos()
 		{
 			this.InitializeComponent();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            gvProximos.ItemsSource = eventos.regresarTodos(); //regresarProximos
+            gvConcluidos.ItemsSource = eventos.regresarTodos(); //regresarConcluidos
+        }
 	}
 }
