@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Traslado : ResourceObject<Traslado>
     {
-        public Traslado(): base("/v1/traslado/")
+        public Traslado(): base("/v1/traslados/")
         {
 
         }
@@ -118,5 +118,46 @@ namespace MuseoCliente.Connection.Objects
             }
             return new ArrayList(listaNueva);
         }
+
+
+        public ArrayList regresarTodos()
+        {
+            ArrayList listaNueva = new ArrayList();
+            try
+            {
+                
+                List<Traslado> todostraslado = this.GetAsCollection();
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se econtro ningun traslado registrado");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarEventos()
+        {
+            List<Traslado> listaNueva = null;
+            try
+            {
+                Traslado clas = new Traslado();
+                string consulta = "?traslado=" + this.id.ToString();
+                listaNueva = clas.GetAsCollection(consulta);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+
     }
 }

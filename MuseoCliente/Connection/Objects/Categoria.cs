@@ -77,7 +77,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+                listaNueva = new ArrayList( this.GetAsCollection());
             }
             catch( Exception e )
             {

@@ -118,27 +118,6 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarNombre(string nombre)
-        {
-            List<Clasificacion> listaNueva = new List<Clasificacion>();
-            try
-            {
-                List<Clasificacion> todasPiezas = this.GetAsCollection();
-                foreach (Clasificacion clasificaion in todasPiezas)
-                {
-                    if (clasificaion.nombre.Contains(nombre))
-                        listaNueva.Add(clasificaion);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
-            }
-            return new ArrayList(listaNueva);
-        }
-
         public ArrayList consultarCodigo(string codigo)
         {
             List<Clasificacion> listaNueva = new List<Clasificacion>();
@@ -216,7 +195,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Por favor Verifique su coneccion a Internet");
             }
         }
 
@@ -225,23 +204,5 @@ namespace MuseoCliente.Connection.Objects
             regresarObjeto(this.id);
         }
 
-        public ArrayList regresarPieza()//4
-        {
-            List<Pieza> listaNueva = null;
-            try
-            {
-                Pieza clas = new Pieza();
-                string consulta = "?clasificacion=" + this.id.ToString();
-                listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
-            }
-
-            return new ArrayList(listaNueva);
-        }
       }
 }
