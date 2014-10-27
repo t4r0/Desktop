@@ -18,8 +18,10 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosEvs : UserControl
 	{
-        private string busqueda = "Eventos ursaring";
+        public string busqueda = "";
         private Connection.Objects.Eventos eventos = new Connection.Objects.Eventos();
+        public UserControl anterior;
+        public Border borde;
         public modResultadosEvs()
 		{
 			this.InitializeComponent();
@@ -29,6 +31,7 @@ namespace MuseoCliente
         {
             if (eventos.consultarNombre(busqueda) != null)
             {
+                gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = eventos.consultarNombre(busqueda);
             }
             else
@@ -45,6 +48,21 @@ namespace MuseoCliente
         private void rbProximos_Checked(object sender, RoutedEventArgs e)
         {
             //Pendiente por las nuevas consultas
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            modEvento frm = new modEvento();
+            frm.borde = borde;
+            frm.anterior = this;
+            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+            MessageBox.Show(gvResultados.SelectedValue.ToString());
+            borde.Child = frm;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
         }
 	}
 }

@@ -22,5 +22,10 @@ namespace MuseoCliente
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 	}
 }

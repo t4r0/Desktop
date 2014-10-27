@@ -48,5 +48,19 @@ namespace MuseoCliente
         {
             //bdrContenedor.Child = new modInventario();
         }
+
+        private void itemEventos_Click(object sender, RoutedEventArgs e)
+        {
+            modEventos frm = new modEventos();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
+        }
+
+        private void itemInsta_Click(object sender, RoutedEventArgs e)
+        {
+            modInstalaciones frm = new modInstalaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
+        }
     }
 }

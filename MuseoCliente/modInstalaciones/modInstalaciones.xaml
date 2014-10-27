@@ -13,19 +13,19 @@
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Instalaciones</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnNuevaSala" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
+					<Button x:Name="btnNuevaSala" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevaSala_Click">&#10133;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnNuevaVitrina" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
+					<Button x:Name="btnNuevaVitrina" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevaVitrina_Click">&#10133;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnNuevaCaja" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
+					<Button x:Name="btnNuevaCaja" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevaCaja_Click">&#10133;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnTraslado" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#8646;</Button>
+					<Button x:Name="btnTraslado" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnTraslado_Click">&#8646;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128269;</Button>
+					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnBuscar_Click">&#128269;</Button>
 				</Label>
 				<TextBox x:Name="txtBuscar" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 			</DockPanel>

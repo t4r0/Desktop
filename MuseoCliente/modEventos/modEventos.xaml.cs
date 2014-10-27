@@ -19,6 +19,7 @@ namespace MuseoCliente
 	public partial class modEventos : UserControl
 	{
         Connection.Objects.Eventos eventos = new Connection.Objects.Eventos();
+        public Border borde;
         public modEventos()
 		{
 			this.InitializeComponent();
@@ -28,6 +29,23 @@ namespace MuseoCliente
         {
             gvProximos.ItemsSource = eventos.regresarTodos(); //regresarProximos
             gvConcluidos.ItemsSource = eventos.regresarTodos(); //regresarConcluidos
+        }
+
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            modEvento frm = new modEvento();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            modResultadosEvs frm = new modResultadosEvs();
+            frm.busqueda = txtBuscar.Text;
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
         }
 	}
 }

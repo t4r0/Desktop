@@ -37,8 +37,9 @@ namespace MuseoCliente
         {
             if (categ.consultarNombre(busqueda) != null)
             {
-                gvResultados.SelectedValue = "nombre";
+                gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = categ.consultarNombre(busqueda);
+                MessageBox.Show(categ.consultarNombre(busqueda).Count.ToString());
             }
             else
             {
@@ -50,7 +51,7 @@ namespace MuseoCliente
         {
             if (colec.consultarNombre(busqueda) != null)
             {
-                gvResultados.SelectedValue = "nombre";
+                gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = colec.consultarNombre(busqueda);
             }
             else

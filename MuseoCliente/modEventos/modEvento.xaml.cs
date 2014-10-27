@@ -21,6 +21,10 @@ namespace MuseoCliente
 	{
         Connection.Objects.Eventos evento = new Connection.Objects.Eventos();
         Connection.Objects.Sala salas = new Connection.Objects.Sala();
+        public UserControl anterior;
+        public Border borde;
+        public bool modificar = false;
+        public int id;
         public modEvento()
 		{
 			this.InitializeComponent();
@@ -35,14 +39,21 @@ namespace MuseoCliente
             evento.descripcion = StringFromRichTextBox(rtxtDescripcion);
             evento.afiche = txtAfiche.Text;
             evento.usuario = 1;
-            evento.guardar();
+            if (modificar == false)
+            {
+                evento.guardar();
+            }
+            else
+            {
+                evento.modificar();
+            }
             if (Connection.Objects.Error.isActivo())
             {
                 MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
             }
             else
             {
-                MessageBox.Show("Bien puto Ursaring");
+                MessageBox.Show("Correcto");
             }
         }
 
@@ -76,6 +87,26 @@ namespace MuseoCliente
             cmbSala.DisplayMemberPath = "nombre";
             cmbSala.SelectedValuePath = "id";
             cmbSala.ItemsSource = salas.regresarTodos();
+            //Si es para modificar
+            if (modificar == true)
+            {
+                lblOperacion.Content = "Modificar Evento";
+                //categ = categ.buscarPorID(id);
+                cmbSala.SelectedValue = "Pendiente";
+                txtNombre.Text = "Pendiente";
+                //dpFecha.SelectedDate = 
+                //rtxtDescripcion.TextChanged = "";
+                txtAfiche.Text = "";
+            }
+            else
+            {
+                lblOperacion.Content = "Nuevo Evento";
+            }
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
         }
 	}
 }

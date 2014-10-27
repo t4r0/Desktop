@@ -21,16 +21,11 @@
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
-            <Expander Height="98" Width="199" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomExpander}" FontSize="16" Margin="5,0">
-                <Expander.Header>
-                    <TextBlock Style="{DynamicResource Icons}" FontSize="32"><Run Text="&#xE800;"/><InlineUIContainer>
-                    		<TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><Run Text="Operaciones"/></TextBlock>
-                    	</InlineUIContainer></TextBlock>
-                </Expander.Header>
-                <Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,-2,25" Width="199">
-                    <TextBlock HorizontalAlignment="Center" FontSize="26.667" FontWeight="Bold" Style="{DynamicResource WhiteIcons}"><Run Text="⌂"/></TextBlock>
-                </Label>
-            </Expander>
+            <MenuItem x:Name="itemOperaciones" Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemPiezas_Click">
+                <MenuItem.Header>
+                    <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">&#xE800;<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Operaciones</TextBlock></TextBlock>
+                </MenuItem.Header>
+            </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
             <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
                 <MenuItem.Header>
@@ -50,13 +45,13 @@
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
-            <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
+            <MenuItem x:Name="itemInsta" Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemInsta_Click">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">&#9874;<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Instalaciones</TextBlock></TextBlock>
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
-            <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
+            <MenuItem x:Name="itemEventos" Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemEventos_Click">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">&#128209;<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Eventos</TextBlock></TextBlock>
                 </MenuItem.Header>
