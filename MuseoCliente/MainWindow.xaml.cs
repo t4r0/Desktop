@@ -36,8 +36,12 @@ namespace MuseoCliente
 
         private void itemClasif_Click(object sender, RoutedEventArgs e)
         {
-            //observer = new Estructuras.Observador(modClasificaciones);
-            bdrContenedor.Child = observer.ventanaActual();
+            /*modClasificaciones frm = new modClasificaciones();
+            observer = new Estructuras.Observador(frm, bdrContenedor);
+            observer.ventanaActual();*/
+            modClasificaciones frm = new modClasificaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
         }
 
         private void itemPiezas_Click(object sender, RoutedEventArgs e)
