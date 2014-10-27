@@ -59,28 +59,30 @@ namespace MuseoCliente.Connection.Objects
       
 
         // hace las consultas solo por fecha sin incluir tiempo
-        
 
-        public ArrayList consultarNombre(string Nombre)
+        public ArrayList consultarpornombre(string nombre)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
-            List<Traslado> listaNueva = new List<Traslado>();
+            List<Traslado> listaNueva = null;
             try
             {
-                List<Traslado> todasPiezas = this.GetAsCollection();
-                foreach (Traslado traslado in todasPiezas)
-                {
-                    if (traslado.nombre.Contains(Nombre))
-                        listaNueva.Add(traslado);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
+
+                
+                string consultarpornombre = this.resource_uri + "?fecha=" + fecha;
+                listaNueva = this.GetAsCollection(consultarpornombre);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia con el nombre");
+                return null;
             }
             return new ArrayList(listaNueva);
         }
+       
 
         public ArrayList consultaraficheporfecha(DateTime fecha)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
@@ -89,7 +91,7 @@ namespace MuseoCliente.Connection.Objects
             {
 
                 string fecha2 = fecha.Date.ToString();
-                string consultaraficheporfecha = "?fecha2=" + fecha2;
+                string consultaraficheporfecha = this.resource_uri + "?fecha=" + fecha2;
                 listaNueva = this.GetAsCollection(consultaraficheporfecha);
                             }
             catch (Exception e)
@@ -114,7 +116,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string bodega2 = bodega.ToString();
                 //fecha.Date.ToString();
-                string consultarbodega = "?bodega=" + bodega2;
+                string consultarbodega = this.resource_uri + "?bodega=" + bodega2;
                 listaNueva = this.GetAsCollection(consultarbodega);
 
             }
@@ -160,7 +162,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado clas = new Traslado();
-                string consulta = "?traslado=" + this.id.ToString();
+                string consulta = this.resource_uri + "?traslado=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                 
             }
