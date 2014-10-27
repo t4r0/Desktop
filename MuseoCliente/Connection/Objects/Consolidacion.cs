@@ -171,5 +171,7 @@ namespace MuseoCliente.Connection.Objects
 
             return listaNueva;
         }
+
+        
     }
 }

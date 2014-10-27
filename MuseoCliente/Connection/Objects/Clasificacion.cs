@@ -153,5 +153,48 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
+        //Consultar Padre
+        public Coleccion consultarColeccion()
+        {
+            Coleccion clase = new Coleccion();
+            try
+            {
+                clase.regresarObjeto(this.coleccion);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + coleccion);
+            }
+            return (clase);
+        }
+
+        public Categoria consultarCategoria()
+        {
+            Categoria clase = new Categoria();
+            try
+            {
+                clase.regresarObjeto(this.categoria);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + categoria);
+            }
+            return (clase);
+        }
+
+        public Ficha consultarFicha()
+        {
+            Ficha clase = new Ficha();
+            try
+            {
+                clase.regresarObjeto(this.ficha);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + ficha);
+            }
+            return (clase);
+        }
+
       }
 }
