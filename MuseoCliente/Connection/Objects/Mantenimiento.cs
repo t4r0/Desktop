@@ -20,7 +20,7 @@ namespace MuseoCliente.Connection.Objects
         public int consolidacion { get; set; }
 
         public Mantenimiento()
-            : base("/v1/mantenimiento/")
+            : base("/api/v1/mantenimiento/")
         {
         }
 
@@ -67,6 +67,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Mantenimeintos en la base de Datos");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -102,7 +107,7 @@ namespace MuseoCliente.Connection.Objects
             List<Mantenimiento> listaNueva = null;
             try
             {
-                string consultar = "?procedimiento=" + procedimiento.ToString();
+                string consultar = this.resource_uri+"?procedimiento=" + procedimiento.ToString();
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
@@ -110,6 +115,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Mantenimiento con el procedimiento asiganado");
+                return null;
             }
             return new ArrayList(listaNueva);
         }
@@ -119,7 +129,7 @@ namespace MuseoCliente.Connection.Objects
             List<Mantenimiento> listaNueva = null;
             try
             {
-                string consultar = "?metodoMaterial=" + metodoMaterial;
+                string consultar = this.resource_uri+"?metodoMaterial=" + metodoMaterial;
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con metodoMaterial: " + metodoMaterial);
@@ -127,6 +137,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se Mantenimientos con el metodo de Material: "+metodoMaterial);
+                return null;
             }
             return new ArrayList(listaNueva);
         }
@@ -136,7 +151,7 @@ namespace MuseoCliente.Connection.Objects
             List<Mantenimiento> listaNueva = null;
             try
             {
-                string consultar = "?fecha=" + fecha.Date.ToString();
+                string consultar = this.resource_uri+"?fecha=" + fecha.Date.ToString();
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + fecha.Date);
@@ -145,17 +160,21 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraon Mantenimeitnos con la fecha: "+fecha.Date.ToString());
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
+        /*CLASE PADRE*/
         public Consolidacion consultarConsolidacion()
         {
             Consolidacion consol = new Consolidacion();
             try
             {
-                //consol.regresarObjeto(this.consolidacion)
-                if (consol == null)
-                    Error.ingresarError(2, "No se encontro la consolidacion: " );
+                consol.regresarObjeto(this.consolidacion);
             }
             catch (Exception e)
             {
