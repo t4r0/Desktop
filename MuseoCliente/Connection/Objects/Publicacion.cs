@@ -62,7 +62,7 @@ namespace MuseoCliente.Connection.Objects
             List<Publicacion> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
 
             }
@@ -86,7 +86,7 @@ namespace MuseoCliente.Connection.Objects
             List<Publicacion> listaNueva = null;
             try
             {
-                string consultarpublicacion = "?publicacion=" + publicacion;
+                string consultarpublicacion = this.resource_uri + "?publicacion=" + publicacion;
                 listaNueva = this.GetAsCollection(consultarpublicacion);
                 
                 
@@ -110,7 +110,7 @@ namespace MuseoCliente.Connection.Objects
             List<Publicacion> listaNueva = null;
             try
             {
-                string consultalink = "?link=" + link;
+                string consultalink = this.resource_uri + "?link=" + link;
                 listaNueva = this.GetAsCollection(consultalink);
                                 
             }
@@ -137,7 +137,7 @@ namespace MuseoCliente.Connection.Objects
 
 
                 string fecha2 = fecha.Date.ToString();
-                string consultapublicacionfecha = "?fecha2=" + fecha2;
+                string consultapublicacionfecha = this.resource_uri+"?fecha=" + fecha2;
                 listaNueva = this.GetAsCollection(consultapublicacionfecha);
                                 
             }
@@ -183,7 +183,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Publicacion clas = new Publicacion();
-                string consulta = "?nombre=" + this.id.ToString();
+                string consulta = this.resource_uri + "?nombre=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                
             }

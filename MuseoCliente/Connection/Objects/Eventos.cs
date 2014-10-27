@@ -53,14 +53,12 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-
-
         public ArrayList consultarNombre(string nombre)  //  la acabo de agregar segun la clase fichas 
         {
             List<Eventos> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
                 
             }
@@ -83,7 +81,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultardescripcion = "?descripcion=" + descripcion;
+                string consultardescripcion = this.resource_uri + "?descripcion=" + descripcion;
                 listaNueva = this.GetAsCollection(consultardescripcion);
                 
             }
@@ -106,7 +104,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultarafiche = "?afiche=" + afiche;
+                string consultarafiche = this.resource_uri + "?afiche=" + afiche;
                 listaNueva = this.GetAsCollection(consultarafiche);
                 
             }
@@ -132,7 +130,7 @@ namespace MuseoCliente.Connection.Objects
             {
                                
                 string fecha2 = fecha.Date.ToString();
-                string consultaraficheporfecha = "?fecha2=" + fecha2;
+                string consultaraficheporfecha = this.resource_uri + "?fecha2=" + fecha2;
                 listaNueva = this.GetAsCollection(consultaraficheporfecha);
                 
                 
@@ -159,7 +157,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string sala2 = sala.ToString();
                 //fecha.Date.ToString();
-                string consultaraficheporsala = "?sala2=" + sala2;
+                string consultaraficheporsala = this.resource_uri + "?sala=" + sala2;
                 listaNueva = this.GetAsCollection(consultaraficheporsala);
                 
             }
@@ -184,7 +182,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string usuario2 = usuario.ToString();
                 //fecha.Date.ToString();
-                string consultareventoporusuario = "?usuario2=" + usuario2;
+                string consultareventoporusuario = this.resource_uri + "?usuario=" + usuario2;
                 listaNueva = this.GetAsCollection(consultareventoporusuario);
 
                 
@@ -263,7 +261,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Eventos clas = new Eventos();
-                string consulta = "?eventos=" + this.id.ToString();
+                string consulta = this.resource_uri + "?eventos=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                 
             }
