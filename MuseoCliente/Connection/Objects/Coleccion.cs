@@ -15,7 +15,7 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
 
         public Coleccion()
-            : base("/v1/colecciones/")
+            : base("/api/v1/colecciones/")
         {
 
         }
@@ -45,45 +45,23 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarNombre(String nombre)
-        {
-            ArrayList listaNueva = new ArrayList();
-            try
-            {
-                var lista = this.GetAsCollection();
-                foreach (Coleccion coleccion in lista)
-                {
-                    if (coleccion.nombre.Contains(nombre))
-                        listaNueva.Add(coleccion);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontro nombre similares");
-            }
-
-            return new ArrayList(listaNueva);
-        }
-
         public ArrayList consultarNombre(string nombre)//1
         {
             List<Coleccion> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
-
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro");
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -130,6 +108,20 @@ namespace MuseoCliente.Connection.Objects
             }
 
             return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList(this.GetAsCollection());
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "tabla vacia");
+            }
+            return listaNueva;
         }
     }
 }

@@ -18,9 +18,17 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modClasificaciones : UserControl
 	{
-		public modClasificaciones()
+        Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
+        Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        public modClasificaciones()
 		{
 			this.InitializeComponent();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            gvCategorias.ItemsSource = categ.regresarTodo();
+            gvColecciones.ItemsSource = colec.regresarTodo();
+        }
 	}
 }

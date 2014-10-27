@@ -15,7 +15,7 @@ namespace MuseoCliente.Connection.Objects
         public string apellido { get; set; }
 
         public Autor()
-            : base( "/v1/autores/" )
+            : base( "/api/v1/autores/" )
         {
         }
 
@@ -54,7 +54,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "Nose encontro el nombre =" + nombre );
+                return null;
+            }
             return new ArrayList( listaNueva );
         }
 
@@ -69,8 +73,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-
-            return new ArrayList( listaNueva );
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "Nose encontro el apellido =" + apellido );
+                return null;
+            }
+            return listaNueva;
         }
 
         public ArrayList regresarPieza()
@@ -85,6 +93,11 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "No se encontraron piezas de este autor" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "la lista esta vacia" );
+                return null;
             }
             return listaNueva;
         }
@@ -102,6 +115,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontraron investigacion de este autor" );
             }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
             return listaNueva;
         }
 
@@ -115,6 +133,11 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "tabla vacia" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
             }
             return listaNueva;
         }

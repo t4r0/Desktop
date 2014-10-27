@@ -11,7 +11,7 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
 
         public Categoria()
-            : base( "/v1/categorias/" )
+            : base( "/api/v1/categorias/" )
         {
 
         }
@@ -44,7 +44,6 @@ namespace MuseoCliente.Connection.Objects
         public ArrayList consultarNombre( String nombre )
         {
             ArrayList listaNueva = null;
-
             try
             {
                 listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?nombre=" + nombre ) );
@@ -53,7 +52,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro");
+                return null;
+            }
             return listaNueva;
         }
 
@@ -77,7 +80,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+                listaNueva = new ArrayList( this.GetAsCollection());
             }
             catch( Exception e )
             {
