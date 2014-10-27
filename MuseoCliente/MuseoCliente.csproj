@@ -72,6 +72,8 @@
     </ApplicationDefinition>
     <Compile Include="Connection\Objects\Grupo.cs" />
     <Compile Include="Connection\Objects\UtilidadS3.cs" />
+    <Compile Include="Estructuras\Nodo.cs" />
+    <Compile Include="Estructuras\Observador.cs" />
     <Compile Include="modClasificacion\modCategoria.xaml.cs">
       <DependentUpon>modCategoria.xaml</DependentUpon>
     </Compile>
