@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net.Http;
 using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
     public class Pais : ResourceObject<Pais>
     {
- 
+
         public Pais()
-            : base("/v1/paises/")
+            : base( "/api/v1/paises/" )
         {
 
         }
@@ -40,9 +36,9 @@ namespace MuseoCliente.Connection.Objects
             {
                 this.Create();
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
+                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
             }
         }
 
@@ -51,11 +47,11 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                this.Save(this.iso);
+                this.Save( this.iso );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(4, "No se ha modifico en la Informacion en la base de datos");
+                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos" );
             }
         }
 
@@ -63,29 +59,33 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList regresarTodos()
         {
-            List<Pais> lista = null;
+            List<Pais> listaNueva = null;
             try
             {
-                lista = this.GetAsCollection();
-                if (lista == null)
-                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+                listaNueva = this.GetAsCollection();
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se econtro ninguna Ficha registrada" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-
-            return new ArrayList(lista);
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
         }
 
-        public void regresarObjeto(int ide)
+        public void regresarObjeto( int ide )
         {
             try
             {
-                Pais salaTemporal = this.Get(ide.ToString());
-                if (salaTemporal == null)
+                Pais salaTemporal = this.Get( ide.ToString() );
+                if( salaTemporal == null )
                 {
-                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
                 this.name = salaTemporal.name;
@@ -94,38 +94,42 @@ namespace MuseoCliente.Connection.Objects
                 this.iso = salaTemporal.iso;
                 this.numcode = salaTemporal.numcode;
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
         }
 
         public void regresarObjeto()
         {
-            regresarObjeto(this.id);
+            regresarObjeto( this.id );
         }
 
 
-        public ArrayList buscarNombre(String nombre) //Devuelve lista de todos los paises ingresados
+        public ArrayList buscarNombre( String nombre ) //Devuelve lista de todos los paises ingresados
         {
             List<Pais> listaNueva = null;
             try
             {
                 string consultar = "?name=" + nombre;
-                listaNueva = this.GetAsCollection(consultar); 
+                listaNueva = this.GetAsCollection( consultar );
 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No hay paises existentes");
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No hay paises existentes" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No hay paises existentes");
+                Error.ingresarError( 2, "No hay paises existentes" );
             }
-
-            return new ArrayList(listaNueva);
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
         }
 
-        
+
 
     }
 }
