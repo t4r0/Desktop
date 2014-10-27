@@ -145,5 +145,22 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
+        public void regresarObjecto( int id )
+        {
+            Investigacion Temp = this.Get( id.ToString() );
+            if( Temp == null )
+            {
+                Error.ingresarError( 2, "No se encontro coincidencia" );
+                return;
+            }
+            this.autor = Temp.autor;
+            this.contenido = Temp.contenido;
+            this.editor = Temp.editor;
+            this.fecha = Temp.fecha;
+            this.publicado = Temp.publicado;
+            this.resumen = Temp.resumen;
+            this.titulo = Temp.titulo;
+        }
+
     }
 }

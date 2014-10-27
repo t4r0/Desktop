@@ -11,16 +11,17 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Traslado : ResourceObject<Traslado>
     {
-        public Traslado(): base("/v1/traslados/")
+        public Traslado()
+            : base("/api/v1/traslados/")
         {
 
         }
 
         [JsonProperty]
-        public DateTime fecha { get; set; }
+        public DateTime fecha { get; set; } 
 
         [JsonProperty]
-        public Boolean bodega { get; set; }
+        public Boolean bodega { get; set; } // falta
 
         [JsonProperty]
         public string nombre { get; set; }
@@ -40,11 +41,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -55,70 +56,81 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarBodega()
-        {
-            List<Traslado> listaNueva = new List<Traslado>();
-            try
-            {
-                List<Traslado> todasPiezas = this.GetAsCollection();
-                foreach (Traslado traslado in todasPiezas)
-                {
-                    if (traslado.bodega)
-                        listaNueva.Add(traslado);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontraron bodegas");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontraron bodegas");
-            }
-            return new ArrayList(listaNueva);
-        }
+      
 
         // hace las consultas solo por fecha sin incluir tiempo
-        public ArrayList consultarFecha(DateTime Fecha)
+
+        public ArrayList consultarpornombre(string nombre)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
-            List<Traslado> listaNueva = new List<Traslado>();
+            List<Traslado> listaNueva = null;
             try
             {
-                List<Traslado> todasPiezas = this.GetAsCollection();
-                foreach (Traslado traslado in todasPiezas)
-                {
-                    if (traslado.fecha.Date == Fecha.Date)
-                        listaNueva.Add(traslado);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias para la fecha: " + Fecha);
+
+                
+                string consultarpornombre = this.resource_uri + "?fecha=" + fecha;
+                listaNueva = this.GetAsCollection(consultarpornombre);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias para la fecha: " + Fecha);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia con el nombre");
+                return null;
+            }
+            return new ArrayList(listaNueva);
+        }
+       
+
+        public ArrayList consultaraficheporfecha(DateTime fecha)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
+        {
+            List<Traslado> listaNueva = null;
+            try
+            {
+
+                string fecha2 = fecha.Date.ToString();
+                string consultaraficheporfecha = this.resource_uri + "?fecha=" + fecha2;
+                listaNueva = this.GetAsCollection(consultaraficheporfecha);
+                            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia con la fecha");
+                return null;
             }
             return new ArrayList(listaNueva);
         }
 
-        public ArrayList consultarNombre(string Nombre)
+
+        public ArrayList consultarbodega(Boolean bodega)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
-            List<Traslado> listaNueva = new List<Traslado>();
+            List<Traslado> listaNueva = null;
             try
             {
-                List<Traslado> todasPiezas = this.GetAsCollection();
-                foreach (Traslado traslado in todasPiezas)
-                {
-                    if (traslado.nombre.Contains(Nombre))
-                        listaNueva.Add(traslado);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
+
+                string bodega2 = bodega.ToString();
+                //fecha.Date.ToString();
+                string consultarbodega = this.resource_uri + "?bodega=" + bodega2;
+                listaNueva = this.GetAsCollection(consultarbodega);
+
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con el nombre: " + Nombre);
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia con la bodega");
+                return null;
             }
             return new ArrayList(listaNueva);
         }
-
 
         public ArrayList regresarTodos()
         {
@@ -128,13 +140,18 @@ namespace MuseoCliente.Connection.Objects
                 
                 List<Traslado> todostraslado = this.GetAsCollection();
 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se econtro ningun traslado registrado");
+   
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se econtro ningun traslado registrado");
+                return null;
+                }
 
             return new ArrayList(listaNueva);
         }
@@ -145,16 +162,19 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado clas = new Traslado();
-                string consulta = "?traslado=" + this.id.ToString();
+                string consulta = this.resource_uri + "?traslado=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se encontro nombre similares");
+                }
             return new ArrayList(listaNueva);
         }
 
