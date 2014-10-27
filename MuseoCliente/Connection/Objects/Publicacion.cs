@@ -12,7 +12,7 @@ namespace MuseoCliente.Connection.Objects
     {
 
         public Publicacion()
-            : base("/v1/publicacion/")
+            : base("/api/v1/publicacion/")
         {
             
 
@@ -44,11 +44,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -59,24 +59,22 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(String nombre)
         {
-            ArrayList listaNueva = new ArrayList(); 
-          
+            List<Publicacion> listaNueva = null;
             try
             {
+                string consultarNombre = "?nombre=" + nombre;
+                listaNueva = this.GetAsCollection(consultarNombre);
 
-                List<Publicacion> todasPublicaciones = this.GetAsCollection();
-                foreach (Publicacion hol in todasPublicaciones)
-                {
-                    if (hol.nombre.Contains(nombre))
-                        listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro publicacion");
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro publicacion");
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por nombre");
+                return null;
             }
 
             return new ArrayList(listaNueva);
@@ -90,16 +88,19 @@ namespace MuseoCliente.Connection.Objects
             {
                 string consultarpublicacion = "?publicacion=" + publicacion;
                 listaNueva = this.GetAsCollection(consultarpublicacion);
-
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro el nombre del evento");
+                
+                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se encontro coicidencias con la publicacion");
+                return null;
+                }
             return new ArrayList(listaNueva);
         }
 
@@ -111,15 +112,18 @@ namespace MuseoCliente.Connection.Objects
             {
                 string consultalink = "?link=" + link;
                 listaNueva = this.GetAsCollection(consultalink);
-
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro el link de la publicacion");
+                                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se encontro el link de la publicacion");
+                return null;
+                }
 
             return new ArrayList(listaNueva);
         }
@@ -135,15 +139,18 @@ namespace MuseoCliente.Connection.Objects
                 string fecha2 = fecha.Date.ToString();
                 string consultapublicacionfecha = "?fecha2=" + fecha2;
                 listaNueva = this.GetAsCollection(consultapublicacionfecha);
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ninguna coincidencia con la fecha");
+                                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia con la fecha");
+                return null;
+                }
             return new ArrayList(listaNueva);
         }
 
@@ -155,14 +162,18 @@ namespace MuseoCliente.Connection.Objects
 
                 List<Publicacion> todaspublicacion = this.GetAsCollection();
 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se econtro ninguna coincidencia al parecer la tabla esta vacia");
+                return null;
+                }
             return new ArrayList(listaNueva);
         }
 
@@ -174,14 +185,18 @@ namespace MuseoCliente.Connection.Objects
                 Publicacion clas = new Publicacion();
                 string consulta = "?nombre=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+               
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
+            if (listaNueva == null)
+                {
+                Error.ingresarError(2, "No se encontro nombre similares");
+                return null;
+                }
             return new ArrayList(listaNueva);
         }
        
