@@ -48,7 +48,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?nombre=" + nombre ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?nombre__contains=" + nombre ) );
             }
             catch( Exception e )
             {
@@ -67,7 +67,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?apellido" + apellido ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?apellido__contains" + apellido ) );
             }
             catch( Exception e )
             {
@@ -87,7 +87,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Pieza Pieza = new Pieza();
-                List<Pieza> Piezas = Pieza.GetAsCollection( Pieza.resource_uri + "?autor=" + this.id );
+                List<Pieza> Piezas = Pieza.GetAsCollection( Pieza.resource_uri + "?autor__contains=" + this.id );
                 listaNueva = new ArrayList( Piezas );
             }
             catch( Exception e )
@@ -108,7 +108,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Investigacion Investigacion = new Investigacion();
-                List<Investigacion> Investigaciones = Investigacion.GetAsCollection( Investigacion.resource_uri + "?autor=" + this.id );
+                List<Investigacion> Investigaciones = Investigacion.GetAsCollection( Investigacion.resource_uri + "?autor__contains=" + this.id );
                 listaNueva = new ArrayList( Investigaciones );
             }
             catch( Exception e )

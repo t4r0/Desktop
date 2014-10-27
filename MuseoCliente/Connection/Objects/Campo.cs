@@ -68,7 +68,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?tipocampo=" + tipoCampo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?tipocampo__contains=" + tipoCampo ) );
             }
             catch( Exception e )
             {
@@ -87,7 +87,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?campoestructura=" + campoEstructura ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?campoestructura__contains=" + campoEstructura ) );
             }
             catch( Exception e )
             {
@@ -106,7 +106,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valortexto=" + valorTexto ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valortexto__contains=" + valorTexto ) );
             }
             catch( Exception e )
             {
@@ -125,7 +125,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valortextolargo=" + valorTextoLargo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valortextolargo__contains=" + valorTextoLargo ) );
             }
             catch( Exception e )
             {
@@ -144,7 +144,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valorfecha=" + valorFecha ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valorfecha__contains=" + valorFecha ) );
             }
             catch( Exception e )
             {
@@ -163,7 +163,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valornumerico=" + valorNumerico ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valornumerico__contains=" + valorNumerico ) );
             }
             catch( Exception e )
             {
@@ -182,7 +182,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valorradio=" + valorRadio ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valorradio__contains=" + valorRadio ) );
             }
             catch( Exception e )
             {

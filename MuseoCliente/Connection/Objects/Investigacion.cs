@@ -72,7 +72,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?titulo=" + titulo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?titulo__contains=" + titulo ) );
             }
             catch( Exception e )
             {
@@ -112,7 +112,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 LinkInvestigacion LinkInvestigacion = new LinkInvestigacion();
-                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( LinkInvestigacion.resource_uri + "?investigacion=" + this.id ) );
+                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( LinkInvestigacion.resource_uri + "?investigacion__contains=" + this.id ) );
             }
             catch( Exception e )
             {
