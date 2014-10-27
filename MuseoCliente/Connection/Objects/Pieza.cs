@@ -59,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
 
 
         public Pieza()
-            : base("/v1/piezas/")
+            : base("/api/v1/piezas/")
         {
         }
 
@@ -99,6 +99,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Piezas en la base de Datos");
+                return null;
             }
             return new ArrayList(listaNueva);
         }
@@ -156,7 +161,7 @@ namespace MuseoCliente.Connection.Objects
         {
             List<Pieza> listaNueva = null;
 			try{
-                string consultar = "?nombre=" + nombre;
+                string consultar =this.resource_uri+ "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultar);
                 if(listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -164,7 +169,11 @@ namespace MuseoCliente.Connection.Objects
 			{
 				Error.ingresarError(2,"No se encontro nombre similares");
 			}
-			
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen piezas con el nombre: "+nombre);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -173,7 +182,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = "?responsableRegistro=" + responsable.ToString();
+                string consultar = this.resource_uri+"?responsableRegistro=" + responsable.ToString();
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -182,7 +191,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontro nombre similares");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Piezas con dicho responsable");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -191,7 +204,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = "?fechaIngreso=" + fecha.Date.ToString();
+                string consultar = this.resource_uri+"?fechaIngreso=" + fecha.Date.ToString();
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -200,7 +213,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontro nombre similares");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Piezas con dicha fecha: "+fecha.Date.ToString());
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -209,7 +226,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = "?regionCultural=" + regionCultural;
+                string consultar = this.resource_uri+"?regionCultural=" + regionCultural;
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -218,7 +235,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontro nombre similares");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se existen piezas con la region Cultural recibida");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -227,7 +248,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = "?exhibicion=" + exib.ToString();
+                string consultar = this.resource_uri+"?exhibicion=" + exib.ToString();
                 listaNueva = this.GetAsCollection(consultar);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -236,26 +257,27 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontro nombre similares");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Piezas con que esten en Exibicion: "+exib.ToString());
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
         
         /*  CONSULTAS DE PADRES*/
-        public Consolidacion regresarClasificaciones()
+        public Clasificacion regresarClasificaciones()
         {
-            Consolidacion consol = new Consolidacion();
+            Clasificacion consol = new Clasificacion();
             try
             {
-                //consol.regresarObjeto(this.consolidacion)
-                if (consol == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                consol.regresarObjeto(this.clasificacion);
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError(2, "No existe Coneccion");
             }
-
             return (consol);
         }
 
@@ -264,10 +286,7 @@ namespace MuseoCliente.Connection.Objects
             Autor autor = new Autor();
             try
             {
-                //autor.regresarObjeto();
-
-                if (autor == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                autor.regresarObjecto(this.autor);
             }
             catch (Exception e)
             {
@@ -285,7 +304,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Consolidacion clase = new Consolidacion();
-                string consulta = "?pieza=" + this.codigo;
+                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro Consolidacion");
@@ -294,7 +313,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraron Consolidaciones de Pieza: "+this.nombre);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -304,7 +327,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado clase = new Traslado();
-                string consulta = "?pieza=" + this.codigo;
+                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
@@ -313,7 +336,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Traslados de la pieza: "+this.nombre);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -323,7 +350,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Registro clase = new Registro();
-                string consulta = "?pieza=" + this.codigo;
+                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
@@ -332,7 +359,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Registros de la Pieza: "+this.nombre);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -342,7 +373,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Fotografia clase = new Fotografia();
-                string consulta = "?pieza=" + this.codigo;
+                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
@@ -351,7 +382,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Fotografias de Pieza: "+this.nombre);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 

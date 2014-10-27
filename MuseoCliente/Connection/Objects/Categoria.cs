@@ -54,7 +54,7 @@ namespace MuseoCliente.Connection.Objects
             }
             if (listaNueva == null)
             {
-                Error.ingresarError(2, "No se encontro");
+                Error.ingresarError(2, "No se encontraron Categorias con el nombre: "+nombre);
                 return null;
             }
             return listaNueva;
@@ -72,6 +72,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontraron clasificaciones para esta categoria" );
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraron Clasificaciones de la Categoria "+this.nombre);
+                return null;
+            }
             return listaNueva;
         }
 
@@ -86,7 +91,36 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "tabla vacia" );
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Categoria");
+                return null;
+            }
             return listaNueva;
+        }
+
+        public void regresarObjeto(int id)
+        {
+            try
+            {
+                Categoria fichaTemp = this.Get(id.ToString());
+                if (fichaTemp == null)
+                {
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
+                }
+                this.id = fichaTemp.id;
+                this.nombre = fichaTemp.nombre;
+                this.resource_uri = fichaTemp.resource_uri;
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
         }
     }
 }

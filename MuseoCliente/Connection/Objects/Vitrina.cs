@@ -15,7 +15,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int sala { get; set; }
 
-        public Vitrina() : base("/v1/vitrina/")
+        public Vitrina() : base("/api/v1/vitrina/")
         {
         }
 
@@ -64,7 +64,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (lista == null)
+            {
+                Error.ingresarError(2, "No existen en la Base de Datos");
+                return null;
+            }
             return new ArrayList(lista);
         }
 
@@ -100,7 +104,7 @@ namespace MuseoCliente.Connection.Objects
             List<Vitrina> listaNueva = null;
             try
             {
-                string consultar = "?numero=" + numero;
+                string consultar = this.resource_uri+"?numero=" + numero;
                 listaNueva = this.GetAsCollection(consultar); 
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
@@ -108,6 +112,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Vitrina del numero: "+numero);
+                return null;
             }
             return new ArrayList(listaNueva);
         }
@@ -119,9 +128,7 @@ namespace MuseoCliente.Connection.Objects
             Sala clase = new Sala();
             try
             {
-                //clase.regresarObjeto();
-                if (clase == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
+                clase.regresarObjeto(this.sala);
             }
             catch (Exception e)
             {
@@ -138,7 +145,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado clase = new Traslado();
-                string consulta = "?vitrina=" + this.id.ToString();
+                string consulta = clase.resource_uri+"?vitrina=" + this.id.ToString();
                 listaNueva = clase.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
@@ -147,7 +154,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Traslados de Vitrina: "+this.numero);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
     }
