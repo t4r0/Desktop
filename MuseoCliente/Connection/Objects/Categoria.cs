@@ -54,7 +54,7 @@ namespace MuseoCliente.Connection.Objects
             }
             if (listaNueva == null)
             {
-                Error.ingresarError(2, "No se encontro");
+                Error.ingresarError(2, "No se encontraron Categorias con el nombre: "+nombre);
                 return null;
             }
             return listaNueva;
@@ -72,6 +72,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontraron clasificaciones para esta categoria" );
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraron Clasificaciones de la Categoria "+this.nombre);
+                return null;
+            }
             return listaNueva;
         }
 
@@ -85,6 +90,11 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "tabla vacia" );
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Categoria");
+                return null;
             }
             return listaNueva;
         }

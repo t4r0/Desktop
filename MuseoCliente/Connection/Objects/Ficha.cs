@@ -22,7 +22,7 @@ namespace MuseoCliente.Connection.Objects
         public bool consolidacion{get; set;}
 
         public Ficha()
-            : base("/v1/fichas/")
+            : base("/api/v1/fichas/")
         {
             this.estructura = new Estructura();
            
@@ -57,7 +57,7 @@ namespace MuseoCliente.Connection.Objects
             List<Ficha> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = this.resource_uri+"?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
 
 
@@ -68,6 +68,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro Fichas con el nombre: "+nombre);
+                return null;
+            }
 
             return new ArrayList(listaNueva);
         }
@@ -77,7 +82,7 @@ namespace MuseoCliente.Connection.Objects
             List<Ficha> listaNueva = null;
             try
             {
-                string consultar = "?consolidacion=" + consolidacion.ToString();
+                string consultar = this.resource_uri+"?consolidacion=" + consolidacion.ToString();
                 listaNueva = this.GetAsCollection(consultar);               
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -86,7 +91,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraron Fichas con Consolidacion: "+consolidacion);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -131,7 +140,11 @@ namespace MuseoCliente.Connection.Objects
             {
                  Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (todasFichas == null)
+            {
+                Error.ingresarError(2, "No Existen Fichas");
+                return null;
+            }
             return new ArrayList(todasFichas);
         }
 
@@ -141,7 +154,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Clasificacion clas = new Clasificacion();
-                string consulta = "?ficha=" + this.id.ToString();
+                string consulta = clas.resource_uri+"?ficha=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -150,7 +163,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraron Clasificaciones con la Ficha: "+this.nombre);
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
         
