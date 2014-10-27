@@ -19,7 +19,7 @@ namespace MuseoCliente.Connection.Objects
         public Boolean consolidacion { get; set; }
 
         public Registro()
-            : base("/v1/fichas/")
+            : base("/api/v1/registro/")
         {
 
         }
@@ -36,11 +36,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -61,6 +61,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontraron piezas de este autor");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
             return listaNueva;
         }
 
@@ -69,7 +75,7 @@ namespace MuseoCliente.Connection.Objects
             List<Registro> listaNueva = null;
             try
             {
-                string consultarFecha = "?fecha=" + fecha;
+                string consultarFecha = this.resource_uri + "?fecha=" + fecha;
                 listaNueva = this.GetAsCollection(consultarFecha);
 
 
@@ -80,6 +86,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
 
             return new ArrayList(listaNueva);
         }
@@ -111,5 +123,26 @@ namespace MuseoCliente.Connection.Objects
         {
             regresarObjeto(this.id);
         }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList(this.GetAsCollection());
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "tabla vacia");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+
+            return listaNueva;
+        }
+
     }
 }

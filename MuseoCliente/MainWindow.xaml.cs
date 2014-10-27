@@ -23,6 +23,7 @@ namespace MuseoCliente
     {
 
         Sala sala = new Sala();
+        Estructuras.Observador observer;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +36,12 @@ namespace MuseoCliente
 
         private void itemClasif_Click(object sender, RoutedEventArgs e)
         {
-            bdrContenedor.Child = new modVoluntario();
+            /*modClasificaciones frm = new modClasificaciones();
+            observer = new Estructuras.Observador(frm, bdrContenedor);
+            observer.ventanaActual();*/
+            modClasificaciones frm = new modClasificaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
         }
 
         private void itemPiezas_Click(object sender, RoutedEventArgs e)

@@ -18,9 +18,11 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosClas : UserControl
 	{
-        private string busqueda = "Fantasmas";
+        public string busqueda = "";
         private Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
         private Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        public UserControl anterior;
+        public Border borde;
         public modResultadosClas()
 		{
 			this.InitializeComponent();
@@ -35,6 +37,7 @@ namespace MuseoCliente
         {
             if (categ.consultarNombre(busqueda) != null)
             {
+                gvResultados.SelectedValue = "nombre";
                 gvResultados.ItemsSource = categ.consultarNombre(busqueda);
             }
             else
@@ -47,12 +50,28 @@ namespace MuseoCliente
         {
             if (colec.consultarNombre(busqueda) != null)
             {
+                gvResultados.SelectedValue = "nombre";
                 gvResultados.ItemsSource = colec.consultarNombre(busqueda);
             }
             else
             {
                 MessageBox.Show("No hay colecciones con el nombre");
             }
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            modCategoria frm = new modCategoria();
+            frm.borde = borde;
+            frm.anterior = this;
+            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+            MessageBox.Show(gvResultados.SelectedValue.ToString());
+            borde.Child = frm;
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
         }
 	}
 }

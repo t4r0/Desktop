@@ -19,10 +19,18 @@ namespace MuseoCliente
 	public partial class modInstalaciones : UserControl
 	{
         Connection.Objects.Sala salas = new Connection.Objects.Sala();
+        Connection.Objects.Caja cajas = new Connection.Objects.Caja();
+        Connection.Objects.Vitrina vitrinas = new Connection.Objects.Vitrina();
         public modInstalaciones()
 		{
 			this.InitializeComponent();
-            gvSalas.ItemsSource = salas.regresarTodos();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            //gvSalas.ItemsSource = salas.regresarTodos();
+            //gvCajas.ItemsSource = cajas.regresarTodo();
+            //gvVitrinas.ItemsSource = vitrinas.regresarTodos();
+        }
 	}
 }
