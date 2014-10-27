@@ -19,7 +19,7 @@ namespace MuseoCliente.Connection.Objects
        
 
 
-        public Sala(): base("/v1/salas/")
+        public Sala(): base("/api/v1/salas/")
         {
         }
 
@@ -67,6 +67,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (lista == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
 
             return new ArrayList(lista);
         }
@@ -104,7 +110,7 @@ namespace MuseoCliente.Connection.Objects
             List<Sala> listaNueva = null;
             try
             {
-                string consultar = "?nombre=" + nombre;
+                string consultar =this.resource_uri + "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultar); 
                 if (listaNueva == null)
                     Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
@@ -123,7 +129,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Vitrina clas = new Vitrina();
-                string consulta = "?sala" + this.id.ToString();
+                string consulta = clas.resource_uri + "?sala" + this.id.ToString();
                 vitrina = clas.GetAsCollection(consulta);
                 if (vitrina == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -132,7 +138,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (vitrina == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
             return new ArrayList(vitrina);
         }
 
@@ -142,7 +153,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Eventos clas = new Eventos();
-                string consulta = "?sala" + this.id.ToString();
+                string consulta =clas.resource_uri + "?sala" + this.id.ToString();
                 evento = clas.GetAsCollection(consulta);
                 if (evento == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -151,6 +162,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (evento == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
 
             return new ArrayList(evento);
         }
