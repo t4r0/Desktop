@@ -161,7 +161,7 @@ namespace MuseoCliente.Connection.Objects
         {
             List<Pieza> listaNueva = null;
 			try{
-                string consultar =this.resource_uri+ "?nombre=" + nombre;
+                string consultar = this.resource_uri + "?nombre__contains=" + nombre;
                 listaNueva = this.GetAsCollection(consultar);
                 if(listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
