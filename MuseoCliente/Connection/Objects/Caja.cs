@@ -101,5 +101,16 @@ namespace MuseoCliente.Connection.Objects
             }
             return listaNueva;
         }
+
+        public void regresarObjecto( int id )
+        {
+            Caja Temp = this.Get( id.ToString() );
+            if( Temp == null )
+            {
+                Error.ingresarError( 2, "No se encontro coincidencia" );
+                return;
+            }
+            this.codigo = Temp.codigo;
+        }
     }
 }
