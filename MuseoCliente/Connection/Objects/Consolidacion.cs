@@ -158,43 +158,5 @@ namespace MuseoCliente.Connection.Objects
         {
             regresarObjeto(this.id);
         }
-
-        public ArrayList regresarMantenimiento()//4  Mantenimiento
-        {
-            List<Mantenimiento> listaNueva = null;
-            try
-            {
-                Mantenimiento clas = new Mantenimiento();
-                string consulta = "?consolidacion=" + this.id.ToString();
-                listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
-            }
-
-            return new ArrayList(listaNueva);
-        }
-
-        public ArrayList regresarRegistro()//4 Registro
-        {
-            List<Registro> listaNueva = null;
-            try
-            {
-                Registro clas = new Registro();
-                string consulta = "?consolidacion=" + this.id.ToString();
-                listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
-            }
-
-            return new ArrayList(listaNueva);
-        }
     }
 }

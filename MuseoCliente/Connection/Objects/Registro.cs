@@ -111,24 +111,5 @@ namespace MuseoCliente.Connection.Objects
         {
             regresarObjeto(this.id);
         }
-
-        public ArrayList regresarCampo()//4  Campo
-        {
-            List<Campo> listaNueva = null;
-            try
-            {
-                Campo clas = new Campo();
-                string consulta = "?registro=" + this.id.ToString();
-                listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
-            }
-
-            return new ArrayList(listaNueva);
-        }
     }
 }
