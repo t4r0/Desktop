@@ -23,7 +23,7 @@ namespace MuseoCliente.Connection.Objects
         public int codigoPieza { get; set; }
 
         public Consolidacion()
-            : base("/v1/consolidacion/")
+            : base("/api/v1/consolidacion/")
         {
         }
 
@@ -40,11 +40,11 @@ namespace MuseoCliente.Connection.Objects
         }
 
 
-        public void modificar(int id) //Modifica datos de un pais
+        public void modificar() //Modifica datos de un pais
         {
             try
             {
-                this.Save(id.ToString());
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -52,29 +52,7 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarConsolidacion(String dia)
-        {
-            List<Consolidacion> listaNueva = new List<Consolidacion>();
-            try
-            {
-
-                List<Consolidacion> todoConsolidacion = this.GetAsCollection();
-                foreach (Consolidacion hol in todoConsolidacion)
-                {
-                    //if (hol.fechaInicio .Contains(dia))
-                     //   listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontro nombre similares");
-            }
-
-            return new ArrayList(listaNueva);
-        }
+        
 
         public ArrayList regresarMantenimiento()
         {
@@ -88,6 +66,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(2, "No se encontraron piezas de este autor");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
             }
             return listaNueva;
         }
@@ -105,6 +88,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontraron piezas de este autor");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
             return listaNueva;
         }
 
@@ -114,7 +102,7 @@ namespace MuseoCliente.Connection.Objects
             List<Consolidacion> listaNueva = null;
             try
             {
-                string consultarResponsable = "?responsable=" + responsable;
+                string consultarResponsable =this.resource_uri + "?responsable=" + responsable;
                 listaNueva = this.GetAsCollection(consultarResponsable);
 
 
@@ -124,6 +112,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
             }
 
             return new ArrayList(listaNueva);
@@ -157,6 +150,26 @@ namespace MuseoCliente.Connection.Objects
         public void regresarObjeto()//3
         {
             regresarObjeto(this.id);
+        }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList(this.GetAsCollection());
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "tabla vacia");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+
+            return listaNueva;
         }
     }
 }
