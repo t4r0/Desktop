@@ -8,7 +8,7 @@
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480">
 
-	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
+	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Resultados</Label>
@@ -20,8 +20,8 @@
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton x:Name="rbCateg" VerticalAlignment="Center" Margin="10,0,10,0">Categoría</RadioButton>
-				<RadioButton x:Name="rbColec" VerticalAlignment="Center" Margin="0,0,10,0">Colección</RadioButton>
+				<RadioButton x:Name="rbCateg" VerticalAlignment="Center" Margin="10,0,10,0" Checked="rbCateg_Checked">Categoría</RadioButton>
+				<RadioButton x:Name="rbColec" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbColec_Checked">Colección</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">

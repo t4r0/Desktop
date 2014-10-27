@@ -7,7 +7,7 @@ namespace MuseoCliente.Connection.Objects
     public class Investigacion : ResourceObject<Investigacion>
     {
         public Investigacion()
-            : base( "/v1/investigaciones/" )
+            : base( "/api/v1/investigaciones/" )
         {
 
         }
@@ -78,7 +78,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
             return new ArrayList( listaNueva );
         }
 
@@ -94,7 +98,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
             return new ArrayList( listaNueva );
         }
 
@@ -110,6 +118,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "no se encontraron coincidencias" );
             }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
             return listaNueva;
         }
 
@@ -123,6 +136,11 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 Error.ingresarError( 2, "tabla vacia" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
             }
             return listaNueva;
         }
