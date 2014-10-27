@@ -9,12 +9,14 @@ namespace MuseoCliente.Estructuras
 {
     class Observador
     {
-        private Nodo actual; //Me indica el UserControl Actual
+        private Nodo actual = new Nodo(); //Me indica el UserControl Actual
+        private Border borde = new Border();
 
-        public Observador(UserControl primero)
+        public Observador(UserControl primero, Border bdr)
         {
             Nodo nuevo = new Nodo(primero);
             actual.setProximo(nuevo);
+            borde = bdr;
         }
 
         public Nodo getActual()
@@ -28,6 +30,7 @@ namespace MuseoCliente.Estructuras
             this.getActual().setProximo(nuevo);
             nuevo.setAnterior(this.getActual());
             actual.setProximo(nuevo);
+            this.ventanaActual();
         }
 
         public void anterior()
@@ -35,11 +38,12 @@ namespace MuseoCliente.Estructuras
             Nodo temp = this.getActual().getAnterior();
             temp.setProximo(null);
             actual.setProximo(temp);
+            this.ventanaActual();
         }
 
-        public UserControl ventanaActual()
+        public void ventanaActual()
         {
-            return this.getActual().getVentana();
+            borde.Child = this.getActual().getVentana();
         }
 
     }

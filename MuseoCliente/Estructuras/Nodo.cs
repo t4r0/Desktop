@@ -20,6 +20,8 @@ namespace MuseoCliente.Estructuras
             Proximo = null;
         }
 
+        public Nodo() { }
+
         public void setAnterior(Nodo ant)
         {
             Anterior = ant;
@@ -32,7 +34,7 @@ namespace MuseoCliente.Estructuras
 
         public void setProximo(Nodo prox)
         {
-            Anterior = prox;
+            Proximo = prox;
         }
 
         public Nodo getProximo()
