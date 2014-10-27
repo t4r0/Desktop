@@ -1,217 +1,235 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net.Http;
 using System.Collections;
+using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
     public class Campo : ResourceObject<Campo>
     {
-         public Campo():base("/v1/categoria/")
+        public Campo()
+            : base( "/api/v1/categoria/" )
         {
 
         }
 
-         [JsonProperty]
-         public int campoEstructura { get; set; }
+        [JsonProperty]
+        public int campoEstructura { get; set; }
 
-         [JsonProperty]
-         public int tipoCampo { get; set; }
+        [JsonProperty]
+        public int tipoCampo { get; set; }
 
-         [JsonProperty]
-         public string valorTexto { get; set; }
+        [JsonProperty]
+        public string valorTexto { get; set; }
 
-         [JsonProperty]
-         public string valorTextoLargo { get; set; }
+        [JsonProperty]
+        public string valorTextoLargo { get; set; }
 
-         [JsonProperty]
-         public DateTime valorFecha { get; set; }
+        [JsonProperty]
+        public DateTime valorFecha { get; set; }
 
-         [JsonProperty]
-         public float valorNumerico { get; set; }
+        [JsonProperty]
+        public float valorNumerico { get; set; }
 
-         [JsonProperty]
-         public int valorRadio { get; set; }
+        [JsonProperty]
+        public int valorRadio { get; set; }
 
-         public void guardar()
-         {
-             try
-             {
-                 this.Create();
-             }
-             catch (Exception e)
-             {
-                 if (e.Source != null)
-                 {
-                     Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos");
-                 }
-             }
-         }
+        public void guardar()
+        {
+            try
+            {
+                this.Create();
+            }
+            catch( Exception e )
+            {
+                if( e.Source != null )
+                {
+                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos" );
+                }
+            }
+        }
 
-         public void modificar(string id)
-         {
-             try
-             {
-                 this.Save(id);
-             }
-             catch (Exception e)
-             {
-                 if (e.Source != null)
-                 {
-                     Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
-                 }
-             }
-         }
+        public void modificar()
+        {
+            try
+            {
+                this.Save( this.id.ToString() );
+            }
+            catch( Exception e )
+            {
+                if( e.Source != null )
+                {
+                    Error.ingresarError( 4, "No se ha modificado la Informacion en la base de datos" );
+                }
+            }
+        }
 
-         public ArrayList consultarTipoCampo(int tipoCampo)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach(Campo campo in todosCampos)
-                 {
-                     if (campo.tipoCampo == tipoCampo)
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con tipo de campo: " + tipoCampo);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con tipo de campo: " + tipoCampo);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarTipoCampo( int tipoCampo )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?tipocampo=" + tipoCampo ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con tipo de campo: " + tipoCampo );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
 
-         public ArrayList consultarCampoEstructura(int campoEstructura)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach (Campo campo in todosCampos)
-                 {
-                     if (campo.campoEstructura == campoEstructura)
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con campoEstructura: " + campoEstructura);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con campoEstructura: " + campoEstructura);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarCampoEstructura( int campoEstructura )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?campoestructura=" + campoEstructura ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con campoEstructura: " + campoEstructura );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
 
-         public ArrayList consultarValorTexto(string valorTexto)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach (Campo campo in todosCampos)
-                 {
-                     if (campo.valorTexto.Contains(valorTexto))
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con valorTexto: " + valorTexto);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con valorTexto: " + valorTexto);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarValorTexto( string valorTexto )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valortexto=" + valorTexto ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con valorTexto: " + valorTexto );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
 
-         public ArrayList consultarValorTextoLargo(string valorTextoLargo)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach (Campo campo in todosCampos)
-                 {
-                     if (campo.valorTextoLargo.Contains(valorTextoLargo))
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con valorTextoLargo: " + valorTextoLargo);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con valorTextoLargo: " + valorTextoLargo);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarValorTextoLargo( string valorTextoLargo )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valortextolargo=" + valorTextoLargo ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con valorTextoLargo: " + valorTextoLargo );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
 
-         public ArrayList consultarValorFecha(DateTime valorFecha)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach (Campo campo in todosCampos)
-                 {
-                     if (campo.valorFecha.Date == valorFecha.Date)
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + valorFecha.Date);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con fecha: " + valorFecha.Date);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarValorFecha( DateTime valorFecha )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valorfecha=" + valorFecha ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con fecha: " + valorFecha.Date );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
 
-         public ArrayList consultarValorNumerico(float valorNumerico)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach (Campo campo in todosCampos)
-                 {
-                     if (campo.valorNumerico == valorNumerico)
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con valorNumerico: " + valorNumerico);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con valorNumerico: " + valorNumerico);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarValorNumerico( float valorNumerico )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valornumerico=" + valorNumerico ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con valorNumerico: " + valorNumerico );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
 
-         public ArrayList consultarValorRadio(int valorRadio)
-         {
-             List<Campo> listaNueva = new List<Campo>();
-             try
-             {
-                 List<Campo> todosCampos = this.GetAsCollection();
-                 foreach (Campo campo in todosCampos)
-                 {
-                     if (campo.valorRadio == valorRadio)
-                         listaNueva.Add(campo);
-                 }
-                 if (listaNueva == null)
-                     Error.ingresarError(2, "no se encontraron coincidencias con valorRadio: " + valorRadio);
-             }
-             catch (Exception e)
-             {
-                 Error.ingresarError(2, "no se encontraron coincidencias con valorRadio: " + valorRadio);
-             }
-             return new ArrayList(listaNueva);
-         }
+        public ArrayList consultarValorRadio( int valorRadio )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?valorradio=" + valorRadio ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no se encontraron coincidencias con valorRadio: " + valorRadio );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "tabla vacia" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return listaNueva;
+        }
+
+        public void regresarObjecto( int id )
+        {
+            Campo Temp = this.Get( id.ToString() );
+            if( Temp == null )
+            {
+                Error.ingresarError( 2, "No se encontro coincidencia" );
+                return;
+            }
+            this.campoEstructura = Temp.campoEstructura;
+            this.tipoCampo = Temp.tipoCampo;
+            this.valorFecha = Temp.valorFecha;
+            this.valorNumerico = Temp.valorNumerico;
+            this.valorRadio = Temp.valorRadio;
+            this.valorTexto = Temp.valorTexto;
+            this.valorTextoLargo = Temp.valorTextoLargo;
+        }
     }
 }
