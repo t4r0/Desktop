@@ -98,5 +98,29 @@ namespace MuseoCliente.Connection.Objects
             }
             return listaNueva;
         }
+
+        public void regresarObjeto(int id)
+        {
+            try
+            {
+                Categoria fichaTemp = this.Get(id.ToString());
+                if (fichaTemp == null)
+                {
+                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    return;
+                }
+                this.id = fichaTemp.id;
+                this.nombre = fichaTemp.nombre;
+                this.resource_uri = fichaTemp.resource_uri;
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+        }
+        public void regresarObjeto()
+        {
+            regresarObjeto(this.id);
+        }
     }
 }
