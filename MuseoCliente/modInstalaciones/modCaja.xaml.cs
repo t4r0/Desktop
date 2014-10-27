@@ -27,6 +27,7 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             caja.codigo = txtCodigo.Text;
+            //caja.id = 500;
             caja.guardar();
             if (Connection.Objects.Error.isActivo())
             {
