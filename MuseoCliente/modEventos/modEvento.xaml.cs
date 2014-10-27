@@ -20,6 +20,7 @@ namespace MuseoCliente
 	public partial class modEvento : UserControl
 	{
         Connection.Objects.Eventos evento = new Connection.Objects.Eventos();
+        Connection.Objects.Sala salas = new Connection.Objects.Sala();
         public modEvento()
 		{
 			this.InitializeComponent();
@@ -27,7 +28,8 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            evento.sala = 1;
+            //evento.sala = Convert.ToInt16(cmbSala.SelectedValue.ToString());
+            evento.sala = 3;
             evento.nombre = txtNombre.Text;
             evento.fecha = dpFecha.SelectedDate.Value;
             evento.descripcion = StringFromRichTextBox(rtxtDescripcion);
@@ -67,6 +69,13 @@ namespace MuseoCliente
             dialogo.ShowDialog();
             if (dialogo.ShowDialog() == true)
                 txtAfiche.Text = dialogo.FileName;
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbSala.DisplayMemberPath = "nombre";
+            cmbSala.SelectedValuePath = "id";
+            cmbSala.ItemsSource = salas.regresarTodos();
         }
 	}
 }

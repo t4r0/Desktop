@@ -18,9 +18,33 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosEvs : UserControl
 	{
-		public modResultadosEvs()
+        private string busqueda = "Eventos ursaring";
+        private Connection.Objects.Eventos eventos = new Connection.Objects.Eventos();
+        public modResultadosEvs()
 		{
 			this.InitializeComponent();
 		}
+
+        private void rbTodos_Checked(object sender, RoutedEventArgs e)
+        {
+            if (eventos.consultarNombre(busqueda) != null)
+            {
+                gvResultados.ItemsSource = eventos.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay eventos con el nombre");
+            }
+        }
+
+        private void rbFinalizados_Checked(object sender, RoutedEventArgs e)
+        {
+            //Pendiente por las nuevas consultas
+        }
+
+        private void rbProximos_Checked(object sender, RoutedEventArgs e)
+        {
+            //Pendiente por las nuevas consultas
+        }
 	}
 }

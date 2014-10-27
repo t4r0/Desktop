@@ -18,9 +18,24 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modCaja : UserControl
 	{
-		public modCaja()
+        Connection.Objects.Caja caja = new Connection.Objects.Caja();
+        public modCaja()
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            caja.codigo = txtCodigo.Text;
+            caja.guardar();
+            if (Connection.Objects.Error.isActivo())
+            {
+                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+            }
+            else
+            {
+                MessageBox.Show("Bien puto Ursaring");
+            }
+        }
 	}
 }
