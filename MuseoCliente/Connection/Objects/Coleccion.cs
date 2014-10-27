@@ -33,11 +33,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(int id)
+        public void modificar()
         {
             try
             {
-                this.Save(id.ToString());
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -59,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
             }
             if (listaNueva == null)
             {
-                Error.ingresarError(2, "No se encontro");
+                Error.ingresarError(2, "No se encontraron Colecciones del con el nombre: "+nombre);
                 return null;
             }
             return new ArrayList(listaNueva);
@@ -97,7 +97,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Clasificacion clas = new Clasificacion();
-                string consulta = "?coleccion=" + this.id.ToString();
+                string consulta = this.resource_uri +"?coleccion=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -105,6 +105,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontraron Clasificaciones de la Clasificacion: "+this.nombre);
+                return null;
             }
 
             return new ArrayList(listaNueva);
@@ -120,6 +125,11 @@ namespace MuseoCliente.Connection.Objects
             catch (Exception e)
             {
                 Error.ingresarError(2, "tabla vacia");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen Colecciones en la Base de Datos");
+                return null;
             }
             return listaNueva;
         }
