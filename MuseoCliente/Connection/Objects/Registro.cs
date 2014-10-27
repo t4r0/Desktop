@@ -144,5 +144,9 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
+        //Consultar PADRE
+
+        
+
     }
 }
