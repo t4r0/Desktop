@@ -8,7 +8,7 @@
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480">
 
-	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
+	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Evento</Label>

@@ -18,9 +18,41 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosClas : UserControl
 	{
-		public modResultadosClas()
+        private string busqueda = "Fantasmas";
+        private Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
+        private Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        public modResultadosClas()
 		{
 			this.InitializeComponent();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            //gvResultados.ItemsSource = 
+        }
+
+        private void rbCateg_Checked(object sender, RoutedEventArgs e)
+        {
+            if (categ.consultarNombre(busqueda) != null)
+            {
+                gvResultados.ItemsSource = categ.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay categorias con el nombre");
+            }
+        }
+
+        private void rbColec_Checked(object sender, RoutedEventArgs e)
+        {
+            if (colec.consultarNombre(busqueda) != null)
+            {
+                gvResultados.ItemsSource = colec.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay colecciones con el nombre");
+            }
+        }
 	}
 }

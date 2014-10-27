@@ -21,7 +21,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String codigo { get; set; }
 
-        public Clasificacion() : base("/v1/clasificacion/")
+        public Clasificacion() : base("/api/v1/clasificacion/")
         {
 
         }
@@ -40,11 +40,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -55,89 +55,6 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarColeccion(int coleccion)
-        {
-            List<Clasificacion> listaNueva = new List<Clasificacion>();
-            try
-            {
-                List<Clasificacion> todasPiezas = this.GetAsCollection();
-                foreach (Clasificacion clasificaion in todasPiezas)
-                {
-                    if (clasificaion.coleccion == coleccion)
-                        listaNueva.Add(clasificaion);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con coleccion: " + coleccion);
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "no se encontraron coincidencias con coleccion: " + coleccion);
-            }
-            return new ArrayList(listaNueva);
-        }
-
-        public ArrayList consultarCategoria(int categoria)
-        {
-            List<Clasificacion> listaNueva = new List<Clasificacion>();
-            try
-            {
-                List<Clasificacion> todasPiezas = this.GetAsCollection();
-                foreach (Clasificacion clasificaion in todasPiezas)
-                {
-                    if (clasificaion.categoria == categoria)
-                        listaNueva.Add(clasificaion);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con categoria: " + categoria);
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "no se encontraron coincidencias con categoria: " + categoria);
-            }
-            return new ArrayList(listaNueva);
-        }
-
-        public ArrayList consultarFicha(int ficha)
-        {
-            List<Clasificacion> listaNueva = new List<Clasificacion>();
-            try
-            {
-                List<Clasificacion> todasPiezas = this.GetAsCollection();
-                foreach (Clasificacion clasificaion in todasPiezas)
-                {
-                    if (clasificaion.ficha == ficha)
-                        listaNueva.Add(clasificaion);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con ficha: " + ficha);
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "no se encontraron coincidencias con ficha: " + ficha);
-            }
-            return new ArrayList(listaNueva);
-        }
-
-        public ArrayList consultarCodigo(string codigo)
-        {
-            List<Clasificacion> listaNueva = new List<Clasificacion>();
-            try
-            {
-                List<Clasificacion> todasPiezas = this.GetAsCollection();
-                foreach (Clasificacion clasificaion in todasPiezas)
-                {
-                    if (clasificaion.codigo.Contains(codigo))
-                        listaNueva.Add(clasificaion);
-                }
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con codigo: " + codigo);
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "no se encontraron coincidencias con codigo: " + codigo);
-            }
-            return new ArrayList(listaNueva);
-        }
 
         public ArrayList regresarPieza()
         {
@@ -152,6 +69,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(2, "No se encontraron piezas de este autor");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+           
             return listaNueva;
         }
 
@@ -171,6 +94,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
 
             return new ArrayList(listaNueva);
         }
@@ -202,6 +131,26 @@ namespace MuseoCliente.Connection.Objects
         public void regresarObjeto()//3
         {
             regresarObjeto(this.id);
+        }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList(this.GetAsCollection());
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "tabla vacia");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
+            return listaNueva;
         }
 
       }

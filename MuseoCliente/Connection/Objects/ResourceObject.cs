@@ -19,6 +19,7 @@ namespace MuseoCliente.Connection.Objects
         protected ResourceObject( string resourceUri )
         {
             conector.BaseUri = resourceUri;
+            this.resource_uri = resourceUri;
         }
 
         //protected void setResourceUri(string resourceUri)

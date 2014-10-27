@@ -20,9 +20,9 @@
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton x:Name="rbTodos" VerticalAlignment="Center" Margin="10,0,10,0">Todos</RadioButton>
-				<RadioButton x:Name="rbFinalizados" VerticalAlignment="Center" Margin="0,0,10,0">Finalizados</RadioButton>
-				<RadioButton x:Name="rbProximos" VerticalAlignment="Center" Margin="0,0,10,0">Próximos</RadioButton>
+				<RadioButton x:Name="rbTodos" VerticalAlignment="Center" Margin="10,0,10,0" Checked="rbTodos_Checked">Todos</RadioButton>
+				<RadioButton x:Name="rbFinalizados" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbFinalizados_Checked">Finalizados</RadioButton>
+				<RadioButton x:Name="rbProximos" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbProximos_Checked">Próximos</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">

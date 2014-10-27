@@ -22,7 +22,7 @@ namespace MuseoCliente.Connection.Objects
         public Boolean perfil { set; get; } // ya
 
         public Fotografia()
-            : base("/v1/fotografias/")
+            : base("/api/v1/fotografias/")
         {
         }
 
@@ -39,11 +39,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -51,52 +51,35 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarTipo(Int16 tipo)
+        public ArrayList consultartipo(Int16 tipo)
+       //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Fotografia> listaNueva = null;
             try
             {
 
-                List<Fotografia> todasFotografia = this.GetAsCollection();
-                foreach (Fotografia hol in todasFotografia)
-                {
-                    if (hol.tipo == tipo)
-                        listaNueva.Add(hol);
-                }
+                string tipo2 = tipo.ToString();
+                //fecha.Date.ToString();
+                string consultartipo = "?tipo=" + tipo2;
+                listaNueva = this.GetAsCollection(consultartipo);
 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-            return new ArrayList(listaNueva);
-        }
 
-        public ArrayList consultarPerfil(Boolean perfil)
-        {
-            ArrayList listaNueva = new ArrayList();
-            try
-            {
-
-                List<Fotografia> todasFotografia = this.GetAsCollection();
-                foreach (Fotografia hol in todasFotografia)
+            if (listaNueva == null)
                 {
-                    if (hol.perfil == perfil)
-                        listaNueva.Add(hol);
+                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por el tipo en fotografia");
+                return null;
                 }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontro nombre similares");
-            }
             return new ArrayList(listaNueva);
         }
                 
+
+                    
         public ArrayList consultapormantenimiento(int mantenimiento)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
             List<Fotografia> listaNueva = null;
@@ -107,15 +90,17 @@ namespace MuseoCliente.Connection.Objects
                 //fecha.Date.ToString();
                 string consultapormantenimiento = "?mantenimiento=" + mantenimiento2;
                 listaNueva = this.GetAsCollection(consultapormantenimiento);
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por mantenimiento");
+                                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por mantenimiento");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
@@ -130,33 +115,40 @@ namespace MuseoCliente.Connection.Objects
                 string consultapormantenimiento = "?pieza=" + pieza2;
                 listaNueva = this.GetAsCollection(consultapormantenimiento);
 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por pieza en fotografia");
+               
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
 
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por pieza");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
 
-        public ArrayList consultaporruta(string afiche)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
+        public ArrayList consultaporruta(string ruta)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
             List<Fotografia> listaNueva = null;
             try
             {
                 string consultaporruta = "?ruta=" + ruta;
                 listaNueva = this.GetAsCollection(consultaporruta);
-
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ninguna coincidencia con la ruta");
+                                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por la ruta de la URL");
+                return null;
             }
 
             return new ArrayList(listaNueva);
@@ -169,12 +161,16 @@ namespace MuseoCliente.Connection.Objects
             {
                 string consultar = "?perfil=" + perfil.ToString();
                 listaNueva = this.GetAsCollection(consultar);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontraron perfiles similares");
+                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por el perfil de fotografia");
+                return null;
             }
 
             return new ArrayList(listaNueva);
@@ -188,13 +184,17 @@ namespace MuseoCliente.Connection.Objects
             {
 
                 List<Fotografia> todasFichas = this.GetAsCollection();
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se econtro ninguna Fotografia registrada");
+                               
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro conicidencia al perecer la tabla esta vacia ");
+                return null;
             }
 
             return new ArrayList(listaNueva);
@@ -208,12 +208,41 @@ namespace MuseoCliente.Connection.Objects
                 Clasificacion clas = new Clasificacion();
                 string consulta = "?fotografia=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia ");
+                return null;
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
+        public ArrayList regresarEventos()
+        {
+            List<Eventos> listaNueva = null;
+            try
+            {
+                Eventos clas = new Eventos();
+                string consulta = "?eventos=" + this.id.ToString();
+                listaNueva = clas.GetAsCollection(consulta);
+
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro ninguna coincidencia con la fecha");
+                return null;
             }
 
             return new ArrayList(listaNueva);

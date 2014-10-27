@@ -7,7 +7,7 @@ namespace MuseoCliente.Connection.Objects
     public class Usuario : ResourceObject<Usuario>
     {
         public Usuario()
-            : base( "/v1/usuarios/" )
+            : base( "/api/v1/usuarios/" )
         {
 
         }
@@ -76,7 +76,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 2, "No hay paises existentes" );
             }
-
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
             return new ArrayList( listaNueva );
         }
     }

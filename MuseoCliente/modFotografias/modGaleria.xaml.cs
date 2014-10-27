@@ -18,9 +18,17 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modGaleria : UserControl
 	{
-		public modGaleria()
+        Connection.Objects.Clasificacion clas = new Connection.Objects.Clasificacion();
+        public modGaleria()
 		{
 			this.InitializeComponent();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbClasificacion.DisplayMemberPath = "name";
+            cmbClasificacion.SelectedValuePath = "iso";
+            //cmbClasificacion.ItemsSource = clas.regre
+        }
 	}
 }
