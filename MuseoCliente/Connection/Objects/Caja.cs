@@ -49,7 +49,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?codigo=" + codigo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?codigo__contains=" + codigo ) );
             }
             catch( Exception e )
             {
@@ -69,7 +69,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado Traslado = new Traslado();
-                listaNueva = new ArrayList( Traslado.GetAsCollection( Traslado.resource_uri + "?caja=" + this.id ) );
+                listaNueva = new ArrayList( Traslado.GetAsCollection( Traslado.resource_uri + "?caja__contains=" + this.id ) );
             }
             catch( Exception e )
             {
