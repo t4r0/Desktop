@@ -20,6 +20,7 @@ namespace MuseoCliente
 	{
         Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
         Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        public Border borde;
         public modClasificaciones()
 		{
 			this.InitializeComponent();
@@ -29,6 +30,31 @@ namespace MuseoCliente
         {
             gvCategorias.ItemsSource = categ.regresarTodo();
             gvColecciones.ItemsSource = colec.regresarTodo();
+        }
+
+        private void btnNuevaCateg_Click(object sender, RoutedEventArgs e)
+        {
+            modCategoria frm = new modCategoria();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnNuevaColec_Click(object sender, RoutedEventArgs e)
+        {
+            modColeccion frm = new modColeccion();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            modResultadosClas frm = new modResultadosClas();
+            frm.busqueda = txtBuscar.Text;
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
         }
 	}
 }

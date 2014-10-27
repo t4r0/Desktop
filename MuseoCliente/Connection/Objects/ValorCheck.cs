@@ -19,7 +19,7 @@ namespace MuseoCliente.Connection.Objects
         public Boolean seleccionado { get; set; }
 
         public ValorCheck()
-            : base("/v1/fichas/")
+            : base("/api/v1/fichas/")
         {
 
         }
@@ -36,11 +36,11 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void modificar(string id)
+        public void modificar()
         {
             try
             {
-                this.Save(id);
+                this.Save(this.id.ToString());
             }
             catch (Exception e)
             {
@@ -48,36 +48,14 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarSeleccionado(Boolean seleccionado)
-        {
-            ArrayList listaNueva = new ArrayList();
-            try
-            {
-
-                List<ValorCheck> todasValor = this.GetAsCollection();
-                foreach (ValorCheck hol in todasValor)
-                {
-                    if (hol.seleccionado == seleccionado)
-                        listaNueva.Add(hol);
-                }
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No se encontro nombre similares");
-            }
-
-            return new ArrayList(listaNueva);
-        }
+        
 
         public ArrayList consultarNombre(string nombre)//1
         {
             List<ValorCheck> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
 
 
@@ -88,6 +66,12 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+            
 
             return new ArrayList(listaNueva);
         }
@@ -118,6 +102,26 @@ namespace MuseoCliente.Connection.Objects
         public void regresarObjeto()//3
         {
             regresarObjeto(this.id);
+        }
+
+        public ArrayList regresarTodo()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList(this.GetAsCollection());
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "tabla vacia");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+
+            return listaNueva;
         }
     }
 }

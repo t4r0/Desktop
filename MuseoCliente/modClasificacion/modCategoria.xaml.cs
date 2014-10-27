@@ -19,6 +19,10 @@ namespace MuseoCliente
 	public partial class modCategoria : UserControl
 	{
         Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
+        public UserControl anterior;
+        public Border borde;
+        public bool modificar = false;
+        public int id;
         public modCategoria()
 		{
 			this.InitializeComponent();
@@ -36,6 +40,11 @@ namespace MuseoCliente
             {
                 MessageBox.Show("Bien puto Ursaring");
             }
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
         }
 	}
 }
