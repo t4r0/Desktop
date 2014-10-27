@@ -15,7 +15,7 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
 
         public Coleccion()
-            : base("/v1/colecciones/")
+            : base("/api/v1/colecciones/")
         {
 
         }
@@ -50,18 +50,18 @@ namespace MuseoCliente.Connection.Objects
             List<Coleccion> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
-
-
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro");
             }
             catch (Exception e)
             {
                 Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
             }
-
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro");
+                return null;
+            }
             return new ArrayList(listaNueva);
         }
 
