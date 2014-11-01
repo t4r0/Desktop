@@ -13,8 +13,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String name { get; set; }
 
-        public Grupo()
-            : base("/v1/grupos/")
+        public Grupo(): base("/v1/grupos/")
         {
         }
 

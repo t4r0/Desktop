@@ -61,7 +61,7 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             clasificacion.codigo = txtCodigo.Text;
-            clasificacion.ficha = Convert.ToInt16(cmbFicha.SelectedValue);
+            /*clasificacion.ficha = Convert.ToInt16(cmbFicha.SelectedValue);
             clasificacion.categoria = Convert.ToInt16(cmbCategoria.SelectedValue);
             clasificacion.coleccion = Convert.ToInt16(cmbColeccion.SelectedValue);
             if (modificar == false)
@@ -79,7 +79,7 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Correcto");
-            }
+            }*/
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

@@ -11,22 +11,30 @@ namespace MuseoCliente.Connection.Objects
     class Eventos:ResourceObject<Eventos>
     {
         [JsonProperty]
-        public String  nombre { get; set; }
+        public String afiche { get; set; }
         [JsonProperty]
         public String descripcion { get; set; }
         [JsonProperty]
-        public String afiche { get; set; }
-        [JsonProperty]
         public DateTime fecha { get; set; }
+        [JsonProperty]
+        public string fotoSala { get; set; }
+        [JsonProperty]
+        public string hora { get; set; }
+        [JsonProperty]
+        public String  nombre { get; set; }       
         [JsonProperty]
         public int sala { get; set; }
         [JsonProperty]
         public int usuario { get; set; }
 
-        public Eventos()
-            : base("/api/v1/eventos/")
+        public Eventos(): base("/api/v1/eventos/")
         {
            
+        }
+
+        public bool ShouldSerializefotoSala()
+        {
+            return false;
         }
 
         public void guardar()

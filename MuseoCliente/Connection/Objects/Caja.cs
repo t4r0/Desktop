@@ -7,7 +7,7 @@ namespace MuseoCliente.Connection.Objects
     class Caja : ResourceObject<Caja>
     {
         [JsonProperty]
-        public String codigo { get; set; }
+        public string codigo { get; set; }
 
         public Caja()
             : base( "/api/v1/cajas/" )

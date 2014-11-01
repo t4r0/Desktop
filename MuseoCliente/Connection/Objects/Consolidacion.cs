@@ -22,8 +22,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int codigoPieza { get; set; }
 
-        public Consolidacion()
-            : base("/api/v1/consolidacion/")
+        public Consolidacion(): base("/api/v1/consolidacion/")
         {
         }
 

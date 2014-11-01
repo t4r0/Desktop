@@ -11,15 +11,15 @@ namespace MuseoCliente.Connection.Objects
     class Clasificacion:ResourceObject<Clasificacion>
     {
         [JsonProperty]
-        public int coleccion { get; set; }
+        public string coleccion { get; set; }
         [JsonProperty]
-        public int categoria { get; set; }
+        public string categoria { get; set; }
         [JsonProperty]
-        public int ficha { get; set; }
+        public string ficha { get; set; }
         [JsonProperty]
-        public String nombre { get; set; }
+        public string nombre { get; set; }
         [JsonProperty]
-        public String codigo { get; set; }
+        public string codigo { get; set; }
 
         public Clasificacion() : base("/api/v1/clasificacion/")
         {
@@ -154,12 +154,12 @@ namespace MuseoCliente.Connection.Objects
         }
 
         //Consultar Padre
-        public Coleccion consultarColeccion()
+        public Coleccion consultarColeccion(int idColeccion)
         {
             Coleccion clase = new Coleccion();
             try
             {
-                clase.regresarObjeto(this.coleccion);
+                clase.regresarObjeto(idColeccion);
             }
             catch (Exception e)
             {
@@ -168,12 +168,12 @@ namespace MuseoCliente.Connection.Objects
             return (clase);
         }
 
-        public Categoria consultarCategoria()
+        public Categoria consultarCategoria(int idCategoria)
         {
             Categoria clase = new Categoria();
             try
             {
-                clase.regresarObjeto(this.categoria);
+                clase.regresarObjeto(idCategoria);
             }
             catch (Exception e)
             {
@@ -182,12 +182,12 @@ namespace MuseoCliente.Connection.Objects
             return (clase);
         }
 
-        public Ficha consultarFicha()
+        public Ficha consultarFicha(int idFicha)
         {
             Ficha clase = new Ficha();
             try
             {
-                clase.regresarObjeto(this.ficha);
+                clase.regresarObjeto(idFicha);
             }
             catch (Exception e)
             {
