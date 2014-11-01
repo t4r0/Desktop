@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Clasificacion:ResourceObject<Clasificacion>
+    public class Clasificacion:ResourceObject<Clasificacion>
     {
         [JsonProperty]
         public string coleccion { get; set; }

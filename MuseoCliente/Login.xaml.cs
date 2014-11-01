@@ -33,15 +33,16 @@ namespace MuseoCliente
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
             try
             {
                 dict["username"] = txtUsuario.Text;
-                //dict["password"] = txtPassword.Password;
+                dict["password"] = txtPassword.Password;
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
-                Connector conector = new Connector("v1/login/");
+                Connector conector = new Connector("/api/v1/login/");
                 conector.create(content);
-                this.DialogResult = true;
+                MainWindow main = new MainWindow();
+                this.Hide();
+                main.ShowDialog();
                 this.Close();
             }
             catch (Exception ex)

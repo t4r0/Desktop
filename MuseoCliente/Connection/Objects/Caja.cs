@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Caja : ResourceObject<Caja>
+    public class Caja : ResourceObject<Caja>
     {
         [JsonProperty]
         public string codigo { get; set; }

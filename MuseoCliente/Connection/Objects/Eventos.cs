@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Eventos:ResourceObject<Eventos>
+    public class Eventos:ResourceObject<Eventos>
     {
         [JsonProperty]
         public String afiche { get; set; }

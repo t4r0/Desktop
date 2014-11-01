@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Consolidacion:ResourceObject<Consolidacion>
+    public class Consolidacion:ResourceObject<Consolidacion>
     {
         [JsonProperty]
         public Boolean limpieza { get; set; }

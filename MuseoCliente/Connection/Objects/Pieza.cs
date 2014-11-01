@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Pieza: ResourceObject<Pieza>
+    public class Pieza: ResourceObject<Pieza>
     {
         [JsonProperty]
         public String codigo { get; set; }

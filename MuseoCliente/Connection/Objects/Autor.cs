@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Autor : ResourceObject<Autor>
+    public class Autor : ResourceObject<Autor>
     {
         [JsonProperty]
         public string pais { get; set; }

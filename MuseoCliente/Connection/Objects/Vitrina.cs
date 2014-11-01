@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Vitrina:ResourceObject<Vitrina>
+    public class Vitrina:ResourceObject<Vitrina>
     {
         [JsonProperty]
         public String numero { get; set; }

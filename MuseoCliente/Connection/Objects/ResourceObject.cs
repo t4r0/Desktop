@@ -95,6 +95,19 @@ namespace MuseoCliente.Connection.Objects
             return JsonConvert.DeserializeObject<List<T>>(content);
         }
 
+        public List<T> fetchAll(int limit=20)
+        {
+            List<T> t = new List<T>(), temp;
+            int offset = 0;
+            while (true)
+            {
+                temp = DeserializeList(conector.fetch(offset, limit));
+                t.AddRange(t);
+                if(temp.Count < limit)
+                    break;
+            }
+            return t;
+        }
         protected T Get( string id )
         {
             conector.BaseUri += '/' + id + '/';
