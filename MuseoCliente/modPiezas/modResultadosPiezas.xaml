@@ -16,18 +16,18 @@
                     <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
                 </Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#9998;</Button>
+					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnEditar_Click">&#9998;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0">Todas</RadioButton>
-				<RadioButton x:Name="rbClasif" VerticalAlignment="Center" Margin="0,0,10,0">Clasificación</RadioButton>
-				<RadioButton x:Name="rbExhibicion" VerticalAlignment="Center" Margin="0,0,10,0">Exhibición</RadioButton>
-				<RadioButton x:Name="rbBodega" VerticalAlignment="Center" Margin="0,0,10,0">Bodega</RadioButton>
-				<RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0">Últimas</RadioButton>
+				<RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbTodas_Click_1" Checked="rbTodas_Checked">Todas</RadioButton>
+				<RadioButton x:Name="rbClasif" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbClasif_Click" Checked="rbClasif_Checked">Clasificación</RadioButton>
+				<RadioButton x:Name="rbExhibicion" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbExhibicion_Click" Checked="rbExhibicion_Checked">Exhibición</RadioButton>
+				<RadioButton x:Name="rbBodega" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbBodega_Click" Checked="rbBodega_Checked">Bodega</RadioButton>
+				<RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbUltimas_Click" Checked="rbUltimas_Checked">Últimas</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">

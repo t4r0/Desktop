@@ -36,17 +36,42 @@ namespace MuseoCliente
 
         private void rbCajas_Checked(object sender, RoutedEventArgs e)
         {
-            //Pendiente
+            if (cajas.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = cajas.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay cajas con el número");
+            }
         }
 
         private void rbSalas_Checked(object sender, RoutedEventArgs e)
         {
-            //Pendiente
+            if (salas.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = salas.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay salas con el nombre");
+            }
         }
 
         private void rbVitrinas_Checked(object sender, RoutedEventArgs e)
         {
-            //Pendiente
+            /* Falta vitrinas por nombre
+            if (vitrinas.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = vitrinas.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay vitrinas con el número");
+            }*/
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
@@ -57,7 +82,6 @@ namespace MuseoCliente
                 frm.borde = borde;
                 frm.anterior = this;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-                MessageBox.Show(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
             if (rbSalas.IsChecked == true)
@@ -66,7 +90,6 @@ namespace MuseoCliente
                 frm.borde = borde;
                 frm.anterior = this;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-                MessageBox.Show(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
             if (rbVitrinas.IsChecked == true)
@@ -75,7 +98,6 @@ namespace MuseoCliente
                 frm.borde = borde;
                 frm.anterior = this;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-                MessageBox.Show(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
         }

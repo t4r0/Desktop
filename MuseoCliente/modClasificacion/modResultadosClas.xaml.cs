@@ -62,12 +62,25 @@ namespace MuseoCliente
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            modCategoria frm = new modCategoria();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-            MessageBox.Show(gvResultados.SelectedValue.ToString());
-            borde.Child = frm;
+            if (rbCateg.IsChecked == true)
+            {
+                modCategoria frm = new modCategoria();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+                MessageBox.Show(gvResultados.SelectedValue.ToString());
+                borde.Child = frm;
+            }
+            if (rbColec.IsChecked == true)
+            {
+                modColeccion frm = new modColeccion();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+                MessageBox.Show(gvResultados.SelectedValue.ToString());
+                borde.Child = frm;
+            }
+            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

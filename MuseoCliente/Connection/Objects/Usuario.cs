@@ -13,13 +13,13 @@ namespace MuseoCliente.Connection.Objects
         }
 
         [JsonProperty]
-        public string password { get; set; }
+        public string biografia { get; set; }
 
         [JsonProperty]
-        public DateTime last_login { get; set; }
+        public DateTime date_joined { get; set; }
 
         [JsonProperty]
-        public int is_superuser { get; set; }
+        public string filiacion { get; set; }
 
         [JsonProperty]
         public string username { get; set; }
@@ -28,17 +28,22 @@ namespace MuseoCliente.Connection.Objects
         public string first_name { get; set; }
 
         [JsonProperty]
-        public int last_name { get; set; }
+        public string last_name { get; set; }
 
         [JsonProperty]
         public string email { get; set; }
 
         [JsonProperty]
-        public int is_staff { get; set; }
+        public bool is_staff { get; set; }
 
         [JsonProperty]
-        public int is_active { get; set; }
+        public bool voluntario { get; set; }
 
+        [JsonProperty]
+        public string pais { get; set; }
+
+        [JsonProperty]
+        public string fotografia { get; set; }
 
         public void guardar() //Crea un usuario
         {
@@ -84,24 +89,6 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
-        public void regresarObjecto( string userName )
-        {
-            Usuario Temp = this.Get( userName );
-            if( Temp == null )
-            {
-                Error.ingresarError( 2, "No se encontro coincidencia" );
-                return;
-            }
-            this.email = Temp.email;
-            this.first_name = Temp.first_name;
-            this.is_active = Temp.is_active;
-            this.is_staff = Temp.is_staff;
-            this.is_superuser = Temp.is_superuser;
-            this.last_login = Temp.last_login;
-            this.last_name = Temp.last_name;
-            this.password = Temp.password;
-            this.username = Temp.username;
-        }
     }
 }
 

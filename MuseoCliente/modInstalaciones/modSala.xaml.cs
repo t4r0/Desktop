@@ -48,7 +48,7 @@ namespace MuseoCliente
             }
             else
             {
-                MessageBox.Show("Bien puto Ursaring");
+                MessageBox.Show("Correcto");
             }
         }
 

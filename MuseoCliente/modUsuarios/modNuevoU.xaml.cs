@@ -8,26 +8,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MuseoCliente
 {
 	/// <summary>
-	/// Lógica de interacción para modPieza.xaml
+	/// Lógica de interacción para modNuevoU.xaml
 	/// </summary>
-	public partial class modPieza : UserControl
+	public partial class modNuevoU : Window
 	{
-        Connection.Objects.Pieza piezas = new Connection.Objects.Pieza();
-        public Border borde;
-        public modPieza()
+		public modNuevoU()
 		{
 			this.InitializeComponent();
+			
+			// A partir de este punto se requiere la inserción de código para la creación del objeto.
 		}
-
-        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
 	}
 }

@@ -59,18 +59,26 @@ namespace MuseoCliente.Connection
             if(message.StatusCode == HttpStatusCode.OK)
                 return content;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string,string>>(content);
-            throw new Exception(error["error"]);
+            if(error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
+            return "";
         }
 
         public string fetch(string direccion)
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + direccion + "/?limit=90").Result;
+            HttpResponseMessage message = client.GetAsync(server + direccion).Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if (message.StatusCode == HttpStatusCode.OK)
                 return content;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
-            throw new Exception(error["error"]);
+            if (error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
+            return "";
         }
 
         public void create(string content)
@@ -83,7 +91,10 @@ namespace MuseoCliente.Connection
             if (message.StatusCode == HttpStatusCode.Created)
                 return;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-            throw new Exception(error["error"]);
+            if (error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
         }
 
         public void edit(string id, string content)
@@ -94,7 +105,10 @@ namespace MuseoCliente.Connection
             if (message.StatusCode != HttpStatusCode.Accepted)
             {
                 Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-                throw new Exception(error["error"]);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
             }
         }
 
