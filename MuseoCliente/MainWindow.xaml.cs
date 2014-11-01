@@ -36,9 +36,6 @@ namespace MuseoCliente
 
         private void itemClasif_Click(object sender, RoutedEventArgs e)
         {
-            /*modClasificaciones frm = new modClasificaciones();
-            observer = new Estructuras.Observador(frm, bdrContenedor);
-            observer.ventanaActual();*/
             modClasificaciones frm = new modClasificaciones();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
@@ -46,7 +43,8 @@ namespace MuseoCliente
 
         private void itemPiezas_Click(object sender, RoutedEventArgs e)
         {
-            //bdrContenedor.Child = new modInventario();
+            modInventario frm = new modInventario();
+            bdrContenedor.Child = frm;
         }
 
         private void itemEventos_Click(object sender, RoutedEventArgs e)
@@ -59,6 +57,31 @@ namespace MuseoCliente
         private void itemInsta_Click(object sender, RoutedEventArgs e)
         {
             modInstalaciones frm = new modInstalaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
+        }
+
+        private void itemInves_Click(object sender, RoutedEventArgs e)
+        {
+            modInvestigaciones frm = new modInvestigaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
+        }
+
+        private void itemUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void itemFotos_Click(object sender, RoutedEventArgs e)
+        {
+            modGaleria frm = new modGaleria();
+            bdrContenedor.Child = frm;
+        }
+
+        private void itemUsuarios_Click_1(object sender, RoutedEventArgs e)
+        {
+            modUsuarios frm = new modUsuarios();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
         }

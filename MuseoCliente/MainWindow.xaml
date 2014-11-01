@@ -39,7 +39,7 @@
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
-            <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
+            <MenuItem x:Name="itemInves" Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemInves_Click">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">&#128240;<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Investigaciones</TextBlock></TextBlock>
                 </MenuItem.Header>
@@ -57,13 +57,13 @@
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165" IsEnabled="False"/>
-            <MenuItem Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
+            <MenuItem x:Name="itemFotos" Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemFotos_Click">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">&#128247;<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Fotografías</TextBlock></TextBlock>
                 </MenuItem.Header>
             </MenuItem>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165"/>
-            <MenuItem Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
+            <MenuItem x:Name="itemUsuarios" Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemUsuarios_Click_1">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0">👥<TextBlock Style="{DynamicResource SourceSans}" FontSize="14">Usuarios</TextBlock></TextBlock>
                 </MenuItem.Header>

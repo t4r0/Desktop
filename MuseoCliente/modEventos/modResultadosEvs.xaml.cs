@@ -56,7 +56,6 @@ namespace MuseoCliente
             frm.borde = borde;
             frm.anterior = this;
             frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-            MessageBox.Show(gvResultados.SelectedValue.ToString());
             borde.Child = frm;
         }
 

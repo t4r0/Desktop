@@ -16,17 +16,17 @@
                     <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
                 </Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#9998;</Button>
+					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnEditar_Click">&#9998;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0">Todas</RadioButton>
-				<RadioButton x:Name="rbAutor" VerticalAlignment="Center" Margin="0,0,10,0">Autor</RadioButton>
-				<RadioButton x:Name="rbEditor" VerticalAlignment="Center" Margin="0,0,10,0">Editor</RadioButton>
-				<RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0">Últimas</RadioButton>
+				<RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbTodas_Click">Todas</RadioButton>
+				<RadioButton x:Name="rbAutor" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbAutor_Click">Autor</RadioButton>
+				<RadioButton x:Name="rbEditor" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbEditor_Checked">Editor</RadioButton>
+				<RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbUltimas_Checked">Últimas</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">
