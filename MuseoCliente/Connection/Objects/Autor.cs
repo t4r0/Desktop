@@ -14,8 +14,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string apellido { get; set; }
 
-        public Autor()
-            : base( "/api/v1/autores/" )
+        public Autor() : base( "/api/v1/autores/" )
         {
         }
 

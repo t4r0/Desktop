@@ -83,7 +83,8 @@
 				<Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,10" DockPanel.Dock="Right">
 					<TextBlock x:Name="lblConectado" HorizontalAlignment="Center" FontSize="26.667" FontWeight="Bold" Style="{DynamicResource WhiteIcons}">&#9729;</TextBlock>
 				</Label>
-			</DockPanel>
+                <Image Height="37" VerticalAlignment="Top" Width="35"/>
+            </DockPanel>
 		</Border>
         <Border x:Name="bdrContenedor" BorderThickness="1,0,0,0" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}">
             <local:modCaja/>

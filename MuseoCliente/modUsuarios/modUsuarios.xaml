@@ -29,7 +29,7 @@
 			<Label Height="20"/>
 			<StackPanel Height="190">
 				<Label VerticalAlignment="Center" Margin="10,0,0,0" Content="Usuarios Activos:"/>
-				<DataGrid x:Name="gvActivos" Margin="15,0,15,0" Height="143" GridLinesVisibility="Horizontal" AutoGenerateColumns="False">
+				<DataGrid x:Name="gvActivos" Margin="15,0,15,0" Height="143" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" SelectionChanged="gvActivos_SelectionChanged">
 					<DataGrid.Columns>
 						<DataGridTextColumn Binding="{Binding Path=username}" Header="Nombre de usuario"/>
 						<DataGridTextColumn Binding="{Binding Path=pais}" Header="Pais"/>

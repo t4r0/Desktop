@@ -55,5 +55,10 @@ namespace MuseoCliente
             frm.anterior = this;
             borde.Child = frm;
         }
+
+        private void gvActivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
 	}
 }

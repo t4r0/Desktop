@@ -7,9 +7,11 @@ namespace MuseoCliente.Connection.Objects
 {
     public class ResourceObject<T>
     {
+        [JsonIgnore]
+        public string baseUri { get; set; }
 
         [JsonIgnore]
-        Connector conector = new Connector();
+        public Connector conector = new Connector();
 
         [JsonProperty]
         public String resource_uri { get; set; }
@@ -20,6 +22,7 @@ namespace MuseoCliente.Connection.Objects
         protected ResourceObject( string resourceUri )
         {
             conector.BaseUri = resourceUri;
+            this.baseUri = resourceUri;
             this.resource_uri = resourceUri;
         }
 
@@ -108,14 +111,15 @@ namespace MuseoCliente.Connection.Objects
             }
             return t;
         }
-        protected T Get( string id )
+        public  T Get( )
         {
-            conector.BaseUri += '/' + id + '/';
+            conector.BaseUri = this.resource_uri;
             string content = conector.fetch();
+            conector.BaseUri = this.baseUri;
             return this.Deserialize(content);
         }
 
-        protected List<T> GetAsCollection()
+        public List<T> GetAsCollection()
         {
             string content = conector.fetch();
             return this.DeserializeList(content);

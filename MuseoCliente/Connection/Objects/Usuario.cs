@@ -6,10 +6,8 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Usuario : ResourceObject<Usuario>
     {
-        public Usuario()
-            : base( "/api/v1/usuarios/" )
+        public Usuario(): base( "/api/v1/usuarios/" )
         {
-
         }
 
         [JsonProperty]
@@ -75,7 +73,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+                listaNueva = new ArrayList( this.GetAsCollection());
             }
             catch( Exception e )
             {

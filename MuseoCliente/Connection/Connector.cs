@@ -85,7 +85,8 @@ namespace MuseoCliente.Connection
         public string fetch(string direccion)
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + direccion).Result;
+            string absoluteUri = server + BaseUri;
+            HttpResponseMessage message = client.GetAsync(absoluteUri + direccion).Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if (message.StatusCode == HttpStatusCode.OK)
                 return content;
