@@ -18,9 +18,93 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosInst : UserControl
 	{
-		public modResultadosInst()
+        public string busqueda = "";
+        private Connection.Objects.Caja cajas = new Connection.Objects.Caja();
+        private Connection.Objects.Vitrina vitrinas = new Connection.Objects.Vitrina();
+        private Connection.Objects.Sala salas = new Connection.Objects.Sala();
+        public UserControl anterior;
+        public Border borde;
+        public modResultadosInst()
 		{
 			this.InitializeComponent();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Cargar resultados
+        }
+
+        private void rbCajas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (cajas.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = cajas.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay cajas con el número");
+            }
+        }
+
+        private void rbSalas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (salas.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = salas.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay salas con el nombre");
+            }
+        }
+
+        private void rbVitrinas_Checked(object sender, RoutedEventArgs e)
+        {
+            /* Falta vitrinas por nombre
+            if (vitrinas.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = vitrinas.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay vitrinas con el número");
+            }*/
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            if (rbCajas.IsChecked == true)
+            {
+                modCaja frm = new modCaja();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+                borde.Child = frm;
+            }
+            if (rbSalas.IsChecked == true)
+            {
+                modSala frm = new modSala();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+                borde.Child = frm;
+            }
+            if (rbVitrinas.IsChecked == true)
+            {
+                modVitrina frm = new modVitrina();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+                borde.Child = frm;
+            }
+        }
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
+        }
 	}
 }

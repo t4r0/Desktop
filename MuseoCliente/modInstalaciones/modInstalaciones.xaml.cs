@@ -21,6 +21,7 @@ namespace MuseoCliente
         Connection.Objects.Sala salas = new Connection.Objects.Sala();
         Connection.Objects.Caja cajas = new Connection.Objects.Caja();
         Connection.Objects.Vitrina vitrinas = new Connection.Objects.Vitrina();
+        public Border borde;
         public modInstalaciones()
 		{
 			this.InitializeComponent();
@@ -31,6 +32,47 @@ namespace MuseoCliente
             //gvSalas.ItemsSource = salas.regresarTodos();
             //gvCajas.ItemsSource = cajas.regresarTodo();
             //gvVitrinas.ItemsSource = vitrinas.regresarTodos();
+        }
+
+        private void btnNuevaSala_Click(object sender, RoutedEventArgs e)
+        {
+            modSala frm = new modSala();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnNuevaVitrina_Click(object sender, RoutedEventArgs e)
+        {
+            modVitrina frm = new modVitrina();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnNuevaCaja_Click(object sender, RoutedEventArgs e)
+        {
+            modCaja frm = new modCaja();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnTraslado_Click(object sender, RoutedEventArgs e)
+        {
+            modTraslado frm = new modTraslado();
+            /*frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;*/
+        }
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            modResultadosInst frm = new modResultadosInst();
+            frm.busqueda = txtBuscar.Text;
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
         }
 	}
 }

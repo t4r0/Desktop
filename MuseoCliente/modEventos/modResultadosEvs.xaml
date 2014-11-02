@@ -12,8 +12,11 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Resultados</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#9998;</Button>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
+                </Label>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnEditar_Click">&#9998;</Button>
 				</Label>
 			</DockPanel>
 		</Border>

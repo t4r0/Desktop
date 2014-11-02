@@ -8,18 +8,18 @@
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="640">
 
-	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
+	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
-				<Label x:Name="lblOperaciones" DockPanel.Dock="Left">[Op] Investigación</Label>
+				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Investigación</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
+					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
+					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click">&#128190;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnPublicar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#59213;</Button>
+					<Button x:Name="btnPublicar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnPublicar_Click">&#59213;</Button>
 				</Label>
 			</DockPanel>
 		</Border>
@@ -45,10 +45,6 @@
 			</Border>
 			<StackPanel>
 				<Label Height="20"/>
-				<DockPanel Height="35" HorizontalAlignment="Center">
-					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Editor:</Label>
-					<ComboBox x:Name="cmbEditor" Height="25" Width="300" Margin="5,0,0,0"/>
-				</DockPanel>
 				<DockPanel Height="35" HorizontalAlignment="Center">
 					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Autor:</Label>
 					<ComboBox x:Name="cmbAutor" Height="25" Width="300" Margin="5,0,0,0"/>

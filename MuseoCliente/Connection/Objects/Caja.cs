@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Caja : ResourceObject<Caja>
+    public class Caja : ResourceObject<Caja>
     {
         [JsonProperty]
-        public String codigo { get; set; }
+        public string codigo { get; set; }
 
         public Caja()
             : base( "/api/v1/cajas/" )
@@ -49,7 +49,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?codigo=" + codigo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?codigo__contains=" + codigo ) );
             }
             catch( Exception e )
             {
@@ -69,7 +69,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado Traslado = new Traslado();
-                listaNueva = new ArrayList( Traslado.GetAsCollection( Traslado.resource_uri + "?caja=" + this.id ) );
+                listaNueva = new ArrayList( Traslado.GetAsCollection( Traslado.resource_uri + "?caja__contains=" + this.id ) );
             }
             catch( Exception e )
             {
@@ -104,7 +104,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Caja Temp = this.Get( id.ToString() );
+            Caja Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

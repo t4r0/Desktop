@@ -25,13 +25,13 @@ namespace MuseoCliente.Connection.Objects
         public string resumen { get; set; }
 
         [JsonProperty]
-        public string autor { get; set; }
+        public int autor { get; set; }
 
         [JsonProperty]
         public DateTime fecha { get; set; }
 
         [JsonProperty]
-        public Boolean publicado { get; set; }
+        public bool publicado { get; set; }
 
 
         public void guardar()
@@ -72,7 +72,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?titulo=" + titulo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?titulo__contains=" + titulo ) );
             }
             catch( Exception e )
             {
@@ -112,7 +112,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 LinkInvestigacion LinkInvestigacion = new LinkInvestigacion();
-                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( LinkInvestigacion.resource_uri + "?investigacion=" + this.id ) );
+                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( LinkInvestigacion.resource_uri + "?investigacion__contains=" + this.id ) );
             }
             catch( Exception e )
             {
@@ -147,7 +147,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Investigacion Temp = this.Get( id.ToString() );
+            Investigacion Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

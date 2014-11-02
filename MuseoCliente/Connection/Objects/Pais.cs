@@ -82,7 +82,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Pais salaTemporal = this.Get( ide.ToString() );
+                Pais salaTemporal = this.Get();
                 if( salaTemporal == null )
                 {
                     Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
@@ -111,7 +111,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pais> listaNueva = null;
             try
             {
-                string consultar = "?name=" + nombre;
+                string consultar = "?name__contains" + nombre;
                 listaNueva = this.GetAsCollection( consultar );
 
                 if( listaNueva == null )

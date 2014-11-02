@@ -101,7 +101,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Registro registroTemp = this.Get(id.ToString());
+                Registro registroTemp = this.Get();
                 if (registroTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
@@ -143,6 +143,10 @@ namespace MuseoCliente.Connection.Objects
 
             return listaNueva;
         }
+
+        //Consultar PADRE
+
+        
 
     }
 }

@@ -18,9 +18,33 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modInvestigaciones : UserControl
 	{
-		public modInvestigaciones()
+        Connection.Objects.Investigacion investigaciones = new Connection.Objects.Investigacion();
+        public Border borde;
+        public modInvestigaciones()
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        {
+            modResultadosInv frm = new modResultadosInv();
+            frm.busqueda = txtBuscar.Text;
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnNueva_Click(object sender, RoutedEventArgs e)
+        {
+            modInvestigacion frm = new modInvestigacion();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            gvResultados.ItemsSource = investigaciones.regresarTodo();
+        }
 	}
 }

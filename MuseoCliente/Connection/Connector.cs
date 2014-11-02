@@ -54,26 +54,51 @@ namespace MuseoCliente.Connection
         public string fetch()
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + BaseUri + "?limit=999").Result;
+            HttpResponseMessage message = client.GetAsync(server + BaseUri).Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if(message.StatusCode == HttpStatusCode.OK)
                 return content;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string,string>>(content);
-            throw new Exception(error["error"]);
+            if(error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
+            return "";
+        }
+
+        public string fetch(int offset, int limit = 20)
+        {
+            HttpClient client = CreateRequest();
+            string absoluteUri = server + BaseUri;
+            HttpResponseMessage message = client.GetAsync(absoluteUri+"?offset="+offset+"&limit="+limit).Result;
+            string content = message.Content.ReadAsStringAsync().Result;
+            if (message.StatusCode == HttpStatusCode.OK)
+                return content;
+            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+            if (error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
+            return "";
         }
 
         public string fetch(string direccion)
         {
             HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + direccion + "/?limit=90").Result;
+            string absoluteUri = server + BaseUri;
+            HttpResponseMessage message = client.GetAsync(absoluteUri + direccion).Result;
             string content = message.Content.ReadAsStringAsync().Result;
             if (message.StatusCode == HttpStatusCode.OK)
                 return content;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
-            throw new Exception(error["error"]);
+            if (error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
+            return "";
         }
 
-        public void create(string content)
+        public string create(string content)
         {
             HttpClient client = CreateRequest();
             HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, server + BaseUri);
@@ -81,9 +106,13 @@ namespace MuseoCliente.Connection
             HttpResponseMessage message = client.SendAsync(reqMessage).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
             if (message.StatusCode == HttpStatusCode.Created)
-                return;
+                return responseContent;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-            throw new Exception(error["error"]);
+            if (error.Keys.Contains("error"))
+                throw new Exception(error["error"]);
+            if (error.Keys.Contains("error_message"))
+                throw new Exception(error["error_message"]);
+            return "";
         }
 
         public void edit(string id, string content)
@@ -94,7 +123,10 @@ namespace MuseoCliente.Connection
             if (message.StatusCode != HttpStatusCode.Accepted)
             {
                 Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-                throw new Exception(error["error"]);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
             }
         }
 

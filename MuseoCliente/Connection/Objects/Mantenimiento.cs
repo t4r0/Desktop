@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Mantenimiento:ResourceObject<Mantenimiento>
+    public class Mantenimiento:ResourceObject<Mantenimiento>
     {
         [JsonProperty]
         public int procedimiento { get; set; }
@@ -79,7 +79,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Mantenimiento fichaTemp = this.Get(id.ToString());
+                Mantenimiento fichaTemp = this.Get();
                 if (fichaTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

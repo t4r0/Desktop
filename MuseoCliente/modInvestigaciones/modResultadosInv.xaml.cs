@@ -18,9 +18,47 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosInv : UserControl
 	{
-		public modResultadosInv()
+        public string busqueda = "";
+        private Connection.Objects.Investigacion investigaciones = new Connection.Objects.Investigacion();
+        public UserControl anterior;
+        public Border borde;
+        public modResultadosInv()
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
+        }
+
+        private void rbTodas_Click(object sender, RoutedEventArgs e)
+        {
+            gvResultados.ItemsSource = investigaciones.regresarTodo();
+        }
+
+        private void rbAutor_Click(object sender, RoutedEventArgs e)
+        {
+            //Pendiente
+        }
+
+        private void rbEditor_Checked(object sender, RoutedEventArgs e)
+        {
+            //Pendiente
+        }
+
+        private void rbUltimas_Checked(object sender, RoutedEventArgs e)
+        {
+            //Pendiente
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            modInvestigacion frm = new modInvestigacion();
+            frm.borde = borde;
+            frm.anterior = this;
+            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+            borde.Child = frm;
+        }
 	}
 }
