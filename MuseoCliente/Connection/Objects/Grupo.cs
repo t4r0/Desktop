@@ -66,12 +66,12 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(lista);
         }
 
-        public void regresarObjeto(int ide)
+        public void regresarObjeto(string resourceUring)
         {
             try
             {
                 Grupo grupo = new Grupo();
-                grupo.id = ide;
+                grupo.resource_uri = resourceUring;
                 grupo = grupo.Get();
                 if (grupo == null)
                 {
@@ -89,7 +89,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjeto()
         {
-            regresarObjeto(this.id);
+            regresarObjeto(this.resource_uri);
         }
 
     }
