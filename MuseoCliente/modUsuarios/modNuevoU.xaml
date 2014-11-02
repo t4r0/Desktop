@@ -10,14 +10,14 @@
 		<StackPanel>
 			<Label Height="15"/>
 			<Label Margin="10,0,0,0">Nombre de Usuario:</Label>
-			<TextBox Margin="10,0,20,0"/>
+			<TextBox x:Name="txtUserName" Margin="10,0,20,0"/>
 			<Label Margin="10,0,0,0">Contraseña:</Label>
-			<TextBox Margin="10,0,20,0"/>
+            <TextBox x:Name="txtContra" Margin="10,0,20,0"/>
 			<Label Margin="10,0,0,0">Correo:</Label>
-			<TextBox Margin="10,0,20,20"/>
+            <TextBox x:Name="txtCorreo" Margin="10,0,20,20"/>
 			<DockPanel Width="300" HorizontalAlignment="Center">
-				<Button Width="100" Margin="25,0,0,0" HorizontalAlignment="Center">Guardar</Button>
-				<Button Width="100" Margin="0" HorizontalAlignment="Center">Cancelar</Button>
+				<Button x:Name="btnGuardar" Width="100" Margin="25,0,0,0" HorizontalAlignment="Center" Click="Button_Click_1">Guardar</Button>
+				<Button x:Name="btnCancelar"  Width="100" Margin="0" HorizontalAlignment="Center" Click="Button_Click">Cancelar</Button>
 			</DockPanel>
 		</StackPanel>
 	</Grid>

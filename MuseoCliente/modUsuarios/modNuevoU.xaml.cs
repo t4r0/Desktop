@@ -17,11 +17,35 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modNuevoU : Window
 	{
-		public modNuevoU()
+        Connection.Objects.Usuario usuario = new Connection.Objects.Usuario();
+        public UserControl anterior;
+        public Border borde;
+        public modNuevoU()
 		{
 			this.InitializeComponent();
 			
 			// A partir de este punto se requiere la inserción de código para la creación del objeto.
 		}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            usuario.username = txtUserName.Text;
+            usuario.password = txtContra.Text;
+            usuario.email = txtCorreo.Text;
+            usuario.guardar();
+            if (Connection.Objects.Error.isActivo())
+            {
+                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+            }
+            else
+            {
+                MessageBox.Show("Correcto");
+            }
+        }
 	}
 }
