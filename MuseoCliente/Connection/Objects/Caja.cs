@@ -44,12 +44,12 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public ArrayList consultarNombre( string codigo )
+        public ArrayList consultarCodigo( string codigo )
         {
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?codigo__contains=" + codigo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?codigo=" + codigo ) );
             }
             catch( Exception e )
             {
