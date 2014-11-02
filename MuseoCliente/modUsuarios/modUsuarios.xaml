@@ -14,7 +14,7 @@
 			<DockPanel>
 				<Label DockPanel.Dock="Left" Content="Usuarios"/>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnNuevo" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevo_Click" Content="➕"/>
+                    <Button x:Name="btnNuevo" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevo_Click">&#59136;</Button>
 				</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
 					<Button x:Name="btnAutor" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevoAu_Click" Content="➕"/>
@@ -28,7 +28,7 @@
 		<StackPanel>
 			<Label Height="20"/>
 			<StackPanel Height="190">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0" Content="Usuarios Activos:"/>
+				<Label VerticalAlignment="Center" Margin="10,0,0,0" Content="Usuarios:"/>
 				<DataGrid x:Name="gvActivos" Margin="15,0,15,0" Height="143" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" SelectionChanged="gvActivos_SelectionChanged">
 					<DataGrid.Columns>
 						<DataGridTextColumn Binding="{Binding Path=username}" Header="Nombre de usuario"/>

@@ -34,21 +34,20 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            gvResultados.SelectedValuePath = "username";
             gvResultados.ItemsSource = usuarios.regresarTodos();
         }
 
         private void rbUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            /*Falta consultar por nombre
-            if (usuarios.consultarNombre(busqueda) != null)
+            if (usuarios.consultaUserName(busqueda) != null)
             {
-                gvResultados.SelectedValue = "id";
-                gvResultados.ItemsSource = usuarios.consultarNombre(busqueda);
+                gvResultados.ItemsSource = usuarios.consultaUserName(busqueda);
             }
             else
             {
                 MessageBox.Show("No hay usuarios con el nombre");
-            }*/
+            }
         }
 
         private void rbVoluntarios_Click(object sender, RoutedEventArgs e)
@@ -70,7 +69,8 @@ namespace MuseoCliente
             modUsuario frm = new modUsuario();
             frm.borde = borde;
             frm.anterior = this;
-            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+            frm.modificar = true;
+            frm.userName = gvResultados.SelectedValue.ToString();
             borde.Child = frm;
         }
 	}

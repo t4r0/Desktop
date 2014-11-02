@@ -7,7 +7,7 @@ namespace MuseoCliente.Connection.Objects
     public class Usuario : ResourceObject<Usuario>
     {
         public Usuario()
-            : base( "/api/v1/registrar/" )
+            : base( "/api/v1/usuarios/" )
         {
         }
 
@@ -22,9 +22,6 @@ namespace MuseoCliente.Connection.Objects
 
         [JsonProperty]
         public string username { get; set; }
-
-        [JsonProperty]
-        public string password { get; set; }
 
         [JsonProperty]
         public string first_name { get; set; }
@@ -47,6 +44,9 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string fotografia { get; set; }
 
+        [JsonProperty]
+        public string fullName { get; set; }
+
         public void guardar() //Crea un usuario
         {
             try
@@ -57,6 +57,10 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
             }
+        }
+
+        public bool ShouldSerializedate_joined(){
+            return false;
         }
 
         public void modificar() //Modifica un usuario
@@ -77,7 +81,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection() );
+                listaNueva = new ArrayList( this.fetchAll() );
             }
             catch( Exception e )
             {
@@ -96,7 +100,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?username__contains=" + userName ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?username__contains=" + userName ) );
             }
             catch( Exception e )
             {
@@ -127,6 +131,11 @@ namespace MuseoCliente.Connection.Objects
                 return null;
             }
             return new ArrayList( listaNueva );
+        }
+
+        public bool ShouldSerializeFullNone()
+        {
+            return false;
         }
     }
 }

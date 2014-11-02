@@ -45,7 +45,7 @@ namespace MuseoCliente
             conector.create(content);
             if (Connection.Objects.Error.isActivo())
             {
-                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
 
             }
             else
