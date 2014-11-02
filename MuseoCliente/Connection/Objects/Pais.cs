@@ -62,7 +62,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pais> listaNueva = null;
             try
             {
-                listaNueva = this.GetAsCollection();
+                listaNueva = this.fetchAll();
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se econtro ninguna Ficha registrada" );
             }

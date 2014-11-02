@@ -117,10 +117,12 @@ namespace MuseoCliente.Connection
 
         public void edit(string id, string content)
         {
-            HttpClient client = CreateRequest();           
-            HttpResponseMessage message =client.PutAsync(server + BaseUri + "/" + id + "/", new StringContent(content)).Result;
+            HttpClient client = CreateRequest();
+            HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, server + BaseUri + id +"/");
+            reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
+            HttpResponseMessage message = client.SendAsync(reqMessage).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode != HttpStatusCode.Accepted)
+            if (message.StatusCode != HttpStatusCode.NoContent)
             {
                 Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
                 if (error.Keys.Contains("error"))

@@ -7,7 +7,7 @@ namespace MuseoCliente.Connection.Objects
     public class Usuario : ResourceObject<Usuario>
     {
         public Usuario()
-            : base( "/api/v1/registrar/" )
+            : base( "/api/v1/usuarios/" )
         {
         }
 
@@ -22,9 +22,6 @@ namespace MuseoCliente.Connection.Objects
 
         [JsonProperty]
         public string username { get; set; }
-
-        [JsonProperty]
-        public string password { get; set; }
 
         [JsonProperty]
         public string first_name { get; set; }
@@ -47,6 +44,9 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string fotografia { get; set; }
 
+        [JsonProperty]
+        public string fullName { get; set; }
+
         public void guardar() //Crea un usuario
         {
             try
@@ -59,6 +59,10 @@ namespace MuseoCliente.Connection.Objects
                 if(e.Message.Contains("1062"))
                     Error.ingresarError( 3, "No se puede ingresar el Usuario porque ya existe en la base de Datos" );
             }
+        }
+
+        public bool ShouldSerializedate_joined(){
+            return false;
         }
 
         public void modificar() //Modifica un usuario
@@ -79,7 +83,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection() );
+                listaNueva = new ArrayList( this.fetchAll() );
             }
             catch( Exception e )
             {
@@ -129,6 +133,11 @@ namespace MuseoCliente.Connection.Objects
                 return null;
             }
             return new ArrayList( listaNueva );
+        }
+
+        public bool ShouldSerializeFullNone()
+        {
+            return false;
         }
     }
 }
