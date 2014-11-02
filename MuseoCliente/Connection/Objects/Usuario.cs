@@ -6,7 +6,8 @@ namespace MuseoCliente.Connection.Objects
 {
     public class Usuario : ResourceObject<Usuario>
     {
-        public Usuario(): base( "/api/v1/usuarios/" )
+        public Usuario()
+            : base( "/api/v1/registrar/" )
         {
         }
 
@@ -76,7 +77,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection());
+                listaNueva = new ArrayList( this.GetAsCollection() );
             }
             catch( Exception e )
             {
@@ -90,6 +91,43 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
+        public ArrayList consultaUserName( String userName )
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?username__contains=" + userName ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "No se encontro nombre similares" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
+
+        public ArrayList regresarVoluntarios()
+        {
+            ArrayList listaNueva = null;
+            try
+            {
+                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?voluntario=true" ) );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "No se encontro nombre similares" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron coincidencias" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
     }
 }
 
