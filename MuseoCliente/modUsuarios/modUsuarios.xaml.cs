@@ -33,10 +33,11 @@ namespace MuseoCliente
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
-            modUsuario frm = new modUsuario();
-            frm.borde = borde;
+            modNuevoU frm = new modNuevoU();
+            /*frm.borde = borde;
             frm.anterior = this;
-            borde.Child = frm;
+            borde.Child = frm;*/
+            frm.ShowDialog();
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
