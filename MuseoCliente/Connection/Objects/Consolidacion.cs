@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Consolidacion:ResourceObject<Consolidacion>
+    public class Consolidacion:ResourceObject<Consolidacion>
     {
         [JsonProperty]
         public Boolean limpieza { get; set; }
@@ -22,8 +22,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int codigoPieza { get; set; }
 
-        public Consolidacion()
-            : base("/api/v1/consolidacion/")
+        public Consolidacion(): base("/api/v1/consolidacion/")
         {
         }
 
@@ -127,7 +126,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Consolidacion consolidacionTemp = this.Get(id.ToString());
+                Consolidacion consolidacionTemp = this.Get();
                 if (consolidacionTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
@@ -171,5 +170,7 @@ namespace MuseoCliente.Connection.Objects
 
             return listaNueva;
         }
+
+        
     }
 }

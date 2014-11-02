@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Autor : ResourceObject<Autor>
+    public class Autor : ResourceObject<Autor>
     {
         [JsonProperty]
         public string pais { get; set; }
@@ -14,8 +14,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string apellido { get; set; }
 
-        public Autor()
-            : base( "/api/v1/autores/" )
+        public Autor() : base( "/api/v1/autores/" )
         {
         }
 
@@ -144,7 +143,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Autor Temp = this.Get( id.ToString() );
+            Autor Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

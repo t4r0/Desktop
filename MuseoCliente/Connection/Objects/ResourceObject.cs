@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace MuseoCliente.Connection.Objects
 {
     public class ResourceObject<T>
     {
+        [JsonIgnore]
+        public string baseUri { get; set; }
 
         [JsonIgnore]
-        Connector conector = new Connector();
+        public Connector conector = new Connector();
 
         [JsonProperty]
         public String resource_uri { get; set; }
@@ -19,6 +22,7 @@ namespace MuseoCliente.Connection.Objects
         protected ResourceObject( string resourceUri )
         {
             conector.BaseUri = resourceUri;
+            this.baseUri = resourceUri;
             this.resource_uri = resourceUri;
         }
 
@@ -26,38 +30,105 @@ namespace MuseoCliente.Connection.Objects
         //{
         //    conector.BaseUri = resourceUri;
         //}
+        public bool ShouldSerializeid()
+        {
+            return false;
+        }
 
+        public bool ShouldSerializeresource_uri()
+        {
+            return false;
+        }
+
+        public void SerializeToFile(string path)
+        {
+             StreamWriter file=File.CreateText(path);
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(file, this);
+            file.Close();
+        }
+
+        public void SerializeListToFile(string path, List<T> list)
+        {
+            StreamWriter file = File.CreateText(path);
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(file, list);
+            file.Close();
+        }
+
+        public T DeserializeFromFile(string path)
+        {
+            StreamReader file = File.OpenText(path);
+            JsonSerializer serializer = new JsonSerializer();
+            T obj = (T)serializer.Deserialize(file, typeof(T));
+            file.Close();
+            return obj;
+        }
+
+        public List<T> DeserializeListFromFile(string path)
+        {
+            StreamReader file = File.OpenText(path);
+            JsonSerializer serializer = new JsonSerializer();
+            List<T> list = (List<T>)serializer.Deserialize(file, typeof(List<T>));
+            file.Close();
+            return list;
+        }
         protected void Save( string id )
         {
-            string content = JsonConvert.SerializeObject( this );
-            conector.edit( id, content );
+            conector.edit( id, this.Serialize() );
         }
 
         protected void Create()
         {
-            string content = JsonConvert.SerializeObject( this );
-            conector.create( content );
+            conector.create(this.Serialize());
         }
 
-        protected T Get( string id )
+        public string Serialize()
         {
-            conector.BaseUri += '/' + id + '/';
-            string content = conector.fetch();
-            return JsonConvert.DeserializeObject<T>( content );
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
 
-        protected List<T> GetAsCollection()
+        public T Deserialize(string content)
+        {
+            return JsonConvert.DeserializeObject<T>(content);
+        }
+
+        public List<T> DeserializeList(string content)
+        {
+            return JsonConvert.DeserializeObject<List<T>>(content);
+        }
+
+        public List<T> fetchAll(int limit=20)
+        {
+            List<T> t = new List<T>(), temp;
+            int offset = 0;
+            while (true)
+            {
+                temp = DeserializeList(conector.fetch(offset, limit));
+                t.AddRange(t);
+                if(temp.Count < limit)
+                    break;
+            }
+            return t;
+        }
+        public  T Get( )
+        {
+            conector.BaseUri = this.resource_uri;
+            string content = conector.fetch();
+            conector.BaseUri = this.baseUri;
+            return this.Deserialize(content);
+        }
+
+        public List<T> GetAsCollection()
         {
             string content = conector.fetch();
-            List<T> list = JsonConvert.DeserializeObject<List<T>>( content );
-            return list;
+            return this.DeserializeList(content);
         }
 
         public List<T> GetAsCollection( string direccion )
         {
             string content = conector.fetch( direccion );
-            List<T> list = JsonConvert.DeserializeObject<List<T>>( content );
-            return list;
+            return this.DeserializeList(content);
         }
     }
 }

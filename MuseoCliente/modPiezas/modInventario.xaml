@@ -8,15 +8,18 @@
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480">
 
-	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
+	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left">Piezas</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnNuevaPieza" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#10133;</Button>
+					<Button x:Name="btnNuevaPieza" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevaPieza_Click">&#10133;</Button>
 				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128269;</Button>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnNuevaClas" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevaClas_Click">&#10133;</Button>
+                </Label>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnBuscar_Click">&#128269;</Button>
 				</Label>
 				<TextBox x:Name="txtBuscar" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 			</DockPanel>

@@ -82,7 +82,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Pais salaTemporal = this.Get( ide.ToString() );
+                Pais salaTemporal = this.Get();
                 if( salaTemporal == null )
                 {
                     Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );

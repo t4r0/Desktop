@@ -18,9 +18,60 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modResultadosUsers : UserControl
 	{
-		public modResultadosUsers()
+        public string busqueda = "";
+        private Connection.Objects.Usuario usuarios = new Connection.Objects.Usuario();
+        public UserControl anterior;
+        public Border borde;
+        public modResultadosUsers()
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        {
+            borde.Child = anterior;
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            gvResultados.ItemsSource = usuarios.regresarTodos();
+        }
+
+        private void rbUsuarios_Click(object sender, RoutedEventArgs e)
+        {
+            /*Falta consultar por nombre
+            if (usuarios.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = usuarios.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay usuarios con el nombre");
+            }*/
+        }
+
+        private void rbVoluntarios_Click(object sender, RoutedEventArgs e)
+        {
+            /*Falta consultar voluntarios por nombre
+            if (usuarios.consultarNombre(busqueda) != null)
+            {
+                gvResultados.SelectedValue = "id";
+                gvResultados.ItemsSource = usuarios.consultarNombre(busqueda);
+            }
+            else
+            {
+                MessageBox.Show("No hay usuarios con el nombre");
+            }*/
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            modUsuario frm = new modUsuario();
+            frm.borde = borde;
+            frm.anterior = this;
+            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+            borde.Child = frm;
+        }
 	}
 }

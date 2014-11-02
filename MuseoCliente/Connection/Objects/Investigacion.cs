@@ -25,13 +25,13 @@ namespace MuseoCliente.Connection.Objects
         public string resumen { get; set; }
 
         [JsonProperty]
-        public string autor { get; set; }
+        public int autor { get; set; }
 
         [JsonProperty]
         public DateTime fecha { get; set; }
 
         [JsonProperty]
-        public Boolean publicado { get; set; }
+        public bool publicado { get; set; }
 
 
         public void guardar()
@@ -147,7 +147,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Investigacion Temp = this.Get( id.ToString() );
+            Investigacion Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Caja : ResourceObject<Caja>
+    public class Caja : ResourceObject<Caja>
     {
         [JsonProperty]
-        public String codigo { get; set; }
+        public string codigo { get; set; }
 
         public Caja()
             : base( "/api/v1/cajas/" )
@@ -104,7 +104,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Caja Temp = this.Get( id.ToString() );
+            Caja Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

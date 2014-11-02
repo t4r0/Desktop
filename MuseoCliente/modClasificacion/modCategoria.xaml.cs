@@ -31,20 +31,43 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             categ.nombre = txtNombre.Text;
-            categ.guardar();
+            if (modificar == false)
+            {
+                categ.guardar();
+            }
+            else
+            {
+                categ.modificar();
+            }
             if (Connection.Objects.Error.isActivo())
             {
                 MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
             }
             else
             {
-                MessageBox.Show("Bien puto Ursaring");
+                MessageBox.Show("Correcto");
             }
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             borde.Child = anterior;
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Cargar datos
+            //Si es para modificar
+            if (modificar == true)
+            {
+                lblOperacion.Content = "Modificar Categoría";
+                //categ = categ.buscarPorID(id);
+                txtNombre.Text = "Pendiente";
+            }
+            else
+            {
+                lblOperacion.Content = "Nueva Categoría";
+            }
         }
 	}
 }

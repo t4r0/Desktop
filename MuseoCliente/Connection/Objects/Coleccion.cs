@@ -69,7 +69,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Coleccion fichaTemp = this.Get(id.ToString());
+                Coleccion fichaTemp = this.Get();
                 if (fichaTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

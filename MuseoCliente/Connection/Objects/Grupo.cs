@@ -8,13 +8,12 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Grupo : ResourceObject<Grupo>
+    public class Grupo : ResourceObject<Grupo>
     {
         [JsonProperty]
         public String name { get; set; }
 
-        public Grupo()
-            : base("/v1/grupos/")
+        public Grupo(): base("/v1/grupos/")
         {
         }
 
@@ -71,7 +70,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Grupo grupo = this.Get(ide.ToString());
+                Grupo grupo = this.Get();
                 if (grupo == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

@@ -8,18 +8,18 @@ using System.Collections;
 
 namespace MuseoCliente.Connection.Objects
 {
-    class Clasificacion:ResourceObject<Clasificacion>
+    public class Clasificacion:ResourceObject<Clasificacion>
     {
         [JsonProperty]
-        public int coleccion { get; set; }
+        public string coleccion { get; set; }
         [JsonProperty]
-        public int categoria { get; set; }
+        public string categoria { get; set; }
         [JsonProperty]
-        public int ficha { get; set; }
+        public string ficha { get; set; }
         [JsonProperty]
-        public String nombre { get; set; }
+        public string nombre { get; set; }
         [JsonProperty]
-        public String codigo { get; set; }
+        public string codigo { get; set; }
 
         public Clasificacion() : base("/api/v1/clasificacion/")
         {
@@ -108,7 +108,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Clasificacion fichaTemp = this.Get(id.ToString());
+                Clasificacion fichaTemp = this.Get();
                 if (fichaTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
@@ -151,6 +151,49 @@ namespace MuseoCliente.Connection.Objects
             }
             
             return listaNueva;
+        }
+
+        //Consultar Padre
+        public Coleccion consultarColeccion(int idColeccion)
+        {
+            Coleccion clase = new Coleccion();
+            try
+            {
+                clase.regresarObjeto(idColeccion);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + coleccion);
+            }
+            return (clase);
+        }
+
+        public Categoria consultarCategoria(int idCategoria)
+        {
+            Categoria clase = new Categoria();
+            try
+            {
+                clase.regresarObjeto(idCategoria);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + categoria);
+            }
+            return (clase);
+        }
+
+        public Ficha consultarFicha(int idFicha)
+        {
+            Ficha clase = new Ficha();
+            try
+            {
+                clase.regresarObjeto(idFicha);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + ficha);
+            }
+            return (clase);
         }
 
       }

@@ -217,7 +217,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Campo Temp = this.Get( id.ToString() );
+            Campo Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

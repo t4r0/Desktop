@@ -180,6 +180,9 @@
     <Compile Include="modUsuarios\modAutor.xaml.cs">
       <DependentUpon>modAutor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="modUsuarios\modNuevoU.xaml.cs">
+      <DependentUpon>modNuevoU.xaml</DependentUpon>
+    </Compile>
     <Compile Include="modUsuarios\modPublicacion.xaml.cs">
       <DependentUpon>modPublicacion.xaml</DependentUpon>
     </Compile>
@@ -325,6 +328,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="modUsuarios\modAutor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="modUsuarios\modNuevoU.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
