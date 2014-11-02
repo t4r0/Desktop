@@ -92,5 +92,22 @@ namespace MuseoCliente.Connection.Objects
             regresarObjeto(this.resource_uri);
         }
 
+        public static void asignarUsuarios(string username, int grupo)
+        {
+            try
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+                dict["username"] = username;
+                dict["id"] = grupo.ToString();
+                string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
+                Connector conector = new Connector("/api/v1/grupos/registrar/");
+                conector.create(content);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(3, "No se ha asigando correctamente la relacion de grupo " + e.Message);
+            }
+
+        }
     }
 }
