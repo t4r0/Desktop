@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    public class Sala:ResourceObject<Sala>
+    public class Sala : ResourceObject<Sala>
     {
         [JsonProperty]
         public String nombre { get; set; }
@@ -16,10 +13,11 @@ namespace MuseoCliente.Connection.Objects
         public String descripcion { get; set; }
         [JsonProperty]
         public String fotografia { get; set; }
-       
 
 
-        public Sala(): base("/api/v1/salas/")
+
+        public Sala()
+            : base( "/api/v1/salas/" )
         {
         }
 
@@ -29,11 +27,11 @@ namespace MuseoCliente.Connection.Objects
             {
                 this.Create();
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                if (e.Source != null)
+                if( e.Source != null )
                 {
-                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos");
+                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos" );
                 }
             }
         }
@@ -42,13 +40,13 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                this.Save(this.id.ToString());
+                this.Save( this.id.ToString() );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                if (e.Source != null)
+                if( e.Source != null )
                 {
-                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
+                    Error.ingresarError( 4, "No se ha modificado la Informacion en la base de datos" );
                 }
             }
         }
@@ -60,31 +58,31 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 lista = this.GetAsCollection();
-                if (lista == null)
-                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+                if( lista == null )
+                    Error.ingresarError( 2, "No se econtro ninguna Ficha registrada" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (lista == null)
+            if( lista == null )
             {
-                Error.ingresarError(2, "No se encontro la busqueda");
+                Error.ingresarError( 2, "No se encontro la busqueda" );
                 return null;
             }
-            
 
-            return new ArrayList(lista);
+
+            return new ArrayList( lista );
         }
 
-        public void regresarObjeto(int ide)
+        public void regresarObjeto( int ide )
         {
             try
             {
                 Sala salaTemporal = this.Get();
-                if (salaTemporal == null)
+                if( salaTemporal == null )
                 {
-                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
                 this.nombre = salaTemporal.nombre;
@@ -92,34 +90,33 @@ namespace MuseoCliente.Connection.Objects
                 this.descripcion = salaTemporal.descripcion;
                 this.fotografia = salaTemporal.fotografia;
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
         }
 
         public void regresarObjeto()
         {
-            regresarObjeto(this.id);
+            regresarObjeto( this.id );
         }
 
         /*CONSULTAS*/
 
-        public ArrayList consultarNombre(string nombre)
+        public ArrayList consultarNombre( string nombre )
         {
             List<Sala> listaNueva = null;
             try
             {
-                string consultar =this.resource_uri + "?nombre=" + nombre;
-                listaNueva = this.GetAsCollection(consultar); 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
+                listaNueva = this.GetAsCollection( "?nombre=" + nombre );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "no se encontraron coincidencias con nombre: " + nombre );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con nombre: " + nombre);
+                Error.ingresarError( 2, "no se encontraron coincidencias con nombre: " + nombre );
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
         /*CONSULTAS DE HIJOS*/
@@ -130,21 +127,21 @@ namespace MuseoCliente.Connection.Objects
             {
                 Vitrina clas = new Vitrina();
                 string consulta = clas.resource_uri + "?sala" + this.id.ToString();
-                vitrina = clas.GetAsCollection(consulta);
-                if (vitrina == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                vitrina = clas.GetAsCollection( consulta );
+                if( vitrina == null )
+                    Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (vitrina == null)
+            if( vitrina == null )
             {
-                Error.ingresarError(2, "No se encontro la busqueda");
+                Error.ingresarError( 2, "No se encontro la busqueda" );
                 return null;
             }
-            
-            return new ArrayList(vitrina);
+
+            return new ArrayList( vitrina );
         }
 
         public ArrayList consultarEventos()
@@ -153,25 +150,25 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Eventos clas = new Eventos();
-                string consulta =clas.resource_uri + "?sala" + this.id.ToString();
-                evento = clas.GetAsCollection(consulta);
-                if (evento == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                string consulta = clas.resource_uri + "?sala" + this.id.ToString();
+                evento = clas.GetAsCollection( consulta );
+                if( evento == null )
+                    Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (evento == null)
+            if( evento == null )
             {
-                Error.ingresarError(2, "No se encontro la busqueda");
+                Error.ingresarError( 2, "No se encontro la busqueda" );
                 return null;
             }
-            
 
-            return new ArrayList(evento);
+
+            return new ArrayList( evento );
         }
 
-        
+
     }
 }

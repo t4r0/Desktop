@@ -1,0 +1,58 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:MuseoCliente.Designer.Views"
+	xmlns:Estructura="clr-namespace:MuseoCliente.Connection.Objects.Estructura" x:Name="userControl"
+	mc:Ignorable="d"
+	x:Class="MuseoCliente.Designer.Views.FieldEditor" MinWidth="350" Width="381" Height="222" BorderBrush="{DynamicResource LightGray}"
+    BorderThickness="1,1,1,2">
+    <UserControl.Resources>
+        <Storyboard x:Key="OnMouseEnter1"/>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Mouse.MouseLeave">
+            <BeginStoryboard Storyboard="{StaticResource OnMouseEnter1}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <UserControl.DataContext>
+        <Estructura:Campo/>
+    </UserControl.DataContext>   
+    <ScrollViewer Height="220" VerticalScrollBarVisibility="Auto">
+        <Grid x:Name="LayoutRoot" MaxHeight="350" Width="379" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+            <Label Content="Nombre del campo" HorizontalAlignment="Left" Height="27.373" VerticalAlignment="Top" Margin="8,0,0,0" Width="120.74" Style="{DynamicResource SourceSans}"/>
+            <TextBox x:Name="txtNombre" TextWrapping="Wrap" Text="{Binding nombre}" VerticalAlignment="Top" IsEnabled="{Binding IsEnabled, ElementName=userControl}" BorderThickness="1" Margin="8,31.373,21,0" Style="{StaticResource CustomTextBox}"/>
+            <Label Content="Texto de ayuda" HorizontalAlignment="Left" Grid.Row="1" Height="24.707" VerticalAlignment="Top" Margin="8,0,0,0" Width="104.74" Style="{DynamicResource SourceSans}"/>
+            <TextBox x:Name="txtAyuda" TextWrapping="Wrap" Text="{Binding descripcion}" VerticalAlignment="Top" IsEnabled="{Binding IsEnabled, ElementName=userControl}" Grid.Row="1" BorderThickness="1" Margin="8,28.707,21,0" Style="{StaticResource CustomTextBox}"/>
+            <Label Content="Tipo de campo" HorizontalAlignment="Left" Margin="8,0,0,25" Grid.Row="2" Style="{DynamicResource SourceSans}"/>
+            <ComboBox x:Name="cmbTipo" HorizontalAlignment="Left"  Grid.Row="2" Width="181" Margin="8,0,0,4.333" SelectionChanged="ComboBox_SelectionChanged" RenderTransformOrigin="0.6,0.564" Height="20.627" VerticalAlignment="Bottom" Style="{StaticResource CustomComboBox}">
+                <ComboBoxItem Content="Texto"/>
+                <ComboBoxItem Content="Texto Largo"/>
+                <ComboBoxItem Content="Fecha"/>
+                <ComboBoxItem Content="Número"/>
+                <ComboBoxItem Content="Opción"/>
+                <ComboBoxItem Content="Opción Múltiple"/>
+            </ComboBox>
+            <Border x:Name="optionsViewer" Grid.Row="3"/>
+            <CheckBox x:Name="reqCheck" Content="Requerido" HorizontalAlignment="Left" IsChecked="{Binding requerido}" Margin="8,8,0,0" Grid.Row="4" VerticalAlignment="Top" Style="{StaticResource CustomCheckBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro"/>
+            <Button Margin="0,5,100.667,0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="74" Click="Button_Click_1" Style="{StaticResource BlueButton}">
+                <TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><InlineUIContainer>
+						<TextBlock Style="{DynamicResource Icons}" FontSize="18"><Run Text="💾"/></TextBlock>
+					</InlineUIContainer><Run Text=" Guardar"/></TextBlock>
+            </Button>
+            <Button HorizontalAlignment="Right" Margin="0,5,10,0" Grid.Row="4" Width="87" VerticalAlignment="Top" Click="Button_Click_2" Style="{StaticResource PinkButton}">
+                <TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><InlineUIContainer>
+						<TextBlock Style="{DynamicResource Icons}" FontSize="18"><Run Text="❌"/></TextBlock>
+					</InlineUIContainer><Run Text=" Cancelar"/></TextBlock>
+            </Button>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

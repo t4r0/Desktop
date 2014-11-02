@@ -48,7 +48,7 @@ namespace MuseoCliente
             {
                 lblOperacion.Content = "Modificar Usuario";
                 usuario = (Usuario)usuario.consultaUserName(userName)[0];
-                lblUserName.Content = usuario.username;
+                lblUserName.Text = usuario.username;
                 txtNombres.Text = usuario.first_name;
                 txtApellidos.Text = usuario.last_name;
                 txtCorreo.Text = usuario.email;

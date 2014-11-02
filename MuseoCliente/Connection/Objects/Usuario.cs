@@ -55,13 +55,14 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
-                if(e.Message.Contains("1062"))
+                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
+                if( e.Message.Contains( "1062" ) )
                     Error.ingresarError( 3, "No se puede ingresar el Usuario porque ya existe en la base de Datos" );
             }
         }
 
-        public bool ShouldSerializedate_joined(){
+        public bool ShouldSerializedate_joined()
+        {
             return false;
         }
 

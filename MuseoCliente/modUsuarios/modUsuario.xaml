@@ -16,7 +16,7 @@
 	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
-				<Label x:Name="lblOperacion" DockPanel.Dock="Left" Content="[Op] Usuario"/>
+				<Label x:Name="lblOperacion" DockPanel.Dock="Left" Content="[Op] Usuario" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource Black}"/>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
 					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Content="❌"/>
 				</Label>
@@ -36,27 +36,27 @@
 				<ColumnDefinition Width="41*"/>
                 <ColumnDefinition Width="11*"/>
             </Grid.ColumnDefinitions>
-			<CheckBox x:Name="chkStaff" VerticalAlignment="Center" Margin="10,141,0,33" Content="Staff"/>
-			<CheckBox x:Name="chkVoluntario" VerticalAlignment="Center" Margin="10,164,0,10" Content="Voluntario"/>
-			<TextBox x:Name="txtApellidos" Height="25" VerticalAlignment="Top" Margin="13,41,27,0" Text="{Binding last_name, Mode=TwoWay}" Grid.Column="2" Grid.ColumnSpan="2"/>
-			<TextBox x:Name="txtNombres" Height="25" VerticalAlignment="Top" Margin="10,41,14,0" Text="{Binding first_name, Mode=TwoWay}" Grid.Column="1"/>
-			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Nombres:" Margin="10,10,0,0" Grid.Column="1"/>
-			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Apellidos:" Margin="13,10,0,0" Grid.Column="2"/>
-			<Label x:Name="lblUserName" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Nombre de usuario" Margin="10,115,10,48" Grid.Column="0" Width="115"/>
-			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contraseña:" Margin="13,81,0,0" Grid.Column="2" Width="74"/>
-			<TextBox x:Name="txtContra" Height="25" VerticalAlignment="Top" Margin="13,105,27,0" Text="{Binding last_name}" Grid.Column="2" Grid.ColumnSpan="2"/>
+			<CheckBox x:Name="chkStaff" VerticalAlignment="Center" Margin="10,141,0,33" Content="Staff" Style="{DynamicResource CustomCheckBox}" Foreground="{DynamicResource Black}"/>
+			<CheckBox x:Name="chkVoluntario" VerticalAlignment="Center" Margin="10,164,0,10" Content="Voluntario" Style="{DynamicResource CustomCheckBox}" Foreground="{DynamicResource Black}"/>
+			<TextBox x:Name="txtApellidos" Height="25" VerticalAlignment="Top" Margin="13,41,27,0" Text="{Binding last_name, Mode=TwoWay}" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource CustomTextBox}"/>
+			<TextBox x:Name="txtNombres" Height="25" VerticalAlignment="Top" Margin="10,41,14,0" Text="{Binding first_name, Mode=TwoWay}" Grid.Column="1" Style="{DynamicResource CustomTextBox}"/>
+			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Nombres:" Margin="10,10,0,0" Grid.Column="1" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
+			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Apellidos:" Margin="13,10,0,0" Grid.Column="2" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
+			<TextBlock x:Name="lblUserName" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=username}" Margin="10,115,10,48" Grid.Column="0" Width="115"/>
+			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contraseña:" Margin="13,81,0,0" Grid.Column="2" Width="74" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
+			<TextBox x:Name="txtContra" Height="25" VerticalAlignment="Top" Margin="13,105,27,0" Text="{Binding last_name}" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource CustomTextBox}"/>
 
-			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="País:" Margin="10,138,0,0" Grid.Column="1" Width="74"/>
+			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="País:" Margin="10,138,0,0" Grid.Column="1" Width="74" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
 			<Border HorizontalAlignment="Center" Height="100" Margin="10,8,25,0" VerticalAlignment="Top" Width="100" Background="#FFF0F0F0" CornerRadius="50">
 				<Image/>
 			</Border>
-			<ComboBox x:Name="cmbPais" Grid.Column="1" Height="20" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,164,0,0" SelectionChanged="cmbPais_SelectionChanged" Loaded="cmbPais_Loaded"/>
-			<TextBox x:Name="txtCorreo" Grid.Column="1" Height="25" VerticalAlignment="Top" Margin="10,105,14,0" Text="{Binding email, Mode=TwoWay}"/>
-			<Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="e-mail:" Margin="10,79,0,0"/>
-			<ComboBox x:Name="cmbGrupo" Grid.Column="2" Height="20" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,164,0,0" Grid.ColumnSpan="2" Loaded="cmbGrupo_Loaded"/>
-			<Label Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,138,0,0" Content="Grupo usuario:"/>
-			<Label Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,225" Content="Biografía:" Grid.Row="1"/>
-            <TextBox x:Name="rtxtBiografia" Grid.Column="1" Height="159" Margin="13,41,28,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Text="{Binding biografia, Mode=TwoWay}"/>
+			<ComboBox x:Name="cmbPais" Grid.Column="1" Height="20" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,164,0,0" SelectionChanged="cmbPais_SelectionChanged" Loaded="cmbPais_Loaded" Style="{DynamicResource CustomComboBox}"/>
+			<TextBox x:Name="txtCorreo" Grid.Column="1" Height="25" VerticalAlignment="Top" Margin="10,105,14,0" Text="{Binding email, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}"/>
+			<Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="e-mail:" Margin="10,79,0,0" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
+			<ComboBox x:Name="cmbGrupo" Grid.Column="2" Height="20" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,164,0,0" Grid.ColumnSpan="2" Loaded="cmbGrupo_Loaded" Style="{DynamicResource CustomComboBox}"/>
+			<Label Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,138,0,0" Content="Grupo usuario:" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
+			<Label Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,220" Content="Biografía:" Grid.Row="1" Style="{DynamicResource SourceSans}" FontSize="14" Foreground="{DynamicResource Black}"/>
+            <TextBox x:Name="rtxtBiografia" Grid.Column="1" Height="159" Margin="13,41,28,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Text="{Binding biografia, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}"/>
         </Grid>
 	</DockPanel>
 </UserControl>

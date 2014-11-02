@@ -1,0 +1,41 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:MuseoCliente.Designer.Views"
+	mc:Ignorable="d"
+	x:Class="MuseoCliente.Designer.Views.FieldViewer"
+	x:Name="UserControl" MinWidth="350" Focusable="True">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="87.85"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition x:Name="mainRow" Height="30"/>
+			<RowDefinition Height="10*"/>
+			<RowDefinition Height="9*"/>
+			<RowDefinition Height="Auto" MinHeight="0"/>
+		</Grid.RowDefinitions>
+		<Label x:Name="lblNombre" Margin="5,0,0,0" Content="Label" HorizontalAlignment="Left" Grid.Row="1" Style="{StaticResource SourceSans}" Foreground="{DynamicResource LightBlue}" FontSize="16"/>
+		<Label x:Name="lblDescripcion" Margin="5,0,0,0" Content="Label" HorizontalAlignment="Left" Grid.Row="2" Style="{StaticResource SourceSans}" Foreground="{DynamicResource Black}" FontStyle="Italic" FontSize="10"/>
+		<Border x:Name="content" Grid.Row="3" Margin="5,0,0,0"/>
+        <Button x:Name="cancelButton" Margin="0,1,-3,1" Grid.Column="1" HorizontalAlignment="Right" Width="33" Style="{StaticResource PinkForegroundButton}">
+            <TextBlock Style="{DynamicResource Icons}" FontSize="36">
+                &#10060;
+            </TextBlock>
+        </Button>
+        <Popup Visibility="Visible" PopupAnimation="Scroll" IsOpen="{Binding IsChecked, ElementName=editButton}" PlacementTarget="{Binding ElementName=lblNombre}" VerticalOffset="-26" StaysOpen="False">
+            <Grid Background="{DynamicResource LightGray}">
+                <local:FieldEditor x:Name="editor" Margin="0" Width="{Binding ActualWidth, ElementName=LayoutRoot}" Closed="editor_Closed" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" UseLayoutRounding="True" VerticalAlignment="Top"/>
+            </Grid>
+        </Popup>
+        <ToggleButton x:Name="editButton" Grid.Column="1" Margin="35,3,30,0" Checked="editButton_Checked" Style="{DynamicResource BlueForegroundToggle}">
+            <TextBlock Style="{DynamicResource Icons}" FontSize="36">
+                &#9998;
+            </TextBlock>
+        </ToggleButton>
+    </Grid>
+</UserControl>
