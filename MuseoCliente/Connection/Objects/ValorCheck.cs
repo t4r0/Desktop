@@ -18,8 +18,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public Boolean seleccionado { get; set; }
 
-        public ValorCheck()
-            : base("/api/v1/fichas/")
+        public ValorCheck(): base("/api/v1/fichas/")
         {
 
         }
@@ -81,7 +80,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                ValorCheck valorTemp = this.Get(id.ToString());
+                ValorCheck valorTemp = this.Get();
                 if (valorTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

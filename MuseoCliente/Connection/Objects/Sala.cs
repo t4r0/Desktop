@@ -81,7 +81,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Sala salaTemporal = this.Get(ide.ToString());
+                Sala salaTemporal = this.Get();
                 if (salaTemporal == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

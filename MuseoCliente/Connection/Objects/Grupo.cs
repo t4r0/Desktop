@@ -70,7 +70,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Grupo grupo = this.Get(ide.ToString());
+                Grupo grupo = this.Get();
                 if (grupo == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

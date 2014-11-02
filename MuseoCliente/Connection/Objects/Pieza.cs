@@ -112,7 +112,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Pieza temp = this.Get(id.ToString());
+                Pieza temp = this.Get();
                 if (temp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

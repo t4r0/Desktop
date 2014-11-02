@@ -76,7 +76,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Vitrina vitrina = this.Get(ide.ToString());
+                Vitrina vitrina = this.Get();
                 if (vitrina == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

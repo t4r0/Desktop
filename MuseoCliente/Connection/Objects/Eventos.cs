@@ -214,7 +214,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Eventos eventosTemp = this.Get(id.ToString());
+                Eventos eventosTemp = this.Get();
                 if (eventosTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");

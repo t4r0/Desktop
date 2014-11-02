@@ -104,7 +104,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
-            Caja Temp = this.Get( id.ToString() );
+            Caja Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );

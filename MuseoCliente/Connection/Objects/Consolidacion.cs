@@ -126,7 +126,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Consolidacion consolidacionTemp = this.Get(id.ToString());
+                Consolidacion consolidacionTemp = this.Get();
                 if (consolidacionTemp == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
