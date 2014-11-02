@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 using MuseoCliente.Connection;
 using MuseoCliente.Connection.Objects;
+using MuseoCliente.Properties;
 namespace MuseoCliente
 {
 	/// <summary>
@@ -47,10 +48,7 @@ namespace MuseoCliente
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
                 Connector conector = new Connector("/api/v1/login/");
                 user = user.Deserialize(conector.create(content));
-                MainWindow main = new MainWindow() { DataContext = user };
-                this.Hide();
-                main.ShowDialog();
-                this.Close();
+                ShowWindow(user);
             }
             catch (Exception ex)
             {
@@ -58,10 +56,17 @@ namespace MuseoCliente
 
             }
         }
+
+        private void ShowWindow(Usuario user)
+        {
+            MainWindow main = new MainWindow() { DataContext = user };
+            this.Hide();
+            main.ShowDialog();
+            this.Close();
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtUsuario.Focus();
-            txtUsuario.SelectAll();
+          
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

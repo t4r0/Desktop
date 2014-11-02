@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-namespace MuseoCliente.Connection
+namespace MuseoCliente.Connection.Objects.Estructura
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Campo
     {
         public enum TiposDeCampo
         {
-            Texto=1,
-            TextoLargo=2,
-            Fecha=3,
-            Numerico = 4,
-            OpcionesExclusivas=5,
-            OpcionMultiple = 6
+            Texto=0,
+            TextoLargo=1,
+            Fecha=2,
+            Numerico = 3,
+            OpcionesExclusivas=4,
+            OpcionMultiple = 5
         };
 
         [JsonProperty]        
