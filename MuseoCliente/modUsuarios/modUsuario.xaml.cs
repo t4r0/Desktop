@@ -20,6 +20,7 @@ namespace MuseoCliente
 	public partial class modUsuario : UserControl
 	{
         Connection.Objects.Usuario usuario = new Connection.Objects.Usuario();
+        Connection.Objects.Pais paises = new Connection.Objects.Pais();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -27,7 +28,7 @@ namespace MuseoCliente
 			get{ return modificar;}
 			set{ modificar=value;}
 		}
-        public int id;
+        public string userName;
         public modUsuario()
 		{
 			this.InitializeComponent();
@@ -37,13 +38,31 @@ namespace MuseoCliente
         {
             //cmbGrupo.DisplayMemberPath = "Nombre del grupo"; //Pendiente
             //cmbGrupo.SelectedValuePath = "id?"; //Pendiente
+            cmbPais.SelectedValuePath = "iso";
+            cmbPais.DisplayMemberPath = "printable_name";
+            cmbPais.ItemsSource = paises.regresarTodos();
             //Falta clase para regresar todos los grupos de usuario. cmbPais.ItemsSource = paises.regresarTodos();
             //Cargar datos
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Usuario";
-                //
+                usuario = (Usuario)usuario.consultaUserName(userName)[0];
+                lblUserName.Content = usuario.username;
+                txtNombres.Text = usuario.first_name;
+                txtApellidos.Text = usuario.last_name;
+                txtCorreo.Text = usuario.email;
+                //txtContra.Text = usuario.password;
+                cmbPais.SelectedValue = usuario.pais;
+                rtxtBiografia.Text = usuario.biografia;
+                if (usuario.is_staff == true)
+                    chkStaff.IsChecked = true;
+                else
+                    chkStaff.IsChecked = false;
+                if (usuario.voluntario == true)
+                    chkVoluntario.IsChecked = true;
+                else
+                    chkVoluntario.IsChecked = false;
             }
             else
             {
@@ -53,24 +72,21 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            /*usuario.first_name = txtNombres.Text;
-            //usuario.last_name = txtApellidos.Text; El apellido no puede ser int!
-            usuario.username = txtUserName.Text;
-            usuario.password = txtContra.Text;
-            usuario.email = txtContra.Text;
+            usuario.first_name = txtNombres.Text;
+            usuario.last_name = txtApellidos.Text;
+            //usuario.password = txtContra.Text;
+            usuario.email = txtCorreo.Text;
+            usuario.pais = cmbPais.SelectedValue.ToString();
+            usuario.biografia = rtxtBiografia.Text;
             // Pendiente: usuario.last_login
-            if (chkSuperUsuario.IsChecked == true)
-                usuario.is_superuser = 1;
-            else
-                usuario.is_superuser = 0;
-            if (chkActivo.IsChecked == true)
-                usuario.is_active = 1;
-            else
-                usuario.is_active = 0;
             if (chkStaff.IsChecked == true)
-                usuario.is_staff = 1;
+                usuario.is_staff = true;
             else
-                usuario.is_staff = 0;
+                usuario.is_staff = false;
+            if (chkVoluntario.IsChecked == true)
+                usuario.voluntario = true;
+            else
+                usuario.voluntario = false;
             if (modificar == false)
             {
                 usuario.guardar();
@@ -89,7 +105,7 @@ namespace MuseoCliente
             }
             // Pendiente grupo usuario
 
-            // Pendiente voluntario
+            /* Pendiente voluntario
             if (chkVoluntario.IsChecked == true)
             {
                 //
@@ -108,11 +124,11 @@ namespace MuseoCliente
 
         private void cmbPais_Loaded(object sender, RoutedEventArgs e)
         {
-            ComboBox cmb = (ComboBox)sender;
+            /*ComboBox cmb = (ComboBox)sender;
             Pais paises = new Pais();
             cmb.ItemsSource = paises.fetchAll();
             cmb.SelectedValuePath = "iso";
-            cmb.DisplayMemberPath = "printable_name";
+            cmb.DisplayMemberPath = "printable_name";*/
         }
 
         private void cmbGrupo_Loaded(object sender, RoutedEventArgs e)

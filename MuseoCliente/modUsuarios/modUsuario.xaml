@@ -42,7 +42,7 @@
 			<TextBox x:Name="txtNombres" Height="25" VerticalAlignment="Top" Margin="10,41,14,0" Text="{Binding first_name, Mode=TwoWay}" Grid.Column="1"/>
 			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Nombres:" Margin="10,10,0,0" Grid.Column="1"/>
 			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Apellidos:" Margin="13,10,0,0" Grid.Column="2"/>
-			<Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Nombre de usuario" Margin="10,115,10,48" Grid.Column="0" Width="115"/>
+			<Label x:Name="lblUserName" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Nombre de usuario" Margin="10,115,10,48" Grid.Column="0" Width="115"/>
 			<Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Contraseña:" Margin="13,81,0,0" Grid.Column="2" Width="74"/>
 			<TextBox x:Name="txtContra" Height="25" VerticalAlignment="Top" Margin="13,105,27,0" Text="{Binding last_name}" Grid.Column="2" Grid.ColumnSpan="2"/>
 
@@ -56,7 +56,7 @@
 			<ComboBox x:Name="cmbGrupo" Grid.Column="2" Height="20" Width="220" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,164,0,0" Grid.ColumnSpan="2" Loaded="cmbGrupo_Loaded"/>
 			<Label Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,138,0,0" Content="Grupo usuario:"/>
 			<Label Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,225" Content="Biografía:" Grid.Row="1"/>
-            <TextBox x:Name="txtBiografia" Grid.Column="1" Height="159" Margin="13,41,28,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Text="{Binding biografia, Mode=TwoWay}"/>
+            <TextBox x:Name="rtxtBiografia" Grid.Column="1" Height="159" Margin="13,41,28,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="3" Text="{Binding biografia, Mode=TwoWay}"/>
         </Grid>
 	</DockPanel>
 </UserControl>
