@@ -26,6 +26,7 @@
                 <RadioButton x:Name="rbTodos" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbTodos_Click">Todos</RadioButton>
                 <RadioButton x:Name="rbUsuarios" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbUsuarios_Click">Usuarios</RadioButton>
 				<RadioButton x:Name="rbVoluntarios" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbVoluntarios_Click">Voluntarios</RadioButton>
+                <RadioButton x:Name="rbAutores" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbAutores_Checked">Autores</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
 				<StackPanel Margin="10">
