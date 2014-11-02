@@ -111,7 +111,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pais> listaNueva = null;
             try
             {
-                string consultar = "?name__contains" + nombre;
+                string consultar = "?name__contains=" + nombre;
                 listaNueva = this.GetAsCollection( consultar );
 
                 if( listaNueva == null )
