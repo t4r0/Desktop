@@ -19,6 +19,7 @@ namespace MuseoCliente
 	public partial class modUsuarios : UserControl
 	{
         Connection.Objects.Usuario usuarios = new Connection.Objects.Usuario();
+        Connection.Objects.Autor autores = new Connection.Objects.Autor();
         public Border borde;
         public modUsuarios()
 		{
@@ -28,7 +29,7 @@ namespace MuseoCliente
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             gvActivos.ItemsSource = usuarios.regresarTodos();
-            gvVoluntarios.ItemsSource = usuarios.regresarVoluntarios();
+            gvVoluntarios.ItemsSource = autores.regresarTodos();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
