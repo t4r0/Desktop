@@ -130,5 +130,15 @@ namespace MuseoCliente.Connection
             }
         }
 
+        public string fetch(Dictionary<string, string> args)
+        {
+            string concatParams = "?";
+            foreach (string key in args.Keys)
+            {
+                concatParams += key + "=" + args[key] + "&";
+            }
+            concatParams= concatParams.Substring(0, concatParams.Length - 1);
+            return fetch(concatParams);
+        }
     }
 }
