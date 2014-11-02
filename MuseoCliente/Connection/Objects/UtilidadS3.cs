@@ -10,9 +10,9 @@ namespace solucionAmazonS3
 {
     public class UtilidadS3
     {
-        private static string accessKey = "AKIAJCP7455PN6XSNLGA";
-        private static string secretKey = "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";
-        private static string BUCKET_NAME = "bicefalo";
+        private static string accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.Machine);
+        private static string secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY", EnvironmentVariableTarget.Machine);
+        private static string BUCKET_NAME = "bicefalo-api";
         private string url = "http://s3-us-west-2.amazonaws.com/" + BUCKET_NAME;
         private void uploadFile(string KEY_NAME, string rutaArchivo)
         {
@@ -21,8 +21,7 @@ namespace solucionAmazonS3
             {
                 BucketName = BUCKET_NAME,
                 FilePath = rutaArchivo,
-                Key = KEY_NAME,
-                CannedACL = S3CannedACL.PublicRead
+                Key = KEY_NAME
             };
             fileTransferUtility.Upload(fileTransferUtilityRequest);
         }
@@ -52,7 +51,14 @@ namespace solucionAmazonS3
                 KEY_NAME += "/archivos/" + nombreArchivo;
             }
             url +=  "/" + KEY_NAME;
-            this.uploadFile(KEY_NAME, rutaArchivo);
+            try
+            {
+                this.uploadFile(KEY_NAME, rutaArchivo);
+            }
+            catch
+            {
+                url = "";
+            }
             return url;
         }
         public String subirSalaoEvento(int id, string rutaArchivo, string nombreArchivo, Boolean esSala)
@@ -67,7 +73,15 @@ namespace solucionAmazonS3
                 KEY_NAME += "media/eventos/" + id + "-" + nombreArchivo;
             }
             url += "/" + KEY_NAME;
-            this.uploadFile(KEY_NAME, rutaArchivo);
+            try
+            {
+                this.uploadFile(KEY_NAME, rutaArchivo);
+            }
+            catch
+            {
+                url = "";
+            }
+            
             return url;
         }
 
