@@ -105,9 +105,10 @@ namespace MuseoCliente.Connection.Objects
             while (true)
             {
                 temp = DeserializeList(conector.fetch(offset, limit));
-                t.AddRange(t);
+                t.AddRange(temp);
                 if(temp.Count < limit)
                     break;
+                offset += 20;
             }
             return t;
         }

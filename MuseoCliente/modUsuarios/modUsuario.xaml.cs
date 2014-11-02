@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -98,6 +99,29 @@ namespace MuseoCliente
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             borde.Child = anterior;
+        }
+
+        private void cmbPais_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbPais_Loaded(object sender, RoutedEventArgs e)
+        {
+            ComboBox cmb = (ComboBox)sender;
+            Pais paises = new Pais();
+            cmb.ItemsSource = paises.fetchAll();
+            cmb.SelectedValuePath = "iso";
+            cmb.DisplayMemberPath = "printable_name";
+        }
+
+        private void cmbGrupo_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*ComboBox cmb =(ComboBox) sender;
+            Grupo grupos = new Grupo();
+            cmb.ItemsSource = grupos.fetchAll();
+            cmb.SelectedValuePath = "id";
+            cmb.DisplayMemberPath = "name";*/
         }
 	}
 }
