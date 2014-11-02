@@ -6,6 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Custom Styles.xaml"/>
+                <ResourceDictionary Source="/Designer/Views/FormStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="IconosSocial">
                 <Setter Property="TextElement.FontFamily" 

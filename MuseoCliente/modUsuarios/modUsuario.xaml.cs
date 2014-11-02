@@ -36,13 +36,12 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //cmbGrupo.DisplayMemberPath = "Nombre del grupo"; //Pendiente
-            //cmbGrupo.SelectedValuePath = "id?"; //Pendiente
+            //Grupos de usuarios:
+
+            //Paises
             cmbPais.SelectedValuePath = "iso";
             cmbPais.DisplayMemberPath = "printable_name";
             cmbPais.ItemsSource = paises.regresarTodos();
-            //Falta clase para regresar todos los grupos de usuario. cmbPais.ItemsSource = paises.regresarTodos();
-            //Cargar datos
             //Si es para modificar
             if (modificar == true)
             {
@@ -52,7 +51,6 @@ namespace MuseoCliente
                 txtNombres.Text = usuario.first_name;
                 txtApellidos.Text = usuario.last_name;
                 txtCorreo.Text = usuario.email;
-                //txtContra.Text = usuario.password;
                 cmbPais.SelectedValue = usuario.pais;
                 rtxtBiografia.Text = usuario.biografia;
                 if (usuario.is_staff == true)
@@ -74,7 +72,6 @@ namespace MuseoCliente
         {
             usuario.first_name = txtNombres.Text;
             usuario.last_name = txtApellidos.Text;
-            //usuario.password = txtContra.Text;
             usuario.email = txtCorreo.Text;
             usuario.pais = cmbPais.SelectedValue.ToString();
             usuario.biografia = rtxtBiografia.Text;

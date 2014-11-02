@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Collections;
+using MuseoCliente.Connection.Objects;
 namespace MuseoCliente.Connection.Objects
 {
     public class Ficha:ResourceObject<Ficha>
@@ -16,7 +17,7 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
 
         [JsonProperty]
-        public Estructura estructura { get; set; }
+        public Estructura.Estructura estructura { get; set; }
 
         [JsonProperty]
         public bool consolidacion{get; set;}
@@ -24,7 +25,7 @@ namespace MuseoCliente.Connection.Objects
         public Ficha()
             : base("/api/v1/fichas/")
         {
-            this.estructura = new Estructura();
+            this.estructura = new Estructura.Estructura();
            
         }
 
