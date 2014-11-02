@@ -54,7 +54,7 @@ namespace MuseoCliente.Connection.Objects
             List<Grupo> lista = null;
             try
             {
-                lista = this.GetAsCollection();
+                lista = this.fetchAll();
                 if (lista == null)
                     Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
             }
@@ -70,7 +70,9 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                Grupo grupo = this.Get();
+                Grupo grupo = new Grupo();
+                grupo.id = ide;
+                grupo = grupo.Get();
                 if (grupo == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
