@@ -27,16 +27,13 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvActivos.ItemsSource = usuarios.regresarTodos(); //Pendiente filtrado
-            gvVoluntarios.ItemsSource = usuarios.regresarTodos(); //Pendiente voluntarios
+            gvActivos.ItemsSource = usuarios.regresarTodos();
+            gvVoluntarios.ItemsSource = usuarios.regresarVoluntarios();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)
         {
             modNuevoU frm = new modNuevoU();
-            /*frm.borde = borde;
-            frm.anterior = this;
-            borde.Child = frm;*/
             frm.ShowDialog();
         }
 

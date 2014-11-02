@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MuseoCliente.Connection;
 
 namespace MuseoCliente
 {
@@ -17,6 +19,7 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modNuevoU : Window
 	{
+        Dictionary<string, string> dict = new Dictionary<string, string>();
         Connection.Objects.Usuario usuario = new Connection.Objects.Usuario();
         public UserControl anterior;
         public Border borde;
@@ -34,17 +37,20 @@ namespace MuseoCliente
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            usuario.username = txtUserName.Text;
-            usuario.password = txtContra.Text;
-            usuario.email = txtCorreo.Text;
-            usuario.guardar();
+            Connection.Connector conector = new Connection.Connector("/api/v1/registrar/");
+            dict["username"] = txtUserName.Text;
+            dict["password"] = txtContra.Text;
+            dict["email"] = txtCorreo.Text;
+            string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
+            conector.create(content);
             if (Connection.Objects.Error.isActivo())
             {
-                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+
             }
             else
             {
-                MessageBox.Show("Correcto");
+                MessageBox.Show("Usuario Ingresado Correctamente","Registro");
             }
         }
 	}
