@@ -1,0 +1,25 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:MuseoCliente"
+    xmlns:design="clr-namespace:MuseoCliente.Designer.Views"
+	mc:Ignorable="d"
+	x:Class="MuseoCliente.Designer.Views.OptionPanel"
+	x:Name="UserControl" MinWidth="350" Focusable="True">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="29"/>
+			<RowDefinition Height="Auto" MinHeight="0"/>
+		</Grid.RowDefinitions>
+		<Label Content="Opciones" HorizontalAlignment="Left" Margin="0" d:LayoutOverrides="Height" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14"/>
+		<StackPanel x:FieldModifier="public" x:Name="optionsPane" Grid.Row="1" Loaded="optionsPane_Loaded">
+			<design:OptionViewer Edited="OptionViewer_Edited" ClosingRequested="OptionViewer_ClosingRequested" UpdateAction="OptionViewer_UpdateAction_1" Checked="OptionViewer_Checked_1"/>
+		</StackPanel>
+        <Button x:Name="addButton" HorizontalAlignment="Right" Margin="0,0,13,6" Style="{DynamicResource BlueForegrounButton}" Width="32" Click="Button_Click">
+            <TextBlock Style="{DynamicResource Icons}" FontSize="22">&#10133;</TextBlock>
+        </Button>
+    </Grid>
+</UserControl>

@@ -10,19 +10,23 @@
 	d:DesignWidth="640" d:DesignHeight="480">
 
 	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
-		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
-			<DockPanel>
-				<Label DockPanel.Dock="Left" Content="Usuarios"/>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-                    <Button x:Name="btnNuevo" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevo_Click">&#59136;</Button>
-				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnAutor" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNuevoAu_Click" Content="➕"/>
-				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnBuscar_Click" Content="🔍"/>
-				</Label>
-				<TextBox x:Name="txtBuscar" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+		<Border DockPanel.Dock="Top" Margin="0" Height="50" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
+            <DockPanel>
+				<Label DockPanel.Dock="Left" Content="Usuarios" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource DarkGray}" Margin="5,0,0,0"/>
+                <Button x:Name="btnNuevo" FontSize="48" FontWeight="Bold" Click="btnNuevo_Click" Style="{DynamicResource BlueForegrounButton}" DockPanel.Dock="Right" Margin="0,0,15,0" FontFamily="/MuseoCliente;component/Font/#Entypo" RenderTransformOrigin="0.5,0.5">&#59136;</Button>				
+				<Button x:Name="btnAutor" HorizontalAlignment="Center" FontSize="48" FontWeight="Bold" Click="btnNuevoAu_Click" Content="➕" Style="{DynamicResource BlueForegrounButton}" DockPanel.Dock="Right" Margin="10,0,5,0" FontFamily="/MuseoCliente;component/Font/#Entypo" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Top"/>
+                <Button x:Name="btnBuscar" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Click="btnBuscar_Click" Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" Margin="0,14,0,9" Width="29" DockPanel.Dock="Right">
+                    <TextBlock Height="21" TextTrimming="CharacterEllipsis" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="-3"/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>🔍</TextBlock>
+                </Button>
+                <TextBox x:Name="txtBuscar" Width="246" HorizontalAlignment="Right" Margin="0,14,0,9" Style="{DynamicResource CustomTextBox}" Text="Buscar" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro"/>
 			</DockPanel>
 		</Border>
 		<StackPanel>

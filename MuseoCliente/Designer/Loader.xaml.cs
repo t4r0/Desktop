@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MuseoCliente.Designer
 {
     /// <summary>
-    /// Lógica de interacción para frmDesigner.xaml
+    /// Lógica de interacción para Loader.xaml
     /// </summary>
-    public partial class frmDesigner : UserControl
+    public partial class Loader : UserControl
     {
-        public frmDesigner()
+        public Loader()
         {
             InitializeComponent();
         }
