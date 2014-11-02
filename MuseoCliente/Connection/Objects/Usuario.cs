@@ -23,6 +23,9 @@ namespace MuseoCliente.Connection.Objects
         public string username { get; set; }
 
         [JsonProperty]
+        public string password { get; set; }
+
+        [JsonProperty]
         public string first_name { get; set; }
 
         [JsonProperty]
