@@ -1,33 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
 {
-    public class Vitrina:ResourceObject<Vitrina>
+    public class Vitrina : ResourceObject<Vitrina>
     {
         [JsonProperty]
         public String numero { get; set; }
         [JsonProperty]
         public int sala { get; set; }
 
-        public Vitrina() : base("/api/v1/vitrina/")
+        public Vitrina()
+            : base( "/api/v1/vitrina/" )
         {
         }
 
         public void guardar()
         {
-            try 
+            try
             {
                 this.Create();
             }
-            catch ( Exception e )
+            catch( Exception e )
             {
-                if(e.Source != null)
+                if( e.Source != null )
                 {
                     Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos" );
                 }
@@ -38,13 +36,13 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                this.Save(this.id.ToString());
+                this.Save( this.id.ToString() );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                if (e.Source != null)
+                if( e.Source != null )
                 {
-                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
+                    Error.ingresarError( 4, "No se ha modificado la Informacion en la base de datos" );
                 }
             }
         }
@@ -57,44 +55,44 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 lista = this.GetAsCollection();
-                if (lista == null)
-                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+                if( lista == null )
+                    Error.ingresarError( 2, "No se econtro ninguna Ficha registrada" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (lista == null)
+            if( lista == null )
             {
-                Error.ingresarError(2, "No existen en la Base de Datos");
+                Error.ingresarError( 2, "No existen en la Base de Datos" );
                 return null;
             }
-            return new ArrayList(lista);
+            return new ArrayList( lista );
         }
 
-        public void regresarObjeto(int ide)
+        public void regresarObjeto( int ide )
         {
             try
             {
                 Vitrina vitrina = this.Get();
-                if (vitrina == null)
+                if( vitrina == null )
                 {
-                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
                 this.numero = vitrina.numero;
                 this.id = vitrina.id;
                 this.sala = vitrina.sala;
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
         }
 
         public void regresarObjeto()
         {
-            regresarObjeto(this.id);
+            regresarObjeto( this.id );
         }
 
         /*CONSULTAS*/
@@ -104,21 +102,20 @@ namespace MuseoCliente.Connection.Objects
             List<Vitrina> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri+"?numero=" + numero;
-                listaNueva = this.GetAsCollection(consultar); 
-                if (listaNueva == null)
-                    Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
+                listaNueva = this.GetAsCollection( "?numero=" + numero );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "no se encontraron coincidencias con el numero: " + numero );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con el numero: " + numero);
+                Error.ingresarError( 2, "no se encontraron coincidencias con el numero: " + numero );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Vitrina del numero: "+numero);
+                Error.ingresarError( 2, "No existen Vitrina del numero: " + numero );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
         /*CONSULTAR PADRE*/
@@ -128,13 +125,13 @@ namespace MuseoCliente.Connection.Objects
             Sala clase = new Sala();
             try
             {
-                clase.regresarObjeto(this.sala);
+                clase.regresarObjeto( this.sala );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con sala: " + sala);
+                Error.ingresarError( 2, "no se encontraron coincidencias con sala: " + sala );
             }
-            return (clase);
+            return ( clase );
         }
 
         /*CONSULTAR HIJOS*/
@@ -145,21 +142,21 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado clase = new Traslado();
-                string consulta = clase.resource_uri+"?vitrina=" + this.id.ToString();
-                listaNueva = clase.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+                string consulta = clase.resource_uri + "?vitrina=" + this.id.ToString();
+                listaNueva = clase.GetAsCollection( consulta );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro ningun Trasladoa por el momento" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Traslados de Vitrina: "+this.numero);
+                Error.ingresarError( 2, "No existen Traslados de Vitrina: " + this.numero );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
     }
 }
