@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace MuseoCliente.Connection.Objects
+namespace MuseoCliente.Connection.Objects.Estructura
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Estructura
