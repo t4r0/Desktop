@@ -98,7 +98,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?username__contains=" + userName ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?username__contains=" + userName ) );
             }
             catch( Exception e )
             {
