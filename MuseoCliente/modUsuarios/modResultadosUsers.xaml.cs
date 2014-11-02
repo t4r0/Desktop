@@ -35,7 +35,7 @@ namespace MuseoCliente
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             gvResultados.SelectedValuePath = "username";
-            gvResultados.ItemsSource = usuarios.regresarTodos();
+            rbUsuarios.IsChecked = true;
         }
 
         private void rbUsuarios_Click(object sender, RoutedEventArgs e)
@@ -72,6 +72,11 @@ namespace MuseoCliente
             frm.modificar = true;
             frm.userName = gvResultados.SelectedValue.ToString();
             borde.Child = frm;
+        }
+
+        private void rbTodos_Click(object sender, RoutedEventArgs e)
+        {
+            gvResultados.ItemsSource = usuarios.regresarTodos();
         }
 	}
 }

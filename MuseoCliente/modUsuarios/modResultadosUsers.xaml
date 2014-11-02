@@ -23,7 +23,8 @@
 		<StackPanel>
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton x:Name="rbUsuarios" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbUsuarios_Click">Usuarios</RadioButton>
+                <RadioButton x:Name="rbTodos" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbTodos_Click">Todos</RadioButton>
+                <RadioButton x:Name="rbUsuarios" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbUsuarios_Click">Usuarios</RadioButton>
 				<RadioButton x:Name="rbVoluntarios" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbVoluntarios_Click">Voluntarios</RadioButton>
 			</DockPanel>
 			<DockPanel Height="375">
