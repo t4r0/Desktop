@@ -1,16 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections;
 
 
 namespace MuseoCliente.Connection.Objects
 {
-    public class Pieza: ResourceObject<Pieza>
+    public class Pieza : ResourceObject<Pieza>
     {
         [JsonProperty]
         public String codigo { get; set; }
@@ -19,9 +16,9 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int clasificacion { get; set; }
         [JsonProperty]
-        public int autor {get;set;}
+        public int autor { get; set; }
         [JsonProperty]
-        public int responsableRegistro {get;set;}
+        public int responsableRegistro { get; set; }
         [JsonProperty]
         public Boolean registroIDAEH { get; set; }
         [JsonProperty]
@@ -59,34 +56,34 @@ namespace MuseoCliente.Connection.Objects
 
 
         public Pieza()
-            : base("/api/v1/piezas/")
+            : base( "/api/v1/piezas/" )
         {
         }
 
-		public void guardar()
-		{
-			try
-			{
-				this.Create();
-			}
-			catch( Exception e)
-			{
+        public void guardar()
+        {
+            try
+            {
+                this.Create();
+            }
+            catch( Exception e )
+            {
                 //string error = e.Source;// para ver el nombre del error
-				Error.ingresarError(3,"No se ha guardado en la Informacion en la base de datos");
-			}
-		}
-		
-		public void modificar()
-		{
-			try
-			{
-				this.Save(this.codigo);
-			}
-			catch( Exception e)
-			{
-				Error.ingresarError(4,"No se ha modifico en la Informacion en la base de datos");
-			}		
-		}
+                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
+            }
+        }
+
+        public void modificar()
+        {
+            try
+            {
+                this.Save( this.codigo );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos" );
+            }
+        }
         /* FUNCINES ESCENCIALES*/
 
         public ArrayList regresarTodos()
@@ -96,26 +93,26 @@ namespace MuseoCliente.Connection.Objects
             {
                 listaNueva = this.GetAsCollection();
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Piezas en la base de Datos");
+                Error.ingresarError( 2, "No existen Piezas en la base de Datos" );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
-        public void regresarObjeto(int id)
+        public void regresarObjeto( int id )
         {
             try
             {
                 Pieza temp = this.Get();
-                if (temp == null)
+                if( temp == null )
                 {
-                    Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
+                    Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
                 this.codigo = temp.codigo;
@@ -142,143 +139,219 @@ namespace MuseoCliente.Connection.Objects
                 this.diametro = temp.diametro;
 
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
         }
 
         public void regresarObjeto()
         {
-            regresarObjeto(this.id);
+            regresarObjeto( this.id );
         }
 
         /*  CONSULTAS */
-        
 
 
-        public ArrayList buscarNombre(String nombre)
-        {
-            List<Pieza> listaNueva = null;
-			try{
-                string consultar = this.resource_uri + "?nombre__contains=" + nombre;
-                listaNueva = this.GetAsCollection(consultar);
-                if(listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
-			}catch(Exception e)
-			{
-				Error.ingresarError(2,"No se encontro nombre similares");
-			}
-            if (listaNueva == null)
-            {
-                Error.ingresarError(2, "No existen piezas con el nombre: "+nombre);
-                return null;
-            }
-            return new ArrayList(listaNueva);
-        }
 
-        public ArrayList buscarResponsableEquipo(int responsable)
+        public ArrayList buscarNombre( String nombre )
         {
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri+"?responsableRegistro=" + responsable.ToString();
-                listaNueva = this.GetAsCollection(consultar);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                listaNueva = this.GetAsCollection( "?nombre__contains=" + nombre );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Piezas con dicho responsable");
+                Error.ingresarError( 2, "No existen piezas con el nombre: " + nombre );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
-        public ArrayList buscarFechaIngreso(DateTime fecha)
+        public ArrayList buscarResponsableEquipo( int responsable )
         {
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri+"?fechaIngreso=" + fecha.Date.ToString();
-                listaNueva = this.GetAsCollection(consultar);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                string consultar = this.resource_uri + "?responsableRegistro=" + responsable.ToString();
+                listaNueva = this.GetAsCollection( consultar );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Piezas con dicha fecha: "+fecha.Date.ToString());
+                Error.ingresarError( 2, "No existen Piezas con dicho responsable" );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
-        public ArrayList buscarRegionCultural(int regionCultural)
+        public ArrayList buscarFechaIngreso( DateTime fecha )
         {
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri+"?regionCultural=" + regionCultural;
-                listaNueva = this.GetAsCollection(consultar);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                string consultar = this.resource_uri + "?fechaIngreso=" + fecha.Date.ToString();
+                listaNueva = this.GetAsCollection( consultar );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No se existen piezas con la region Cultural recibida");
+                Error.ingresarError( 2, "No existen Piezas con dicha fecha: " + fecha.Date.ToString() );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
-        public ArrayList  buscarExibicion(bool exib)
+        public ArrayList buscarRegionCultural( int regionCultural )
         {
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri+"?exhibicion=" + exib.ToString();
-                listaNueva = this.GetAsCollection(consultar);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro nombre similares");
+                string consultar = this.resource_uri + "?regionCultural=" + regionCultural;
+                listaNueva = this.GetAsCollection( consultar );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError( 2, "No se encontro nombre similares" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Piezas con que esten en Exibicion: "+exib.ToString());
+                Error.ingresarError( 2, "No se existen piezas con la region Cultural recibida" );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
-        
+        public ArrayList buscarExibicion()
+        {
+            List<Pieza> listaNueva = null;
+            try
+            {
+                listaNueva = this.GetAsCollection( "?exhibicion=true" );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "No se encontraron piezas en exhibicion" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No existen Piezas que esten en Exibicion" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
+
+        public ArrayList buscarClasificacion( int clasificacion )
+        {
+            List<Pieza> listaNueva = null;
+            try
+            {
+                listaNueva = this.GetAsCollection( "?clasificacion=" + clasificacion );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "No se encontraron piezas con clasificacion" + clasificacion );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron piezas con clasificacion" + clasificacion );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
+
+        public ArrayList regresarOrdenadasPorClasificacion()
+        {
+            List<Pieza> listaNueva = null;
+            try
+            {
+                List<Pieza> temp = this.fetchAll();
+                var temp2 = temp.OrderBy( x => x.clasificacion ).ToList();
+                listaNueva = temp2;
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "No se encontraron piezas con clasificacion" + clasificacion );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No se encontraron piezas con clasificacion" + clasificacion );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
+
+        public ArrayList buscarBodega()
+        {
+            List<Pieza> listaNueva = null;
+            try
+            {
+                listaNueva = this.GetAsCollection( "?exhibicion=false" );
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no hay piezas en bodega" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No existen Piezas que esten en bodega" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
+
+        public ArrayList buscarUltimasIngresadas()
+        {
+            List<Pieza> listaNueva = null;
+            try
+            {
+                var temp = this.fetchAll();
+                var temp2 = from x in temp where x.fechaIngreso <= DateTime.Now select x;
+                listaNueva = temp2.ToList();
+            }
+            catch( Exception e )
+            {
+                Error.ingresarError( 2, "no hay piezas en bodega" );
+            }
+            if( listaNueva == null )
+            {
+                Error.ingresarError( 2, "No existen Piezas que esten en bodega" );
+                return null;
+            }
+            return new ArrayList( listaNueva );
+        }
         /*  CONSULTAS DE PADRES*/
         public Clasificacion regresarClasificaciones()
         {
             Clasificacion consol = new Clasificacion();
             try
             {
-                consol.regresarObjeto(this.clasificacion);
+                consol.regresarObjeto( this.clasificacion );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No existe Coneccion");
+                Error.ingresarError( 2, "No existe Coneccion" );
             }
-            return (consol);
+            return ( consol );
         }
 
         public Autor consultarAutor()
@@ -286,14 +359,14 @@ namespace MuseoCliente.Connection.Objects
             Autor autor = new Autor();
             try
             {
-                autor.regresarObjecto(this.autor);
+                autor.regresarObjecto( this.autor );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(2, "No se encontro nombre similares");
+                Error.ingresarError( 2, "No se encontro nombre similares" );
             }
 
-            return (autor);
+            return ( autor );
         }
 
         /*CONSULTAS DE HIJOS*/
@@ -304,21 +377,21 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Consolidacion clase = new Consolidacion();
-                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
-                listaNueva = clase.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro Consolidacion");
+                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection( consulta );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro Consolidacion" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No se encontraron Consolidaciones de Pieza: "+this.nombre);
+                Error.ingresarError( 2, "No se encontraron Consolidaciones de Pieza: " + this.nombre );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
         public ArrayList regresarTraslados()
@@ -327,21 +400,21 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Traslado clase = new Traslado();
-                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
-                listaNueva = clase.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection( consulta );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro ningun Trasladoa por el momento" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Traslados de la pieza: "+this.nombre);
+                Error.ingresarError( 2, "No existen Traslados de la pieza: " + this.nombre );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
         public ArrayList regresarRegistro()
@@ -350,21 +423,21 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Registro clase = new Registro();
-                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
-                listaNueva = clase.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection( consulta );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro ningun Trasladoa por el momento" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Registros de la Pieza: "+this.nombre);
+                Error.ingresarError( 2, "No existen Registros de la Pieza: " + this.nombre );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
         public ArrayList regresarFotografia()
@@ -373,21 +446,21 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Fotografia clase = new Fotografia();
-                string consulta = clase.resource_uri+"?pieza=" + this.codigo;
-                listaNueva = clase.GetAsCollection(consulta);
-                if (listaNueva == null)
-                    Error.ingresarError(2, "No se encontro ningun Trasladoa por el momento");
+                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                listaNueva = clase.GetAsCollection( consulta );
+                if( listaNueva == null )
+                    Error.ingresarError( 2, "No se encontro ningun Trasladoa por el momento" );
             }
-            catch (Exception e)
+            catch( Exception e )
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
-            if (listaNueva == null)
+            if( listaNueva == null )
             {
-                Error.ingresarError(2, "No existen Fotografias de Pieza: "+this.nombre);
+                Error.ingresarError( 2, "No existen Fotografias de Pieza: " + this.nombre );
                 return null;
             }
-            return new ArrayList(listaNueva);
+            return new ArrayList( listaNueva );
         }
 
     }
