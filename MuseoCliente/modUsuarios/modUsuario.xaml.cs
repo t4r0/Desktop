@@ -19,8 +19,9 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modUsuario : UserControl
 	{
-        Connection.Objects.Usuario usuario = new Connection.Objects.Usuario();
-        Connection.Objects.Pais paises = new Connection.Objects.Pais();
+        Usuario usuario = new Usuario();
+        Pais paises = new Pais();
+        Grupo grupos = new Grupo();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -36,8 +37,6 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //Grupos de usuarios:
-
             //Paises
             cmbPais.SelectedValuePath = "iso";
             cmbPais.DisplayMemberPath = "printable_name";
@@ -100,8 +99,6 @@ namespace MuseoCliente
             {
                 MessageBox.Show("Correcto");
             }
-            // Pendiente grupo usuario
-
             /* Pendiente voluntario
             if (chkVoluntario.IsChecked == true)
             {
