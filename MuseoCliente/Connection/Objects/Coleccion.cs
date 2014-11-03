@@ -50,7 +50,7 @@ namespace MuseoCliente.Connection.Objects
             List<Coleccion> listaNueva = null;
             try
             {
-                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
+                string consultarNombre = "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
             }
             catch (Exception e)
@@ -69,6 +69,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Coleccion fichaTemp = this.Get();
                 if (fichaTemp == null)
                 {
@@ -77,6 +78,7 @@ namespace MuseoCliente.Connection.Objects
                 }
                 this.id = fichaTemp.id;
                 this.nombre = fichaTemp.nombre;
+                this.resource_uri = fichaTemp.resource_uri;
                 
 
             }
@@ -97,7 +99,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Clasificacion clas = new Clasificacion();
-                string consulta = this.resource_uri +"?coleccion=" + this.id.ToString();
+                string consulta = "?coleccion=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection(consulta);
                 if (listaNueva == null)
                     Error.ingresarError(2, "No se encontro nombre similares");
@@ -120,7 +122,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList(this.GetAsCollection());
+                listaNueva = new ArrayList(this.fetchAll());
             }
             catch (Exception e)
             {

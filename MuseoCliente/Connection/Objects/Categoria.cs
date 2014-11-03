@@ -46,7 +46,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?nombre=" + nombre ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?nombre=" + nombre ) );
             }
             catch( Exception e )
             {
@@ -66,7 +66,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Clasificacion Clasificacion = new Clasificacion();
-                List<Clasificacion> Clasificaciones = Clasificacion.GetAsCollection( Clasificacion.resource_uri + "?categoria=" + this.id );
+                List<Clasificacion> Clasificaciones = Clasificacion.GetAsCollection( "?categoria=" + this.id );
             }
             catch( Exception e )
             {
@@ -103,6 +103,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Categoria fichaTemp = this.Get();
                 if (fichaTemp == null)
                 {
