@@ -28,7 +28,7 @@
         <StackPanel>
             <Label Height="20"/>
             <DockPanel>
-                <Border Height="100" Width="115" Margin="10,8,0,10" VerticalAlignment="Top" Background="#FFF0F0F0" CornerRadius="10">
+                <Border Height="100" Width="115" Margin="10,8,0,10" VerticalAlignment="Top" Background="#FFF0F0F0" CornerRadius="10" MouseUp="Border_MouseUp_1">
                     <Image x:Name="imageAfiche" Source="{Binding afiche, Mode=TwoWay}" MouseLeftButtonUp="imageAfiche_MouseLeftButtonUp"/>
                 </Border>
                 <StackPanel>
