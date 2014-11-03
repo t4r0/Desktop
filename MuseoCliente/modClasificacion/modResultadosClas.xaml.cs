@@ -30,7 +30,7 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //gvResultados.ItemsSource = 
+            rbCateg.IsChecked = true;
         }
 
         private void rbCateg_Checked(object sender, RoutedEventArgs e)
