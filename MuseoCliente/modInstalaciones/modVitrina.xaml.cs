@@ -51,7 +51,7 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             //vitrina.sala = Convert.ToInt16(cmbSala.SelectedValue.ToString());
-            vitrina.sala = 3;
+            vitrina.sala = (int)cmbSala.SelectedValue;
             vitrina.numero = txtNumero.Text;
             if (modificar == false)
             {

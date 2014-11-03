@@ -27,7 +27,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 if( e.Source != null )
                 {
-                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos" );
+                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos " + e.Message );
                 }
             }
         }

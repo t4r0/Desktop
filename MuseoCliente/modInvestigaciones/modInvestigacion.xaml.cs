@@ -18,7 +18,7 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modInvestigacion : UserControl
 	{
-        //Pendiente Editor: Porque es el usuario que ingresa
+        //Pendiente Editor: Porque es el usuario que ingresa -
         Connection.Objects.Pieza piezas = new Connection.Objects.Pieza();
         Connection.Objects.Autor autores = new Connection.Objects.Autor();
         Connection.Objects.Investigacion investigacion = new Connection.Objects.Investigacion();
@@ -56,8 +56,8 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             investigacion.titulo = txtTitulo.Text;
-            investigacion.contenido = StringFromRichTextBox(rtxtDescripcion);
-            investigacion.resumen = StringFromRichTextBox(rtxtResumen);
+            investigacion.contenido = txtDescripcion.Text;
+            investigacion.resumen = txtResumen.Text;
             // Error en la clase = investigacion.autor = Convert.ToInt16(cmbAutor.SelectedValue.ToString());
             investigacion.publicado = publicado; //Verificar la clase porque en la BD esta como tinyInt
             // Pregunta: la fecha es con un Now()? o puede seleccionar fecha? investigacion.fecha = ????;
