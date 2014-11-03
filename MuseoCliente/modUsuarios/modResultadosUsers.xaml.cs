@@ -35,7 +35,6 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvResultados.SelectedValuePath = "username";
             rbUsuarios.IsChecked = true;
         }
 
@@ -43,8 +42,8 @@ namespace MuseoCliente
         {
             if (usuarios.consultaUserName(busqueda) != null)
             {
-                gvResultados.SelectedValuePath = "username";
                 gvResultados.ItemsSource = usuarios.consultaUserName(busqueda);
+                gvResultados.SelectedValuePath = "username";
             }
             else
             {
@@ -91,14 +90,15 @@ namespace MuseoCliente
         private void rbTodos_Click(object sender, RoutedEventArgs e)
         {
             gvResultados.ItemsSource = usuarios.regresarTodos();
+            gvResultados.SelectedValuePath = "username";
         }
 
         private void rbAutores_Checked(object sender, RoutedEventArgs e)
         {
             if (autores.consultarNombre(busqueda) != null)
             {
-                gvResultados.SelectedValuePath = "id";
                 gvResultados.ItemsSource = autores.consultarNombre(busqueda);
+                gvResultados.SelectedValuePath = "id";
             }
             else
             {

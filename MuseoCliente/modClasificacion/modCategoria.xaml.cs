@@ -47,6 +47,7 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
         }
 
