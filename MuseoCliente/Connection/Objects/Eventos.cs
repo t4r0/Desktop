@@ -20,9 +20,9 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String nombre { get; set; }
         [JsonProperty]
-        public int sala { get; set; }
+        public string sala { get; set; }
         [JsonProperty]
-        public int usuario { get; set; }
+        public string usuario { get; set; }
 
         public Eventos()
             : base( "/api/v1/eventos/" )
@@ -307,7 +307,7 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
 
-            if( listaNueva.Count <= 0 )
+            if( listaNueva == null)
             {
                 Error.ingresarError( 2, "No se encontro ninguna coincidencia " );
                 return null;
@@ -336,7 +336,7 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
 
-            if( listaNueva.Count <= 0 )
+            if( listaNueva == null )
             {
                 Error.ingresarError( 2, "No hay eventos finalizados " );
                 return null;

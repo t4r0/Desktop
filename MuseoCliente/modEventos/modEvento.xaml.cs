@@ -25,7 +25,7 @@ namespace MuseoCliente
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
-        public int id;
+        public string nombre;
         private string direccionImagen = "";
         private string nombreImagen = "";
         string nuevaDir = "";
@@ -41,6 +41,7 @@ namespace MuseoCliente
             Imagen op = new Imagen();
             nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
             evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
+            evento.usuario = "JEscalante";
             if (modificar == false)
             {
                 evento.guardar();
@@ -81,15 +82,13 @@ namespace MuseoCliente
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             cmbSala.DisplayMemberPath = "nombre";
-            cmbSala.SelectedValuePath = "id";
+            cmbSala.SelectedValuePath = "nombre";
             cmbSala.ItemsSource = salas.regresarTodos();
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Evento";
                 //categ = categ.buscarPorID(id);
-                cmbSala.SelectedValue = "Pendiente";
-                txtNombre.Text = "Pendiente";
                 //dpFecha.SelectedDate = 
                 //rtxtDescripcion.TextChanged = "";
             }
@@ -97,6 +96,7 @@ namespace MuseoCliente
             {
                 lblOperacion.Content = "Nuevo Evento";
             }
+            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -115,7 +115,6 @@ namespace MuseoCliente
             dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
             dialogo.InitialDirectory = "C:";
             dialogo.Title = "Seleccione la Imagen del Afiche";
-            dialogo.ShowDialog();
             if (dialogo.ShowDialog() == true)
             {
                 direccionImagen = dialogo.FileName;
