@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection.Objects;
+using System.Globalization;
 
 namespace MuseoCliente
 {
@@ -29,6 +30,7 @@ namespace MuseoCliente
         private string direccionImagen = "";
         private string nombreImagen = "";
         string nuevaDir = "";
+        bool modificarImagen = false;
         public modEvento()
 		{
 			this.InitializeComponent();
@@ -39,16 +41,22 @@ namespace MuseoCliente
             UtilidadS3 utilidad = new UtilidadS3();
             evento = (Eventos)this.DataContext;
             Imagen op = new Imagen();
-            nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
-            evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
+            if (modificarImagen == true)
+            {
+                nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
+                evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
+            }
             evento.usuario = "JEscalante";
+            evento.fecha = dpFecha.SelectedDate.Value.Date;
             if (modificar == false)
             {
                 evento.guardar();
+                modificarImagen = false;
             }
             else
             {
                 evento.modificar();
+                modificarImagen = false;
             }
             if (Connection.Objects.Error.isActivo())
             {
@@ -96,7 +104,6 @@ namespace MuseoCliente
             {
                 lblOperacion.Content = "Nuevo Evento";
             }
-            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -121,6 +128,7 @@ namespace MuseoCliente
                 nombreImagen = dialogo.SafeFileName;
                 ImageSource imageSource = new BitmapImage(new Uri(dialogo.FileName));
                 imageAfiche.Source = imageSource;
+                modificarImagen = true;
             }
         }
 	}
