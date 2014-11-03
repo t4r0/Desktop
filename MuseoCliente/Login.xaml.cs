@@ -66,7 +66,8 @@ namespace MuseoCliente
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-          
+            txtUsuario.Focus();
+            txtUsuario.SelectAll();
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MuseoCliente.Connection.Objects
 {
@@ -85,10 +86,12 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList regresarTodo()
         {
-            ArrayList listaNueva = null;
+            List<Caja> listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+                listaNueva = this.GetAsCollection();
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se econtro ninguna Caja registrada");
             }
             catch( Exception e )
             {
@@ -99,18 +102,21 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError( 2, "No se encontraron coincidencias" );
                 return null;
             }
-            return listaNueva;
+            return new ArrayList(listaNueva);
         }
 
         public void regresarObjecto( int id )
         {
+            this.resource_uri = this.resource_uri + id + "/";
             Caja Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );
                 return;
             }
+            this.id = Temp.id;
             this.codigo = Temp.codigo;
+            this.resource_uri = Temp.resource_uri;
         }
     }
 }

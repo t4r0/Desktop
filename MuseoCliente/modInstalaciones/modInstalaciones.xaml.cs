@@ -29,9 +29,9 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //gvSalas.ItemsSource = salas.regresarTodos();
-            //gvCajas.ItemsSource = cajas.regresarTodo();
-            //gvVitrinas.ItemsSource = vitrinas.regresarTodos();
+            gvSalas.ItemsSource = salas.regresarTodos();
+            gvCajas.ItemsSource = cajas.regresarTodo();
+            gvVitrinas.ItemsSource = vitrinas.regresarTodos();
         }
 
         private void btnNuevaSala_Click(object sender, RoutedEventArgs e)
