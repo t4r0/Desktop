@@ -55,8 +55,9 @@ namespace MuseoCliente
             modEvento frm = new modEvento();
             frm.borde = borde;
             frm.anterior = this;
-            frm.nombre = gvResultados.SelectedValue.ToString();
+            frm.modificar = true;
             borde.Child = frm;
+            frm.DataContext = gvResultados.SelectedItem;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
