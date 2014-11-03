@@ -20,6 +20,7 @@ namespace MuseoCliente
 	{
         public string busqueda = "";
         private Connection.Objects.Usuario usuarios = new Connection.Objects.Usuario();
+        private Connection.Objects.Autor autores = new Connection.Objects.Autor();
         public UserControl anterior;
         public Border borde;
         public modResultadosUsers()
@@ -34,8 +35,7 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvResultados.SelectedValuePath = "username";
-            gvResultados.ItemsSource = usuarios.regresarTodos();
+            rbUsuarios.IsChecked = true;
         }
 
         private void rbUsuarios_Click(object sender, RoutedEventArgs e)
@@ -43,6 +43,7 @@ namespace MuseoCliente
             if (usuarios.consultaUserName(busqueda) != null)
             {
                 gvResultados.ItemsSource = usuarios.consultaUserName(busqueda);
+                gvResultados.SelectedValuePath = "username";
             }
             else
             {
@@ -66,12 +67,43 @@ namespace MuseoCliente
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            modUsuario frm = new modUsuario();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.modificar = true;
-            frm.userName = gvResultados.SelectedValue.ToString();
-            borde.Child = frm;
+            if (rbAutores.IsChecked == true)
+            {
+                modAutor frm = new modAutor();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.modificar = true;
+                frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+                borde.Child = frm;
+            }
+            else
+            {
+                modUsuario frm = new modUsuario();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.modificar = true;
+                frm.userName = gvResultados.SelectedValue.ToString();
+                borde.Child = frm;
+            }
+        }
+
+        private void rbTodos_Click(object sender, RoutedEventArgs e)
+        {
+            gvResultados.ItemsSource = usuarios.regresarTodos();
+            gvResultados.SelectedValuePath = "username";
+        }
+
+        private void rbAutores_Checked(object sender, RoutedEventArgs e)
+        {
+            if (autores.consultarNombre(busqueda) != null)
+            {
+                gvResultados.ItemsSource = autores.consultarNombre(busqueda);
+                gvResultados.SelectedValuePath = "id";
+            }
+            else
+            {
+                MessageBox.Show("No hay autores con el nombre");
+            }
         }
 	}
 }

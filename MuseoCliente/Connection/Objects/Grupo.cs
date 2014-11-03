@@ -13,7 +13,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String name { get; set; }
 
-        public Grupo(): base("/v1/grupos/")
+        public Grupo(): base("/api/v1/grupos/")
         {
         }
 
@@ -27,7 +27,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 if (e.Source != null)
                 {
-                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos");
+                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos "+e.Message);
                 }
             }
         }
@@ -42,7 +42,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 if (e.Source != null)
                 {
-                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
+                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos "+e.Message);
                 }
             }
         }
@@ -56,23 +56,22 @@ namespace MuseoCliente.Connection.Objects
             {
                 lista = this.fetchAll();
                 if (lista == null)
-                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada");
+                    Error.ingresarError(2, "No se econtro ninguna Ficha registrada " );
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet "+e.Message);
             }
 
             return new ArrayList(lista);
         }
 
-        public void regresarObjeto(int ide)
+        public void regresarObjeto(int id)
         {
             try
             {
-                Grupo grupo = new Grupo();
-                grupo.id = ide;
-                grupo = grupo.Get();
+                this.resource_uri = this.resource_uri + id + "/";
+                Grupo grupo = this.Get();
                 if (grupo == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
@@ -92,5 +91,22 @@ namespace MuseoCliente.Connection.Objects
             regresarObjeto(this.id);
         }
 
+        public static void asignarUsuarios(string username, int grupo)
+        {
+            try
+            {
+                Dictionary<string, string> dict = new Dictionary<string, string>();
+                dict["username"] = username;
+                dict["idGrupo"] = grupo.ToString();
+                string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
+                Connector conector = new Connector("/api/v1/grupos/registrar/");
+                conector.create(content);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(3, "No se ha asigando correctamente la relacion de grupo " + e.Message);
+            }
+
+        }
     }
 }

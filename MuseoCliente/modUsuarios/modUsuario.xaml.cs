@@ -19,8 +19,9 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modUsuario : UserControl
 	{
-        Connection.Objects.Usuario usuario = new Connection.Objects.Usuario();
-        Connection.Objects.Pais paises = new Connection.Objects.Pais();
+        Usuario usuario = new Usuario();
+        Pais paises = new Pais();
+        Grupo grupos = new Grupo();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -36,23 +37,19 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //cmbGrupo.DisplayMemberPath = "Nombre del grupo"; //Pendiente
-            //cmbGrupo.SelectedValuePath = "id?"; //Pendiente
+            //Paises
             cmbPais.SelectedValuePath = "iso";
             cmbPais.DisplayMemberPath = "printable_name";
             cmbPais.ItemsSource = paises.regresarTodos();
-            //Falta clase para regresar todos los grupos de usuario. cmbPais.ItemsSource = paises.regresarTodos();
-            //Cargar datos
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Usuario";
                 usuario = (Usuario)usuario.consultaUserName(userName)[0];
-                lblUserName.Text = usuario.username;
+                lblUserName.Content = usuario.username;
                 txtNombres.Text = usuario.first_name;
                 txtApellidos.Text = usuario.last_name;
                 txtCorreo.Text = usuario.email;
-                //txtContra.Text = usuario.password;
                 cmbPais.SelectedValue = usuario.pais;
                 rtxtBiografia.Text = usuario.biografia;
                 if (usuario.is_staff == true)
@@ -74,7 +71,6 @@ namespace MuseoCliente
         {
             usuario.first_name = txtNombres.Text;
             usuario.last_name = txtApellidos.Text;
-            //usuario.password = txtContra.Text;
             usuario.email = txtCorreo.Text;
             usuario.pais = cmbPais.SelectedValue.ToString();
             usuario.biografia = rtxtBiografia.Text;
@@ -103,8 +99,6 @@ namespace MuseoCliente
             {
                 MessageBox.Show("Correcto");
             }
-            // Pendiente grupo usuario
-
             /* Pendiente voluntario
             if (chkVoluntario.IsChecked == true)
             {

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -19,8 +20,8 @@ namespace MuseoCliente
 	public partial class modResultadosClas : UserControl
 	{
         public string busqueda = "";
-        private Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
-        private Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        Categoria categ = new Categoria();
+        Coleccion colec = new Coleccion();
         public UserControl anterior;
         public Border borde;
         public modResultadosClas()
@@ -30,16 +31,15 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //gvResultados.ItemsSource = 
+            rbCateg.IsChecked = true;
         }
 
         private void rbCateg_Checked(object sender, RoutedEventArgs e)
         {
             if (categ.consultarNombre(busqueda) != null)
             {
-                gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = categ.consultarNombre(busqueda);
-                MessageBox.Show(categ.consultarNombre(busqueda).Count.ToString());
+                gvResultados.SelectedValuePath = "id";
             }
             else
             {
@@ -51,8 +51,8 @@ namespace MuseoCliente
         {
             if (colec.consultarNombre(busqueda) != null)
             {
-                gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = colec.consultarNombre(busqueda);
+                gvResultados.SelectedValuePath = "id";
             }
             else
             {
@@ -66,21 +66,20 @@ namespace MuseoCliente
             {
                 modCategoria frm = new modCategoria();
                 frm.borde = borde;
-                frm.anterior = this;
+                frm.anterior = this.anterior;
+                frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-                MessageBox.Show(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
             if (rbColec.IsChecked == true)
             {
                 modColeccion frm = new modColeccion();
                 frm.borde = borde;
-                frm.anterior = this;
+                frm.anterior = this.anterior;
+                frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-                MessageBox.Show(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
-            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

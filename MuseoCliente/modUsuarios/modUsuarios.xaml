@@ -43,7 +43,7 @@
 				</DataGrid>
 			</StackPanel>
 			<StackPanel Height="190">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0" Content="Voluntarios:"/>
+				<Label VerticalAlignment="Center" Margin="10,0,0,0" Content="Autores:"/>
 				<DataGrid x:Name="gvVoluntarios" Margin="15,0,15,0" Height="143"/>
 			</StackPanel>
 			<Label Height="20"/>
