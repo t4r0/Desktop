@@ -359,7 +359,7 @@ namespace MuseoCliente.Connection.Objects
             Autor autor = new Autor();
             try
             {
-                autor.regresarObjecto( this.autor );
+                autor.regresarObjeto( this.autor );
             }
             catch( Exception e )
             {
