@@ -35,6 +35,7 @@ namespace MuseoCliente
         {
             UtilidadS3 utilidad = new UtilidadS3();
             sala = (Sala) this.DataContext;
+            // comentario 
             sala.fotografia = utilidad.subirSalaoEvento(sala.nombre, direccionImagen ,sala.nombre + "." + nombreImagen.Split('.')[1], true);
             if (modificar == false)
             {
