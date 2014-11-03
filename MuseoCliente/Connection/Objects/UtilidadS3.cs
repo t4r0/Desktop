@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Transfer;
 
-namespace solucionAmazonS3
+namespace MuseoCliente.Connection.Objects
 {
     public class UtilidadS3
     {
@@ -61,7 +61,7 @@ namespace solucionAmazonS3
             }
             return url;
         }
-        public String subirSalaoEvento(int id, string rutaArchivo, string nombreArchivo, Boolean esSala)
+        public String subirSalaoEvento(string id, string rutaArchivo, string nombreArchivo, Boolean esSala)
         {
             string KEY_NAME = "";
             if (esSala)

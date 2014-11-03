@@ -23,7 +23,6 @@ namespace MuseoCliente
     {
 
         Sala sala = new Sala();
-        Estructuras.Observador observer;
         public MainWindow()
         {
             InitializeComponent();

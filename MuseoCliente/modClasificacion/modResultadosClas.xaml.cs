@@ -66,7 +66,7 @@ namespace MuseoCliente
             {
                 modCategoria frm = new modCategoria();
                 frm.borde = borde;
-                frm.anterior = this;
+                frm.anterior = this.anterior;
                 frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
@@ -75,12 +75,11 @@ namespace MuseoCliente
             {
                 modColeccion frm = new modColeccion();
                 frm.borde = borde;
-                frm.anterior = this;
+                frm.anterior = this.anterior;
                 frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
-            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
