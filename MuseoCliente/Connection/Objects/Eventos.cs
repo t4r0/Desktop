@@ -323,6 +323,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 List<Eventos> Temp = this.fetchAll();
                 listaNueva = new List<Eventos>();
+                if(Temp != null)
                 foreach( Eventos Evento in Temp )
                 {
                     if( Evento.fecha < DateTime.Now )

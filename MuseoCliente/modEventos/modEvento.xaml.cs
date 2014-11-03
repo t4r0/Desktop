@@ -41,6 +41,7 @@ namespace MuseoCliente
             Imagen op = new Imagen();
             nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
             evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
+            //eventohora
             evento.usuario = "JEscalante";
             if (modificar == false)
             {
