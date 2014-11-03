@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-
+using Newtonsoft.Json.Converters;
 namespace MuseoCliente.Connection.Objects
 {
     public class Eventos : ResourceObject<Eventos>
@@ -12,6 +12,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public String descripcion { get; set; }
         [JsonProperty]
+        [JsonConverter(typeof(IsoDateTimeConverter))]
         public DateTime fecha { get; set; }
         [JsonProperty]
         public string fotoSala { get; set; }
@@ -27,7 +28,7 @@ namespace MuseoCliente.Connection.Objects
         public Eventos()
             : base( "/api/v1/eventos/" )
         {
-
+            fecha = DateTime.Today;
         }
 
         public bool ShouldSerializefotoSala()
@@ -64,7 +65,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = "?nombre__icontains=" + nombre;
                 listaNueva = this.GetAsCollection( consultarNombre );
 
             }
@@ -323,6 +324,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 List<Eventos> Temp = this.fetchAll();
                 listaNueva = new List<Eventos>();
+                if(Temp != null)
                 foreach( Eventos Evento in Temp )
                 {
                     if( Evento.fecha < DateTime.Now )
