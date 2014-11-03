@@ -43,7 +43,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
+                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "e.Message );
             }
         }
 
@@ -64,7 +64,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
+                string consultarNombre = "?nombre=" + nombre;
                 listaNueva = this.GetAsCollection( consultarNombre );
 
             }
@@ -87,7 +87,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultardescripcion = this.resource_uri + "?descripcion=" + descripcion;
+                string consultardescripcion = "?descripcion=" + descripcion;
                 listaNueva = this.GetAsCollection( consultardescripcion );
 
             }
@@ -110,7 +110,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultarafiche = this.resource_uri + "?afiche=" + afiche;
+                string consultarafiche =  "?afiche=" + afiche;
                 listaNueva = this.GetAsCollection( consultarafiche );
 
             }
@@ -136,7 +136,7 @@ namespace MuseoCliente.Connection.Objects
             {
 
                 string fecha2 = fecha.Date.ToString();
-                string consultaraficheporfecha = this.resource_uri + "?fecha2=" + fecha2;
+                string consultaraficheporfecha =  "?fecha2=" + fecha2;
                 listaNueva = this.GetAsCollection( consultaraficheporfecha );
 
 
@@ -163,7 +163,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string sala2 = sala.ToString();
                 //fecha.Date.ToString();
-                string consultaraficheporsala = this.resource_uri + "?sala=" + sala2;
+                string consultaraficheporsala ="?sala=" + sala2;
                 listaNueva = this.GetAsCollection( consultaraficheporsala );
 
             }
@@ -188,7 +188,7 @@ namespace MuseoCliente.Connection.Objects
 
                 string usuario2 = usuario.ToString();
                 //fecha.Date.ToString();
-                string consultareventoporusuario = this.resource_uri + "?usuario=" + usuario2;
+                string consultareventoporusuario =  "?usuario=" + usuario2;
                 listaNueva = this.GetAsCollection( consultareventoporusuario );
 
 
@@ -212,6 +212,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Eventos eventosTemp = this.Get();
                 if( eventosTemp == null )
                 {
@@ -225,6 +226,7 @@ namespace MuseoCliente.Connection.Objects
                 this.fecha = eventosTemp.fecha;
                 this.sala = eventosTemp.sala;
                 this.usuario = eventosTemp.usuario;
+                this.resource_uri = eventosTemp.resource_uri;
             }
             catch( Exception e )
             {
@@ -267,7 +269,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Eventos clas = new Eventos();
-                string consulta = this.resource_uri + "?eventos=" + this.id.ToString();
+                string consulta =  "?eventos=" + this.id.ToString();
                 listaNueva = clas.GetAsCollection( consulta );
 
             }
