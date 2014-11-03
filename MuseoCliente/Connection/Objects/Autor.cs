@@ -38,7 +38,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos" );
+                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos "+e.Message );
             }
         }
 
@@ -143,14 +143,16 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjeto( int id )
         {
-            this.resource_uri = this.resource_uri + "/"+id+"/";
+            this.resource_uri = this.resource_uri + id + "/";
             Autor Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );
                 return;
             }
+            this.id = Temp.id;
             this.nombre = Temp.nombre;
+            this.apellido = Temp.apellido;
             this.pais = Temp.pais;
             this.resource_uri = Temp.resource_uri;
         }
