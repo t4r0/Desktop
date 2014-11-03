@@ -43,6 +43,7 @@ namespace MuseoCliente
         {
             if (usuarios.consultaUserName(busqueda) != null)
             {
+                gvResultados.SelectedValuePath = "username";
                 gvResultados.ItemsSource = usuarios.consultaUserName(busqueda);
             }
             else
@@ -96,6 +97,7 @@ namespace MuseoCliente
         {
             if (autores.consultarNombre(busqueda) != null)
             {
+                gvResultados.SelectedValuePath = "id";
                 gvResultados.ItemsSource = autores.consultarNombre(busqueda);
             }
             else

@@ -62,7 +62,11 @@ namespace MuseoCliente
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Autor";
-                //
+                //autor.regresarObjeto(id);
+                //Cambios
+                txtNombre.Text = autor.nombre;
+                txtApellido.Text = autor.apellido;
+                cmbPais.SelectedValue = autor.pais;
             }
             else
             {
