@@ -37,10 +37,9 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             UtilidadS3 utilidad = new UtilidadS3();
-            
             evento = (Eventos)this.DataContext;
             Imagen op = new Imagen();
-            nuevaDir = op.cambia(direccionImagen, 800, 800, nombreImagen);
+            nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
             evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
             if (modificar == false)
             {
@@ -107,6 +106,11 @@ namespace MuseoCliente
 
         private void imageAfiche_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            
+        }
+
+        private void Border_MouseUp_1(object sender, MouseButtonEventArgs e)
+        {
             OpenFileDialog dialogo = new OpenFileDialog();
             dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
             dialogo.InitialDirectory = "C:";
@@ -119,11 +123,6 @@ namespace MuseoCliente
                 ImageSource imageSource = new BitmapImage(new Uri(dialogo.FileName));
                 imageAfiche.Source = imageSource;
             }
-        }
-
-        private void Border_MouseUp_1(object sender, MouseButtonEventArgs e)
-        {
-
         }
 	}
 }
