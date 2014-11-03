@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection;
 using MuseoCliente.Connection.Objects;
+using MuseoCliente.Designer;
 namespace MuseoCliente
 {
     /// <summary>
@@ -21,6 +22,7 @@ namespace MuseoCliente
     /// </summary>
     public partial class MainWindow : Window
     {
+        MenuItem selected = new MenuItem();
 
         Sala sala = new Sala();
         public MainWindow()
@@ -32,9 +34,15 @@ namespace MuseoCliente
         {
             
         }
-
+        private void Select(MenuItem item)
+        {
+            item.IsChecked  = true;
+            selected.IsChecked = false;
+            selected = item;
+        }
         private void itemClasif_Click(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modClasificaciones frm = new modClasificaciones();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
@@ -42,12 +50,14 @@ namespace MuseoCliente
 
         private void itemPiezas_Click(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modInventario frm = new modInventario();
             bdrContenedor.Child = frm;
         }
 
         private void itemEventos_Click(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modEventos frm = new modEventos();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
@@ -55,6 +65,7 @@ namespace MuseoCliente
 
         private void itemInsta_Click(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modInstalaciones frm = new modInstalaciones();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
@@ -62,6 +73,7 @@ namespace MuseoCliente
 
         private void itemInves_Click(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modInvestigaciones frm = new modInvestigaciones();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
@@ -74,15 +86,35 @@ namespace MuseoCliente
 
         private void itemFotos_Click(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modGaleria frm = new modGaleria();
             bdrContenedor.Child = frm;
         }
 
         private void itemUsuarios_Click_1(object sender, RoutedEventArgs e)
         {
+            Select((MenuItem)sender);
             modUsuarios frm = new modUsuarios();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            bdrContenedor.Child = new WelcomePage();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            modUsuario usr = new modUsuario();
+            usr.DataContext = DataContext;
+            bdrContenedor.Child = usr;
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            Select((MenuItem)sender);
+            bdrContenedor.Child = new FormDesigner();
         }
     }
 }
