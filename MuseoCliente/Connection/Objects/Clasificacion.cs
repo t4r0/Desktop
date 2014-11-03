@@ -33,7 +33,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 if( e.Source != null )
                 {
-                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos" );
+                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos "+e.Message );
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 if( e.Source != null )
                 {
-                    Error.ingresarError( 4, "No se ha modificado la Informacion en la base de datos" );
+                    Error.ingresarError( 4, "No se ha modificado la Informacion en la base de datos "+e.Message );
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Pieza Pieza = new Pieza();
-                List<Pieza> Piezas = Pieza.GetAsCollection( Pieza.resource_uri + "?clasificacion=" + this.id );
+                List<Pieza> Piezas = Pieza.GetAsCollection( "?clasificacion=" + this.id );
                 listaNueva = new ArrayList( Piezas );
             }
             catch( Exception e )
@@ -81,7 +81,7 @@ namespace MuseoCliente.Connection.Objects
             List<Clasificacion> listaNueva = null;
             try
             {
-                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
+                string consultarNombre = "?nombre__contains=" + nombre;
                 listaNueva = this.GetAsCollection( consultarNombre );
 
 
@@ -102,10 +102,11 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList( listaNueva );
         }
 
-        public void regresarObjeto( int id )//2
+        public void regresarObjeto( int id)//2
         {
             try
             {
+                this.resource_uri = this.resource_uri +id+"/";
                 Clasificacion fichaTemp = this.Get();
                 if( fichaTemp == null )
                 {
@@ -118,17 +119,18 @@ namespace MuseoCliente.Connection.Objects
                 this.ficha = fichaTemp.ficha;
                 this.nombre = fichaTemp.nombre;
                 this.codigo = fichaTemp.codigo;
+                this.resource_uri = fichaTemp.resource_uri;
 
             }
             catch( Exception e )
             {
-                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Por favor Verifique su coneccion a Internet" );
+                Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Por favor Verifique su coneccion a Internet "+ e.Message );
             }
         }
 
         public void regresarObjeto()//3
         {
-            regresarObjeto( this.id );
+            regresarObjeto( this.id);
         }
 
         public ArrayList regresarTodo()
