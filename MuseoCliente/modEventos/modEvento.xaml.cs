@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -19,12 +20,15 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modEvento : UserControl
 	{
-        Connection.Objects.Eventos evento = new Connection.Objects.Eventos();
-        Connection.Objects.Sala salas = new Connection.Objects.Sala();
+        Eventos evento = new Eventos();
+        Sala salas = new Sala();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
-        public int id;
+        public string nombre;
+        private string direccionImagen = "";
+        private string nombreImagen = "";
+        string nuevaDir = "";
         public modEvento()
 		{
 			this.InitializeComponent();
@@ -32,13 +36,12 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            //evento.sala = Convert.ToInt16(cmbSala.SelectedValue.ToString());
-            evento.sala = 3;
-            evento.nombre = txtNombre.Text;
-            evento.fecha = dpFecha.SelectedDate.Value;
-            evento.descripcion = StringFromRichTextBox(rtxtDescripcion);
-            evento.afiche = txtAfiche.Text;
-            evento.usuario = 1;
+            UtilidadS3 utilidad = new UtilidadS3();
+            evento = (Eventos)this.DataContext;
+            Imagen op = new Imagen();
+            nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
+            evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
+            evento.usuario = "JEscalante";
             if (modificar == false)
             {
                 evento.guardar();
@@ -73,40 +76,52 @@ namespace MuseoCliente
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialogo = new OpenFileDialog();
-            dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
-            dialogo.InitialDirectory = "C:";
-            dialogo.Title = "Seleccione la Imagen del Afiche";
-            dialogo.ShowDialog();
-            if (dialogo.ShowDialog() == true)
-                txtAfiche.Text = dialogo.FileName;
+            
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             cmbSala.DisplayMemberPath = "nombre";
-            cmbSala.SelectedValuePath = "id";
+            cmbSala.SelectedValuePath = "nombre";
             cmbSala.ItemsSource = salas.regresarTodos();
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Evento";
                 //categ = categ.buscarPorID(id);
-                cmbSala.SelectedValue = "Pendiente";
-                txtNombre.Text = "Pendiente";
                 //dpFecha.SelectedDate = 
                 //rtxtDescripcion.TextChanged = "";
-                txtAfiche.Text = "";
             }
             else
             {
                 lblOperacion.Content = "Nuevo Evento";
             }
+            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             borde.Child = anterior;
+        }
+
+        private void imageAfiche_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
+
+        private void Border_MouseUp_1(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
+            dialogo.InitialDirectory = "C:";
+            dialogo.Title = "Seleccione la Imagen del Afiche";
+            if (dialogo.ShowDialog() == true)
+            {
+                direccionImagen = dialogo.FileName;
+                nombreImagen = dialogo.SafeFileName;
+                ImageSource imageSource = new BitmapImage(new Uri(dialogo.FileName));
+                imageAfiche.Source = imageSource;
+            }
         }
 	}
 }
