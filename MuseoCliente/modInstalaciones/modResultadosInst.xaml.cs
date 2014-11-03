@@ -36,7 +36,7 @@ namespace MuseoCliente
 
         private void rbCajas_Checked(object sender, RoutedEventArgs e)
         {
-            if (cajas.consultarNombre(busqueda) != null)
+            /*if (cajas.consultarNombre(busqueda) != null)
             {
                 gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = cajas.consultarNombre(busqueda);
@@ -44,7 +44,7 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("No hay cajas con el número");
-            }
+            }*/
         }
 
         private void rbSalas_Checked(object sender, RoutedEventArgs e)
