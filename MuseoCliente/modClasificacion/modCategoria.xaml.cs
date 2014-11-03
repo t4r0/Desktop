@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -18,7 +19,7 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modCategoria : UserControl
 	{
-        Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
+        Categoria categ = new Categoria();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -56,13 +57,12 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //Cargar datos
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Categoría";
-                //categ = categ.buscarPorID(id);
-                txtNombre.Text = "Pendiente";
+                categ.regresarObjeto(id);
+                txtNombre.Text = categ.nombre;
             }
             else
             {
