@@ -66,13 +66,12 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(lista);
         }
 
-        public void regresarObjeto(string resourceUring)
+        public void regresarObjeto(int id)
         {
             try
             {
-                Grupo grupo = new Grupo();
-                grupo.resource_uri = resourceUring;
-                grupo = grupo.Get();
+                this.resource_uri = this.resource_uri + id + "/";
+                Grupo grupo = this.Get();
                 if (grupo == null)
                 {
                     Error.ingresarError(2, "Este Objeto no existe porfavor, ingresar correcta la busqueda");
@@ -89,7 +88,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjeto()
         {
-            regresarObjeto(this.resource_uri);
+            regresarObjeto(this.id);
         }
 
         public static void asignarUsuarios(string username, int grupo)
@@ -98,7 +97,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 Dictionary<string, string> dict = new Dictionary<string, string>();
                 dict["username"] = username;
-                dict["id"] = grupo.ToString();
+                dict["idGrupo"] = grupo.ToString();
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
                 Connector conector = new Connector("/api/v1/grupos/registrar/");
                 conector.create(content);
