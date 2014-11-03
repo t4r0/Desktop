@@ -55,7 +55,7 @@ namespace MuseoCliente
             modEvento frm = new modEvento();
             frm.borde = borde;
             frm.anterior = this;
-            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
+            frm.nombre = gvResultados.SelectedValue.ToString();
             borde.Child = frm;
         }
 
