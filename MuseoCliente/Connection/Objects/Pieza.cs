@@ -18,7 +18,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int autor { get; set; }
         [JsonProperty]
-        public int responsableRegistro { get; set; }
+        public string responsableRegistro { get; set; }
         [JsonProperty]
         public Boolean registroIDAEH { get; set; }
         [JsonProperty]

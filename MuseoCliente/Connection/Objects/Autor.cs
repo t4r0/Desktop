@@ -141,9 +141,9 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public void regresarObjecto( int id )
+        public void regresarObjeto( int id )
         {
-            this.id = id;
+            this.resource_uri = this.resource_uri + "/"+id+"/";
             Autor Temp = this.Get();
             if( Temp == null )
             {
@@ -152,6 +152,7 @@ namespace MuseoCliente.Connection.Objects
             }
             this.nombre = Temp.nombre;
             this.pais = Temp.pais;
+            this.resource_uri = Temp.resource_uri;
         }
     }
 }
