@@ -6,11 +6,11 @@
 	mc:Ignorable="d"
 	x:Class="MuseoCliente.modInvestigacion"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="640">
+	d:DesignWidth="640" Height="516.419">
 
 	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
-			<DockPanel>
+			<DockPanel Height="28">
 				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Investigación</Label>
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
 					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
@@ -23,47 +23,35 @@
 				</Label>
 			</DockPanel>
 		</Border>
-		<StackPanel>
-			<Border BorderBrush="{DynamicResource DarkGray}" BorderThickness="1,1,1,0">
-				<StackPanel>
-					<DockPanel Height="35" Width="500" HorizontalAlignment="Center">
-						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Codigo Pieza:</Label>
-						<TextBox x:Name="txtCodigo" Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-						<Button x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right">Seleccionar</Button>
-					</DockPanel>
-					<DockPanel Height="95" Width="510">
-						<StackPanel Margin="10">
-                            <DataGrid x:Name="gvPiezas" Height="85"/>
-						</StackPanel>
-					</DockPanel>
-					<DockPanel Height="35" HorizontalAlignment="Center">
-						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Pieza a investigar:</Label>
-						<TextBox x:Name="txtCodigoPieza" Height="25" Width="100" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-						<TextBox x:Name="txtNombrePieza" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-					</DockPanel>
-				</StackPanel>
-			</Border>
-			<StackPanel>
-				<Label Height="20"/>
-				<DockPanel Height="35" HorizontalAlignment="Center">
-					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Autor:</Label>
-					<ComboBox x:Name="cmbAutor" Height="25" Width="300" Margin="5,0,0,0"/>
-				</DockPanel>
-				<DockPanel Height="35" HorizontalAlignment="Center">
-					<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Título:</Label>
-					<TextBox x:Name="txtTitulo" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-				</DockPanel>
-				<StackPanel HorizontalAlignment="Center" Margin="80,0,80,0">
-					<Label>Descripción:</Label>
-					<RichTextBox x:Name="rtxtDescripcion" Height="150"/>
-				</StackPanel>
-				<StackPanel HorizontalAlignment="Center" Margin="80,0,80,0">
-					<Label>Resumen:</Label>
-					<RichTextBox x:Name="rtxtResumen" Height="75"/>
-				</StackPanel>
-				<Label Height="20"></Label>
-			</StackPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
-	</DockPanel>
+        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+            <Grid Height="746">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto" MinHeight="313"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="43">Título:</Label>
+                <TextBox Grid.Column="0" x:Name="txtTitulo" Height="25" VerticalAlignment="Top" Margin="10,41,10,0"/>
+                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,71,0,0" Height="26" Width="42">Autor:</Label>
+                <ComboBox Grid.Column="0" x:Name="cmbAutor" Margin="10,102,10,0" Height="25" VerticalAlignment="Top"/>
+                <Label Grid.Column="0" Margin="10,132,242,0" Height="26" VerticalAlignment="Top">Resumen:</Label>
+                <TextBox Grid.Column="0" x:Name="txtResumen" Grid.ColumnSpan="2" Margin="10,163,10,0" Height="75" VerticalAlignment="Top"/>
+                <Label Grid.Column="0" Margin="10,243,227,0" Height="26" VerticalAlignment="Top">Descripción:</Label>
+                <TextBox Grid.Column="0" x:Name="txtDescripcion" Grid.ColumnSpan="2" Margin="10,269,10,0" Height="150" VerticalAlignment="Top"/>
+                
+                <Label Grid.Row="1" Grid.Column="0" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="11,10,0,0" HorizontalAlignment="Left" Width="82" Height="26">Codigo Pieza:</Label>
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtCodigo" Height="24" Width="192" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,39,0,250"/>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="btnSeleccionar" DockPanel.Dock="Right" Width="95" HorizontalAlignment="Right" Margin="0,39,10,250">Seleccionar</Button>
+                <Label Grid.Row="1" Grid.Column="0" Margin="11,69,242,208">Piezas:</Label>
+                <DataGrid Grid.Row="1" Grid.Column="0" x:Name="gvPiezas" Margin="10,0,10,64" Height="148" VerticalAlignment="Bottom"/>
+                
+                <Label Grid.Row="1" Grid.Column="1" Margin="10,69,93,218" RenderTransformOrigin="0.515,1.914">Piezas en esta investigacion:</Label>
+                <DataGrid Grid.Row="1" Grid.Column="1" x:Name="gvPiezasGuardadas" Margin="10,100,10,64"/>
+                
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>
