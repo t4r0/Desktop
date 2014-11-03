@@ -18,7 +18,7 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modInvestigacion : UserControl
 	{
-        //Pendiente Editor: Porque es el usuario que ingresa
+        //Pendiente Editor: Porque es el usuario que ingresa -
         Connection.Objects.Pieza piezas = new Connection.Objects.Pieza();
         Connection.Objects.Autor autores = new Connection.Objects.Autor();
         Connection.Objects.Investigacion investigacion = new Connection.Objects.Investigacion();
