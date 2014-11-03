@@ -97,7 +97,8 @@ namespace MuseoCliente.Designer.Views
 
         private void closeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-        	this.ClosingRequested(this, new EventArgs());
+            if(this.ClosingRequested!=null)
+        	    this.ClosingRequested(this, new EventArgs());
         }
 
         private void UserControl_GotFocus(object sender, RoutedEventArgs e)

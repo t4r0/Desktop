@@ -17,7 +17,7 @@
 			<ColumnDefinition Width="Auto" MinWidth="0"/>
 		</Grid.ColumnDefinitions>
 		<Button x:FieldModifier="public" x:Name="closeButton" Content="X" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource BlueForegrounButton}" Click="closeButton_Click" Margin="0,7" Grid.RowSpan="2"/>
-		<TextBox x:FieldModifier="public" x:Name="content" TextWrapping="Wrap" Text="Opcion" VerticalAlignment="Center" Grid.Column="1" FontFamily="{Binding FontFamily, ElementName=UserControl}" FontSize="{Binding FontSize, ElementName=UserControl}" FontWeight="{Binding FontWeight, ElementName=UserControl}" FontStyle="{Binding FontStyle, ElementName=UserControl}" Style="{DynamicResource CustomTextBox}" Margin="3,4,0,4" Grid.RowSpan="2" KeyDown="content_KeyDown" KeyUp="content_KeyUp"/>
+		<TextBox x:FieldModifier="public" x:Name="content" TextWrapping="Wrap" Text="Opcion" VerticalAlignment="Center" Grid.Column="1" FontFamily="{Binding FontFamily, ElementName=UserControl}" FontSize="{Binding FontSize, ElementName=UserControl}" FontWeight="{Binding FontWeight, ElementName=UserControl}" FontStyle="{Binding FontStyle, ElementName=UserControl}" Style="{DynamicResource FormBoxStyle}" Margin="3,4,0,4" Grid.RowSpan="2" KeyDown="content_KeyDown" KeyUp="content_KeyUp"/>
 		<ToggleButton x:FieldModifier="public" x:Name="selectedPart" Content="" IsEnabled="{Binding IsEnabled, ElementName=UserControl}" VerticalAlignment="Center" Style="{DynamicResource Bullet}" Margin="0" Visibility="Collapsed" Checked="selectedPart_Checked"/>
 		</Grid>
 </BulletDecorator>
