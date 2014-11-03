@@ -812,8 +812,8 @@
 
                         <!-- GlyphPanel contiene la marca de verificación -->
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Visibility" Value="Visible" TargetName="GlyphPanel"/>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="Icon"/>
+                            <Setter Property="Background" Value="{DynamicResource PureBlue}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{DynamicResource White}"/>
                         </Trigger>
 
                         <Trigger Property="AllowsTransparency" SourceName="SubMenuPopup" Value="true">

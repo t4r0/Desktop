@@ -8,9 +8,14 @@
     </Window.Resources>
     <DockPanel>
         <StackPanel HorizontalAlignment="Left" Width="209" Margin="0,45,0,0" Background="{x:Null}">
+            <Grid>
             <Border Height="100" Width="100" CornerRadius="50" Background="{DynamicResource LightGray}" Margin="0,10" HorizontalAlignment="Center">
                 <Image Source="{Binding fotografia}"/>
             </Border>
+                <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource BlueForegrounButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="36" Click="Button_Click_2">
+                    &#9998;
+                </Button>
+            </Grid>
             <TextBlock Foreground="{DynamicResource Black}" Text="{Binding fullName}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Height="25" FontSize="14" TextAlignment="Center" Margin="0,0,0,5" DockPanel.Dock="Right" VerticalAlignment="Center"/>
             <Path Data="M3,5 L167,5" Fill="{DynamicResource Gray}" Height="1" Stretch="Fill" Stroke="{DynamicResource Gray}" Width="165"/>
             <MenuItem x:Name="itemPiezas" Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemPiezas_Click">
@@ -27,7 +32,7 @@
                     	</InlineUIContainer></TextBlock>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0">
+            <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="MenuItem_Click_1">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0"><Run Text="&#xE731;"/><InlineUIContainer>
                     		<TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><Run Text="Fichas"/></TextBlock>
@@ -79,9 +84,9 @@
         </StackPanel>
         <Border Height="50" VerticalAlignment="Top" DockPanel.Dock="Top" Margin="-209,0,0,0" BorderThickness="0,0,0,1" >
             <DockPanel LastChildFill="False" Background="{DynamicResource LimeGreen}">
-                <Label Height="29" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,5,0,10">
-                    <TextBlock HorizontalAlignment="Center" FontSize="26.667" FontWeight="Bold" Style="{DynamicResource WhiteIcons}"><Run Text="⌂"/></TextBlock>
-                </Label>                
+                <Button Style="{DynamicResource WhiteForegroundButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="36" Margin="10,0,0,0" Click="Button_Click_1">
+                    &#8962;
+                </Button>            
             </DockPanel>
         </Border>
         <Border x:Name="bdrContenedor" BorderThickness="1,0,0,0" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}">
