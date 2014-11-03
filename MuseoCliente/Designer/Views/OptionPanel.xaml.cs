@@ -94,6 +94,17 @@ namespace MuseoCliente.Designer.Views
             selectedOptions = new List<OptionViewer>();
 		}
 
+        public OptionPanel(List<string> opciones)
+        {
+            this.InitializeComponent();
+            selectedOptions = new List<OptionViewer>();
+            RemoveOptionAt(0);
+            foreach (string opcion in opciones)
+            {
+                this.AddOption(opcion);
+            }
+        }
+
 		private void OptionViewer_Edited(object sender, System.Windows.RoutedEventArgs e)
 		{
             /*OptionViewer viewer = sender as OptionViewer;
@@ -117,6 +128,9 @@ namespace MuseoCliente.Designer.Views
         {
             optionsPane.Children.Add(viewer);
             viewer.Checked += OptionViewer_Checked_1;
+            viewer.Edited += OptionViewer_Edited;
+            viewer.ClosingRequested += OptionViewer_ClosingRequested;
+            viewer.UpdateAction += OptionViewer_UpdateAction_1;
             if(this.OptionAdded != null)
                 this.OptionAdded(viewer, new RoutedEventArgs());
         }
@@ -133,7 +147,7 @@ namespace MuseoCliente.Designer.Views
                 optionsPane.Children.Remove(viewer);
             if (selectedOptions.Contains(viewer))
                 selectedOptions.Remove(viewer);
-            if (SelectedOption.Equals(viewer))
+            if (SelectedOption!=null && SelectedOption.Equals(viewer))
                 SelectedOption = null;
              if(this.OptionRemoved != null)
                 this.OptionRemoved(index, new RoutedEventArgs());
@@ -172,7 +186,8 @@ namespace MuseoCliente.Designer.Views
 
 		private void optionsPane_Loaded(object sender, System.Windows.RoutedEventArgs e)
 		{
-			optionsPane.Children[0].Focus();
+            if(optionsPane.Children.Count > 0)
+			    optionsPane.Children[0].Focus();
 		}
 
         private void OptionViewer_UpdateAction_1(object sender, EventArgs e)
