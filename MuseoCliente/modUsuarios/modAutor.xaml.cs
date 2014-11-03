@@ -44,7 +44,7 @@ namespace MuseoCliente
             }
             if (Connection.Objects.Error.isActivo())
             {
-                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
             }
             else
             {
@@ -62,7 +62,10 @@ namespace MuseoCliente
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Autor";
-                //
+                autor.regresarObjeto(id);
+                txtNombre.Text = autor.nombre;
+                txtApellido.Text = autor.apellido;
+                cmbPais.SelectedValue = autor.pais;
             }
             else
             {

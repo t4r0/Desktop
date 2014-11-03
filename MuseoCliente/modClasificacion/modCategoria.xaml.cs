@@ -17,7 +17,7 @@ namespace MuseoCliente
 	/// <summary>
 	/// Lógica de interacción para modCategoria.xaml
 	/// </summary>
-	public partial class modCategoria : UserControl
+	public partial class modCategoria
 	{
         Categoria categ = new Categoria();
         public UserControl anterior;
@@ -47,6 +47,7 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
         }
 
