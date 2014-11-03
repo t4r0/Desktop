@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using MuseoCliente.Connection.Objects;
 namespace MuseoCliente
 {
 	/// <summary>
@@ -24,6 +24,8 @@ namespace MuseoCliente
         public Border borde;
         public bool modificar = false;
         public int id;
+        private string direccionImagen = "";
+        private string nombreImagen = "";
         public modSala()
 		{
 			this.InitializeComponent();
@@ -31,9 +33,9 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            sala.nombre = txtNombre.Text;
-            sala.fotografia = txtFoto.Text;
-            sala.descripcion = StringFromRichTextBox(rtxtDescripcion);
+            UtilidadS3 utilidad = new UtilidadS3();
+            sala = (Sala) this.DataContext;
+            sala.fotografia = utilidad.subirSalaoEvento(sala.nombre, direccionImagen ,sala.nombre + "." + nombreImagen.Split('.')[1], true);
             if (modificar == false)
             {
                 sala.guardar();
@@ -73,13 +75,7 @@ namespace MuseoCliente
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialogo = new OpenFileDialog();
-            dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
-            dialogo.InitialDirectory = "C:";
-            dialogo.Title = "Seleccione la Imagen de la Sala";
-            dialogo.ShowDialog();
-            if (dialogo.ShowDialog() == true)
-                txtFoto.Text = dialogo.FileName;
+            
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
@@ -91,11 +87,26 @@ namespace MuseoCliente
                 //categ = categ.buscarPorID(id);
                 txtNombre.Text = "Pendiente";
                 //rtxtDescripcion.TextChanged = "";
-                txtFoto.Text = "";
+                //txtFoto.Text = "";
             }
             else
             {
                 lblOperacion.Content = "Nueva Sala";
+            }
+        }
+
+        private void Border_MouseUp_1(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
+            dialogo.InitialDirectory = "C:";
+            dialogo.Title = "Seleccione la Imagen de la Sala";
+            if (dialogo.ShowDialog() == true)
+            {
+                direccionImagen =  dialogo.FileName;
+                nombreImagen = dialogo.SafeFileName;
+                ImageSource imageSource = new BitmapImage(new Uri(dialogo.FileName));
+                imageSala.Source = imageSource;
             }
         }
 	}
