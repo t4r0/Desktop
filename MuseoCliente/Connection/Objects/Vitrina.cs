@@ -74,6 +74,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Vitrina vitrina = this.Get();
                 if( vitrina == null )
                 {
@@ -83,6 +84,7 @@ namespace MuseoCliente.Connection.Objects
                 this.numero = vitrina.numero;
                 this.id = vitrina.id;
                 this.sala = vitrina.sala;
+                this.resource_uri = vitrina.resource_uri;
             }
             catch( Exception e )
             {

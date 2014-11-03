@@ -36,23 +36,23 @@ namespace MuseoCliente
 
         private void rbCajas_Checked(object sender, RoutedEventArgs e)
         {
-            /*if (cajas.consultarNombre(busqueda) != null)
+            if (cajas.consultarCodigo(busqueda) != null)
             {
-                gvResultados.SelectedValue = "id";
-                gvResultados.ItemsSource = cajas.consultarNombre(busqueda);
+                gvResultados.ItemsSource = cajas.consultarCodigo(busqueda);
+                gvResultados.SelectedValuePath = "id";
             }
             else
             {
                 MessageBox.Show("No hay cajas con el número");
-            }*/
+            }
         }
 
         private void rbSalas_Checked(object sender, RoutedEventArgs e)
         {
             if (salas.consultarNombre(busqueda) != null)
             {
-                gvResultados.SelectedValue = "id";
                 gvResultados.ItemsSource = salas.consultarNombre(busqueda);
+                gvResultados.SelectedValuePath = "id";
             }
             else
             {
@@ -62,16 +62,15 @@ namespace MuseoCliente
 
         private void rbVitrinas_Checked(object sender, RoutedEventArgs e)
         {
-            /* Falta vitrinas por nombre
-            if (vitrinas.consultarNombre(busqueda) != null)
+            if (vitrinas.consultarNumero(busqueda) != null)
             {
-                gvResultados.SelectedValue = "id";
-                gvResultados.ItemsSource = vitrinas.consultarNombre(busqueda);
+                gvResultados.ItemsSource = vitrinas.consultarNumero(busqueda);
+                gvResultados.SelectedValuePath = "id";
             }
             else
             {
                 MessageBox.Show("No hay vitrinas con el número");
-            }*/
+            }
         }
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
