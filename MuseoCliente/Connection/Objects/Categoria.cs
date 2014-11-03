@@ -103,7 +103,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                this.resource_uri = this.resource_uri + "/" + id + "/";
+                this.resource_uri = this.resource_uri + id + "/";
                 Categoria fichaTemp = this.Get();
                 if (fichaTemp == null)
                 {
