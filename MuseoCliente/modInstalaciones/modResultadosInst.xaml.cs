@@ -80,6 +80,7 @@ namespace MuseoCliente
                 modCaja frm = new modCaja();
                 frm.borde = borde;
                 frm.anterior = this;
+                frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
@@ -88,6 +89,7 @@ namespace MuseoCliente
                 modSala frm = new modSala();
                 frm.borde = borde;
                 frm.anterior = this;
+                frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
@@ -96,6 +98,7 @@ namespace MuseoCliente
                 modVitrina frm = new modVitrina();
                 frm.borde = borde;
                 frm.anterior = this;
+                frm.modificar = true;
                 frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
                 borde.Child = frm;
             }
