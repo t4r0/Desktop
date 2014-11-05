@@ -21,6 +21,7 @@ namespace MuseoCliente
         Connection.Objects.Sala salas = new Connection.Objects.Sala();
         Connection.Objects.Caja cajas = new Connection.Objects.Caja();
         Connection.Objects.Vitrina vitrinas = new Connection.Objects.Vitrina();
+        Connection.Objects.Pieza piezas = new Connection.Objects.Pieza();
         public Border borde;
         public modInstalaciones()
 		{
@@ -29,9 +30,10 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //gvSalas.ItemsSource = salas.regresarTodos();
-            //gvCajas.ItemsSource = cajas.regresarTodo();
-            //gvVitrinas.ItemsSource = vitrinas.regresarTodos();
+            gvSalas.ItemsSource = salas.regresarTodos();
+            gvCajas.ItemsSource = cajas.regresarTodo();
+            gvVitrinas.ItemsSource = vitrinas.regresarTodos();
+            gvPiezas.ItemsSource = piezas.buscarBodega();
         }
 
         private void btnNuevaSala_Click(object sender, RoutedEventArgs e)

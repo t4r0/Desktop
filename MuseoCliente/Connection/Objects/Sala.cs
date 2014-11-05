@@ -59,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 lista = this.GetAsCollection();
                 if( lista == null )
-                    Error.ingresarError( 2, "No se econtro ninguna Ficha registrada" );
+                    Error.ingresarError( 2, "No se econtro ninguna Sala registrada" );
             }
             catch( Exception e )
             {
@@ -79,6 +79,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Sala salaTemporal = this.Get();
                 if( salaTemporal == null )
                 {
@@ -89,6 +90,7 @@ namespace MuseoCliente.Connection.Objects
                 this.id = salaTemporal.id;
                 this.descripcion = salaTemporal.descripcion;
                 this.fotografia = salaTemporal.fotografia;
+                this.resource_uri = salaTemporal.resource_uri;
             }
             catch( Exception e )
             {

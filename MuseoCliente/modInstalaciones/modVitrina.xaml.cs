@@ -31,16 +31,16 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            cmbSala.ItemsSource = salas.regresarTodos();
             cmbSala.DisplayMemberPath = "nombre";
             cmbSala.SelectedValuePath = "id";
-            cmbSala.ItemsSource = salas.regresarTodos();
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperaciones.Content = "Modificar Vitrina";
-                //categ = categ.buscarPorID(id);
-                cmbSala.SelectedValue = "Pendiente";
-                txtNumero.Text = "Pendiente";
+                vitrina.regresarObjeto(id);//Esta mal el retorno del objeto
+                cmbSala.SelectedValue = vitrina.sala;
+                txtNumero.Text = vitrina.numero;
             }
             else
             {

@@ -45,8 +45,8 @@ namespace MuseoCliente
             if( modificar == true )
             {
                 lblOperacion.Content = "Modificar Caja";
-                //categ = categ.buscarPorID(id);
-                txtCodigo.Text = "Pendiente";
+                caja.regresarObjecto(id);
+                txtCodigo.Text = caja.codigo;
             }
             else
             {
