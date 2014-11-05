@@ -7,7 +7,7 @@
 //     se vuelve a generar el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using MuseoCliente.Connection.Objects;
 namespace MuseoCliente.Properties {
     
     
@@ -16,7 +16,7 @@ namespace MuseoCliente.Properties {
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
+        public static Usuario user;
         public static Settings Default {
             get {
                 return defaultInstance;
