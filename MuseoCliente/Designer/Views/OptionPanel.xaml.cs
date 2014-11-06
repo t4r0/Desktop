@@ -29,6 +29,13 @@ namespace MuseoCliente.Designer.Views
         public delegate void CustomEventHandler(object sender, RoutedEventArgs e, int index);
         public event CustomEventHandler Edited;
 
+        [Category("Custom Options")]
+        public string Header
+        {
+            get { return (string)header.Content; }
+            set { header.Content = value; }
+        }
+
         List<OptionViewer> selectedOptions;
         [Category("Custom Options")]
         public List<OptionViewer> SelectedOptions

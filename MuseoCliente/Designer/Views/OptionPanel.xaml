@@ -14,7 +14,7 @@
 			<RowDefinition Height="29"/>
 			<RowDefinition Height="Auto" MinHeight="0"/>
 		</Grid.RowDefinitions>
-		<Label Content="Opciones" HorizontalAlignment="Left" Margin="0" d:LayoutOverrides="Height" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14"/>
+		<Label x:Name="header" Content="Opciones" HorizontalAlignment="Left" Margin="0" d:LayoutOverrides="Height" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14"/>
 		<StackPanel x:FieldModifier="public" x:Name="optionsPane" Grid.Row="1" Loaded="optionsPane_Loaded">
 			<design:OptionViewer Edited="OptionViewer_Edited" ClosingRequested="OptionViewer_ClosingRequested" UpdateAction="OptionViewer_UpdateAction_1" Checked="OptionViewer_Checked_1"/>
 		</StackPanel>
