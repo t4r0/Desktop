@@ -67,7 +67,8 @@ namespace MuseoCliente
             }
             else
             {
-                MessageBox.Show("Correcto");
+                MessageBox.Show("Se han guardado los datos correctamente");
+                borde.Child = anterior;
             }
         }
 

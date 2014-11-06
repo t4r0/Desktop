@@ -63,9 +63,9 @@ namespace MuseoCliente
         private void btnTraslado_Click(object sender, RoutedEventArgs e)
         {
             modTraslado frm = new modTraslado();
-            /*frm.borde = borde;
+            frm.borde = borde;
             frm.anterior = this;
-            borde.Child = frm;*/
+            borde.Child = frm;
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)

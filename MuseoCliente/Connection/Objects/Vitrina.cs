@@ -70,7 +70,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList( lista );
         }
 
-        public void regresarObjeto( int ide )
+        public void regresarObjeto( int id )
         {
             try
             {
@@ -81,8 +81,8 @@ namespace MuseoCliente.Connection.Objects
                     Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
-                this.numero = vitrina.numero;
                 this.id = vitrina.id;
+                this.numero = vitrina.numero;
                 this.sala = vitrina.sala;
                 this.resource_uri = vitrina.resource_uri;
             }
@@ -90,6 +90,31 @@ namespace MuseoCliente.Connection.Objects
             {
                 Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
+        }
+
+        //Funcion hecha por Miguel ... NO BORRAR!!!!!!!!
+        public ArrayList regresarPorSala(int idS)
+        {
+            List<Vitrina> vitrinas = null;
+            try
+            {
+                Vitrina clas = new Vitrina();
+                string consulta = "?sala=" + idS;
+                vitrinas = clas.GetAsCollection(consulta);
+                if (vitrinas == null)
+                    Error.ingresarError(2, "No se encontraron vitrinas para esta sala");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (vitrinas == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+
+            return new ArrayList(vitrinas);
         }
 
         public void regresarObjeto()
