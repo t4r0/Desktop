@@ -28,6 +28,12 @@ namespace MuseoCliente.Designer.Views
 
         public delegate void CustomEventHandler(object sender, RoutedEventArgs e, int index);
         public event CustomEventHandler Edited;
+        [Category("Custom Options")]
+        public bool AutoFocusable
+        {
+            get;
+            set;
+        }
 
         [Category("Custom Options")]
         public bool AllowsNoOptions
