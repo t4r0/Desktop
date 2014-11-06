@@ -1,56 +1,52 @@
-﻿<UserControl
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	mc:Ignorable="d"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Views="clr-namespace:MuseoCliente.Designer.Views"
 	x:Class="MuseoCliente.modInvestigacion"
 	x:Name="UserControl"
-	d:DesignWidth="640" Height="516.419">
+	d:DesignWidth="640" Height="auto" mc:Ignorable="d">
 
-	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
-		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
-			<DockPanel Height="28">
-				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Investigación</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
-				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click">&#128190;</Button>
-				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnPublicar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnPublicar_Click">&#59213;</Button>
-				</Label>
-			</DockPanel>
-		</Border>
+    <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
+        <Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
+            <DockPanel Height="28" VerticalAlignment="Top">
+                <Label x:Name="lblOperacion" DockPanel.Dock="Left" Content="[Op] Investigación"/>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Content="❌"/>
+                </Label>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click" Content="💾"/>
+                </Label>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnPublicar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnPublicar_Click" Content="&#xE74D;"/>
+                </Label>
+            </DockPanel>
+        </Border>
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-            <Grid Height="746">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="Auto" MinHeight="313"/>
+                    <RowDefinition Height="419*"/>
+                    <RowDefinition Height="280*"/>
+                    <RowDefinition Height="104*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="43">Título:</Label>
+                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="43" Content="Título:"/>
                 <TextBox Grid.Column="0" x:Name="txtTitulo" Height="25" VerticalAlignment="Top" Margin="10,41,10,0"/>
-                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,71,0,0" Height="26" Width="42">Autor:</Label>
+                <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,71,0,0" Height="26" Width="42" Content="Autor:"/>
                 <ComboBox Grid.Column="0" x:Name="cmbAutor" Margin="10,102,10,0" Height="25" VerticalAlignment="Top"/>
-                <Label Grid.Column="0" Margin="10,132,242,0" Height="26" VerticalAlignment="Top">Resumen:</Label>
+                <Label Grid.Column="0" Margin="10,132,242,0" Height="26" VerticalAlignment="Top" Content="Resumen:"/>
                 <TextBox Grid.Column="0" x:Name="txtResumen" Grid.ColumnSpan="2" Margin="10,163,10,0" Height="75" VerticalAlignment="Top"/>
-                <Label Grid.Column="0" Margin="10,243,227,0" Height="26" VerticalAlignment="Top">Descripción:</Label>
-                <TextBox Grid.Column="0" x:Name="txtDescripcion" Grid.ColumnSpan="2" Margin="10,269,10,0" Height="150" VerticalAlignment="Top"/>
-                
-                <Label Grid.Row="1" Grid.Column="0" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="11,10,0,0" HorizontalAlignment="Left" Width="82" Height="26">Codigo Pieza:</Label>
-                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtCodigo" Height="24" Width="192" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,39,0,250"/>
-                <Button Grid.Row="1" Grid.Column="0" x:Name="btnSeleccionar" DockPanel.Dock="Right" Width="95" HorizontalAlignment="Right" Margin="0,39,10,250">Seleccionar</Button>
-                <Label Grid.Row="1" Grid.Column="0" Margin="11,69,242,208">Piezas:</Label>
-                <DataGrid Grid.Row="1" Grid.Column="0" x:Name="gvPiezas" Margin="10,0,10,64" Height="148" VerticalAlignment="Bottom"/>
-                
-                <Label Grid.Row="1" Grid.Column="1" Margin="10,69,93,218" RenderTransformOrigin="0.515,1.914">Piezas en esta investigacion:</Label>
-                <DataGrid Grid.Row="1" Grid.Column="1" x:Name="gvPiezasGuardadas" Margin="10,100,10,64"/>
-                
+                <Label Grid.Column="0" Margin="10,243,227,0" Height="26" VerticalAlignment="Top" Content="Descripción:"/>
+                <TextBox Grid.Column="0" x:Name="txtDescripcion" Grid.ColumnSpan="2" Margin="10,269,10,0" Height="150" VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="11,10,0,0" HorizontalAlignment="Left" Width="82" Height="26" Content="Codigo Pieza:"/>
+                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtCodigo" Height="24" Width="192" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,39,0,250"/>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="btnSeleccionar" Width="95" HorizontalAlignment="Left" Margin="215,39,0,0" Content="Seleccionar" Height="24" VerticalAlignment="Top"/>
+                <Label Grid.Row="1" Grid.Column="0" Margin="11,69,242,208" Content="Piezas:"/>
+                <DataGrid Grid.Row="1" Grid.Column="0" x:Name="gvPiezas" Margin="11,95,9,70"/>
+
+                <Label Grid.Row="1" Grid.Column="1" Margin="10,69,93,218" RenderTransformOrigin="0.515,1.914" Content="Piezas en esta investigacion:"/>
+                <DataGrid Grid.Row="1" Grid.Column="1" x:Name="gvPiezasGuardadas" Margin="10,95,10,69"/>
+                <Views:OptionPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="11,249,0,0"  VerticalAlignment="Top"  Height="61" Width="299" Header="Links de referencia:"/>
             </Grid>
         </ScrollViewer>
     </DockPanel>
