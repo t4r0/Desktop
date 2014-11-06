@@ -37,12 +37,17 @@ namespace MuseoCliente
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            StartApp();
+        }
+        private void StartApp()
+        {
+
             addAnimation();
             Task<Usuario> t = new Task<Usuario>(() => login());
             t.RunSynchronously();
             ShowWindow(t.Result);
-        }
 
+        }
         private void addAnimation()
         {
             LoadingAnimation animation = new LoadingAnimation
@@ -94,8 +99,8 @@ namespace MuseoCliente
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
-                login();
+            if (e.Key == Key.Enter)
+                StartApp();
         }
 	}
 }

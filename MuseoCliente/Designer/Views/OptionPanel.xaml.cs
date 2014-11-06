@@ -30,6 +30,13 @@ namespace MuseoCliente.Designer.Views
         public event CustomEventHandler Edited;
 
         [Category("Custom Options")]
+        public bool AllowsNoOptions
+        {
+            get;
+            set;
+        }
+
+        [Category("Custom Options")]
         public string Header
         {
             get { return (string)header.Content; }
@@ -174,7 +181,7 @@ namespace MuseoCliente.Designer.Views
 		private void OptionViewer_ClosingRequested(object sender, System.EventArgs e)
 		{
             int index = optionsPane.Children.IndexOf((UIElement)sender);
-            if (optionsPane.Children.Count <= 1)
+            if (optionsPane.Children.Count <= 1 && !AllowsNoOptions)
                 MessageBox.Show("Debe existir al menos una opción");
             else
             {                
