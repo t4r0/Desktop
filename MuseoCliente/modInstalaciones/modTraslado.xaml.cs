@@ -81,6 +81,10 @@ namespace MuseoCliente
             else
             {
                 gvPiezas.ItemsSource = null;
+                txtCodigo.Text = "";
+                txtNombrePieza.Text = "";
+                rbVitrina.IsChecked = false;
+                rbBodega.IsChecked = false;
             }
         }
 
@@ -101,6 +105,31 @@ namespace MuseoCliente
         {
             Pieza pieza = (Pieza)e.Argument;
             e.Result = pieza.buscarNombre(nombreP);
+        }
+
+        private void btnSeleccionar_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvPiezas.SelectedItem != null)
+            {
+                Pieza pieza = (Pieza)gvPiezas.SelectedItem;
+                txtCodigo.Text = pieza.codigo;
+                txtNombrePieza.Text = pieza.nombre;
+                if (pieza.exhibicion == true)
+                {
+                    rbVitrina.IsChecked = true;
+                    rbBodega.IsChecked = false;
+                }
+                else
+                {
+                    rbVitrina.IsChecked = false;
+                    rbBodega.IsChecked = true;
+                }
+            }
+            else
+            {
+                txtCodigo.Text = "";
+                txtNombrePieza.Text = "";
+            }
         }
 	}
 }
