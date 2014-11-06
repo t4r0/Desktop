@@ -27,7 +27,7 @@
 					<DockPanel Height="35" Width="500" HorizontalAlignment="Center">
 						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Codigo Pieza:</Label>
 						<TextBox x:Name="txtCodigoPieza" Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="txtCodigoPieza_TextChanged"/>
-						<Button x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right">Seleccionar</Button>
+						<Button x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right" Click="btnSeleccionar_Click">Seleccionar</Button>
 					</DockPanel>
 					<DockPanel Height="105" Width="510">
 						<StackPanel Margin="10">
@@ -45,7 +45,7 @@
 				<StackPanel Margin="0,10">
 					<Border Width="500" HorizontalAlignment="Center" BorderBrush="{DynamicResource DarkGray}" BorderThickness="1">
 						<StackPanel Margin="0,10">
-							<RadioButton x:Name="rbBodega" VerticalAlignment="Center" Margin="10,0,10,0" Checked="rbBodega_Checked">En Bodega</RadioButton>
+                            <RadioButton x:Name="rbBodega" VerticalAlignment="Center" Margin="10,0,10,0" Checked="rbBodega_Checked">En Bodega</RadioButton>
                             <DockPanel Height="35">
                                 <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">Número de Caja:</Label>
                                 <ComboBox x:Name="cmbCaja" Height="20" Width="300" Margin="5,0,0,0"/>

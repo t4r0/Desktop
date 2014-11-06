@@ -21,7 +21,7 @@ namespace MuseoCliente.Connection.Objects
         public DateTime fecha { get; set; } 
 
         [JsonProperty]
-        public bool bodega { get; set; } // falta
+        public Boolean bodega { get; set; }
 
         [JsonProperty]
         public int caja { get; set; }
@@ -30,7 +30,7 @@ namespace MuseoCliente.Connection.Objects
         public int vitrina { get; set; }
 
         [JsonProperty]
-        public string username { get; set; }
+        public string responsable { get; set; }
 
         [JsonProperty]
         public string pieza { get; set; }
@@ -186,7 +186,6 @@ namespace MuseoCliente.Connection.Objects
                 }
             return new ArrayList(listaNueva);
         }
-
 
     }
 }
