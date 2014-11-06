@@ -165,7 +165,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                listaNueva = this.GetAsCollection( "?nombre__contains=" + nombre );
+                listaNueva = this.GetAsCollection( "?nombre__icontains=" + nombre );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro nombre similares" );
             }
