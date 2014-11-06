@@ -27,7 +27,16 @@ namespace MuseoCliente.Designer.Views
         public event CustomEventHandler UpdateAction;
 
         public event RoutedEventHandler Checked;
+        [Category("Custom Options")]
+        public bool AutoFocusable
+        {
+            get{return (bool)GetValue(AutoFocusableProperty);}
+            set { SetValue(AutoFocusableProperty, true); }
+        }
 
+        public static readonly DependencyProperty AutoFocusableProperty =
+          DependencyProperty.Register("AutoFocusable", typeof(bool), typeof(OptionViewer),
+              new FrameworkPropertyMetadata(false));
         int backspaceCount = 0;
         public event RoutedEventHandler Edited;
 
@@ -103,8 +112,11 @@ namespace MuseoCliente.Designer.Views
 
         private void UserControl_GotFocus(object sender, RoutedEventArgs e)
         {
-            content.Focus();
-            content.SelectAll();
+            if (AutoFocusable)
+            {
+                content.Focus();
+                content.SelectAll();
+            }
         }
 
         private void content_TextInput(object sender, TextCompositionEventArgs e)

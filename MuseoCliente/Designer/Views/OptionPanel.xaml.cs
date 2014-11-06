@@ -28,6 +28,31 @@ namespace MuseoCliente.Designer.Views
 
         public delegate void CustomEventHandler(object sender, RoutedEventArgs e, int index);
         public event CustomEventHandler Edited;
+        [Category("Custom Options")]
+        public bool AutoFocusable
+        {
+            get;
+            set;
+        }
+
+        [Category("Custom Options")]
+        public bool AllowsNoOptions
+        {
+            get { return (bool)GetValue(AllowsNoOptionsProperty);}
+            set { SetValue(AllowsNoOptionsProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllowsNoOptionsProperty =
+           DependencyProperty.Register("AllowsNoOptions", typeof(bool), typeof(OptionPanel),
+               new FrameworkPropertyMetadata(true ));
+
+
+        [Category("Custom Options")]
+        public string Header
+        {
+            get { return (string)header.Content; }
+            set { header.Content = value; }
+        }
 
         List<OptionViewer> selectedOptions;
         [Category("Custom Options")]
@@ -167,7 +192,7 @@ namespace MuseoCliente.Designer.Views
 		private void OptionViewer_ClosingRequested(object sender, System.EventArgs e)
 		{
             int index = optionsPane.Children.IndexOf((UIElement)sender);
-            if (optionsPane.Children.Count <= 1)
+            if (optionsPane.Children.Count <= 1 && !AllowsNoOptions)
                 MessageBox.Show("Debe existir al menos una opción");
             else
             {                

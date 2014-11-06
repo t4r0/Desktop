@@ -74,14 +74,20 @@
     <Compile Include="Connection\Objects\Grupo.cs" />
     <Compile Include="Connection\Objects\Imagen.cs" />
     <Compile Include="Connection\Objects\UtilidadS3.cs" />
+    <Compile Include="Designer\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Designer\FormDesigner.xaml.cs">
       <DependentUpon>FormDesigner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Designer\Loader.xaml.cs">
-      <DependentUpon>Loader.xaml</DependentUpon>
+    <Compile Include="Designer\LoadingAnimation.xaml.cs">
+      <DependentUpon>LoadingAnimation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Designer\MaskedTextBox.cs">
       <CustomToolNamespace>MuseoCliente.Designer</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Designer\modFichas.xaml.cs">
+      <DependentUpon>modFichas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Designer\Views\FieldEditor.xaml.cs">
       <DependentUpon>FieldEditor.xaml</DependentUpon>
@@ -225,13 +231,21 @@
     <Compile Include="WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Designer\Block.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Designer\FormDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Designer\Loader.xaml">
+    <Page Include="Designer\LoadingAnimation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\modFichas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Designer\Views\FieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>

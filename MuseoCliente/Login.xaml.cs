@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 using MuseoCliente.Connection;
 using MuseoCliente.Connection.Objects;
 using MuseoCliente.Properties;
+using MuseoCliente.Designer;
+using System.Threading.Tasks;
 namespace MuseoCliente
 {
 	/// <summary>
@@ -35,31 +37,56 @@ namespace MuseoCliente
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            login();
+            StartApp();
+        }
+        private void StartApp()
+        {
+
+            addAnimation();
+            Task<Usuario> t = new Task<Usuario>(() => login());
+            t.RunSynchronously();
+            ShowWindow(t.Result);
+
+        }
+        private void addAnimation()
+        {
+            LoadingAnimation animation = new LoadingAnimation
+            {
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch,
+                VerticalAlignment = System.Windows.VerticalAlignment.Stretch,
+                Width = contentGrid.ActualWidth,
+                Height = contentGrid.ActualHeight,
+                Margin = new Thickness(0,0,0,0)
+            };
+            animation.message.Text = "Iniciando sesión";            
+            Grid.SetZIndex(animation, 999);
+            LayoutRoot.Children.Add(animation);
+            dict["username"] = txtUsuario.Text;
+            dict["password"] = txtPassword.Password;
         }
 
-        private void login()
+        private Usuario login()
         {
+            Usuario user = new Usuario();
             try
             {
-                Usuario user = new Usuario();
-                dict["username"] = txtUsuario.Text;
-                dict["password"] = txtPassword.Password;
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
                 Connector conector = new Connector("/api/v1/login/");
                 user = user.Deserialize(conector.create(content));
-                ShowWindow(user);
+                return user;
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-
+                throw ex;
             }
+          
         }
 
         private void ShowWindow(Usuario user)
         {
             MainWindow main = new MainWindow() { DataContext = user };
+            Settings.user = user;
             this.Hide();
             main.ShowDialog();
             this.Close();
@@ -72,8 +99,8 @@ namespace MuseoCliente
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
-                login();
+            if (e.Key == Key.Enter)
+                StartApp();
         }
 	}
 }

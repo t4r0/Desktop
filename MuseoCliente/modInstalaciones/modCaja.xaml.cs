@@ -36,6 +36,7 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show( "Se ha guardado exitosamente" );
+                borde.Child = anterior;
             }
         }
 
@@ -45,8 +46,8 @@ namespace MuseoCliente
             if( modificar == true )
             {
                 lblOperacion.Content = "Modificar Caja";
-                //categ = categ.buscarPorID(id);
-                txtCodigo.Text = "Pendiente";
+                caja.regresarObjeto(id);
+                txtCodigo.Text = caja.codigo;
             }
             else
             {

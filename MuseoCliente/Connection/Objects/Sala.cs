@@ -75,7 +75,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList( lista );
         }
 
-        public void regresarObjeto( int ide )
+        public void regresarObjeto( int id )
         {
             try
             {
