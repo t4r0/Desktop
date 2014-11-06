@@ -31,16 +31,16 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            cmbSala.ItemsSource = salas.regresarTodos();
             cmbSala.DisplayMemberPath = "nombre";
             cmbSala.SelectedValuePath = "id";
-            cmbSala.ItemsSource = salas.regresarTodos();
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperaciones.Content = "Modificar Vitrina";
-                //categ = categ.buscarPorID(id);
-                cmbSala.SelectedValue = "Pendiente";
-                txtNumero.Text = "Pendiente";
+                vitrina.regresarObjeto(id);//Esta mal el retorno del objeto
+                cmbSala.SelectedValue = vitrina.sala;
+                txtNumero.Text = vitrina.numero;
             }
             else
             {
@@ -51,7 +51,7 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             //vitrina.sala = Convert.ToInt16(cmbSala.SelectedValue.ToString());
-            vitrina.sala = 3;
+            vitrina.sala = (int)cmbSala.SelectedValue;
             vitrina.numero = txtNumero.Text;
             if (modificar == false)
             {
@@ -67,7 +67,8 @@ namespace MuseoCliente
             }
             else
             {
-                MessageBox.Show("Correcto");
+                MessageBox.Show("Se han guardado los datos correctamente");
+                borde.Child = anterior;
             }
         }
 

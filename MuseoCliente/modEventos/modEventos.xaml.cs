@@ -27,9 +27,8 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(eventos.regresarTodos().Count.ToString());
-            gvProximos.ItemsSource = eventos.regresarTodos(); //regresarProximos
-            gvConcluidos.ItemsSource = eventos.regresarTodos(); //regresarConcluidos
+            gvProximos.ItemsSource = eventos.regresarEventosProximos();
+            gvConcluidos.ItemsSource = eventos.regresarEventosFinalizados();
         }
 
         private void btnNuevo_Click(object sender, RoutedEventArgs e)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,11 +15,11 @@ using System.Windows.Shapes;
 namespace MuseoCliente.Designer
 {
     /// <summary>
-    /// Lógica de interacción para Loader.xaml
+    /// Interaction logic for LoadingAnimation.xaml
     /// </summary>
-    public partial class Loader : UserControl
+    public partial class LoadingAnimation : UserControl
     {
-        public Loader()
+        public LoadingAnimation()
         {
             InitializeComponent();
         }

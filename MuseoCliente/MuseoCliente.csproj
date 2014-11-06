@@ -36,13 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AWS.SessionProvider">
-      <HintPath>..\..\..\..\..\..\Program Files\AWS SDK for .NET\bin\Net35\AWS.SessionProvider.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\AWS SDK for .NET\bin\Net45\AWS.SessionProvider.dll</HintPath>
     </Reference>
     <Reference Include="AWS.TraceListener">
-      <HintPath>..\..\..\..\..\..\Program Files\AWS SDK for .NET\bin\Net35\AWS.TraceListener.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\AWS SDK for .NET\bin\Net45\AWS.TraceListener.dll</HintPath>
     </Reference>
     <Reference Include="AWSSDK">
-      <HintPath>..\..\..\..\..\..\Program Files\AWS SDK for .NET\bin\Net35\AWSSDK.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\AWS SDK for .NET\bin\Net45\AWSSDK.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -52,6 +52,7 @@
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml" />
@@ -71,15 +72,22 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Connection\Objects\Grupo.cs" />
+    <Compile Include="Connection\Objects\Imagen.cs" />
     <Compile Include="Connection\Objects\UtilidadS3.cs" />
+    <Compile Include="Designer\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Designer\FormDesigner.xaml.cs">
       <DependentUpon>FormDesigner.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Designer\Loader.xaml.cs">
-      <DependentUpon>Loader.xaml</DependentUpon>
+    <Compile Include="Designer\LoadingAnimation.xaml.cs">
+      <DependentUpon>LoadingAnimation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Designer\MaskedTextBox.cs">
       <CustomToolNamespace>MuseoCliente.Designer</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Designer\modFichas.xaml.cs">
+      <DependentUpon>modFichas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Designer\Views\FieldEditor.xaml.cs">
       <DependentUpon>FieldEditor.xaml</DependentUpon>
@@ -218,14 +226,26 @@
     <Compile Include="modUsuarios\modVoluntario.xaml.cs">
       <DependentUpon>modVoluntario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Test\Test.cs" />
+    <Compile Include="WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Designer\Block.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Designer\FormDesigner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Designer\Loader.xaml">
+    <Page Include="Designer\LoadingAnimation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Designer\modFichas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Designer\Views\FieldEditor.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -398,6 +418,10 @@
     <Page Include="modUsuarios\modVoluntario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

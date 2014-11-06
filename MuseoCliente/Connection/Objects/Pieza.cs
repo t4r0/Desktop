@@ -10,49 +10,52 @@ namespace MuseoCliente.Connection.Objects
     public class Pieza : ResourceObject<Pieza>
     {
         [JsonProperty]
-        public String codigo { get; set; }
+        public string codigo { get; set; }
         [JsonProperty]
-        public String codigoSlug { get; set; }
+        public string resumen { get; set; }
         [JsonProperty]
         public int clasificacion { get; set; }
         [JsonProperty]
-        public int autor { get; set; }
+        public int ? autor { get; set; }
         [JsonProperty]
         public string responsableRegistro { get; set; }
         [JsonProperty]
-        public Boolean registroIDAEH { get; set; }
+        public bool registroIDAEH { get; set; }
         [JsonProperty]
-        public String codigoIDAEH { get; set; }
+        public string codigoIDAEH { get; set; }
         [JsonProperty]
-        public String archivoIDAEH { get; set; }
+        public string archivoIDAEH { get; set; }
         [JsonProperty]
-        public String nombre { get; set; }
+        public string nombre { get; set; }
         [JsonProperty]
-        public String descripcion { get; set; }
+        public string descripcion { get; set; }
         [JsonProperty]
         public DateTime fechaIngreso { get; set; }
         [JsonProperty]
-        public String procedencia { get; set; }
+        public string procedencia { get; set; }
         [JsonProperty]
         public string pais { get; set; }
         [JsonProperty]
-        public Int16 regionCultural { get; set; }
+        public int ? regionCultural { get; set; }
         [JsonProperty]
-        public String observaciones { get; set; }
+        public string observaciones { get; set; }
         [JsonProperty]
-        public Boolean maestra { get; set; }
+        public bool maestra { get; set; }
         [JsonProperty]
-        public Boolean exhibicion { get; set; }
+        public bool exhibicion { get; set; }
         [JsonProperty]
-        public float altura { get; set; }
+        public float ? altura { get; set; }
         [JsonProperty]
-        public float ancho { get; set; }
+        public float ? ancho { get; set; }
         [JsonProperty]
-        public float grosor { get; set; }
+        public float ? grosor { get; set; }
         [JsonProperty]
-        public float largo { get; set; }
+        public float ? largo { get; set; }
         [JsonProperty]
-        public float diametro { get; set; }
+        public float ? diametro { get; set; }
+
+        [JsonProperty]
+        public String fechamiento { get; set; }
 
 
         public Pieza()
@@ -69,7 +72,7 @@ namespace MuseoCliente.Connection.Objects
             catch( Exception e )
             {
                 //string error = e.Source;// para ver el nombre del error
-                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
+                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "+ e.Message );
             }
         }
 
@@ -81,7 +84,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos" );
+                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos "+e.Message );
             }
         }
         /* FUNCINES ESCENCIALES*/
@@ -91,7 +94,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                listaNueva = this.GetAsCollection();
+                listaNueva = this.fetchAll();
             }
             catch( Exception e )
             {
@@ -105,18 +108,21 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList( listaNueva );
         }
 
-        public void regresarObjeto( int id )
+        public void regresarObjeto( string cod)
         {
             try
             {
+                this.resource_uri = this.resource_uri + cod + "/";
                 Pieza temp = this.Get();
                 if( temp == null )
                 {
                     Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
+                this.id =temp.id;
+                this.resource_uri = temp.resource_uri;
                 this.codigo = temp.codigo;
-                this.codigoSlug = temp.codigoSlug;
+                this.resumen = temp.resumen;
                 this.clasificacion = temp.clasificacion;
                 this.autor = temp.autor;
                 this.responsableRegistro = temp.responsableRegistro;
@@ -147,7 +153,7 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjeto()
         {
-            regresarObjeto( this.id );
+            regresarObjeto( this.codigo);
         }
 
         /*  CONSULTAS */
@@ -159,7 +165,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                listaNueva = this.GetAsCollection( "?nombre__contains=" + nombre );
+                listaNueva = this.GetAsCollection( "?nombre__icontains=" + nombre );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro nombre similares" );
             }
@@ -180,7 +186,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri + "?responsableRegistro=" + responsable.ToString();
+                string consultar =  "?responsableRegistro=" + responsable.ToString();
                 listaNueva = this.GetAsCollection( consultar );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro nombre similares" );
@@ -202,7 +208,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri + "?fechaIngreso=" + fecha.Date.ToString();
+                string consultar = "?fechaIngreso=" + fecha.Date.ToString();
                 listaNueva = this.GetAsCollection( consultar );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro nombre similares" );
@@ -224,7 +230,7 @@ namespace MuseoCliente.Connection.Objects
             List<Pieza> listaNueva = null;
             try
             {
-                string consultar = this.resource_uri + "?regionCultural=" + regionCultural;
+                string consultar =  "?regionCultural=" + regionCultural;
                 listaNueva = this.GetAsCollection( consultar );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro nombre similares" );
@@ -359,7 +365,7 @@ namespace MuseoCliente.Connection.Objects
             Autor autor = new Autor();
             try
             {
-                autor.regresarObjeto( this.autor );
+                autor.regresarObjeto( this.autor.Value );
             }
             catch( Exception e )
             {
@@ -377,7 +383,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Consolidacion clase = new Consolidacion();
-                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                string consulta =  "?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection( consulta );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro Consolidacion" );
@@ -423,7 +429,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Registro clase = new Registro();
-                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                string consulta = "?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection( consulta );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro ningun Trasladoa por el momento" );
@@ -446,7 +452,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 Fotografia clase = new Fotografia();
-                string consulta = clase.resource_uri + "?pieza=" + this.codigo;
+                string consulta = "?pieza=" + this.codigo;
                 listaNueva = clase.GetAsCollection( consulta );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro ningun Trasladoa por el momento" );

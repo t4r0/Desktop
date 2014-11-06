@@ -21,10 +21,19 @@ namespace MuseoCliente.Connection.Objects
         public DateTime fecha { get; set; } 
 
         [JsonProperty]
-        public Boolean bodega { get; set; } // falta
+        public bool bodega { get; set; } // falta
 
         [JsonProperty]
-        public string nombre { get; set; }
+        public int caja { get; set; }
+
+        [JsonProperty]
+        public int vitrina { get; set; }
+
+        [JsonProperty]
+        public string username { get; set; }
+
+        [JsonProperty]
+        public string pieza { get; set; }
 
         public void guardar()
         {

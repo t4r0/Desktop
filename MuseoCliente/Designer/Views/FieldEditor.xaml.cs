@@ -21,6 +21,8 @@ namespace MuseoCliente.Designer.Views
 		public delegate void CustomEventHandler(object sender, RoutedEventArgs e);
 		public event CustomEventHandler Closed;
         public Campo campo;
+
+        public bool Edited { get; set; }
 		public FieldEditor()
 		{
 			this.InitializeComponent();
@@ -66,7 +68,7 @@ namespace MuseoCliente.Designer.Views
 				case 4:
 				case 5:
 				{
-                    LoadOptions(new OptionPanel());
+                    LoadOptions(new OptionPanel(campo.opciones));
                     optionsViewer.Visibility = Visibility.Visible;
                     break;
 				}
@@ -84,12 +86,14 @@ namespace MuseoCliente.Designer.Views
             campo.tipo = (Campo.TiposDeCampo)cmbTipo.SelectedIndex;
             if (cmbTipo.SelectedIndex == 4 || cmbTipo.SelectedIndex == 5)
                 campo.opciones = ((OptionPanel)optionsViewer.Child).GetOptions();
+            Edited = true;
             if(this.Closed != null)
                 this.Closed(this, e);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            Edited = false;
             if (this.Closed != null)
                 this.Closed(this, e);
         }

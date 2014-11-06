@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MuseoCliente.Connection.Objects
@@ -9,7 +10,8 @@ namespace MuseoCliente.Connection.Objects
         public Investigacion()
             : base( "/api/v1/investigaciones/" )
         {
-
+            links = new List<Dictionary<string, string>>();
+            piezas = new List<Dictionary<string, string>>();
         }
 
         [JsonProperty]
@@ -33,6 +35,11 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public bool publicado { get; set; }
 
+        [JsonProperty]
+        public List<Dictionary<string,string>> links{ get; set; }
+
+        [JsonProperty]
+        public List<Dictionary<string,string>> piezas { get; set; }
 
         public void guardar()
         {
@@ -45,7 +52,7 @@ namespace MuseoCliente.Connection.Objects
                 if( e.Source != null )
                 {
                     string error = e.Source; // para ver el nombre del error.
-                    Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
+                    Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "+e.Message );
                 }
             }
         }
@@ -72,7 +79,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?titulo__contains=" + titulo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?titulo__contains=" + titulo ) );
             }
             catch( Exception e )
             {
@@ -92,7 +99,7 @@ namespace MuseoCliente.Connection.Objects
 
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri + "?autor" + autor ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?autor" + autor ) );
             }
             catch( Exception e )
             {
@@ -112,7 +119,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 LinkInvestigacion LinkInvestigacion = new LinkInvestigacion();
-                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( LinkInvestigacion.resource_uri + "?investigacion__contains=" + this.id ) );
+                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( "?investigacion__contains=" + this.id ) );
             }
             catch( Exception e )
             {
@@ -131,7 +138,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( this.resource_uri ) );
+                listaNueva = new ArrayList( this.fetchAll() );
             }
             catch( Exception e )
             {
@@ -147,12 +154,15 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjecto( int id )
         {
+            this.resource_uri = this.resource_uri + id + "/";
             Investigacion Temp = this.Get();
             if( Temp == null )
             {
                 Error.ingresarError( 2, "No se encontro coincidencia" );
                 return;
             }
+            this.id = Temp.id;
+            this.resource_uri = Temp.resource_uri;
             this.autor = Temp.autor;
             this.contenido = Temp.contenido;
             this.editor = Temp.editor;
@@ -160,6 +170,31 @@ namespace MuseoCliente.Connection.Objects
             this.publicado = Temp.publicado;
             this.resumen = Temp.resumen;
             this.titulo = Temp.titulo;
+            this.links = Temp.links;
+            this.piezas = Temp.piezas;
+        }
+
+        public ArrayList regresarPiezas()
+        {
+            List<Pieza> lista = new List<Pieza>();
+            Pieza pieza = null;
+            try
+            {
+                foreach (Dictionary<string, string> temp in piezas)
+                    foreach (string hola in temp.Keys)
+                    {
+                        pieza = new Pieza();
+                        pieza.regresarObjeto(temp[hola]);
+                        lista.Add(pieza);
+                    }
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No existen piezas para la investigacion "+e.Message);
+                return null;
+            }
+
+            return (new ArrayList(lista));
         }
 
     }
