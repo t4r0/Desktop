@@ -21,10 +21,12 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modTraslado : UserControl
 	{
+        Traslado traslado = new Traslado();
         Pieza piezas = new Pieza();
         Caja cajas = new Caja();
         Sala salas = new Sala();
         Vitrina vitrinas = new Vitrina();
+        Pieza pieza = new Pieza();
         public UserControl anterior;
         public Border borde;
         string nombreP = "";
@@ -36,7 +38,39 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-
+            //Modificar
+            if (traslado.regresarPiezas(pieza.codigo).Count > 0)
+            {
+                MessageBox.Show("Modificar");
+            }
+            else //Nuevo
+            {
+                traslado.pieza = pieza.codigo;
+                traslado.responsable = "Migue4";
+                traslado.fecha = System.DateTime.Today;
+                if (rbBodega.IsChecked == true)
+                {
+                    traslado.bodega = true;
+                    traslado.caja = (int)cmbCaja.SelectedValue;
+                    pieza.exhibicion = false;
+                }
+                else
+                {
+                    traslado.bodega = false;
+                    pieza.exhibicion = true;
+                    traslado.vitrina = (int)cmbVitrina.SelectedValue;
+                }
+                traslado.guardar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha guardado exitosamente");
+                    borde.Child = anterior;
+                }
+            }
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -111,7 +145,7 @@ namespace MuseoCliente
         {
             if (gvPiezas.SelectedItem != null)
             {
-                Pieza pieza = (Pieza)gvPiezas.SelectedItem;
+                pieza = (Pieza)gvPiezas.SelectedItem;
                 txtCodigo.Text = pieza.codigo;
                 txtNombrePieza.Text = pieza.nombre;
                 if (pieza.exhibicion == true)
@@ -124,6 +158,20 @@ namespace MuseoCliente
                     rbVitrina.IsChecked = false;
                     rbBodega.IsChecked = true;
                 }
+                //Si ya existe el traslado
+                if (traslado.regresarPiezas(pieza.codigo).Count > 0)
+                {
+                    if (traslado.bodega == true)
+                    {
+                        rbBodega.IsChecked = true;
+                        cmbCaja.SelectedValue = traslado.caja;
+                    }
+                    else
+                    {
+                        rbVitrina.IsChecked = true;
+                        cmbVitrina.SelectedValue = traslado.vitrina;
+                    }
+                }// Si no existe, lo crea
             }
             else
             {
