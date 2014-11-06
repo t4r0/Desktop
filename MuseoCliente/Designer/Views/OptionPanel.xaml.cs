@@ -38,9 +38,14 @@ namespace MuseoCliente.Designer.Views
         [Category("Custom Options")]
         public bool AllowsNoOptions
         {
-            get;
-            set;
+            get { return (bool)GetValue(AllowsNoOptionsProperty);}
+            set { SetValue(AllowsNoOptionsProperty, value); }
         }
+
+        public static readonly DependencyProperty AllowsNoOptionsProperty =
+           DependencyProperty.Register("AllowsNoOptions", typeof(bool), typeof(OptionPanel),
+               new FrameworkPropertyMetadata(true ));
+
 
         [Category("Custom Options")]
         public string Header
