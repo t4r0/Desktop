@@ -44,21 +44,20 @@ namespace MuseoCliente.Connection.Objects
 
         private List<LinkInvestigacion> linkNuevos;
 
-        private void igualar(List<LinkInvestigacion> nuevo, List<LinkInvestigacion> viejo)
+        private void igualarLista(List<LinkInvestigacion> nuevo, List<LinkInvestigacion> viejo)
         {
+            nuevo.Clear();
             foreach (LinkInvestigacion temp in viejo)
-            {
-
-            }
+                nuevo.Add(temp);
+            viejo.Clear();
         }
 
         public void guardar()
         {
             try
             {
-                //linkNuevos = links;
-                //links.Clear();
-                this.Create();
+                igualarLista(linkNuevos, links);
+                this.id = Deserialize(this.Create()).id;
             }
             catch( Exception e )
             {
@@ -68,21 +67,25 @@ namespace MuseoCliente.Connection.Objects
                     Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "+e.Message );
                 }
             }
-            //links = linkNuevos;
-            //linkNuevos.Clear();
-            //this.modificar();
+            igualarLista(links, linkNuevos);
+            this.modificar();
         }
 
         public void modificar()
         {
             try
             {
-                //foreach (LinkInvestigacion lin in links)
-                //{
-                //    if (lin.id == 0)
-                //        lin.guardar();
-                //}
-
+                linkNuevos.Clear();
+                foreach (LinkInvestigacion lin in links)
+                {
+                    
+                    if (lin.id == 0)
+                    {
+                        lin.investigacion = this.id;
+                        linkNuevos.Add(lin);
+                    }
+                }
+                igualarLista(links, linkNuevos);
                 this.Save( this.id.ToString() );
             }
             catch( Exception e )
@@ -174,7 +177,7 @@ namespace MuseoCliente.Connection.Objects
             return listaNueva;
         }
 
-        public void regresarObjecto( int id )
+        public void regresarObjeto( int id )
         {
             this.resource_uri = this.resource_uri + id + "/";
             Investigacion Temp = this.Get();

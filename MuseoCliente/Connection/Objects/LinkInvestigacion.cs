@@ -20,11 +20,14 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string link { get; set; }
 
+        [JsonProperty]
+        public int investigacion { get; set; }
+
         public void guardar()
         {
             try
             {
-                this.Create();
+                this.id=this.Deserialize(this.Create()).id;
             }
             catch (Exception e)
             {
