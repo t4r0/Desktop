@@ -105,7 +105,7 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
-        public void regresarObjecto( int id )
+        public void regresarObjeto( int id )
         {
             this.resource_uri = this.resource_uri + id + "/";
             Caja Temp = this.Get();

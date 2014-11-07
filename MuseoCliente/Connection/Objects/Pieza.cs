@@ -157,15 +157,33 @@ namespace MuseoCliente.Connection.Objects
         }
 
         /*  CONSULTAS */
-
-
+        public ArrayList buscarCodigo(string codigo)
+        {
+            List<Pieza> listaNueva = null;
+            try
+            {
+                listaNueva = this.GetAsCollection("?codigo__icontains=" + codigo);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se encontro nombre similares");
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No existen piezas con el nombre: " + codigo);
+                return null;
+            }
+            return new ArrayList(listaNueva);
+        }
 
         public ArrayList buscarNombre( String nombre )
         {
             List<Pieza> listaNueva = null;
             try
             {
-                listaNueva = this.GetAsCollection( "?nombre__contains=" + nombre );
+                listaNueva = this.GetAsCollection( "?nombre__icontains=" + nombre );
                 if( listaNueva == null )
                     Error.ingresarError( 2, "No se encontro nombre similares" );
             }

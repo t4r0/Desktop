@@ -96,9 +96,6 @@ namespace MuseoCliente
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Evento";
-                //categ = categ.buscarPorID(id);
-                //dpFecha.SelectedDate = 
-                //rtxtDescripcion.TextChanged = "";
             }
             else
             {
