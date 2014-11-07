@@ -20,10 +20,10 @@ namespace MuseoCliente.Connection.Objects
         public Boolean bodega { get; set; }
 
         [JsonProperty]
-        public int caja { get; set; }
+        public int? caja { get; set; }
 
         [JsonProperty]
-        public int vitrina { get; set; }
+        public int? vitrina { get; set; }
 
         [JsonProperty]
         public string responsable { get; set; }
