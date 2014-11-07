@@ -1,9 +1,26 @@
 ﻿using System;
 using Amazon.S3;
 using Amazon.S3.Transfer;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace MuseoCliente.Connection.Objects
 {
+    public static class Extensions
+    {
+        /// <summary>
+        /// Convert ArrayList to List.
+        /// </summary>
+        public static List<T> ToList<T>(this ArrayList arrayList)
+        {
+            List<T> list = new List<T>(arrayList.Count);
+            foreach (T instance in arrayList)
+            {
+                list.Add(instance);
+            }
+            return list;
+        }
+    }
     public class UtilidadS3
     {
         private static string accessKey = Environment.GetEnvironmentVariable( "AWS_ACCESS_KEY_ID", EnvironmentVariableTarget.Machine );
