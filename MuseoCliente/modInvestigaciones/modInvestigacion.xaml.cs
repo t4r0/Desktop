@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using MuseoCliente.Connection.Objects;
 using System.Threading.Tasks;
 using System.Collections;
+using MuseoCliente.Properties;
 
 namespace MuseoCliente
 {
@@ -61,7 +62,7 @@ namespace MuseoCliente
         {
             investigacion = (Investigacion) this.DataContext;
             investigacion.autor = (int) cmbAutor.SelectedValue;
-            investigacion.editor = "JEscalante";
+            investigacion.editor = Settings.user.username;
             List<string> listado = LinksReferencia.GetOptions();
             ArrayList piezas = (ArrayList) gvPiezasGuardadas.ItemsSource;
             if (modificar == false)
