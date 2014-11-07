@@ -59,7 +59,6 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            //
             if (modificar == false)
             {
                 clasificacion.guardar();
