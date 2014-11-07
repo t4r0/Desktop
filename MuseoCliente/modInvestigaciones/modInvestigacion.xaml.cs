@@ -60,20 +60,20 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             investigacion = (Investigacion) this.DataContext;
-            // Error en la clase = investigacion.autor = Convert.ToInt16(cmbAutor.SelectedValue.ToString());
-            // Pregunta: la fecha es con un Now()? o puede seleccionar fecha? investigacion.fecha = ????;
             investigacion.autor = (int) cmbAutor.SelectedValue;
             investigacion.editor = "JEscalante";
             List<string> listado = LinksReferencia.GetOptions();
-           
+            ArrayList piezas = (ArrayList) gvPiezasGuardadas.ItemsSource;
             if (modificar == false)
             {
-                //investigacion.guardar();
+                investigacion.ingresarPiezas(piezas.ToList<Pieza>());
+                investigacion.guardar();
             }
             else
             {
                 investigacion.modificar();
             }
+
             if (Connection.Objects.Error.isActivo())
             {
                 MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
@@ -81,8 +81,8 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
-            //Falta la clase para que investigacion tenga pieza
         }
 
         string StringFromRichTextBox(RichTextBox rtb)
