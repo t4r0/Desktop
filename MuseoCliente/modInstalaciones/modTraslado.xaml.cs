@@ -22,11 +22,11 @@ namespace MuseoCliente
 	public partial class modTraslado : UserControl
 	{
         Traslado traslado = new Traslado();
-        Pieza piezas = new Pieza();
+        Pieza piezas = new Pieza(); //Para buscar una pieza
         Caja cajas = new Caja();
         Sala salas = new Sala();
         Vitrina vitrinas = new Vitrina();
-        Pieza pieza = new Pieza();
+        Pieza pieza = new Pieza(); //Pieza que se va a trasladar
         public UserControl anterior;
         public Border borde;
         string nombreP = "";
@@ -70,6 +70,7 @@ namespace MuseoCliente
                     MessageBox.Show("Se ha guardado exitosamente");
                     borde.Child = anterior;
                 }
+                pieza.modificar();
             }
         }
 
