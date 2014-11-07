@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -55,6 +56,19 @@ namespace MuseoCliente
             frm.borde = borde;
             frm.anterior = this;
             borde.Child = frm;
+        }
+
+        private void btnNuevaClas_Click(object sender, RoutedEventArgs e)
+        {
+            modClasificacion frm = new modClasificacion();
+            frm.borde = borde;
+            frm.anterior = this;
+            frm.modificar = true;
+            borde.Child = frm;
+            //Prueba
+            Clasificacion clas = new Clasificacion();
+            clas.regresarObjeto(1);
+            frm.DataContext = clas;
         }
 	}
 }
