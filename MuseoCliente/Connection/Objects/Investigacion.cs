@@ -10,7 +10,8 @@ namespace MuseoCliente.Connection.Objects
         public Investigacion()
             : base( "/api/v1/investigaciones/" )
         {
-            links = new List<Dictionary<string, string>>();
+            links = new List<LinkInvestigacion>();
+            linkNuevos = new List<LinkInvestigacion>();
             piezas = new List<Dictionary<string, string>>();
         }
 
@@ -36,15 +37,27 @@ namespace MuseoCliente.Connection.Objects
         public bool publicado { get; set; }
 
         [JsonProperty]
-        public List<Dictionary<string,string>> links{ get; set; }
+        public List<LinkInvestigacion> links{ get; set; }
 
         [JsonProperty]
         public List<Dictionary<string,string>> piezas { get; set; }
+
+        private List<LinkInvestigacion> linkNuevos;
+
+        private void igualar(List<LinkInvestigacion> nuevo, List<LinkInvestigacion> viejo)
+        {
+            foreach (LinkInvestigacion temp in viejo)
+            {
+
+            }
+        }
 
         public void guardar()
         {
             try
             {
+                //linkNuevos = links;
+                //links.Clear();
                 this.Create();
             }
             catch( Exception e )
@@ -55,12 +68,21 @@ namespace MuseoCliente.Connection.Objects
                     Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "+e.Message );
                 }
             }
+            //links = linkNuevos;
+            //linkNuevos.Clear();
+            //this.modificar();
         }
 
         public void modificar()
         {
             try
             {
+                //foreach (LinkInvestigacion lin in links)
+                //{
+                //    if (lin.id == 0)
+                //        lin.guardar();
+                //}
+
                 this.Save( this.id.ToString() );
             }
             catch( Exception e )
@@ -68,7 +90,7 @@ namespace MuseoCliente.Connection.Objects
                 if( e.Source != null )
                 {
                     string error = e.Source;// para ver el nombre del error
-                    Error.ingresarError( 3, "No se ha modifico en la Informacion en la base de datos" );
+                    Error.ingresarError( 3, "No se ha modifico en la Informacion en la base de datos " +e.Message );
                 }
             }
         }
@@ -195,6 +217,56 @@ namespace MuseoCliente.Connection.Objects
             }
 
             return (new ArrayList(lista));
+        }
+
+        public ArrayList regresarLinks()
+        {
+            if (piezas.Count <= 0)
+            {
+                Error.ingresarError(2, "No existen piezas para la investigacion " );
+                return null;
+            }
+            return (new ArrayList(piezas));  
+        }
+
+        public void ingresarLinks(List<LinkInvestigacion> link)
+        {
+            links.Clear();
+            links = link;
+             
+        }
+        public void ingresarLinks(string link)
+        {
+            LinkInvestigacion tempLink = new LinkInvestigacion();
+            tempLink.link = link;
+            try
+            {
+                tempLink.guardar();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No existen piezas para la investigacion " + e.Message);
+            }
+            links.Add(tempLink);
+
+        }
+
+        public void ingresarPiezas(List<Pieza> codigo)
+        {
+            piezas.Clear();
+            Dictionary<string, string> diccionario = null;
+            foreach (Pieza temp in codigo)
+            {
+                diccionario = new Dictionary<string, string>();
+                diccionario["codigo"] = temp.codigo;
+                piezas.Add(diccionario);
+            }
+        }
+        public void ingresarPiezas(Pieza pieza)
+        {
+            Dictionary<string, string> diccionario = new Dictionary<string,string>();
+            diccionario["codigo"] = pieza.codigo;
+            piezas.Add(diccionario);
         }
 
     }
