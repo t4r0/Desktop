@@ -78,9 +78,9 @@ namespace MuseoCliente.Connection.Objects
             conector.edit( id, this.Serialize() );
         }
 
-        protected void Create()
+        protected string Create()
         {
-            conector.create(this.Serialize());
+            return conector.create(this.Serialize());
         }
 
         public string Serialize()
