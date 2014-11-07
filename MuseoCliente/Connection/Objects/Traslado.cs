@@ -31,6 +31,16 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string pieza { get; set; }
 
+        public bool ShouldSerializecaja()
+        {
+            return bodega;
+        }
+
+        public bool ShouldSerializevitrina()
+        {
+            return !bodega;
+        }
+
         public void guardar()
         {
             try

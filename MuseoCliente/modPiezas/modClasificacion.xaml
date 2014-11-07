@@ -3,46 +3,51 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:Objects="clr-namespace:MuseoCliente.Connection.Objects"
 	mc:Ignorable="d"
 	x:Class="MuseoCliente.modClasificacion"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="310">
 
-	<DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
-		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
-			<DockPanel>
-				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Clasificación</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
-				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click">&#128190;</Button>
-				</Label>
-			</DockPanel>
-		</Border>
-		<StackPanel>
-			<Label Height="20"/>
-			<DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<TextBox x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0">Código:</Label>
-			</DockPanel>
-			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox x:Name="cmbFicha" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
-				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0">Ficha:</Label>
-			</DockPanel>
-			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox x:Name="cmbCategoria" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
-				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0">Categoría:</Label>
-			</DockPanel>
-			<DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<ComboBox x:Name="cmbColeccion" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0"/>
-				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0">Colección:</Label>
-			</DockPanel>
-			<DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
-				<TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-				<Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0">Nombre:</Label>
-			</DockPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
-	</DockPanel>
+    <UserControl.DataContext>
+        <Objects:Clasificacion/>
+    </UserControl.DataContext>
+
+    <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
+        <Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
+            <DockPanel>
+                <Label x:Name="lblOperacion" DockPanel.Dock="Left" Content="[Op] Clasificación"/>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Content="❌"/>
+                </Label>
+                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+                    <Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click" Content="💾"/>
+                </Label>
+            </DockPanel>
+        </Border>
+        <StackPanel>
+            <Label Height="20"/>
+            <DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <TextBox x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding codigo, Mode=TwoWay}"/>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0" Content="Código:"/>
+            </DockPanel>
+            <DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <ComboBox x:Name="cmbFicha" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding ficha, Mode=TwoWay}"/>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0" Content="Ficha:"/>
+            </DockPanel>
+            <DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <ComboBox x:Name="cmbCategoria" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding categoria, Mode=TwoWay}"/>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0" Content="Categoría:"/>
+            </DockPanel>
+            <DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <ComboBox x:Name="cmbColeccion" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding coleccion, Mode=TwoWay}"/>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0" Content="Colección:"/>
+            </DockPanel>
+            <DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding nombre, Mode=TwoWay}"/>
+                <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0" Content="Nombre:"/>
+            </DockPanel>
+            <Label Height="20"/>
+        </StackPanel>
+    </DockPanel>
 </UserControl>
