@@ -70,7 +70,7 @@ namespace MuseoCliente
                     MessageBox.Show("Se ha guardado exitosamente");
                     borde.Child = anterior;
                 }
-                pieza.modificar();
+                //pieza.modificar();
             }
         }
 
