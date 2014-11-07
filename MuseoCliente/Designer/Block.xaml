@@ -3,6 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Height="Auto" Width="Auto">
     <Grid x:Name="LayoutRoot">
-    	<Ellipse Fill="#FF0F9D58" Margin="0"/>
+    	<Ellipse Fill="{DynamicResource PureBlue}" Margin="0"/>
     </Grid>
 </UserControl>

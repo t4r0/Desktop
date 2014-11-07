@@ -5,20 +5,20 @@
 	Width="328.333" Height="335" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid x:Name="LayoutRoot" >
         <StackPanel Margin="0" Orientation="Vertical">
-            <Label FontSize="16.888" Foreground="{DynamicResource White}" Content="Bienvenido" HorizontalContentAlignment="Center" FontWeight="Bold" Height="44" Background="{DynamicResource StrongCyan}"/>
+            <Label FontSize="16.888" Foreground="{StaticResource White}" Content="Bienvenido" HorizontalContentAlignment="Center" FontWeight="Bold" Height="44" Background="{StaticResource StrongCyan}"/>
             <Grid x:Name="contentGrid" Height="211">
                 <Label Margin="30,10,0,139" Height="27.46" Width="84" HorizontalAlignment="Left" Content="Usuario" FontSize="14" Foreground="{DynamicResource Black}"/>
-                <TextBox x:Name="txtUsuario" Height="28" TextWrapping="Wrap" Text="Nombre de usuario" VerticalAlignment="Center" Margin="30,37,35,110.96" Style="{DynamicResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" VerticalContentAlignment="Center" AutoWordSelection="True"/>
-                <Label Margin="30,65,0,84" Height="27.46" Width="98" HorizontalAlignment="Left" Content="Contraseña" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource Black}"/>
-                <PasswordBox x:Name="txtPassword" Height="26" VerticalAlignment="Center" Margin="30,92,35,57.96" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource Black}" VerticalContentAlignment="Center" KeyDown="txtPassword_KeyDown"/>
+                <TextBox x:Name="txtUsuario" Height="28" TextWrapping="Wrap" Text="Nombre de usuario" VerticalAlignment="Center" Margin="30,37,35,110.96" Style="{StaticResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{StaticResource DarkGray}" VerticalContentAlignment="Center" AutoWordSelection="True"/>
+                <Label Margin="30,65,0,84" Height="27.46" Width="98" HorizontalAlignment="Left" Content="Contraseña" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{StaticResource Black}"/>
+                <PasswordBox x:Name="txtPassword" Height="26" VerticalAlignment="Center" Margin="30,92,35,57.96" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{StaticResource Black}" VerticalContentAlignment="Center" KeyDown="txtPassword_KeyDown" Style="{DynamicResource CustomPasswordBox}"/>
                 <Button Height="{Binding Height, ElementName=textBox}" Margin="30,159,166,19" Style="{StaticResource BlueButton}" Foreground="White" FontSize="26.667" Click="Button_Click_2">
-                    <TextBlock Style="{DynamicResource Icons}" FontSize="28">&#59200; <Run Text="Iniciar Sesión" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
+                    <TextBlock Style="{StaticResource Icons}" FontSize="28">&#59200; <Run Text="Iniciar Sesión" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
                 </Button>
                 <Button Height="{Binding Height, ElementName=textBox}" Margin="173,159,35,19" Style="{StaticResource PinkButton}" Foreground="White" FontSize="26.667" Click="Button_Click_1">
-                    <TextBlock Style="{DynamicResource Icons}" FontSize="28">&#59201; <Run Text="Salir" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
-                </Button>
-                <Designer:LoadingAnimation x:Name="animation" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Visibility="Hidden"/>
+                    <TextBlock Style="{StaticResource Icons}" FontSize="28">&#59201; <Run Text="Salir" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
+                </Button>               
             </Grid>
+            <TextBlock x:Name="message" Foreground="{StaticResource SoftRed}" Style="{DynamicResource SourceSans}" FontSize="14" TextAlignment="Center"/>
         </StackPanel>
     </Grid>
 </Window>
