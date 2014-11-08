@@ -38,15 +38,15 @@ namespace MuseoCliente
             //Fichas
             cmbFicha.ItemsSource = fichas.regresarTodos();
             cmbFicha.DisplayMemberPath = "nombre";
-            cmbFicha.SelectedValuePath = "nombre";
+            cmbFicha.SelectedValuePath = "id";
             //Categorias
             cmbCategoria.ItemsSource = categ.regresarTodo();
             cmbCategoria.DisplayMemberPath = "nombre";
-            cmbCategoria.SelectedValuePath = "nombre";
+            cmbCategoria.SelectedValuePath = "id";
             //Coleccion
             cmbColeccion.ItemsSource = colec.regresarTodo();
             cmbColeccion.DisplayMemberPath = "nombre";
-            cmbColeccion.SelectedValuePath = "nombre";
+            cmbColeccion.SelectedValuePath = "id";
             //Si es para modificar
             if (modificar == true)
             {
