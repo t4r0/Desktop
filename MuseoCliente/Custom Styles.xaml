@@ -298,7 +298,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}" BorderThickness="1" Padding="2" CornerRadius="2">
+                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}" BorderThickness="1" Padding="2" CornerRadius="2">
 
                             <!-- La implementación coloca el contenido en el ScrollViewer. Debe denominarse PART_ContentHost para que el control funcione -->
                             <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{DynamicResource CustomScrollViewer}" Background="{TemplateBinding Background}"/>

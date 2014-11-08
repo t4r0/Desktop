@@ -5,6 +5,9 @@
     <UserControl.DataContext>
         <Objects:Ficha/>
     </UserControl.DataContext>
+    <UserControl.InputBindings>
+        <KeyBinding Key="O"></KeyBinding>
+    </UserControl.InputBindings>
     <DockPanel>
         <Grid DockPanel.Dock="Top" Background="{DynamicResource White}" Height="77">
             <Grid.ColumnDefinitions>
@@ -16,11 +19,11 @@
         </Grid>
         <Menu Height="24" Margin="0,0,0,1" Style="{DynamicResource CustomMenu}" DockPanel.Dock="Top">
             <MenuItem Header="Archivo" Style="{DynamicResource CustomMenuItem}">
-                <MenuItem Header="Nuevo" Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_9"/>
-                <MenuItem Header="Abrir" Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_7"/>
-                <MenuItem Header="Guardar " Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_8"/>
-                <MenuItem Header="Guardar Como" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_6"/>
-                <MenuItem Header="Subir al servidor" Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_10"/>
+                <MenuItem Header="Nuevo" Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_9" InputGestureText="Ctrl+N"/>
+                <MenuItem Header="Abrir" Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_7" InputGestureText="Ctrl+A"/>
+                <MenuItem Header="Guardar " Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_8" InputGestureText="Ctrl+G"/>
+                <MenuItem Header="Guardar Como" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_6" InputGestureText="Shift+Ctrl+G"/>
+                <MenuItem Header="Subir al servidor" Margin="0" Style="{DynamicResource CustomMenuItem}" Click="MenuItem_Click_10" InputGestureText="Ctrl+U"/>
             </MenuItem>
             <MenuItem Header="Insertar" Style="{DynamicResource CustomMenuItem}">
                 <MenuItem Header="Texto" Click="MenuItem_Click" Style="{DynamicResource CustomMenuItem}"/>

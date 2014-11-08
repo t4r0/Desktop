@@ -184,6 +184,7 @@ namespace MuseoCliente.Designer
         private void MenuItem_Click_9(object sender, RoutedEventArgs e)
         {
             Load(new Connection.Objects.Ficha());
+            items = 1;
         }
 
         private void MenuItem_Click_10(object sender, RoutedEventArgs e)

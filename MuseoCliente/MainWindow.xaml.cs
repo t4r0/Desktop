@@ -106,7 +106,7 @@ namespace MuseoCliente
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            modUsuario usr = new modUsuario();
+            modUsuario usr = new modUsuario() { modificar = true };
             usr.DataContext = DataContext;
             bdrContenedor.Child = usr;
         }
