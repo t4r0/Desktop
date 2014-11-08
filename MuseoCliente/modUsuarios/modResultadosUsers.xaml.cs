@@ -40,7 +40,7 @@ namespace MuseoCliente
 
         private void rbUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            if (usuarios.consultaUserName(busqueda) != null)
+            if (usuarios.consultaUserName(busqueda).Count != 0)
             {
                 gvResultados.ItemsSource = usuarios.consultaUserName(busqueda);
                 gvResultados.SelectedValuePath = "username";

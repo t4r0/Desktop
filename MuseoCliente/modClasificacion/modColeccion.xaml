@@ -20,13 +20,11 @@
 				</Label>
 			</DockPanel>
 		</Border>
-		<StackPanel>
-			<Label Height="20"/>
-			<DockPanel Height="35" HorizontalAlignment="Center">
+		<Grid>
+            <DockPanel Height="35" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Nombre:</Label>
 				<TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			</DockPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
+        </Grid>
 	</DockPanel>
 </UserControl>
