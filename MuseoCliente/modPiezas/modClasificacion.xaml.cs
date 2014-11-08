@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -35,17 +36,17 @@ namespace MuseoCliente
         {
             //Cargar datos
             //Fichas
-            cmbFicha.DisplayMemberPath = "nombre";
-            cmbFicha.SelectedValuePath = "id";
             cmbFicha.ItemsSource = fichas.regresarTodos();
+            cmbFicha.DisplayMemberPath = "nombre";
+            cmbFicha.SelectedValuePath = "nombre";
             //Categorias
-            cmbCategoria.DisplayMemberPath = "nombre";
-            cmbCategoria.SelectedValue = "id";
             cmbCategoria.ItemsSource = categ.regresarTodo();
+            cmbCategoria.DisplayMemberPath = "nombre";
+            cmbCategoria.SelectedValuePath = "nombre";
             //Coleccion
-            cmbColeccion.DisplayMemberPath = "nombre";
-            cmbColeccion.SelectedValue = "id";
             cmbColeccion.ItemsSource = colec.regresarTodo();
+            cmbColeccion.DisplayMemberPath = "nombre";
+            cmbColeccion.SelectedValuePath = "nombre";
             //Si es para modificar
             if (modificar == true)
             {
@@ -59,7 +60,7 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            //
+            clasificacion = (Clasificacion)this.DataContext;
             if (modificar == false)
             {
                 clasificacion.guardar();
@@ -70,12 +71,13 @@ namespace MuseoCliente
             }
             if (Connection.Objects.Error.isActivo())
             {
-                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
             }
             else
             {
                 MessageBox.Show("Correcto");
             }
+            borde.Child = anterior;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

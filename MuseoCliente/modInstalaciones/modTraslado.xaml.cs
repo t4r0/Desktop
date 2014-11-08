@@ -52,11 +52,13 @@ namespace MuseoCliente
                 {
                     traslado.bodega = true;
                     traslado.caja = (int)cmbCaja.SelectedValue;
+                    traslado.vitrina = null;
                     pieza.exhibicion = false;
                 }
                 else
                 {
                     traslado.bodega = false;
+                    traslado.caja = null;
                     pieza.exhibicion = true;
                     traslado.vitrina = (int)cmbVitrina.SelectedValue;
                 }
@@ -162,6 +164,7 @@ namespace MuseoCliente
                 //Si ya existe el traslado
                 if (traslado.regresarPiezas(pieza.codigo).Count > 0)
                 {
+                    traslado = (Traslado)traslado.regresarPiezas(pieza.codigo)[0];
                     if (traslado.bodega == true)
                     {
                         rbBodega.IsChecked = true;
@@ -170,7 +173,11 @@ namespace MuseoCliente
                     else
                     {
                         rbVitrina.IsChecked = true;
-                        cmbVitrina.SelectedValue = traslado.vitrina;
+                        Vitrina vitrina = new Vitrina();
+                        int idV = (int)traslado.vitrina;
+                        vitrina.regresarObjeto(idV);
+                        cmbSala.SelectedValue = vitrina.sala;
+                        int j;
                     }
                 }// Si no existe, lo crea
             }

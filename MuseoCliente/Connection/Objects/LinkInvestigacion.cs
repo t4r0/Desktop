@@ -11,7 +11,8 @@ namespace MuseoCliente.Connection.Objects
 {
     public class LinkInvestigacion:ResourceObject<LinkInvestigacion>
     {
-        public LinkInvestigacion():base("/v1/linkInvestigacion/")
+        public LinkInvestigacion()
+            : base("/api/v1/links/")
         {
 
         }
@@ -19,17 +20,20 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public string link { get; set; }
 
+        [JsonProperty]
+        public int investigacion { get; set; }
+
         public void guardar()
         {
             try
             {
-                this.Create();
+                this.id=this.Deserialize(this.Create()).id;
             }
             catch (Exception e)
             {
                 if (e.Source != null)
                 {
-                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos");
+                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos"+e.Message.ToString());
                 }
             }
         }
@@ -54,7 +58,7 @@ namespace MuseoCliente.Connection.Objects
             List<LinkInvestigacion> listaNueva = new List<LinkInvestigacion>();
             try
             {
-                List<LinkInvestigacion> todasPiezas = this.GetAsCollection();
+                List<LinkInvestigacion> todasPiezas = this.fetchAll();
                 foreach (LinkInvestigacion Link in todasPiezas)
                 {
                     if (Link.link.Contains(link))

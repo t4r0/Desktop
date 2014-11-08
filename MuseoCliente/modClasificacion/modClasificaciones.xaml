@@ -32,11 +32,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label VerticalAlignment="Top" Margin="10,18,422,0" Height="33" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Colecciones Existentes:</Label>
-            <DataGrid x:Name="gvColecciones"  Grid.Row="0" Margin="15,51,15,22" Height="142" VerticalAlignment="Center" Style="{DynamicResource CustomDataGrid}" ColumnHeaderStyle="{DynamicResource CustomColumnHeader}"/>
+            <DataGrid x:Name="gvColecciones"  Grid.Row="0" Margin="15,51,15,22" Height="142" VerticalAlignment="Center" Style="{DynamicResource CustomDataGrid}"/>
             <Button x:Name="btnNuevaColec" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaColec_Click" Margin="0,14,17,174" Style="{DynamicResource BlueForegrounButton}">&#10133;</Button>
             <Button x:Name="btnNuevaCat" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaCateg_Click" Margin="0,7,17,0" Style="{DynamicResource BlueForegrounButton}" Grid.Row="1" VerticalAlignment="Top">&#10133;</Button>
 			<Label VerticalAlignment="Top" Margin="15,10,437,0" Grid.Row="1" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Categorías Existentes:</Label>
-            <DataGrid x:Name="gvCategorias" Grid.Row="1" Margin="15,41,15,10" Style="{DynamicResource CustomDataGrid}" ColumnHeaderStyle="{DynamicResource CustomColumnHeader}"/>
+            <DataGrid x:Name="gvCategorias" Grid.Row="1" Margin="15,41,15,10" Style="{DynamicResource CustomDataGrid}"/>
 		</Grid>
 	</DockPanel>
 </UserControl>
