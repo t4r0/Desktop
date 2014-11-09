@@ -168,6 +168,7 @@ namespace MuseoCliente.Connection.Objects
             return ( clase );
         }
 
+
         public Categoria consultarCategoria( int idCategoria )
         {
             Categoria clase = new Categoria();

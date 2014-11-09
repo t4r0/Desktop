@@ -138,5 +138,23 @@ namespace MuseoCliente
             if (e.Key == Key.Enter)
                 StartApp();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+             if (this.WindowState == WindowState.Normal) this.WindowState = WindowState.Maximized;
+            else this.WindowState = WindowState.Normal;
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void DockPanel_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+
+            this.DragMove();
+        }
 	}
 }

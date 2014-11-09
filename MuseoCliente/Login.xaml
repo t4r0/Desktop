@@ -2,23 +2,32 @@
 	x:Class="MuseoCliente.Login"
 	x:Name="Window"
 	Title="Login"
-	Width="328.333" Height="335" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
-    <Grid x:Name="LayoutRoot" >
-        <StackPanel Margin="0" Orientation="Vertical">
-            <Label FontSize="16.888" Foreground="{StaticResource White}" Content="Bienvenido" HorizontalContentAlignment="Center" FontWeight="Bold" Height="44" Background="{StaticResource StrongCyan}"/>
-            <Grid x:Name="contentGrid" Height="211">
-                <Label Margin="30,10,0,139" Height="27.46" Width="84" HorizontalAlignment="Left" Content="Usuario" FontSize="14" Foreground="{DynamicResource Black}"/>
-                <TextBox x:Name="txtUsuario" Height="28" TextWrapping="Wrap" Text="Nombre de usuario" VerticalAlignment="Center" Margin="30,37,35,110.96" Style="{StaticResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{StaticResource DarkGray}" VerticalContentAlignment="Center" AutoWordSelection="True"/>
-                <Label Margin="30,65,0,84" Height="27.46" Width="98" HorizontalAlignment="Left" Content="Contraseña" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{StaticResource Black}"/>
-                <PasswordBox x:Name="txtPassword" Height="26" VerticalAlignment="Center" Margin="30,92,35,57.96" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{StaticResource Black}" VerticalContentAlignment="Center" KeyDown="txtPassword_KeyDown" Style="{DynamicResource CustomPasswordBox}"/>
-                <Button Height="{Binding Height, ElementName=textBox}" Margin="30,159,166,19" Style="{StaticResource BlueButton}" Foreground="White" FontSize="26.667" Click="Button_Click_2">
-                    <TextBlock Style="{StaticResource Icons}" FontSize="28">&#59200; <Run Text="Iniciar Sesión" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
-                </Button>
-                <Button Height="{Binding Height, ElementName=textBox}" Margin="173,159,35,19" Style="{StaticResource PinkButton}" Foreground="White" FontSize="26.667" Click="Button_Click_1">
-                    <TextBlock Style="{StaticResource Icons}" FontSize="28">&#59201; <Run Text="Salir" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
-                </Button>               
+	Width="328.333" Height="335" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded"
+     WindowStyle="None">
+    <Border BorderBrush="{DynamicResource Black}" BorderThickness="2">
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="24" Background="{DynamicResource StrongCyan}" PreviewMouseDown="DockPanel_PreviewMouseDown_1" Cursor="Hand">
+                <Button Content="X" Width="23" DockPanel.Dock="Right" HorizontalAlignment="Right" Style="{DynamicResource RectangleButton}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontWeight="Bold" IsCancel="True" IsDefault="True"/>
+                <Button Content="&#10134;" Width="12" Style="{DynamicResource WhiteForegroundButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="24" Margin="0,1,8,1" Click="Button_Click_4"/>
+            </DockPanel>
+            <Grid x:Name="LayoutRoot" DockPanel.Dock="Top" >
+                <StackPanel Margin="0" Orientation="Vertical">
+                    <Label FontSize="16.888" Foreground="{StaticResource White}" Content="Bienvenido" HorizontalContentAlignment="Center" FontWeight="Bold" Height="44" Background="{StaticResource StrongCyan}"/>
+                    <Grid x:Name="contentGrid" Height="211">
+                        <Label Margin="30,10,0,139" Height="27.46" Width="84" HorizontalAlignment="Left" Content="Usuario" FontSize="14" Foreground="{DynamicResource Black}"/>
+                        <TextBox x:Name="txtUsuario" Height="28" TextWrapping="Wrap" Text="Nombre de usuario" VerticalAlignment="Center" Margin="30,37,35,110.96" Style="{StaticResource CustomTextBox}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{StaticResource DarkGray}" VerticalContentAlignment="Center" AutoWordSelection="True"/>
+                        <Label Margin="30,65,0,84" Height="27.46" Width="98" HorizontalAlignment="Left" Content="Contraseña" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{StaticResource Black}"/>
+                        <PasswordBox x:Name="txtPassword" Height="26" VerticalAlignment="Center" Margin="30,92,35,57.96" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{StaticResource Black}" VerticalContentAlignment="Center" KeyDown="txtPassword_KeyDown" Style="{DynamicResource CustomPasswordBox}"/>
+                        <Button Height="{Binding Height, ElementName=textBox}" Margin="30,159,166,19" Style="{StaticResource BlueButton}" Foreground="White" FontSize="26.667" Click="Button_Click_2">
+                            <TextBlock Style="{StaticResource Icons}" FontSize="28"><Run Text="&#xE740; "/><Run Text="Iniciar Sesión" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
+                        </Button>
+                        <Button Height="{Binding Height, ElementName=textBox}" Margin="173,159,35,19" Style="{StaticResource PinkButton}" Foreground="White" FontSize="26.667" Click="Button_Click_1">
+                            <TextBlock Style="{StaticResource Icons}" FontSize="28"><Run Text="&#xE741; "/><Run Text="Salir" Style="{StaticResource SourceSans}" FontSize="14"/></TextBlock>
+                        </Button>
+                    </Grid>
+                    <TextBlock x:Name="message" Foreground="{StaticResource SoftRed}" Style="{DynamicResource SourceSans}" FontSize="14" TextAlignment="Center"/>
+                </StackPanel>
             </Grid>
-            <TextBlock x:Name="message" Foreground="{StaticResource SoftRed}" Style="{DynamicResource SourceSans}" FontSize="14" TextAlignment="Center"/>
-        </StackPanel>
-    </Grid>
+        </DockPanel>
+    </Border>
 </Window>

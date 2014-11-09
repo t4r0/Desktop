@@ -53,7 +53,8 @@ namespace MuseoCliente.Connection.Objects
         public float ? largo { get; set; }
         [JsonProperty]
         public float ? diametro { get; set; }
-
+        [JsonProperty]
+        public string fotografia { get; set; }
         [JsonProperty]
         public String fechamiento { get; set; }
 
@@ -74,6 +75,11 @@ namespace MuseoCliente.Connection.Objects
                 //string error = e.Source;// para ver el nombre del error
                 Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "+ e.Message );
             }
+        }
+
+        public bool ShouldSerializefotografia()
+        {
+            return false;
         }
 
         public void modificar()
