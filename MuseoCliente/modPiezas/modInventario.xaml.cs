@@ -101,11 +101,14 @@ namespace MuseoCliente
         private void listCats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBox list = sender as ListBox;
+            Coleccion col = listColecciones.SelectedItem as Coleccion;
+            Categoria cat = list.SelectedItem as Categoria;
             if (list != null)
             {
-                if (list.SelectedItem != null)
+                if (cat != null)
                 {
-                    CargarClasificaciones(list.SelectedItem as Categoria);
+                    CargarClasificaciones(cat);
+                    CargarPiezas("?coleccion=" + col.id + "&categoria=" + cat.id);
                 }
             }
         }
@@ -123,6 +126,19 @@ namespace MuseoCliente
             clasPanel.Visibility = Visibility.Visible;
             listClas.ItemsSource = t.Result;
             listClas.DisplayMemberPath = "nombre";
+        }
+
+        private void listClas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox list = sender as ListBox;
+            Clasificacion cla = list.SelectedItem as Clasificacion;
+            if (list != null)
+            {
+                if (cla != null)
+                {                   
+                    CargarPiezas("?clasificacion=" + cla.id);
+                }
+            }
         }
 	}
 }
