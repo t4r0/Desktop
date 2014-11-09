@@ -59,123 +59,112 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre(String nombre)
         {
-            List<Publicacion> listaNueva = null;
+            ArrayList listaNueva = null;
             try
             {
-                string consultarNombre = this.resource_uri + "?nombre=" + nombre;
-                listaNueva = this.GetAsCollection(consultarNombre);
+                listaNueva = new ArrayList(this.GetAsCollection("?nombre__contains=" + nombre));
 
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(2, "No se encontro nombre similares");
             }
-
             if (listaNueva == null)
             {
-                Error.ingresarError(2, "No se encontro ninguna coincidencia por la busqueda por nombre");
+                Error.ingresarError(2, "Nose encontro el nombre =" + nombre);
                 return null;
             }
-
             return new ArrayList(listaNueva);
         }
 
 
         public ArrayList consultapublicacion(string publicacion)  //  la acabo de agregar segun la clase fichas 
         {
-            List<Publicacion> listaNueva = null;
+            ArrayList  listaNueva = null;
             try
             {
-                string consultarpublicacion = this.resource_uri + "?publicacion=" + publicacion;
-                listaNueva = this.GetAsCollection(consultarpublicacion);
-                
-                
+
+                listaNueva = new ArrayList(this.GetAsCollection("?publicacion__contains=" + publicacion));
+
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(2, "No se encontraron publicaciones similares");
             }
-
             if (listaNueva == null)
-                {
-                Error.ingresarError(2, "No se encontro coicidencias con la publicacion");
+            {
+                Error.ingresarError(2, "Nose encontro la publicacion =" + publicacion);
                 return null;
-                }
+            }
             return new ArrayList(listaNueva);
         }
 
 
         public ArrayList consultalink(string link)  //  la acabo de agregar segun la clase fichas 
         {
-            List<Publicacion> listaNueva = null;
+            ArrayList  listaNueva = null;
             try
             {
-                string consultalink = this.resource_uri + "?link=" + link;
-                listaNueva = this.GetAsCollection(consultalink);
-                                
+
+                listaNueva = new ArrayList(this.GetAsCollection("?link__contains=" + link));
+
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(2, "No se encontraron link's similares");
             }
-
             if (listaNueva == null)
-                {
-                Error.ingresarError(2, "No se encontro el link de la publicacion");
+            {
+                Error.ingresarError(2, "Nose encontro el link =" + link);
                 return null;
-                }
-
+            }
             return new ArrayList(listaNueva);
         }
 
 
         public ArrayList consultapublicacionfecha(DateTime fecha)  //  la acabo de agregar segun la  la clase ficha  tercera agregada
         {
-            List<Publicacion> listaNueva = null;
+            ArrayList listaNueva = null;
             try
             {
 
 
                 string fecha2 = fecha.Date.ToString();
-                string consultapublicacionfecha = this.resource_uri+"?fecha=" + fecha2;
-                listaNueva = this.GetAsCollection(consultapublicacionfecha);
-                                
+                listaNueva = new ArrayList(this.GetAsCollection("?fecha__contains=" + fecha2));
+
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(2, "No se encontraron link's similares");
             }
-
             if (listaNueva == null)
-                {
-                Error.ingresarError(2, "No se encontro ninguna coincidencia con la fecha");
+            {
+                Error.ingresarError(2, "Nose encontro el link =" + link);
                 return null;
-                }
+            }
             return new ArrayList(listaNueva);
         }
 
         public ArrayList regresarTodos()
         {
-            ArrayList listaNueva = new ArrayList();
+            List<Publicacion> listaNueva = null;
             try
             {
-
-                List<Publicacion> todaspublicacion = this.GetAsCollection();
-
-                
+                listaNueva = this.fetchAll();
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(2, "tabla vacia");
             }
-
             if (listaNueva == null)
-                {
-                Error.ingresarError(2, "No se econtro ninguna coincidencia al parecer la tabla esta vacia");
+            {
+                Error.ingresarError(2, "No se encontraron coincidencias");
                 return null;
-                }
+            }
             return new ArrayList(listaNueva);
         }
+
+           
 
         public ArrayList regresarPublicaciones()
         {
@@ -199,6 +188,26 @@ namespace MuseoCliente.Connection.Objects
                 }
             return new ArrayList(listaNueva);
         }
+
+
+        public void regresarObjeto(int id)
+        {
+            this.resource_uri = this.resource_uri + id + "/";
+            Publicacion Temp = this.Get();
+            if (Temp == null)
+            {
+                Error.ingresarError(2, "No se encontro coincidencia");
+                return;
+            }
+            this.id = Temp.id;
+            this.fecha = Temp.fecha;
+            this.link = Temp.link;
+            this.nombre = Temp.nombre;
+            this.publicacion = Temp.publicacion;
+            this.resource_uri = Temp.resource_uri;
+        }
+
+
        
     }
 }

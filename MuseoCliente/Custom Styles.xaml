@@ -82,6 +82,7 @@
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="Border" Value="{DynamicResource LightPink}"/>
                             <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource LightPink}"/>
+                            <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource DarkPink}"/>
@@ -89,9 +90,6 @@
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="true"/>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -118,15 +116,14 @@
                         <Trigger Property="IsKeyboardFocused" Value="true"/>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Foreground" Value="{DynamicResource LightBlue}"/>
+                            <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Foreground" Value="{DynamicResource StrongBlue}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="true"/>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
-                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}" TargetName="Border"/>
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+                            
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -190,6 +187,7 @@
                         <Trigger Property="IsKeyboardFocused" Value="true"/>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Foreground" Value="{DynamicResource White}"/>
+                            <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Foreground" Value="{DynamicResource White}"/>
@@ -298,7 +296,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}" BorderThickness="1" Padding="2" CornerRadius="2">
+                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}" BorderThickness="1" Padding="2" CornerRadius="2">
 
                             <!-- La implementación coloca el contenido en el ScrollViewer. Debe denominarse PART_ContentHost para que el control funcione -->
                             <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{DynamicResource CustomScrollViewer}" Background="{TemplateBinding Background}"/>
@@ -1179,6 +1177,36 @@
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CustomPasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}" BorderThickness="1" Padding="2" CornerRadius="2">
+
+                            <!--La implementación coloca el contenido en el ScrollViewer. Debe denominarse PART_ContentHost para que el control funcione -->
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{DynamicResource CustomScrollViewer}" Background="{TemplateBinding Background}"/>
+
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource DarkGray}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource LightGray}"/>
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource Gray}"/>
+                            <Setter Property="Background" TargetName="PART_ContentHost" Value="{DynamicResource LightGray}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource PureBlue}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource StrongBlue}"/>
+                        </Trigger>                       
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>                
             </Setter.Value>
         </Setter>
     </Style>

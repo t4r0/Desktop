@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace MuseoCliente
 {
@@ -54,11 +56,50 @@ namespace MuseoCliente
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            modInvestigacion frm = new modInvestigacion();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.id = Convert.ToInt16(gvResultados.SelectedValue.ToString());
-            borde.Child = frm;
+            if (gvResultados.SelectedItem != null)
+            {
+                modInvestigacion frm = new modInvestigacion();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.DataContext = gvResultados.SelectedItem;
+                borde.Child = frm;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            buscarInvestigaciones(txtBuscar.Text);
+        }
+        private async void buscarInvestigaciones(string titulo)
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => investigaciones.buscarTitulo(titulo));
+            await task;
+            gvResultados.ItemsSource = task.Result;
+        }
+
+        private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtBuscar.Text.Length > 3)
+            {
+                buscarInvestigaciones(txtBuscar.Text);
+            }
+            else
+            {
+                gvResultados.ItemsSource = null;
+            }
+        }
+
+        private void btnEditarInvestigacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvResultados.SelectedItem != null)
+            {
+                modInvestigacion frm = new modInvestigacion();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.DataContext = gvResultados.SelectedItem;
+                frm.modificar = true;
+                borde.Child = frm;
+            }
         }
 	}
 }

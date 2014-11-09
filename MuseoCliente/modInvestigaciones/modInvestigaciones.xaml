@@ -15,19 +15,25 @@
 				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
 					<Button x:Name="btnNueva" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnNueva_Click">&#10133;</Button>
 				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
+				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,-1,10,-1" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
 					<Button x:Name="btnBuscar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnBuscar_Click">&#128269;</Button>
 				</Label>
 				<TextBox x:Name="txtBuscar" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 			</DockPanel>
 		</Border>
-		<StackPanel>
-			<Label Height="20"/>
-			<StackPanel Height="410">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0">Últimas Investigaciones:</Label>
-                <DataGrid x:Name="gvResultados" Margin="15,0,15,0" Height="350"/>
-			</StackPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
+		<Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="159*"/>
+                <ColumnDefinition Width="161*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label VerticalAlignment="Top" Margin="10,18,100,0" Height="33" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Ultimas Investigaciones:</Label>
+            <Button x:Name="btnNuevaInvestigacion" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Margin="0,18,15,0" Style="{DynamicResource BlueForegrounButton}" VerticalAlignment="Top" Grid.Column="1" Click="btnNuevaInvestigacion_Click">&#10133;</Button>
+            <Button x:Name="btnEditarInvestigacion" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Margin="0,18,40,0" Style="{DynamicResource BlueForegrounButton}" VerticalAlignment="Top" Grid.Column="1" Click="btnEditarInvestigacion_Click">&#9998;</Button>
+            <Button x:Name="btnBuscarInvestigacion" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Margin="0,18,65,0" Style="{DynamicResource BlueForegrounButton}" VerticalAlignment="Top" Grid.Column="1" Click="btnBuscarInvestigacion_Click">&#128269;</Button>
+            <DataGrid x:Name="gvResultados" Margin="15,45,15,50" Grid.ColumnSpan="2"/>
+		</Grid>
 	</DockPanel>
 </UserControl>

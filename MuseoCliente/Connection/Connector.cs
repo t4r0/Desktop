@@ -105,7 +105,7 @@ namespace MuseoCliente.Connection
             reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage message = client.SendAsync(reqMessage).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode == HttpStatusCode.Created)
+            if (message.StatusCode == HttpStatusCode.Created || message.StatusCode == HttpStatusCode.OK)
                 return responseContent;
             Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
             if (error.Keys.Contains("error"))
@@ -122,7 +122,9 @@ namespace MuseoCliente.Connection
             reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
             HttpResponseMessage message = client.SendAsync(reqMessage).Result;
             string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode != HttpStatusCode.NoContent)
+            if (message.StatusCode == HttpStatusCode.NoContent || message.StatusCode == HttpStatusCode.OK)
+                return;
+            else
             {
                 Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
                 if (error.Keys.Contains("error"))
