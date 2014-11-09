@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -20,6 +21,7 @@ namespace MuseoCliente
 	{
         Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
         Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        Connection.Objects.Clasificacion clasif = new Connection.Objects.Clasificacion();
         public Border borde;
         public modClasificaciones()
 		{
@@ -30,6 +32,7 @@ namespace MuseoCliente
         {
             gvCategorias.ItemsSource = categ.regresarTodo();
             gvColecciones.ItemsSource = colec.regresarTodo();
+            gvClasificaciones.ItemsSource = clasif.regresarTodo();
         }
 
         private void btnNuevaCateg_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,14 @@ namespace MuseoCliente
         {
             modResultadosClas frm = new modResultadosClas();
             frm.busqueda = txtBuscar.Text;
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
+
+        private void btnNuevaClas_Click(object sender, RoutedEventArgs e)
+        {
+            modClasificacion frm = new modClasificacion();
             frm.borde = borde;
             frm.anterior = this;
             borde.Child = frm;

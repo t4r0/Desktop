@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -18,10 +19,10 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modClasificacion : UserControl
 	{
-        Connection.Objects.Clasificacion clasificacion = new Connection.Objects.Clasificacion();
-        Connection.Objects.Ficha fichas = new Connection.Objects.Ficha();
-        Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
-        Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        Clasificacion clasificacion = new Clasificacion();
+        Ficha fichas = new Ficha();
+        Categoria categ = new Categoria();
+        Coleccion colec = new Coleccion();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -35,17 +36,17 @@ namespace MuseoCliente
         {
             //Cargar datos
             //Fichas
+            cmbFicha.ItemsSource = fichas.regresarTodos();
             cmbFicha.DisplayMemberPath = "nombre";
             cmbFicha.SelectedValuePath = "id";
-            cmbFicha.ItemsSource = fichas.regresarTodos();
             //Categorias
-            cmbCategoria.DisplayMemberPath = "nombre";
-            cmbCategoria.SelectedValue = "id";
             cmbCategoria.ItemsSource = categ.regresarTodo();
+            cmbCategoria.DisplayMemberPath = "nombre";
+            cmbCategoria.SelectedValuePath = "id";
             //Coleccion
-            cmbColeccion.DisplayMemberPath = "nombre";
-            cmbColeccion.SelectedValue = "id";
             cmbColeccion.ItemsSource = colec.regresarTodo();
+            cmbColeccion.DisplayMemberPath = "nombre";
+            cmbColeccion.SelectedValuePath = "id";
             //Si es para modificar
             if (modificar == true)
             {
@@ -59,7 +60,7 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            //
+            clasificacion = (Clasificacion)this.DataContext;
             if (modificar == false)
             {
                 clasificacion.guardar();
@@ -70,11 +71,12 @@ namespace MuseoCliente
             }
             if (Connection.Objects.Error.isActivo())
             {
-                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
             }
             else
             {
                 MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
         }
 
