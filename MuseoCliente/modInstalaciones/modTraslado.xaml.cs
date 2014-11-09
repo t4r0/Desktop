@@ -31,6 +31,7 @@ namespace MuseoCliente
         public Border borde;
         string nombreP = "";
         private BackgroundWorker CargarPiezas = new BackgroundWorker();
+        bool modificar = false;
         public modTraslado()
 		{
 			this.InitializeComponent();
@@ -41,7 +42,34 @@ namespace MuseoCliente
             //Modificar
             if (traslado.regresarPiezas(pieza.codigo).Count > 0)
             {
-                MessageBox.Show("Modificar");
+                traslado.pieza = pieza.codigo;
+                traslado.responsable = "Migue4";
+                traslado.fecha = System.DateTime.Today;
+                if (rbBodega.IsChecked == true)
+                {
+                    traslado.bodega = true;
+                    traslado.caja = (int)cmbCaja.SelectedValue;
+                    traslado.vitrina = null;
+                    pieza.exhibicion = false;
+                }
+                else
+                {
+                    traslado.bodega = false;
+                    traslado.caja = null;
+                    pieza.exhibicion = true;
+                    traslado.vitrina = (int)cmbVitrina.SelectedValue;
+                }
+                traslado.modificar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha guardado exitosamente");
+                    borde.Child = anterior;
+                }
+                pieza.modificar();
             }
             else //Nuevo
             {
@@ -100,11 +128,14 @@ namespace MuseoCliente
 
         private void cmbSala_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int idS = (int)cmbSala.SelectedValue;
-            //Vitrinas
-            cmbVitrina.ItemsSource = vitrinas.regresarPorSala(idS);
-            cmbVitrina.DisplayMemberPath = "numero";
-            cmbVitrina.SelectedValuePath = "id";
+            if (modificar == false)
+            {
+                int idS = (int)cmbSala.SelectedValue;
+                //Vitrinas
+                cmbVitrina.ItemsSource = vitrinas.regresarPorSala(idS);
+                cmbVitrina.DisplayMemberPath = "numero";
+                cmbVitrina.SelectedValuePath = "id";
+            }
         }
 
         private void txtCodigoPieza_TextChanged(object sender, TextChangedEventArgs e)
@@ -122,6 +153,9 @@ namespace MuseoCliente
                 txtNombrePieza.Text = "";
                 rbVitrina.IsChecked = false;
                 rbBodega.IsChecked = false;
+                cmbCaja.SelectedValue = null;
+                cmbVitrina.SelectedValue = null;
+                cmbSala.SelectedValue = null;
             }
         }
 
@@ -164,6 +198,7 @@ namespace MuseoCliente
                 //Si ya existe el traslado
                 if (traslado.regresarPiezas(pieza.codigo).Count > 0)
                 {
+                    modificar = true;
                     traslado = (Traslado)traslado.regresarPiezas(pieza.codigo)[0];
                     if (traslado.bodega == true)
                     {
@@ -177,8 +212,10 @@ namespace MuseoCliente
                         int idV = (int)traslado.vitrina;
                         vitrina.regresarObjeto(idV);
                         cmbSala.SelectedValue = vitrina.sala;
-                        int j;
+                        cargarVitrinas(vitrina.sala);
+                        cmbVitrina.SelectedValue = vitrina.id;
                     }
+                    modificar = false;
                 }// Si no existe, lo crea
             }
             else
@@ -186,6 +223,13 @@ namespace MuseoCliente
                 txtCodigo.Text = "";
                 txtNombrePieza.Text = "";
             }
+        }
+
+        public void cargarVitrinas(int idSala){
+            //Vitrinas
+            cmbVitrina.ItemsSource = vitrinas.regresarPorSala(idSala);
+            cmbVitrina.DisplayMemberPath = "numero";
+            cmbVitrina.SelectedValuePath = "id";
         }
 	}
 }
