@@ -39,9 +39,9 @@
             <Label x:Name="lblUserName" Content="Nombre de usuario" Margin="10,105,10,1" Grid.Column="0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource PureBlue}"/>
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="País:" Margin="10,79,0,0" Grid.Column="2" Width="74" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource Gray}" Height="28"/>
             <Border HorizontalAlignment="Center" Height="100" Margin="10,8,25,0" VerticalAlignment="Top" Width="100" Background="#FFF0F0F0" CornerRadius="50">
-                <Image Source="{Binding fotografia}"/>
+                <Image x:Name="imageUser" Source="{Binding fotografia, Mode=TwoWay}"/>
             </Border>
-            <ComboBox x:Name="cmbPais" Grid.Column="2" Height="25" VerticalAlignment="Top" Margin="13,105,27,0" SelectionChanged="cmbPais_SelectionChanged" Loaded="cmbPais_Loaded" Style="{DynamicResource CustomComboBox}"/>
+            <ComboBox x:Name="cmbPais" Grid.Column="2" Height="25" VerticalAlignment="Top" Margin="13,105,27,0" SelectionChanged="cmbPais_SelectionChanged" Loaded="cmbPais_Loaded" Style="{DynamicResource CustomComboBox}" SelectedValue="{Binding pais, Mode=TwoWay}"/>
             <TextBox x:Name="txtCorreo" Grid.Column="1" Height="25" VerticalAlignment="Top" Margin="10,105,14,0" Text="{Binding email, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}"/>
             <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="e-mail:" Margin="10,79,0,0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="51"/>
             <Label Grid.Column="1" HorizontalAlignment="Left" Margin="11,10,0,188" Content="Biografía:" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Width="66" Grid.Row="1"/>
