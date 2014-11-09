@@ -32,9 +32,9 @@
                     	</InlineUIContainer></TextBlock>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="MenuItem_Click_1">
+            <MenuItem x:Name="itemFichas" Height="35" Width="209" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="MenuItem_Click_1">
                 <MenuItem.Header>
-                    <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0"><Run Text="&#xE731;"/><InlineUIContainer>
+                    <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0" HorizontalAlignment="Left" Width="185"><Run Text="&#xE731;"/><InlineUIContainer>
                     		<TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><Run Text="Fichas"/></TextBlock>
                     	</InlineUIContainer></TextBlock>
                 </MenuItem.Header>
