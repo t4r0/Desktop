@@ -66,7 +66,7 @@ namespace MuseoCliente
             if (modificarImagen == true)
             {
                 nuevaDir = op.cambia(direccionImagen, 800, 800, usuario.username);
-                usuario.fotografia = utilidad.subirFotoUsuario(usuario.username, nuevaDir, nombreImagen.Split('.')[1]);
+                usuario.fotografia = utilidad.subirFotoUsuario(usuario.username, nuevaDir, usuario.username+nombreImagen.Split('.')[1]);
             }
             if (modificar == false)
             {
