@@ -30,7 +30,6 @@ namespace MuseoCliente
         public Border borde;
         public bool modificar = false;
         public int id;
-        bool publicado = false;
         public modInvestigacion()
 		{
 			this.InitializeComponent();
@@ -72,6 +71,7 @@ namespace MuseoCliente
             }
             else
             {
+                investigacion.ingresarPiezas(piezas.ToList<Pieza>());
                 investigacion.modificar();
             }
 
@@ -103,7 +103,6 @@ namespace MuseoCliente
         private void btnPublicar_Click(object sender, RoutedEventArgs e)
         {
             //Codigo para publicar en la web
-            publicado = true;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
