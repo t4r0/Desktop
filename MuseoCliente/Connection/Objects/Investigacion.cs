@@ -78,11 +78,15 @@ namespace MuseoCliente.Connection.Objects
                 linkNuevos.Clear();
                 foreach (LinkInvestigacion lin in links)
                 {
-                    
+
                     if (lin.id == 0)
                     {
                         lin.investigacion = this.id;
                         linkNuevos.Add(lin);
+                    }
+                    else
+                    {
+                        lin.modificar();
                     }
                 }
                 igualarLista(links, linkNuevos);
