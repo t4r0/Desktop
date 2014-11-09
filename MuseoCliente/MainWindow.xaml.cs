@@ -126,7 +126,8 @@ namespace MuseoCliente
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            modUsuario usr = new modUsuario() { anterior = new WelcomePage(), modificar = true, userName=Settings.user.username };
+            WelcomePage frm = new WelcomePage();
+            modUsuario usr = new modUsuario() { anterior = frm, borde = bdrContenedor, modificar = true, userName=Settings.user.username };
             usr.DataContext = DataContext;            
             bdrContenedor.Child = usr;
         }
@@ -143,6 +144,14 @@ namespace MuseoCliente
             con.create("");
             this.DialogResult = true;
             this.Close();
+        }
+
+        private void itemOperaciones_Click(object sender, RoutedEventArgs e)
+        {
+            Select((MenuItem)sender);
+            modOperaciones frm = new modOperaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
         }
     }
 }

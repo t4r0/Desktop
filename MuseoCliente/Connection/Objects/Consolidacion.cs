@@ -18,9 +18,9 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public DateTime fechaFinal { get; set; }
         [JsonProperty]
-        public int responsable { get; set; }
+        public string responsable { get; set; }
         [JsonProperty]
-        public int codigoPieza { get; set; }
+        public string codigoPieza { get; set; }
 
         public Consolidacion(): base("/api/v1/consolidacion/")
         {
