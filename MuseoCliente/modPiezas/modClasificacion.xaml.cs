@@ -19,10 +19,10 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modClasificacion : UserControl
 	{
-        Connection.Objects.Clasificacion clasificacion = new Connection.Objects.Clasificacion();
-        Connection.Objects.Ficha fichas = new Connection.Objects.Ficha();
-        Connection.Objects.Categoria categ = new Connection.Objects.Categoria();
-        Connection.Objects.Coleccion colec = new Connection.Objects.Coleccion();
+        Clasificacion clasificacion = new Clasificacion();
+        Ficha fichas = new Ficha();
+        Categoria categ = new Categoria();
+        Coleccion colec = new Coleccion();
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -38,15 +38,15 @@ namespace MuseoCliente
             //Fichas
             cmbFicha.ItemsSource = fichas.regresarTodos();
             cmbFicha.DisplayMemberPath = "nombre";
-            cmbFicha.SelectedValuePath = "nombre";
+            cmbFicha.SelectedValuePath = "id";
             //Categorias
             cmbCategoria.ItemsSource = categ.regresarTodo();
             cmbCategoria.DisplayMemberPath = "nombre";
-            cmbCategoria.SelectedValuePath = "nombre";
+            cmbCategoria.SelectedValuePath = "id";
             //Coleccion
             cmbColeccion.ItemsSource = colec.regresarTodo();
             cmbColeccion.DisplayMemberPath = "nombre";
-            cmbColeccion.SelectedValuePath = "nombre";
+            cmbColeccion.SelectedValuePath = "id";
             //Si es para modificar
             if (modificar == true)
             {
@@ -76,8 +76,8 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
-            borde.Child = anterior;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
