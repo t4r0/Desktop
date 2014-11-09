@@ -35,6 +35,7 @@ namespace MuseoCliente
 			get{ return modificar;}
 			set{ modificar=value;}
 		}
+        public string userName;
         public modUsuario()
 		{
 			this.InitializeComponent();
