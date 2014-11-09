@@ -14,7 +14,7 @@ namespace MuseoCliente.Connection.Objects
         public LinkInvestigacion()
             : base("/api/v1/links/")
         {
-
+            this.id = 0;
         }
         
         [JsonProperty]

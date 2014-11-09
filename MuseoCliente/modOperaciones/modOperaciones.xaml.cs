@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -18,11 +19,24 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modOperaciones : UserControl
 	{
-        Connection.Objects.Eventos eventos = new Connection.Objects.Eventos();
+        Consolidacion consolidaciones = new Consolidacion();
         public Border borde;
         public modOperaciones()
 		{
 			this.InitializeComponent();
 		}
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            gvConsolidaciones.ItemsSource = consolidaciones.regresarTodo();
+        }
+
+        private void btnNuevaCons_Click(object sender, RoutedEventArgs e)
+        {
+            modConsolidacion frm = new modConsolidacion();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
+        }
 	}
 }

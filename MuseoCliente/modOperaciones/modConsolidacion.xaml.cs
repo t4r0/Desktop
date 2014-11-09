@@ -18,9 +18,17 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modConsolidacion : UserControl
 	{
-		public modConsolidacion()
+        public UserControl anterior;
+        public Border borde;
+        public bool modificar = false;
+        public modConsolidacion()
 		{
 			this.InitializeComponent();
 		}
+
+        private void btnTratamientos_Click(object sender, RoutedEventArgs e)
+        {
+            //
+        }
 	}
 }

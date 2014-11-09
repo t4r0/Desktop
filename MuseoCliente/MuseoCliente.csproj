@@ -182,7 +182,7 @@
     <Compile Include="modInvestigaciones\modResultadosInv.xaml.cs">
       <DependentUpon>modResultadosInv.xaml</DependentUpon>
     </Compile>
-    <Compile Include="modTratamientos.xaml.cs">
+    <Compile Include="modOperaciones\modTratamientos.xaml.cs">
       <DependentUpon>modTratamientos.xaml</DependentUpon>
     </Compile>
     <Compile Include="modOperaciones\modConsolidacion.xaml.cs">
@@ -363,7 +363,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="modTratamientos.xaml">
+    <Page Include="modOperaciones\modTratamientos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
