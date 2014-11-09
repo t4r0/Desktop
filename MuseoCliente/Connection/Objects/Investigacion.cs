@@ -201,6 +201,9 @@ namespace MuseoCliente.Connection.Objects
             this.titulo = Temp.titulo;
             this.links = Temp.links;
             this.piezas = Temp.piezas;
+            igualarLista(this.links, Temp.links);
+
+            
         }
 
         public ArrayList regresarPiezas()
@@ -251,6 +254,7 @@ namespace MuseoCliente.Connection.Objects
         {
             LinkInvestigacion tempLink = new LinkInvestigacion();
             tempLink.link = link;
+            links.Add(tempLink);
 
         }
 

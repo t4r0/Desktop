@@ -1,12 +1,12 @@
-﻿<UserControl
+﻿<Window
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="MuseoCliente.modLimpieza"
+	x:Class="MuseoCliente.modTratamientos"
 	x:Name="UserControl"
-	d:DesignWidth="700" Height="715">
+	d:DesignWidth="700" Height="555">
 
 	<Border x:Name="LayoutRoot" Background="{DynamicResource White}" Height="717.313" VerticalAlignment="Top">
 		<StackPanel Margin="10" Orientation="Vertical">
@@ -105,15 +105,7 @@
 					</StackPanel>
 				</DockPanel>
 			</Border>
-			<Label></Label>
-			<StackPanel Height="55">
-				<Label>REGISTRO FOTOGRÁFICO</Label>
-				<DockPanel Height="30">
-					<RadioButton Margin="20,0,0,0">Antes del proceso</RadioButton>
-					<RadioButton Margin="20,0,0,0">Durante proceso</RadioButton>
-					<RadioButton Margin="20,0,0,0">Posterior proceso</RadioButton>
-				</DockPanel>
-			</StackPanel>
+			<Label/>
 		</StackPanel>
 	</Border>
-</UserControl>
+</Window>
