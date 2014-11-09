@@ -55,7 +55,7 @@
 				<DatePicker x:Name="dpFin" Height="25" Margin="0,0,0,0"/>
 			</DockPanel>
 			<DockPanel Height="35" HorizontalAlignment="Center" Margin="0,10">
-				<Button x:Name="btnTratamientos" Height="25" Width="90">Tratamientos</Button>
+				<Button x:Name="btnTratamientos" Height="25" Width="90" Click="btnTratamientos_Click">Tratamientos</Button>
 			</DockPanel>
 		</StackPanel>
 			<Label Height="20"></Label>
