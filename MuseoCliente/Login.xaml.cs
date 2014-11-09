@@ -59,11 +59,11 @@ namespace MuseoCliente
             token = cToken.Token;
             Task<Usuario> t = Task<Usuario>.Factory.StartNew(() => login(token));
             await t;
+            removeAnimation();
             if (!token.IsCancellationRequested)
-                ShowWindow(t.Result);
-            else
             {
-                removeAnimation();
+                Settings.user = t.Result;
+                ShowWindow(Settings.user);
             }
         }
 
@@ -92,6 +92,9 @@ namespace MuseoCliente
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
                 Connector conector = new Connector("/api/v1/login/");
                 user = user.Deserialize(conector.create(content));
+                conector = new Connector("/api/v1/usuarios/" + user.username + "/permisos/");
+                content = conector.fetch();
+                Settings.permisos = ((Dictionary<string, List<string>>)JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(content))["permisos"];
                 return user;
                
             }
@@ -108,14 +111,26 @@ namespace MuseoCliente
             MainWindow main = new MainWindow() { DataContext = user };
             Settings.user = user;
             this.Hide();
-            main.ShowDialog();
-            this.Close();
+            if (main.ShowDialog() == true)
+            {
+                this.Show();
+                clean();
+            }
+            else
+                this.Close();
+        }
+
+        private void clean()
+        {
+            txtUsuario.Focus();
+            txtUsuario.SelectAll();
+            txtPassword.Password = "";
+            s = "";
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            txtUsuario.Focus();
-            txtUsuario.SelectAll();
+            clean();
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)

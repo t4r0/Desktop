@@ -22,11 +22,13 @@ namespace MuseoCliente.Designer
 	public partial class FormDesigner : UserControl
 	{
         public bool IsEditing { get; set; }
+        public bool saved { get; set; }
         private int items = 1;
 		public FormDesigner()
 		{
 			this.InitializeComponent();
             IsEditing = false;
+            saved = false;
 		}
 
         string path = "";
@@ -42,6 +44,7 @@ namespace MuseoCliente.Designer
             fields.Children.Add(viewer);
             viewer.Focus();
             items++;
+            saved = false;
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -143,6 +146,7 @@ namespace MuseoCliente.Designer
                 path = dialog.FileName;
                 ficha = ficha.DeserializeFromFile(path);
                 Load(ficha);
+                saved = true;
             }
 
         }
@@ -174,6 +178,7 @@ namespace MuseoCliente.Designer
             {
                 SetFields(ficha);
                 ficha.SerializeToFile(path);
+                saved = true;
             }
             else
             {
@@ -183,6 +188,11 @@ namespace MuseoCliente.Designer
 
         private void MenuItem_Click_9(object sender, RoutedEventArgs e)
         {
+
+            MessageBoxResult result= MessageBox.Show("¿Deseas Guardar tu trabajo?",
+                 "Atención", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+                MenuItem_Click_6(sender, e);
             Load(new Connection.Objects.Ficha());
             items = 1;
         }

@@ -99,12 +99,12 @@ namespace MuseoCliente.Connection.Objects
         }
 
 
-        public ArrayList consultaArtitulo( String titulo )
+        public ArrayList buscarTitulo( String titulo )
         {
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( "?titulo__contains=" + titulo ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?titulo__icontains=" + titulo ) );
             }
             catch( Exception e )
             {
@@ -202,16 +202,21 @@ namespace MuseoCliente.Connection.Objects
         public ArrayList regresarPiezas()
         {
             List<Pieza> lista = new List<Pieza>();
-            Pieza pieza = null;
             try
             {
                 foreach (Dictionary<string, string> temp in piezas)
+                {
+                    Pieza pieza = new Pieza();
+                    pieza.regresarObjeto(temp["codigo"]);
+                    lista.Add(pieza);
+                }
+                /*
                     foreach (string hola in temp.Keys)
                     {
                         pieza = new Pieza();
                         pieza.regresarObjeto(temp[hola]);
                         lista.Add(pieza);
-                    }
+                    }*/
             }
             catch (Exception e)
             {

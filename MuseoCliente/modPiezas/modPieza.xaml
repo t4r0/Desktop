@@ -6,7 +6,7 @@
 	mc:Ignorable="d"
 	x:Class="MuseoCliente.modPieza"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="760">
+	d:DesignWidth="640" Height="420">
 
     <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
         <Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
@@ -20,14 +20,5 @@
                 </Label>
             </DockPanel>
         </Border>
-        <Expander Header="Expander" Height="612" VerticalAlignment="Top" Style="{DynamicResource CustomExpander}" DockPanel.Dock="Top">
-            <Grid Background="#FFE5E5E5"/>
-        </Expander>
-        <Expander Header="Expander" Height="730" VerticalAlignment="Top" Style="{DynamicResource CustomExpander}" DockPanel.Dock="Top">
-            <Grid Background="#FFE5E5E5"/>
-        </Expander>
-        <Expander Header="Expander" Height="730" VerticalAlignment="Top" Style="{DynamicResource CustomExpander}" DockPanel.Dock="Top">
-            <Grid Background="#FFE5E5E5"/>
-        </Expander>
     </DockPanel>
 </UserControl>
