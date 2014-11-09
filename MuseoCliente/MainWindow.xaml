@@ -26,7 +26,7 @@
                     	</InlineUIContainer></TextBlock>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem x:Name="itemOperaciones" Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemPiezas_Click">
+            <MenuItem x:Name="itemOperaciones" Height="35" Width="209" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource CustomMenuItem}" FontSize="16" Margin="0" Click="itemOperaciones_Click">
                 <MenuItem.Header>
                     <TextBlock Style="{DynamicResource Icons}" FontSize="32" Margin="-7,0,0,0"><Run Text="&#xE800;"/><InlineUIContainer>
                     		<TextBlock Style="{DynamicResource SourceSans}" FontSize="14"><Run Text="Operaciones"/></TextBlock>

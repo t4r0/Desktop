@@ -78,11 +78,15 @@ namespace MuseoCliente.Connection.Objects
                 linkNuevos.Clear();
                 foreach (LinkInvestigacion lin in links)
                 {
-                    
+
                     if (lin.id == 0)
                     {
                         lin.investigacion = this.id;
                         linkNuevos.Add(lin);
+                    }
+                    else
+                    {
+                        lin.modificar();
                     }
                 }
                 igualarLista(links, linkNuevos);
@@ -247,15 +251,6 @@ namespace MuseoCliente.Connection.Objects
         {
             LinkInvestigacion tempLink = new LinkInvestigacion();
             tempLink.link = link;
-            try
-            {
-                tempLink.guardar();
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(2, "No existen piezas para la investigacion " + e.Message);
-            }
-            links.Add(tempLink);
 
         }
 

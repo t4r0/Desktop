@@ -56,11 +56,14 @@ namespace MuseoCliente
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            modInvestigacion frm = new modInvestigacion();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.DataContext = gvResultados.SelectedItem;
-            borde.Child = frm;
+            if (gvResultados.SelectedItem != null)
+            {
+                modInvestigacion frm = new modInvestigacion();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.DataContext = gvResultados.SelectedItem;
+                borde.Child = frm;
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -88,12 +91,15 @@ namespace MuseoCliente
 
         private void btnEditarInvestigacion_Click(object sender, RoutedEventArgs e)
         {
-            modInvestigacion frm = new modInvestigacion();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.DataContext = gvResultados.SelectedItem;
-            frm.modificar = true;
-            borde.Child = frm;
+            if (gvResultados.SelectedItem != null)
+            {
+                modInvestigacion frm = new modInvestigacion();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.DataContext = gvResultados.SelectedItem;
+                frm.modificar = true;
+                borde.Child = frm;
+            }
         }
 	}
 }

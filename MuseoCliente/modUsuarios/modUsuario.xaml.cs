@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection.Objects;
+using Microsoft.Win32;
 
 namespace MuseoCliente
 {
@@ -25,6 +26,11 @@ namespace MuseoCliente
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
+        //Para las imagenes
+        private string direccionImagen = "";
+        private string nombreImagen = "";
+        string nuevaDir = "";
+        bool modificarImagen = false;
 		public bool Modificar{
 			get{ return modificar;}
 			set{ modificar=value;}
@@ -45,21 +51,6 @@ namespace MuseoCliente
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Usuario";
-                usuario = (Usuario)usuario.consultaUserName(userName)[0];
-                lblUserName.Content = usuario.username;
-                txtNombres.Text = usuario.first_name;
-                txtApellidos.Text = usuario.last_name;
-                txtCorreo.Text = usuario.email;
-                cmbPais.SelectedValue = usuario.pais;
-                rtxtBiografia.Text = usuario.biografia;
-                if (usuario.is_staff == true)
-                    chkStaff.IsChecked = true;
-                else
-                    chkStaff.IsChecked = false;
-                if (usuario.voluntario == true)
-                    chkVoluntario.IsChecked = true;
-                else
-                    chkVoluntario.IsChecked = false;
             }
             else
             {
@@ -69,20 +60,14 @@ namespace MuseoCliente
 
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            usuario.first_name = txtNombres.Text;
-            usuario.last_name = txtApellidos.Text;
-            usuario.email = txtCorreo.Text;
-            usuario.pais = cmbPais.SelectedValue.ToString();
-            usuario.biografia = rtxtBiografia.Text;
-            // Pendiente: usuario.last_login
-            if (chkStaff.IsChecked == true)
-                usuario.is_staff = true;
-            else
-                usuario.is_staff = false;
-            if (chkVoluntario.IsChecked == true)
-                usuario.voluntario = true;
-            else
-                usuario.voluntario = false;
+            UtilidadS3 utilidad = new UtilidadS3();
+            usuario = (Usuario)this.DataContext;
+            Imagen op = new Imagen();
+            if (modificarImagen == true)
+            {
+                nuevaDir = op.cambia(direccionImagen, 800, 800, usuario.username);
+                usuario.fotografia = utilidad.subirFotoUsuario(usuario.username, nuevaDir, usuario.username+nombreImagen.Split('.')[1]);
+            }
             if (modificar == false)
             {
                 usuario.guardar();
@@ -132,6 +117,22 @@ namespace MuseoCliente
             cmb.ItemsSource = grupos.fetchAll();
             cmb.SelectedValuePath = "id";
             cmb.DisplayMemberPath = "name";*/
+        }
+
+        private void Border_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog dialogo = new OpenFileDialog();
+            dialogo.Filter = "Archivos PNG (*.png)|*.png|Archivos JPG (*.jpg)|*.jpg";
+            dialogo.InitialDirectory = "C:";
+            dialogo.Title = "Seleccione la Imagen del Afiche";
+            if (dialogo.ShowDialog() == true)
+            {
+                direccionImagen = dialogo.FileName;
+                nombreImagen = dialogo.SafeFileName;
+                ImageSource imageSource = new BitmapImage(new Uri(dialogo.FileName));
+                imageUser.Source = imageSource;
+                modificarImagen = true;
+            }
         }
 	}
 }

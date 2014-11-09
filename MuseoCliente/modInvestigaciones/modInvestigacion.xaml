@@ -54,7 +54,7 @@
                 <Button Content="A" Grid.Column="1" Margin="0,195,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Click="Button_Click_2"/>
                 <Label Grid.Row="1" Grid.Column="2" Margin="10,69,93,218" RenderTransformOrigin="0.515,1.914" Content="Piezas en esta investigacion:"/>
                 <DataGrid Grid.Row="1" Grid.Column="2" x:Name="gvPiezasGuardadas" Margin="10,95,10,13" IsReadOnly="True"/>
-                <Views:OptionPanel x:Name="LinksReferencia" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Header="Links de referencias:" AllowsNoOptions="True" AutoFocusable="False"/>
+                <Views:OptionPanel x:Name="LinksReferencia" Grid.ColumnSpan="3" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Header="Links de referencias:" AllowsNoOptions="True" AutoFocusable="False" Width="349"/>
                 
             </Grid>
         </ScrollViewer>
