@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace MuseoCliente
@@ -28,10 +29,12 @@ namespace MuseoCliente
         }
 
 
-        private void Grid_Loaded_2(object sender, RoutedEventArgs e)
+        private async void Grid_Loaded_2(object sender, RoutedEventArgs e)
         {
             Connector conector = new Connector("/api/v1/resumen/");
-            string content = conector.fetch();
+            Task<string> t = Task<string>.Factory.StartNew(() => conector.fetch());
+            await t;
+            string content = t.Result;
             Dictionary<string, Dictionary<string, int>> dict = (Dictionary<string, Dictionary<string, int>>)JsonConvert.DeserializeObject(content, typeof(Dictionary<string, Dictionary<string, int>>));
             lblUsers.Content = dict["usuarios"]["registrados"] + " registrados";
             lblVoluntarios.Content = dict["usuarios"]["voluntarios"] + " voluntarios";

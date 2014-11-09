@@ -116,5 +116,13 @@ namespace MuseoCliente
             Select((MenuItem)sender);
             bdrContenedor.Child = new FormDesigner();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Connector con = new Connector("/api/v1/logout/");
+            con.create("");
+            this.DialogResult = true;
+            this.Close();
+        }
     }
 }
