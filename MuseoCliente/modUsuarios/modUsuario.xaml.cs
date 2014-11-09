@@ -35,7 +35,6 @@ namespace MuseoCliente
 			get{ return modificar;}
 			set{ modificar=value;}
 		}
-        public string userName;
         public modUsuario()
 		{
 			this.InitializeComponent();
@@ -66,7 +65,7 @@ namespace MuseoCliente
             if (modificarImagen == true)
             {
                 nuevaDir = op.cambia(direccionImagen, 800, 800, usuario.username);
-                usuario.fotografia = utilidad.subirSalaoEvento(usuario.username, nuevaDir, usuario.username + "." + nombreImagen.Split('.')[1], false);
+                usuario.fotografia = utilidad.subirFotoUsuario(usuario.username, nuevaDir, nombreImagen.Split('.')[1]);
             }
             if (modificar == false)
             {

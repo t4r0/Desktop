@@ -82,8 +82,8 @@ namespace MuseoCliente
                 frm.borde = borde;
                 frm.anterior = this;
                 frm.modificar = true;
-                frm.userName = gvResultados.SelectedValue.ToString();
                 borde.Child = frm;
+                frm.DataContext = gvResultados.SelectedItem;
             }
         }
 
