@@ -145,5 +145,13 @@ namespace MuseoCliente
             this.DialogResult = true;
             this.Close();
         }
+
+        private void itemOperaciones_Click(object sender, RoutedEventArgs e)
+        {
+            Select((MenuItem)sender);
+            modOperaciones frm = new modOperaciones();
+            frm.borde = bdrContenedor;
+            bdrContenedor.Child = frm;
+        }
     }
 }

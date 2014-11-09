@@ -18,7 +18,9 @@ namespace MuseoCliente
 	/// </summary>
 	public partial class modOperaciones : UserControl
 	{
-		public modOperaciones()
+        Connection.Objects.Eventos eventos = new Connection.Objects.Eventos();
+        public Border borde;
+        public modOperaciones()
 		{
 			this.InitializeComponent();
 		}
