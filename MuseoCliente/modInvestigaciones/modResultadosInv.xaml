@@ -20,20 +20,22 @@
 				</Label>
 			</DockPanel>
 		</Border>
-		<StackPanel>
-			<Label Height="20"/>
-			<DockPanel Height="35" HorizontalAlignment="Center">
-				<RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbTodas_Click">Todas</RadioButton>
-				<RadioButton x:Name="rbAutor" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbAutor_Click">Autor</RadioButton>
-				<RadioButton x:Name="rbEditor" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbEditor_Checked">Editor</RadioButton>
-				<RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbUltimas_Checked">Últimas</RadioButton>
-			</DockPanel>
-			<DockPanel Height="375">
-				<StackPanel Margin="10">
-                    <DataGrid x:Name="gvResultados" Height="355"/>
-				</StackPanel>
-			</DockPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
-	</DockPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="64*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Margin="10,0,0,0" HorizontalAlignment="Left" Width="206" Height="40" VerticalAlignment="Top">Buscar:</Label>
+            <TextBox Grid.Row="0" x:Name="txtBuscar" Height="25" Width="300" HorizontalAlignment="Left" Margin="10,30,0,0" Style="{StaticResource CustomTextBox}" VerticalAlignment="Top" TextChanged="txtBuscar_TextChanged"/>
+            <Button Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="26" HorizontalAlignment="Left" Width="29" Height="25" VerticalAlignment="Top" VerticalContentAlignment="Top" Margin="315,30,0,0" Click="Button_Click_1">&#128269;</Button>
+            <DockPanel  Grid.Row="1" HorizontalAlignment="Center" Width="260" Height="22" Margin="201,0,179,0" VerticalAlignment="Top">
+                <RadioButton x:Name="rbTodas" VerticalAlignment="Center" Margin="10,0,10,0" Click="rbTodas_Click">Todas</RadioButton>
+                <RadioButton x:Name="rbAutor" VerticalAlignment="Center" Margin="0,0,10,0" Click="rbAutor_Click">Autor</RadioButton>
+                <RadioButton x:Name="rbEditor" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbEditor_Checked">Editor</RadioButton>
+                <RadioButton x:Name="rbUltimas" VerticalAlignment="Center" Margin="0,0,10,0" Checked="rbUltimas_Checked">Últimas</RadioButton>
+            </DockPanel>
+            <Button x:Name="btnEditarInvestigacion" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Margin="0,0,10,0" Style="{DynamicResource BlueForegrounButton}" VerticalAlignment="Top" Grid.Row="1" Click="btnEditarInvestigacion_Click">&#9998;</Button>
+            <DataGrid Grid.Row="1" x:Name="gvResultados" Margin="10,32,10,10"/>
+        </Grid>
+    </DockPanel>
 </UserControl>

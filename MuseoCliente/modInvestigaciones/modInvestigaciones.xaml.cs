@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace MuseoCliente
 {
@@ -44,7 +46,25 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvResultados.ItemsSource = investigaciones.regresarTodo();
+            cargarInvestigaciones();
+        }
+        private async void cargarInvestigaciones()
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => investigaciones.regresarTodo());
+            await task;
+            gvResultados.ItemsSource = task.Result;
+        }
+        private void btnEditarInvestigacion_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnBuscarInvestigacion_Click(object sender, RoutedEventArgs e)
+        {
+            modResultadosInv frm = new modResultadosInv();
+            frm.borde = borde;
+            frm.anterior = this;
+            borde.Child = frm;
         }
 	}
 }

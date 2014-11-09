@@ -38,22 +38,22 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
+            investigacion = (Investigacion) this.DataContext;
             //Cargar datos
+            cmbAutor.ItemsSource = autores.regresarTodos();
             cmbAutor.DisplayMemberPath = "nombre";
             cmbAutor.SelectedValuePath = "id";
             //Si es para modificar
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Investigación";
-                //txtCodigoPieza.Text = pieza.codigo;
-                //txtNombrePieza.Text = pieza.nombre;
-                //cmbAutor.ItemsSource = piezas.nombre;
-
+                //ArrayList listado = investigacion.regresarPiezas();
+                gvPiezasGuardadas.ItemsSource = investigacion.regresarPiezas();
+                cmbAutor.SelectedValue = investigacion.autor;
             }
             else
             {
                 lblOperacion.Content = "Nueva Categoría";
-                cmbAutor.ItemsSource = autores.regresarTodos();
                 gvPiezasGuardadas.ItemsSource = new ArrayList();
             }
         }
