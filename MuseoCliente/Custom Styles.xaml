@@ -298,7 +298,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid>
-                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}" BorderThickness="1" Padding="2" CornerRadius="2">
+                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource DarkGray}" BorderThickness="1" Padding="2" CornerRadius="2">
 
                             <!-- La implementación coloca el contenido en el ScrollViewer. Debe denominarse PART_ContentHost para que el control funcione -->
                             <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{DynamicResource CustomScrollViewer}" Background="{TemplateBinding Background}"/>
@@ -812,8 +812,8 @@
 
                         <!-- GlyphPanel contiene la marca de verificación -->
                         <Trigger Property="IsChecked" Value="true">
-                            <Setter Property="Visibility" Value="Visible" TargetName="GlyphPanel"/>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="Icon"/>
+                            <Setter Property="Background" Value="{DynamicResource PureBlue}" TargetName="Border"/>
+                            <Setter Property="Foreground" Value="{DynamicResource White}"/>
                         </Trigger>
 
                         <Trigger Property="AllowsTransparency" SourceName="SubMenuPopup" Value="true">
@@ -1179,6 +1179,36 @@
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CustomPasswordBox" TargetType="{x:Type PasswordBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Border x:Name="Border" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}" BorderThickness="1" Padding="2" CornerRadius="2">
+
+                            <!--La implementación coloca el contenido en el ScrollViewer. Debe denominarse PART_ContentHost para que el control funcione -->
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Style="{DynamicResource CustomScrollViewer}" Background="{TemplateBinding Background}"/>
+
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource DarkGray}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource LightGray}"/>
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource Gray}"/>
+                            <Setter Property="Background" TargetName="PART_ContentHost" Value="{DynamicResource LightGray}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource PureBlue}"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource StrongBlue}"/>
+                        </Trigger>                       
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>                
             </Setter.Value>
         </Setter>
     </Style>

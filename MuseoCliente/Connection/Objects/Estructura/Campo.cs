@@ -34,6 +34,13 @@ namespace MuseoCliente.Connection.Objects.Estructura
         [JsonProperty]
         public List<string> opciones{get; set;}
 
+        public bool ShouldSerializeopciones()
+        {
+            if (tipo == TiposDeCampo.OpcionesExclusivas ||
+                tipo == TiposDeCampo.OpcionMultiple)
+                return true;
+            return false;
+        }
         public Campo()
         {
             tipo = TiposDeCampo.Texto;

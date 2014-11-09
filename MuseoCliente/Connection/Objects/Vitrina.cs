@@ -27,7 +27,7 @@ namespace MuseoCliente.Connection.Objects
             {
                 if( e.Source != null )
                 {
-                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos" );
+                    Error.ingresarError( 3, "No se ha guardado la Informacion en la base de datos " + e.Message );
                 }
             }
         }
@@ -70,24 +70,51 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList( lista );
         }
 
-        public void regresarObjeto( int ide )
+        public void regresarObjeto( int id )
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Vitrina vitrina = this.Get();
                 if( vitrina == null )
                 {
                     Error.ingresarError( 2, "Este Objeto no existe porfavor, ingresar correcta la busqueda" );
                     return;
                 }
-                this.numero = vitrina.numero;
                 this.id = vitrina.id;
+                this.numero = vitrina.numero;
                 this.sala = vitrina.sala;
+                this.resource_uri = vitrina.resource_uri;
             }
             catch( Exception e )
             {
                 Error.ingresarError( 5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet" );
             }
+        }
+
+        //Funcion hecha por Miguel ... NO BORRAR!!!!!!!!
+        public ArrayList regresarPorSala(int idS)
+        {
+            List<Vitrina> vitrinas = null;
+            try
+            {
+                Vitrina clas = new Vitrina();
+                string consulta = "?sala=" + idS;
+                vitrinas = clas.GetAsCollection(consulta);
+                if (vitrinas == null)
+                    Error.ingresarError(2, "No se encontraron vitrinas para esta sala");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+            }
+            if (vitrinas == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+
+            return new ArrayList(vitrinas);
         }
 
         public void regresarObjeto()

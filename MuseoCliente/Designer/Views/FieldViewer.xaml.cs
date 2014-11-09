@@ -124,16 +124,12 @@ namespace MuseoCliente.Designer.Views
 
         private void PutAnOptionPanelThere()
         {
-            OptionPanel opt = new OptionPanel()
+            OptionPanel opt = new OptionPanel(campo.opciones)
             {
                 AllowsEdition = false
             };
             opt.SelectionType = campo.tipo == Campo.TiposDeCampo.OpcionesExclusivas ?
                 FormUtils.Selection.Single : FormUtils.Selection.Multiple;
-            foreach (string opcion in campo.opciones)
-            {
-                opt.AddOption(opcion);
-            }
             content.Child = opt;
         }
         private void PutATextBoxThere(MaskedTextBox txt)
@@ -169,8 +165,11 @@ namespace MuseoCliente.Designer.Views
 
         private void editor_Closed(object sender, RoutedEventArgs e)
         {
-            this.campo = editor.campo;
-            this.LoadField();
+            if (editor.Edited)
+            {
+                this.campo = editor.campo;
+                this.LoadField();
+            }
             editButton.IsChecked = false;
         }
 	}

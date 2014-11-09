@@ -26,6 +26,8 @@ namespace MuseoCliente
         public int id;
         private string direccionImagen = "";
         private string nombreImagen = "";
+        string nuevaDir = "";
+        bool modificarImagen = false;
         public modSala()
 		{
 			this.InitializeComponent();
@@ -35,15 +37,21 @@ namespace MuseoCliente
         {
             UtilidadS3 utilidad = new UtilidadS3();
             sala = (Sala) this.DataContext;
-            // comentario 
-            sala.fotografia = utilidad.subirSalaoEvento(sala.nombre, direccionImagen ,sala.nombre + "." + nombreImagen.Split('.')[1], true);
+            Imagen op = new Imagen();
+            if (modificarImagen == true)
+            {
+                nuevaDir = op.cambia(direccionImagen, 800, 800, sala.nombre);
+                sala.fotografia = utilidad.subirSalaoEvento(sala.nombre, direccionImagen, sala.nombre + "." + nombreImagen.Split('.')[1], true);
+            }
             if (modificar == false)
             {
                 sala.guardar();
+                modificarImagen = false;
             }
             else
             {
                 sala.modificar();
+                modificarImagen = false;
             }
             if (Connection.Objects.Error.isActivo())
             {
@@ -51,22 +59,9 @@ namespace MuseoCliente
             }
             else
             {
-                MessageBox.Show("Correcto");
+                MessageBox.Show("Se han guardado los datos correctamente");
+                borde.Child = anterior;
             }
-        }
-
-        string StringFromRichTextBox(RichTextBox rtb)
-        {
-            TextRange textRange = new TextRange(
-                // TextPointer to the start of content in the RichTextBox.
-                rtb.Document.ContentStart,
-                // TextPointer to the end of content in the RichTextBox.
-                rtb.Document.ContentEnd
-            );
-
-            // The Text property on a TextRange object returns a string 
-            // representing the plain text content of the TextRange. 
-            return textRange.Text;
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
@@ -85,10 +80,6 @@ namespace MuseoCliente
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Sala";
-                //categ = categ.buscarPorID(id);
-                txtNombre.Text = "Pendiente";
-                //rtxtDescripcion.TextChanged = "";
-                //txtFoto.Text = "";
             }
             else
             {
@@ -104,10 +95,11 @@ namespace MuseoCliente
             dialogo.Title = "Seleccione la Imagen de la Sala";
             if (dialogo.ShowDialog() == true)
             {
-                direccionImagen =  dialogo.FileName;
+                direccionImagen = dialogo.FileName;
                 nombreImagen = dialogo.SafeFileName;
                 ImageSource imageSource = new BitmapImage(new Uri(dialogo.FileName));
                 imageSala.Source = imageSource;
+                modificarImagen = true;
             }
         }
 	}

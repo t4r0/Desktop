@@ -13,17 +13,31 @@ using Newtonsoft.Json;
 using MuseoCliente.Connection;
 using MuseoCliente.Connection.Objects;
 using MuseoCliente.Properties;
+using MuseoCliente.Designer;
+using System.Threading.Tasks;
+using System.Threading;
 namespace MuseoCliente
 {
 	/// <summary>
 	/// Lógica de interacción para Login.xaml
 	/// </summary>
+    /// 
+
 	public partial class Login : Window
 	{
+        CancellationTokenSource cToken = new CancellationTokenSource();
+        CancellationToken token;
+        string s;
+        LoadingAnimation animation;
+
         Dictionary<string, string> dict = new Dictionary<string, string>();
 		public Login()
 		{
 			this.InitializeComponent();
+            animation = new LoadingAnimation{
+            HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch,
+            VerticalAlignment = System.Windows.VerticalAlignment.Stretch
+        };
 			
 			// A partir de este punto se requiere la inserción de código para la creación del objeto.
 		}
@@ -35,44 +49,79 @@ namespace MuseoCliente
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            login();
+            StartApp();
         }
 
-        private void login()
+        private async void StartApp()
         {
+            addAnimation();
+            cToken = new CancellationTokenSource();
+            token = cToken.Token;
+            Task<Usuario> t = Task<Usuario>.Factory.StartNew(() => login(token));
+            await t;
+            if (!token.IsCancellationRequested)
+                ShowWindow(t.Result);
+            else
+            {
+                removeAnimation();
+            }
+        }
+
+        private void removeAnimation()
+        {
+            contentGrid.Children.Remove(animation);
+            message.Text = s;
+        }
+
+        private void addAnimation()
+        {           
+            animation.message.Text = "Cargando";    
+            animation.Width = contentGrid.ActualWidth;
+            animation.Height = contentGrid.ActualHeight;
+            Grid.SetZIndex(animation, 999);
+            contentGrid.Children.Add(animation);
+            dict["username"] = txtUsuario.Text;
+            dict["password"] = txtPassword.Password;
+        }
+
+        private Usuario login(CancellationToken token)
+        {
+            Usuario user = new Usuario();
             try
             {
-                Usuario user = new Usuario();
-                dict["username"] = txtUsuario.Text;
-                dict["password"] = txtPassword.Password;
                 string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
                 Connector conector = new Connector("/api/v1/login/");
                 user = user.Deserialize(conector.create(content));
-                ShowWindow(user);
+                return user;
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-
+                cToken.Cancel();
+                s = ex.Message;
             }
+            return null;
         }
 
         private void ShowWindow(Usuario user)
         {
             MainWindow main = new MainWindow() { DataContext = user };
+            Settings.user = user;
             this.Hide();
             main.ShowDialog();
             this.Close();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-          
+            txtUsuario.Focus();
+            txtUsuario.SelectAll();
         }
 
         private void txtPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
-                login();
+            if (e.Key == Key.Enter)
+                StartApp();
         }
 	}
 }

@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="MuseoCliente.WelcomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="429" d:DesignWidth="533">
+    <Grid Loaded="Grid_Loaded_2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="292*"/>
+            <ColumnDefinition Width="241*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="78"/>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="238*"/>
+        </Grid.RowDefinitions>
+        <Border Margin="17,0,23,0" Grid.ColumnSpan="2" BorderThickness="0,0,0,2" BorderBrush="{DynamicResource PureBlue}">
+            <Grid>
+                <Label Content="Bienvenido" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold" Foreground="{DynamicResource PureBlue}" Height="30" Width="89"/>
+                <TextBlock HorizontalAlignment="Left" Margin="7,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="240" FontStyle="Italic" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}"><Run Text="Te presento un resumen de las cosas que han pasado en el sistema"/></TextBlock>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" Margin="22,10" BorderBrush="{DynamicResource PureBlue}" Background="{DynamicResource PureBlue}" CornerRadius="7" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="38*"/>
+                    <RowDefinition Height="53*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="👥" VerticalAlignment="Top" Style="{DynamicResource WhiteIcons}" FontSize="48" Height="44" Grid.RowSpan="2"/>
+                <Label Content="Usuarios" HorizontalAlignment="Left" Margin="58,12,0,0" VerticalAlignment="Top" Width="168" Foreground="{DynamicResource White}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="18" FontWeight="Bold" Height="32" Grid.RowSpan="2"/>
+                <Label x:Name="lblUsers" Content="Label" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource LightGray}" FontSize="16"/>
+                <Label x:Name="lblVoluntarios" Content="Label" Margin="10,25,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource LightGray}" FontSize="16"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" Margin="22,17" Grid.Row="2" BorderBrush="{DynamicResource DarkPink}" Background="{DynamicResource DarkPink}" CornerRadius="7">
+            <Grid Margin="-1,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="59*"/>
+                    <RowDefinition Height="157*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" Margin="10,17,0,0" TextWrapping="Wrap" Text="📦" VerticalAlignment="Top" Style="{DynamicResource WhiteIcons}" FontSize="48" Height="44" Width="26" Grid.RowSpan="2"/>
+                <Label Content="Piezas" Margin="58,29,0,0" VerticalAlignment="Top" Foreground="{DynamicResource White}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold" Height="30"/>
+                <Label x:Name="lblPiezas" Content="Label" Margin="10,10,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource LightGray}" Grid.Row="1" FontSize="16" Height="30"/>
+                <Label x:Name="lblClasificaciones" Content="Label" Margin="10,96,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource LightGray}" FontSize="16" Grid.Row="1" Height="26"/>
+                <Label x:Name="lblColecciones" Content="Label" Margin="10,40,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource LightGray}" Grid.Row="1" FontSize="16" Height="28"/>
+                <Label x:Name="lblCategorias" Content="Label" Margin="10,68,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource LightGray}" Grid.Row="1" Height="28" FontSize="16"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" Margin="24,10,23,10" BorderBrush="{DynamicResource DarkGray}" Background="{DynamicResource LightGray}" CornerRadius="7" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="127*"/>
+                    <RowDefinition Height="202*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="📑" VerticalAlignment="Top" Style="{DynamicResource WhiteIcons}" FontSize="48" Height="44" Width="26" Foreground="{DynamicResource DarkGray}"/>
+                <Label Content="Eventos" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Width="146" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold" Height="30"/>
+                <Label x:Name="lblEventos" Content="Label" Margin="10,40,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" FontSize="16" Height="30"/>
+                <Label x:Name="lblPasados" Content="Label" Margin="10,70,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" FontSize="16" Height="32"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="📰" VerticalAlignment="Top" Style="{DynamicResource WhiteIcons}" FontSize="48" Height="44" Width="26" Foreground="{DynamicResource DarkGray}" Grid.Row="1"/>
+                <Label Content="Investigaciones" HorizontalAlignment="Left" Margin="36,32,0,0" VerticalAlignment="Top" Width="146" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold" Height="30" Grid.Row="1"/>
+                <Label x:Name="lblInvestigaciones" Content="Label" Margin="10,62,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" FontSize="16" Height="30" Grid.Row="1"/>
+                <Label x:Name="lblBorradores" Content="Label" Margin="10,122,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" Height="30" Grid.Row="1" FontSize="16"/>
+                <Label x:Name="lblPublicadas" Content="Label" Margin="10,92,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" FontSize="16" Height="30" Grid.Row="1"/>
+                <Label x:Name="lblHoy" Content="Label" Margin="10,102,10,0" VerticalAlignment="Top" RenderTransformOrigin="0.123,0.154" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource DarkGray}" FontSize="16" Height="31" Grid.RowSpan="2"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
