@@ -11,6 +11,13 @@ namespace MuseoCliente.Connection.Objects
 {
     public class LinkInvestigacion:ResourceObject<LinkInvestigacion>
     {
+        public LinkInvestigacion(string link)
+            : base("/api/v1/links/")
+        {
+            this.link = link;
+            this.id = 0;
+        }
+
         public LinkInvestigacion()
             : base("/api/v1/links/")
         {
@@ -72,6 +79,18 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError(2, "no se encontraron coincidencias con link: " + link);
             }
             return new ArrayList(listaNueva);
+        }
+
+        public void eliminar()
+        {
+            try
+            {
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con link: " + e.Message);
+            }
         }
 
     }
