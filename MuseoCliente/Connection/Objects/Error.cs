@@ -87,6 +87,8 @@ namespace MuseoCliente.Connection.Objects
          {
              if (eMessage.Contains("Conexion"))
                  ingresarError("Error de Conexion", "No se puede establecer contacto con el servidor ");
+             else
+                 ingresarError("Error", "hay uno o varios errores");
 
          }
 
