@@ -11,9 +11,10 @@ namespace MuseoCliente.Connection.Objects
 {
     public class LinkInvestigacion:ResourceObject<LinkInvestigacion>
     {
-        public LinkInvestigacion()
+        public LinkInvestigacion(string link)
             : base("/api/v1/links/")
         {
+            this.link = link;
             this.id = 0;
         }
         
