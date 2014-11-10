@@ -92,6 +92,8 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 elminarLinks();
+                foreach (LinkInvestigacion temp in links)
+                    temp.investigacion = this.id;
                 this.Save( this.id.ToString() );
             }
             catch( Exception e )
