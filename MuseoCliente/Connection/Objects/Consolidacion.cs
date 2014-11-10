@@ -30,11 +30,11 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                this.Create();
+                this.id = Deserialize(this.Create()).id;
             }
             catch (Exception e)
             {
-                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos");
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -47,7 +47,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(4, "No se ha modifico en la Informacion en la base de datos");
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -64,7 +64,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontraron piezas de este autor");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -85,7 +85,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "No se encontraron piezas de este autor");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -110,7 +110,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -142,7 +142,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -160,7 +160,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "tabla vacia");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
