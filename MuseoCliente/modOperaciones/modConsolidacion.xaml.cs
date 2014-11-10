@@ -113,8 +113,19 @@ namespace MuseoCliente
             }
             if (rbLimpieza.IsChecked == true)
             {
-                Mantenimiento mante1 = new Mantenimiento();
-                mante1.procedimiento = 1;
+                Mantenimiento mante = new Mantenimiento();
+                mante.procedimiento = 1;
+                mante.metodoMaterial = txtLimpieza.Text;
+                mante.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
+                mante.consolidacion = consolidacion.id;
+            }
+            if (rbConsolidacion.IsChecked == true)
+            {
+                Mantenimiento mante = new Mantenimiento();
+                mante.procedimiento = 2;
+                mante.metodoMaterial = txtConsolidacion.Text;
+                mante.fecha = dpFechaConsol.SelectedDate.Value.Date;
+                mante.consolidacion = consolidacion.id;
             }
         }
 	}
