@@ -32,10 +32,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                if (e.Source != null)
-                {
-                    Error.ingresarError(3, "No se ha guardado la Informacion en la base de datos");
-                }
+                    Error.ingresarError(e.Message);
             }
         }
 
@@ -47,10 +44,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                if (e.Source != null)
-                {
-                    Error.ingresarError(4, "No se ha modificado la Informacion en la base de datos");
-                }
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -65,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -93,7 +87,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -114,7 +108,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(2, "no se encontraron coincidencias con procedimiento: " + procedimiento);
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -136,7 +130,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -158,7 +152,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
             if (listaNueva == null)
             {
@@ -178,7 +172,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch (Exception e)
             {
-                Error.ingresarError(5, "Ha ocurrido un Error en la Coneccion Porfavor Verifique su conecciona a Internet");
+                Error.ingresarError(e.Message);
             }
             return consol;
         }
