@@ -129,6 +129,8 @@ namespace MuseoCliente.Designer.Views
 
         public void LoadOptions(List<string> opciones)
         {
+            if (opciones.Count == 0)
+                return;
             selectedOptions = new List<OptionViewer>();
             RemoveOptionAt(0);
             foreach (string opcion in opciones)
