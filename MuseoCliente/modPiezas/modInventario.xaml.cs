@@ -96,6 +96,7 @@ namespace MuseoCliente
             listCats.ItemsSource = t.Result;
             listCats.DisplayMemberPath = "nombre";
             clasPanel.Visibility = Visibility.Collapsed;
+            addButton.Visibility = Visibility.Hidden;
         }
 
         private void listCats_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,7 +106,7 @@ namespace MuseoCliente
             Categoria cat = list.SelectedItem as Categoria;
             if (list != null)
             {
-                if (cat != null)
+                if (cat != null && col!=null)
                 {
                     CargarClasificaciones(cat);
                     CargarPiezas("?coleccion=" + col.id + "&categoria=" + cat.id);
@@ -135,7 +136,8 @@ namespace MuseoCliente
             if (list != null)
             {
                 if (cla != null)
-                {                   
+                {
+                    addButton.Visibility = Visibility.Visible;
                     CargarPiezas("?clasificacion=" + cla.id);
                 }
             }
@@ -143,9 +145,37 @@ namespace MuseoCliente
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            modPieza frm = new modPieza();
+            Clasificacion cla= listClas.SelectedItem as Clasificacion;
+            Pieza pieza = new Pieza() { codigo = "M." + cla.codigo + "." + (cla.piezas + 1), clasificacion=cla.id};
+            modPieza frm = new modPieza() { DataContext = pieza, Crear=true};
             frm.borde = this.Parent as Border;
+            frm.anterior = this;
             frm.borde.Child = frm;
+        }
+
+        private void ListView_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            ListView view = sender as ListView;
+            if (view != null && view.SelectedItem != null)
+            {
+                editButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                editButton.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            Pieza pieza = listPiezas.SelectedItem as Pieza;
+            if (pieza != null)
+            {               
+                modPieza frm = new modPieza() { DataContext = pieza, Crear=false};
+                frm.borde = this.Parent as Border;
+                frm.anterior = this;
+                frm.borde.Child = frm;                
+            }
         }
 	}
 }
