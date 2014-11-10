@@ -76,14 +76,17 @@ namespace MuseoCliente
                 foreach(string link in LinksReferencia.GetOptions())
                     if (!link.Equals("Opcion"))
                         investigacion.ingresarLinks(link);
+                investigacion.fecha = DateTime.Now;
                 investigacion.guardar();
             }
             else
             {
                 investigacion.ingresarPiezas(piezas.ToList<Pieza>());
+                List<LinkInvestigacion> lista = new List<LinkInvestigacion>();
                 foreach (string link in LinksReferencia.GetOptions())
                     if (!link.Equals("Opcion"))
-                        investigacion.ingresarLinks(link);
+                        lista.Add(new LinkInvestigacion(link));
+                investigacion.ingresarLinks(lista);
                 investigacion.modificar();
             }
 
@@ -129,7 +132,7 @@ namespace MuseoCliente
         }
         private async void buscarPiezas(string codigo)
         {
-            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(()=>piezas.buscarNombre(codigo));
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(()=>piezas.buscarCodigo(codigo));
             await task;
             gvPiezas.ItemsSource = task.Result;
         }

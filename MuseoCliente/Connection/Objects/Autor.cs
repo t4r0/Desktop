@@ -26,7 +26,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos" );
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -38,7 +38,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 4, "No se ha modifico en la Informacion en la base de datos "+e.Message );
+                Error.ingresarError(e.Message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 2, "No se encontro nombre similares" );
+                Error.ingresarError(e.Message);
             }
             if( listaNueva == null )
             {
@@ -66,11 +66,11 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( "?apellido__contains" + apellido ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?apellido__contains=" + apellido ) );
             }
             catch( Exception e )
             {
-                Error.ingresarError( 2, "No se encontro nombre similares" );
+                Error.ingresarError(e.Message);
             }
             if( listaNueva == null )
             {
@@ -91,7 +91,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 2, "No se encontraron piezas de este autor" );
+                Error.ingresarError(e.Message);
             }
             if( listaNueva == null )
             {
@@ -112,7 +112,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 2, "No se encontraron investigacion de este autor" );
+                Error.ingresarError(e.Message);
             }
             if( listaNueva == null )
             {
@@ -131,7 +131,7 @@ namespace MuseoCliente.Connection.Objects
             }
             catch( Exception e )
             {
-                Error.ingresarError( 2, "tabla vacia" );
+                Error.ingresarError(e.Message);
             }
             if( listaNueva == null )
             {
@@ -143,18 +143,26 @@ namespace MuseoCliente.Connection.Objects
 
         public void regresarObjeto( int id )
         {
-            this.resource_uri = this.resource_uri + id + "/";
-            Autor Temp = this.Get();
-            if( Temp == null )
+            try
             {
-                Error.ingresarError( 2, "No se encontro coincidencia" );
-                return;
+
+                this.resource_uri = this.resource_uri + id + "/";
+                Autor Temp = this.Get();
+                if (Temp == null)
+                {
+                    Error.ingresarError(2, "No se encontro coincidencia");
+                    return;
+                }
+                this.id = Temp.id;
+                this.nombre = Temp.nombre;
+                this.apellido = Temp.apellido;
+                this.pais = Temp.pais;
+                this.resource_uri = Temp.resource_uri;
             }
-            this.id = Temp.id;
-            this.nombre = Temp.nombre;
-            this.apellido = Temp.apellido;
-            this.pais = Temp.pais;
-            this.resource_uri = Temp.resource_uri;
+            catch (Exception e)
+            {
+                Error.ingresarError(e.Message);
+            }
         }
     }
 }

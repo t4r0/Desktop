@@ -83,6 +83,19 @@ namespace MuseoCliente.Connection.Objects
             
         }
 
+         public static void ingresarError(string eMessage)
+         {
+             if (eMessage.Contains("Conexion"))
+                 ingresarError("Error de Conexion", "No se puede establecer contacto con el servidor ");
+             else if (eMessage.Contains("User")&& eMessage.Contains("does not exist"))
+                 ingresarError("Error en Usuario", "No se ha asignado un usuario, autor existente en la base de datos ");
+             else if (eMessage.Contains("AutoField") && eMessage.Contains("does not accept 0"))
+                 ingresarError("Error Asignacion", "No existe el objeto asignado para la relacion");
+             else
+                 ingresarError("Error", "hay uno o varios errores "+eMessage);
+
+         }
+
         public static bool isActivo()
         {
             bool variable = activo;
