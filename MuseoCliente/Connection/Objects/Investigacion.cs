@@ -48,7 +48,10 @@ namespace MuseoCliente.Connection.Objects
         {
             nuevo.Clear();
             foreach (LinkInvestigacion temp in viejo)
+            {
+                temp.investigacion = this.id;
                 nuevo.Add(temp);
+            }
             viejo.Clear();
         }
 
@@ -56,7 +59,11 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                igualarLista(linkNuevos, links);
                 this.id = Deserialize(this.Create()).id;
+                igualarLista(links, linkNuevos);
+                this.Save(this.id.ToString());
+                
             }
             catch( Exception e )
             {
