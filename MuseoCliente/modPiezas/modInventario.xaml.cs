@@ -140,5 +140,12 @@ namespace MuseoCliente
                 }
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            modPieza frm = new modPieza();
+            frm.borde = this.Parent as Border;
+            frm.borde.Child = frm;
+        }
 	}
 }

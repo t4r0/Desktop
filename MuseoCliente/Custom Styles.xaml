@@ -564,16 +564,14 @@
     <!-- Expander simple
 	 Usa el control ExpanderToggleButton simple. Establece la visibilidad de ContentPresenter para expandirse
 	 Limitaciones: el control Expander simple sólo se expande hacia abajo -->
-    <Style x:Key="CustomExpander" TargetType="{x:Type Expander}">
-        <Setter Property="Background" Value="{DynamicResource LightBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+    <Style x:Key="CustomExpander" TargetType="{x:Type Expander}">    
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Expander}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto" x:Name="ContentRow" MinHeight="0"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" x:Name="Border" CornerRadius="0" Background="{DynamicResource White}" BorderBrush="{DynamicResource PureBlue}" BorderThickness="0,0,0,1">
                             <Grid>
@@ -582,17 +580,16 @@
                                     <ColumnDefinition Width="20"/>
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter Grid.Column="0" Margin="4" RecognizesAccessKey="True" ContentSource="Header"/>
-                                <ToggleButton Grid.Column="1" Template="{DynamicResource ExpanderToggleButton}" Background="{DynamicResource NormalBrush}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" OverridesDefaultStyle="True"/>
-
+                                <ToggleButton Grid.Column="1" Template="{DynamicResource ExpanderToggleButton}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" OverridesDefaultStyle="True"/>
                             </Grid>
                         </Border>
-                        <Border Visibility="Collapsed" Grid.Row="1" x:Name="ExpandSite" Background="{DynamicResource WindowBackgroundBrush}" BorderBrush="{DynamicResource Gray}" BorderThickness="1,0,1,1" CornerRadius="0,0,2,2">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="false"/>
+                        <Border Grid.Row="1" x:Name="ExpandSite" BorderBrush="{DynamicResource Gray}" BorderThickness="1,0,1,1" CornerRadius="0,0,2,2">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Focusable="false" Visibility="Visible"/>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsExpanded" Value="True">
-                            <Setter Property="Visibility" Value="Visible" TargetName="ExpandSite"/>
+                        <Trigger Property="IsExpanded" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="ExpandSite"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" TargetName="Border"/>
