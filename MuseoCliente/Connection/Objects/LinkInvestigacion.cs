@@ -74,5 +74,17 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
+        public void eliminar()
+        {
+            try
+            {
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con link: " + e.Message);
+            }
+        }
+
     }
 }
