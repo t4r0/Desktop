@@ -148,7 +148,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 LinkInvestigacion LinkInvestigacion = new LinkInvestigacion();
-                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( "?investigacion__contains=" + this.id ) );
+                listaNueva = new ArrayList(LinkInvestigacion.GetAsCollection("?investigacion=" + this.id));
             }
             catch( Exception e )
             {
