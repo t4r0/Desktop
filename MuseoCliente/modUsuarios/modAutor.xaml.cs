@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace MuseoCliente
 {
@@ -54,9 +56,7 @@ namespace MuseoCliente
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbPais.DisplayMemberPath = "name";
-            cmbPais.SelectedValuePath = "iso";
-            cmbPais.ItemsSource = paises.regresarTodos();
+            cargarPaises();
             //Cargar datos
             //Si es para modificar
             if (modificar == true)
@@ -72,7 +72,14 @@ namespace MuseoCliente
                 lblOperacion.Content = "Nuevo Autor";
             }
         }
-
+        private async void cargarPaises()
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => paises.regresarTodos());
+            await task;
+            cmbPais.DisplayMemberPath = "name";
+            cmbPais.SelectedValuePath = "iso";
+            cmbPais.ItemsSource = paises.regresarTodos();
+        }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             borde.Child = anterior;
