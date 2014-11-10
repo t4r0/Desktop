@@ -13,10 +13,10 @@
         <Objects:Consolidacion/>
     </UserControl.DataContext>
 
-    <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}">
+    <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
         <Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
             <DockPanel>
-                <Label DockPanel.Dock="Left" Content="Consolidación"/>
+                <Label x:Name="lblOperacion" DockPanel.Dock="Left" Content="Consolidación"/>
                 <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
                     <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Content="❌"/>
                 </Label>
@@ -37,7 +37,7 @@
                 </StackPanel>
                 <StackPanel Width="400" HorizontalAlignment="Center" Margin="0,5,0,10">
                     <Label DockPanel.Dock="Left" VerticalAlignment="Center" Content="Fecha Fin:"/>
-                    <DatePicker x:Name="dpFin" Height="25" Margin="0,0,0,0" SelectedDate="{Binding fechaFinal, Mode=TwoWay}"/>
+                    <DatePicker x:Name="dpFin" Height="25" Margin="0,0,0,0" SelectedDate="{Binding fechaFin, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
             <Border BorderBrush="{DynamicResource DarkGray}" BorderThickness="1">

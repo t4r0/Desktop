@@ -17,8 +17,9 @@
                     <Button x:Name="btnNuevaCons" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnNuevaCons_Click" Content="➕"/>
                 </Label>
                 <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-                    <Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Content="✎"/>
+                    <Button x:Name="btnEditar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Content="✎" Click="btnEditar_Click"/>
                 </Label>
+                <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" Height="20" Width="120"></TextBox>
             </DockPanel>
         </Border>
         <StackPanel>
