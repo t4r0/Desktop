@@ -50,7 +50,7 @@ namespace MuseoCliente.Connection.Objects
             List<Coleccion> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre=" + nombre;
+                string consultarNombre = "?nombre_icontains=" + nombre;
                 listaNueva = this.GetAsCollection(consultarNombre);
             }
             catch (Exception e)

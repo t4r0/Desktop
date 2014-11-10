@@ -46,7 +46,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( "?nombre=" + nombre ) );
+                listaNueva = new ArrayList( this.GetAsCollection( "?nombre_icontains=" + nombre ) );
             }
             catch( Exception e )
             {
