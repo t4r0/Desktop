@@ -24,17 +24,42 @@
 				<TextBox x:Name="txtBuscar" Height="20" Width="150" HorizontalAlignment="Right" Margin="0,0,5,0"/>
 			</DockPanel>
 		</Border>
-		<StackPanel>
-			<Label Height="20"/>
-			<StackPanel Height="205">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0">En Exhibición:</Label>
-                <DataGrid x:Name="gvExhibicion" Margin="15,0,15,0" Height="150"/>
-			</StackPanel>
-			<StackPanel Height="205">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0">En Bodega:</Label>
-                <DataGrid x:Name="gvBodega" Margin="15,0,15,0" Height="150"/>
-			</StackPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
-	</DockPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,1,0">
+                    <DockPanel x:Name="colPanel" >
+                        <DockPanel DockPanel.Dock="Top">
+                            <Label Content="Colecciones" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold"/>
+                            <Button Style="{DynamicResource BlueForegrounButton}" Width="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="+"/>
+                        </DockPanel>
+                        <ListBox x:Name="listColecciones" DockPanel.Dock="Top" BorderThickness="0,0,0,0" Loaded="ListBox_Loaded_1" HorizontalContentAlignment="Stretch" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Style="{DynamicResource CustomListBox}" FontSize="14" VerticalContentAlignment="Stretch" SelectionChanged="listColecciones_SelectionChanged"/>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,1,0">
+                    <DockPanel x:Name="catsPanel" Visibility="Collapsed">
+                        <DockPanel DockPanel.Dock="Top">
+                            <ToggleButton Template="{DynamicResource ExpanderToggleButton}" Width="15"/>
+                            <Label Content="Categorias" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold"/>
+                            <Button Style="{DynamicResource BlueForegrounButton}" Width="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="+"/>
+                        </DockPanel>
+                        <ListBox x:Name="listCats" DockPanel.Dock="Top" BorderThickness="0,0,0,0" Style="{DynamicResource CustomListBox}" HorizontalContentAlignment="Stretch" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" SelectionChanged="listCats_SelectionChanged" FontSize="14"/>
+                    </DockPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,1,0">
+                    <DockPanel x:Name="clasPanel" Visibility="Collapsed">
+                        <DockPanel DockPanel.Dock="Top">
+                            <ToggleButton Template="{DynamicResource ExpanderToggleButton}" Width="15"/>
+                            <Label Content="Clasificaciones" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" FontWeight="Bold"/>
+                            <Button Style="{DynamicResource BlueForegrounButton}" Width="25" DockPanel.Dock="Right" HorizontalAlignment="Right" Content="+"/>
+                        </DockPanel>
+                        <ListBox x:Name="listClas" DockPanel.Dock="Top" BorderThickness="0,0,0,0" Style="{DynamicResource CustomListBox}" SelectionChanged="listClas_SelectionChanged"/>
+                    </DockPanel>
+                </Border>
+                <DockPanel>
+                    <Label Content="Piezas" DockPanel.Dock="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" BorderBrush="{DynamicResource Gray}" Margin="0,0,0,1" />
+                    <ListView x:Name="listPiezas" BorderBrush="{x:Null}" ItemTemplate="{DynamicResource PiezaTemplate}" />
+                </DockPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>

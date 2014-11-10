@@ -20,15 +20,6 @@
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Seleccione Clasificación:</Label>
 				<ComboBox x:Name="cmbClasificacion" Height="25" Width="300" Margin="5,0,0,0"/>
 			</DockPanel>
-			<DockPanel Height="35" HorizontalAlignment="Center">
-				<Button x:Name="btnCargar" Height="25" Width="105">Cargar Imagenes</Button>
-			</DockPanel>
-			<DockPanel Height="300" Width="442" HorizontalAlignment="Center" Margin="0,20,0,0">
-				<Button x:Name="btnIzq" Height="25" Width="45" VerticalAlignment="Bottom" Margin="40,0,0,10">Izq</Button>
-				<Border Height="250" Width="250" Margin="15,0,0,0" BorderBrush="{DynamicResource Gray}" BorderThickness="2"/>
-				<Button x:Name="btnDer" Height="25" Width="45" VerticalAlignment="Bottom" Margin="0,0,0,10">Der</Button>
-			</DockPanel>
-			<Label Height="20"></Label>
-		</StackPanel>
+        </StackPanel>
 	</DockPanel>
 </UserControl>

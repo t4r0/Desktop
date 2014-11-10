@@ -146,6 +146,29 @@ namespace MuseoCliente
             this.Close();
         }
 
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+                this.WindowState = WindowState.Normal;
+            else
+                this.WindowState = WindowState.Maximized;
+        }
+
+        private void Button_Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Rectangle_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
         private void itemOperaciones_Click(object sender, RoutedEventArgs e)
         {
             Select((MenuItem)sender);

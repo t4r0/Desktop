@@ -343,7 +343,7 @@
                             <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" SnapsToDevicePixels="True">
 
                                 <Border x:Name="DropDownBorder" Background="{DynamicResource White}" BorderBrush="{DynamicResource PureBlue}" BorderThickness="1" Grid.RowSpan="2" Grid.Row="1" CornerRadius="2" Margin="0,1,0,0">
-                                    <ScrollViewer Margin="0,0,-2,12" Style="{DynamicResource CustomScrollViewer}" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Panel.ZIndex="999">
+                                    <ScrollViewer Margin="0,0,-2,12" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Panel.ZIndex="999">
 
                                         <!-- StackPanel se usa para mostrar los elementos secundarios estableciendo IsItemsHost en True -->
                                         <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
@@ -387,7 +387,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Grid.ColumnSpan="2" HorizontalAlignment="Stretch" x:Name="Rectangle" VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="5" RadiusY="5" Fill="{DynamicResource White}" Stroke="{DynamicResource Gray}"/>
+            <Rectangle Grid.ColumnSpan="2" HorizontalAlignment="Stretch" x:Name="Rectangle" VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="5" RadiusY="5" Fill="{DynamicResource White}" Stroke="{DynamicResource DarkGray}"/>
             <Rectangle Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" RadiusX="5" RadiusY="5"/>
             <Path Grid.Column="1" HorizontalAlignment="Center" x:Name="Arrow" VerticalAlignment="Center" Fill="{DynamicResource PureBlue}" Data="M 0 0 L 4 4 L 8 0 Z"/>
         </Grid>
@@ -435,94 +435,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="CustomScrollViewer" TargetType="{x:Type ScrollViewer}" BasedOn="{x:Null}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid Background="{TemplateBinding Background}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="Auto" MinWidth="17"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <ScrollContentPresenter Grid.Column="0" Grid.Row="0" Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" CanContentScroll="{TemplateBinding CanContentScroll}"/>
-
-                        <!-- La visibilidad de los controles ScrollBar se controla mediante la implementación del control -->
-                        <ScrollBar Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Grid.Column="0" Grid.Row="1" x:Name="PART_HorizontalScrollBar" Style="{DynamicResource CustomScrollBar}" Orientation="Horizontal" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Minimum="0" Maximum="{TemplateBinding ScrollableWidth}" />
-                        <ScrollBar Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Grid.Column="1" Grid.Row="0" x:Name="PART_VerticalScrollBar" Style="{DynamicResource CustomScrollBar}" Orientation="Vertical" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Minimum="0" Maximum="{TemplateBinding ScrollableHeight}" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="CustomScrollBar" TargetType="{x:Type ScrollBar}">
-        <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollBar}">
-                    <Grid x:Name="GridRoot" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Background="{TemplateBinding Background}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition MaxHeight="18"/>
-                            <RowDefinition Height="0.00001*"/>
-                            <RowDefinition MaxHeight="18"/>
-                        </Grid.RowDefinitions>
-
-                        <RepeatButton x:Name="DecreaseRepeat" Style="{DynamicResource CustomRepeat}" Command="ScrollBar.LineUpCommand" BorderBrush="{x:Null}" Background="{DynamicResource LightGray}" Foreground="{DynamicResource DarkGray}">
-                            <Grid>
-                                <Path x:Name="DecreaseArrow" Stroke="{Binding Foreground, ElementName=DecreaseRepeat}" StrokeThickness="1" Data="M 0 4 L 8 4 L 4 0 Z" Fill="{Binding Stroke, ElementName=DecreaseArrow}"/>
-                            </Grid>
-                        </RepeatButton>
-
-                        <!-- El control Track es un contenedor de diseño especial que cambia el tamaño del control Thumb y de RepeatButton, que saltan al desplazar cualquiera de sus lados -->
-                        <Track Grid.Row="1" x:Name="PART_Track" Orientation="Vertical" IsDirectionReversed="true">
-                            <Track.Thumb>
-                                <Thumb Style="{DynamicResource CustomThumbStyle}" Background="{DynamicResource White}"/>
-                            </Track.Thumb>
-                            <Track.IncreaseRepeatButton>
-                                <RepeatButton x:Name="PageUp" Style="{DynamicResource CustomScrollRepeatButtonStyle}" Command="ScrollBar.PageDownCommand"/>
-                            </Track.IncreaseRepeatButton>
-                            <Track.DecreaseRepeatButton>
-                                <RepeatButton x:Name="PageDown" Style="{DynamicResource SimpleScrollRepeatButtonStyle}" Command="ScrollBar.PageUpCommand"/>
-                            </Track.DecreaseRepeatButton>
-                        </Track>
-
-                        <RepeatButton Grid.Row="2" x:Name="IncreaseRepeat" Style="{DynamicResource CustomRepeat}" Command="ScrollBar.LineDownCommand">
-                            <Grid>
-                                <Path x:Name="IncreaseArrow" Stroke="{Binding Foreground, ElementName=DecreaseRepeat}" StrokeThickness="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="{Binding Foreground, ElementName=DecreaseRepeat}"/>
-                            </Grid>
-                        </RepeatButton>
-                    </Grid>
-
-                    <!-- Usa una única plantilla para el control ScrollBar y lo gira para colocarlo en posición horizontal
-					También cambia los comandos para que sean de izquierda y derecha en lugar de hacia arriba y hacia abajo -->
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="Orientation" Value="Horizontal">
-
-                            <!-- Girar el control ScrollBar de vertical a horizontal -->
-                            <Setter Property="LayoutTransform" TargetName="GridRoot">
-                                <Setter.Value>
-                                    <RotateTransform Angle="-90"/>
-                                </Setter.Value>
-                            </Setter>
-
-                            <!-- Track está enlazado a Orientation de manera interna, así que es necesario girarlo para volver a colocarlo en posición vertical -->
-                            <Setter TargetName="PART_Track" Property="Orientation" Value="Vertical"/>
-
-                            <!-- Cambiar los comandos para convertirlos en comandos Horizontal -->
-                            <Setter Property="Command" Value="ScrollBar.LineLeftCommand" TargetName="DecreaseRepeat"/>
-                            <Setter Property="Command" Value="ScrollBar.LineRightCommand" TargetName="IncreaseRepeat"/>
-                            <Setter Property="Command" Value="ScrollBar.PageLeftCommand" TargetName="PageDown"/>
-                            <Setter Property="Command" Value="ScrollBar.PageRightCommand" TargetName="PageUp"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
     <Style x:Key="CustomListBox" TargetType="{x:Type ListBox}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}"/>
@@ -530,6 +442,8 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource CustomListBoxItem}"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListBox}">
@@ -557,18 +471,45 @@
     </Style>
 
     <!-- ListBoxItem simple: se usa para cada elemento de ListBox. El contenido del elemento se coloca en ContentPresenter -->
-
-    <Style x:Key="CustomListBoxItem" d:IsControlPart="True" TargetType="{x:Type ListBoxItem}">
+    
+    <Style x:Key="CustomListBoxItem" d:IsControlPart="True" TargetType="ListBoxItem">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                <ControlTemplate x:Name="CustomListBoxTemplate"  TargetType="ListBoxItem">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="OnLoaded1">
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <ExponentialEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <ExponentialEase EasingMode="EaseOut"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.7">
+                                    <EasingDoubleKeyFrame.EasingFunction>
+                                        <PowerEase EasingMode="EaseOut" Power="4"/>
+                                    </EasingDoubleKeyFrame.EasingFunction>
+                                </EasingDoubleKeyFrame>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </ControlTemplate.Resources>
                     <Grid SnapsToDevicePixels="true">
-                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
-                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" HorizontalAlignment="Stretch"/>
+                        <ContentPresenter x:Name="contentPresenter" Margin="5,5,5,5" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Grid>
                     <ControlTemplate.Triggers>
+
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard Storyboard="{StaticResource OnLoaded1}"/>
+                        </EventTrigger>
 
                         <!-- Cambiar IsSelected SelectedBackgroundBrush para establecer el color de selección de los elementos -->
                         <Trigger Property="IsSelected" Value="true">
@@ -589,6 +530,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <SolidColorBrush x:Key="OverBlue" Color="#3ecbff"/>
 
     <!-- ExpanderToggleButton simple: el control Expander usa este botón. Cuando se activa o desactiva, cambia la visibilidad de Up_Arrow y Down_Arrow -->
@@ -1244,4 +1186,63 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="RectangleButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+        <Setter Property="Foreground" Value="{DynamicResource White}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <!-- Grid se usa como raíz porque resulta sencillo agregarle más elementos para personalizar el botón -->
+                    <Grid x:Name="Grid">
+                        <Border x:Name="Border" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Background="{DynamicResource StrongPink}" BorderBrush="{DynamicResource StrongPink}" CornerRadius="0"/>
+
+                        <!-- Content Presenter es donde el control coloca el contenido de texto, etc. -->
+                        <!-- Los enlaces sirven para que el control se pueda parametrizar sin editar la plantilla -->
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+                    </Grid>
+
+                    <!--Cada estado establece un pincel en el elemento Border de la plantilla -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource LightPink}"/>
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource LightPink}"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource DarkPink}"/>
+                            <Setter Property="Background" TargetName="Border" Value="{DynamicResource DarkPink}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false"/>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="PiezaTemplate">
+        <Border x:Name="Border" Width="Auto" Height="Auto" BorderBrush="{DynamicResource PureBlue}" Background="{DynamicResource White}">
+            <Grid d:DesignWidth="245" d:DesignHeight="120" Height="120" Width="245">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="38*"/>
+                    <RowDefinition Height="63*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="121*"/>
+                    <ColumnDefinition Width="124*"/>
+                </Grid.ColumnDefinitions>
+                <Image Margin="0" Width="120" Height="120" VerticalAlignment="Stretch" Source="{Binding fotografia}" Grid.RowSpan="2" Stretch="UniformToFill"/>
+                <TextBlock Grid.Column="1" Margin="0,0,0,18" TextWrapping="Wrap" Text="{Binding nombre}" VerticalAlignment="Stretch" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro"/>
+                <TextBlock Grid.Column="1" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding codigo}" VerticalAlignment="Stretch" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="10"/>
+            </Grid>
+        </Border>
+        <DataTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderThickness" TargetName="Border" Value="1,0,1,0"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="BorderThickness" TargetName="Border" Value="1,0,1,0"/>
+            </Trigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
 </ResourceDictionary>

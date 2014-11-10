@@ -9,15 +9,21 @@
 	d:DesignWidth="640" Height="420">
 
     <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
-        <Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
+        <Border DockPanel.Dock="Top" Margin="0" Height="50" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
             <DockPanel>
-                <Label x:Name="lblOperaciones" DockPanel.Dock="Left">[Op] Pieza</Label>
-                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-                    <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold">&#10060;</Button>
-                </Label>
-                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-                    <Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">&#128190;</Button>
-                </Label>
+                <Label x:Name="lblOperaciones" Margin="10,0,0,0" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource DarkGray}">[Op] Pieza</Label>
+                <Button x:Name="btnCancelar" Height="27" FontSize="18" FontWeight="Bold" Style="{DynamicResource PinkButton}" Margin="5,10" Width="69" DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="❌ "/></TextBlock>
+                        <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Salir"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnGuardar" Height="27" FontSize="30" FontWeight="Bold" Style="{DynamicResource BlueButton}" Margin="0,10" Width="78" FontFamily="/MuseoCliente;component/Font/#Entypo" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="💾 "/></TextBlock>
+                        <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Guardar"/></TextBlock>
+                    </StackPanel>
+                </Button>
             </DockPanel>
         </Border>
     </DockPanel>
