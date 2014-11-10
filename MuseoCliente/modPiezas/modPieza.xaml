@@ -100,7 +100,7 @@
                                 <Label Content="Codigo IDAEH" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Left" Margin="10,34,0,60"/>
                                 <TextBox Height="23" Margin="10,62,10,0" TextWrapping="Wrap" Text="{Binding codigoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
                                 <Label Content="Archivo de regitro IDAEH" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Foreground="{DynamicResource DarkGray}"/>
-                                <TextBox Height="23" Margin="10,121,54,-22" TextWrapping="Wrap" Text="{Binding archivoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" IsUndoEnabled="True" IsEnabled="False"/>
+                                <TextBox x:Name="fileTxt" Height="23" Margin="10,121,54,-22" TextWrapping="Wrap" Text="{Binding archivoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" IsUndoEnabled="True" IsEnabled="False"/>
                                 <Button Content="..." Margin="0,121,10,0" VerticalAlignment="Top" Style="{DynamicResource BlueButton}" Height="23" HorizontalAlignment="Right" Width="39" ToolTip="Pulsa para subir un archivo" Cursor="Hand" Click="Button_Click_1"/>
                             </Grid>
                         </Expander>
