@@ -48,7 +48,10 @@ namespace MuseoCliente.Connection.Objects
         {
             nuevo.Clear();
             foreach (LinkInvestigacion temp in viejo)
+            {
+                temp.investigacion = this.id;
                 nuevo.Add(temp);
+            }
             viejo.Clear();
         }
 
@@ -58,6 +61,9 @@ namespace MuseoCliente.Connection.Objects
             {
                 igualarLista(linkNuevos, links);
                 this.id = Deserialize(this.Create()).id;
+                igualarLista(links, linkNuevos);
+                this.Save(this.id.ToString());
+                
             }
             catch( Exception e )
             {
@@ -67,29 +73,34 @@ namespace MuseoCliente.Connection.Objects
                     Error.ingresarError( 3, "No se ha guardado en la Informacion en la base de datos "+e.Message );
                 }
             }
-            igualarLista(links, linkNuevos);
-            this.modificar();
+        }
+
+        public void eliminar()
+        {
+            try
+            {
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(3, "No se ha guardado en la Informacion en la base de datos " + e.Message);
+            }
+        }
+
+        private void elminarLinks()
+        {
+            List<LinkInvestigacion> lista = this.regresarLinkInvestigacion().ToList<LinkInvestigacion>();
+            foreach (LinkInvestigacion temp in lista)
+                temp.eliminar();
         }
 
         public void modificar()
         {
             try
             {
-                linkNuevos.Clear();
-                foreach (LinkInvestigacion lin in links)
-                {
-
-                    if (lin.id == 0)
-                    {
-                        lin.investigacion = this.id;
-                        linkNuevos.Add(lin);
-                    }
-                    else
-                    {
-                        lin.modificar();
-                    }
-                }
-                igualarLista(links, linkNuevos);
+                elminarLinks();
+                foreach (LinkInvestigacion temp in links)
+                    temp.investigacion = this.id;
                 this.Save( this.id.ToString() );
             }
             catch( Exception e )
@@ -148,7 +159,7 @@ namespace MuseoCliente.Connection.Objects
             try
             {
                 LinkInvestigacion LinkInvestigacion = new LinkInvestigacion();
-                listaNueva = new ArrayList( LinkInvestigacion.GetAsCollection( "?investigacion__contains=" + this.id ) );
+                listaNueva = new ArrayList(LinkInvestigacion.GetAsCollection("?investigacion=" + this.id));
             }
             catch( Exception e )
             {
@@ -201,6 +212,9 @@ namespace MuseoCliente.Connection.Objects
             this.titulo = Temp.titulo;
             this.links = Temp.links;
             this.piezas = Temp.piezas;
+            igualarLista(this.links, Temp.links);
+
+            
         }
 
         public ArrayList regresarPiezas()
@@ -251,6 +265,7 @@ namespace MuseoCliente.Connection.Objects
         {
             LinkInvestigacion tempLink = new LinkInvestigacion();
             tempLink.link = link;
+            links.Add(tempLink);
 
         }
 

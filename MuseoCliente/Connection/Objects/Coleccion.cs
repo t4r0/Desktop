@@ -135,5 +135,23 @@ namespace MuseoCliente.Connection.Objects
             }
             return listaNueva;
         }
+
+        public List<Categoria> ObtenerCategorias()
+        {
+            try
+            {
+                Categoria cats = new Categoria();
+                string newUri = conector.BaseUri;
+                conector.BaseUri = "/api/v1/categorias/";
+                string content = conector.fetch("?coleccion=" + this.id.ToString());
+                conector.BaseUri = conector.BaseUri;
+                return cats.DeserializeList(content);
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, e.Message);
+            }
+            return null;
+        }
     }
 }

@@ -47,6 +47,12 @@ namespace MuseoCliente
             {
                 lblOperacion.Content = "Modificar Investigación";
                 //ArrayList listado = investigacion.regresarPiezas();
+                List<string> lista = new List<string>();
+                foreach(LinkInvestigacion link in investigacion.regresarLinkInvestigacion())
+                {
+                    lista.Add(link.link);
+                }
+                LinksReferencia.LoadOptions(lista);
                 gvPiezasGuardadas.ItemsSource = investigacion.regresarPiezas();
                 cmbAutor.SelectedValue = investigacion.autor;
             }
@@ -67,11 +73,20 @@ namespace MuseoCliente
             if (modificar == false)
             {
                 investigacion.ingresarPiezas(piezas.ToList<Pieza>());
+                foreach(string link in LinksReferencia.GetOptions())
+                    if (!link.Equals("Opcion"))
+                        investigacion.ingresarLinks(link);
+                investigacion.fecha = DateTime.Now;
                 investigacion.guardar();
             }
             else
             {
                 investigacion.ingresarPiezas(piezas.ToList<Pieza>());
+                List<LinkInvestigacion> lista = new List<LinkInvestigacion>();
+                foreach (string link in LinksReferencia.GetOptions())
+                    if (!link.Equals("Opcion"))
+                        lista.Add(new LinkInvestigacion(link));
+                investigacion.ingresarLinks(lista);
                 investigacion.modificar();
             }
 
@@ -117,7 +132,7 @@ namespace MuseoCliente
         }
         private async void buscarPiezas(string codigo)
         {
-            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(()=>piezas.buscarNombre(codigo));
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(()=>piezas.buscarCodigo(codigo));
             await task;
             gvPiezas.ItemsSource = task.Result;
         }

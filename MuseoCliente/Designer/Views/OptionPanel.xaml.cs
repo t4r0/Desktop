@@ -119,9 +119,18 @@ namespace MuseoCliente.Designer.Views
             selectedOptions = new List<OptionViewer>();
 		}
 
+
         public OptionPanel(List<string> opciones)
         {
             this.InitializeComponent();
+            selectedOptions = new List<OptionViewer>();
+            LoadOptions(opciones);
+        }
+
+        public void LoadOptions(List<string> opciones)
+        {
+            if (opciones.Count == 0)
+                return;
             selectedOptions = new List<OptionViewer>();
             RemoveOptionAt(0);
             foreach (string opcion in opciones)

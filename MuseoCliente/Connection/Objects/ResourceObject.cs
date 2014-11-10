@@ -131,5 +131,10 @@ namespace MuseoCliente.Connection.Objects
             string content = conector.fetch( direccion );
             return this.DeserializeList(content);
         }
+
+        public void del()
+        {
+            conector.delete(this.id.ToString());
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace MuseoCliente
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             modResultadosInv frm = new modResultadosInv();
-            frm.busqueda = txtBuscar.Text;
+            frm.busqueda = "";
             frm.borde = borde;
             frm.anterior = this;
             borde.Child = frm;
@@ -69,18 +69,32 @@ namespace MuseoCliente
 
         private void btnBuscarInvestigacion_Click(object sender, RoutedEventArgs e)
         {
-            modResultadosInv frm = new modResultadosInv();
-            frm.borde = borde;
-            frm.anterior = this;
-            borde.Child = frm;
+            buscarInvestigaciones(txtBuscar.Text);
         }
-
+        private async void buscarInvestigaciones(string titulo)
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => investigaciones.buscarTitulo(titulo));
+            await task;
+            gvResultados.ItemsSource = task.Result;
+        }
         private void btnNuevaInvestigacion_Click(object sender, RoutedEventArgs e)
         {
             modInvestigacion frm = new modInvestigacion();
             frm.borde = borde;
             frm.anterior = this;
             borde.Child = frm;
+        }
+
+        private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtBuscar.Text.Length > 3)
+            {
+                buscarInvestigaciones(txtBuscar.Text);
+            }
+            else
+            {
+                cargarInvestigaciones();
+            }
         }
 	}
 }

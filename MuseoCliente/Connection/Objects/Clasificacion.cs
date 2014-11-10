@@ -17,12 +17,20 @@ namespace MuseoCliente.Connection.Objects
         public string nombre { get; set; }
         [JsonProperty]
         public string codigo { get; set; }
+        [JsonProperty]
+        public int piezas { get; set; }
 
         public Clasificacion()
             : base( "/api/v1/clasificacion/" )
         {
 
         }
+
+        public bool ShouldSerializepiezas()
+        {
+            return false;
+        }
+
         public void guardar()
         {
             try
@@ -167,6 +175,7 @@ namespace MuseoCliente.Connection.Objects
             }
             return ( clase );
         }
+
 
         public Categoria consultarCategoria( int idCategoria )
         {

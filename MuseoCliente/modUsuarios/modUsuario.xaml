@@ -49,13 +49,13 @@
             <Button x:Name="btnGuardar" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click" Grid.Column="2" Margin="0,5,122,0" Grid.Row="2" Style="{DynamicResource BlueButton}" Width="88" Height="33" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="💾 "/></TextBlock>
-                    <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center"><Run Text="Guardar"/></TextBlock>
+                    <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Guardar"/></TextBlock>
                 </StackPanel>              
             </Button>
             <Button x:Name="btnCancelar" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Grid.Column="2" Margin="0,5,31,0" Grid.Row="2" Width="86" Style="{DynamicResource PinkButton}" Height="33" VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="❌ "/></TextBlock>
-                    <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center"><Run Text="Salir"/></TextBlock>
+                    <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Salir"/></TextBlock>
                 </StackPanel>                
             </Button>
         </Grid>

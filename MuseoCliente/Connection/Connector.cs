@@ -43,6 +43,26 @@ namespace MuseoCliente.Connection
             this.token = accessToken;          
         }
 
+        public void delete(string id)
+        {
+            HttpClient client = CreateRequest();
+            string absoluteUri = server + BaseUri+ id+"/";
+            HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Delete, absoluteUri);
+            reqMessage.Content = new StringContent("", Encoding.UTF8, "application/json");
+            HttpResponseMessage message = client.SendAsync(reqMessage).Result;
+            string responseContent = message.Content.ReadAsStringAsync().Result;
+            if (message.StatusCode == HttpStatusCode.NoContent || message.StatusCode == HttpStatusCode.OK)
+                return ;
+            else
+            {
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
+            }
+        }
+
         public HttpClient CreateRequest()
         {
             HttpClient client = new HttpClient();
