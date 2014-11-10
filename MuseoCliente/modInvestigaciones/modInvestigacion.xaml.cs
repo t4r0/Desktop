@@ -47,6 +47,12 @@ namespace MuseoCliente
             {
                 lblOperacion.Content = "Modificar Investigación";
                 //ArrayList listado = investigacion.regresarPiezas();
+                List<string> lista = new List<string>();
+                foreach(LinkInvestigacion link in investigacion.regresarLinkInvestigacion())
+                {
+                    lista.Add(link.link);
+                }
+                LinksReferencia.LoadOptions(lista);
                 gvPiezasGuardadas.ItemsSource = investigacion.regresarPiezas();
                 cmbAutor.SelectedValue = investigacion.autor;
             }
@@ -67,11 +73,17 @@ namespace MuseoCliente
             if (modificar == false)
             {
                 investigacion.ingresarPiezas(piezas.ToList<Pieza>());
+                foreach(string link in LinksReferencia.GetOptions())
+                    if (!link.Equals("Opcion"))
+                        investigacion.ingresarLinks(link);
                 investigacion.guardar();
             }
             else
             {
                 investigacion.ingresarPiezas(piezas.ToList<Pieza>());
+                foreach (string link in LinksReferencia.GetOptions())
+                    if (!link.Equals("Opcion"))
+                        investigacion.ingresarLinks(link);
                 investigacion.modificar();
             }
 
