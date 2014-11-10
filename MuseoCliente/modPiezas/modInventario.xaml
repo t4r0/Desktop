@@ -56,7 +56,10 @@
                     </DockPanel>
                 </Border>
                 <DockPanel>
-                    <Label Content="Piezas" DockPanel.Dock="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" BorderBrush="{DynamicResource Gray}" Margin="0,0,0,1" />
+                    <DockPanel DockPanel.Dock="Top">
+                        <Label Content="Piezas" DockPanel.Dock="Left" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}" FontWeight="Bold" BorderBrush="{DynamicResource Gray}" Margin="0,0,0,1" />
+                        <Button Content="+" DockPanel.Dock="Right" Width="21" Margin="5,0" Style="{DynamicResource BlueForegrounButton}" Click="Button_Click_1"/>
+                    </DockPanel>                    
                     <ListView x:Name="listPiezas" BorderBrush="{x:Null}" ItemTemplate="{DynamicResource PiezaTemplate}" />
                 </DockPanel>
             </StackPanel>
