@@ -83,6 +83,13 @@ namespace MuseoCliente.Connection.Objects
             
         }
 
+         public static void ingresarError(string eMessage)
+         {
+             if (eMessage.Contains("Conexion"))
+                 ingresarError("Error de Conexion", "No se puede establecer contacto con el servidor ");
+
+         }
+
         public static bool isActivo()
         {
             bool variable = activo;

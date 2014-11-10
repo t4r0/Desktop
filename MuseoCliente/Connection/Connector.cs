@@ -49,17 +49,24 @@ namespace MuseoCliente.Connection
             string absoluteUri = server + BaseUri+ id+"/";
             HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Delete, absoluteUri);
             reqMessage.Content = new StringContent("", Encoding.UTF8, "application/json");
-            HttpResponseMessage message = client.SendAsync(reqMessage).Result;
-            string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode == HttpStatusCode.NoContent || message.StatusCode == HttpStatusCode.OK)
-                return ;
-            else
+            try
             {
-                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-                if (error.Keys.Contains("error"))
-                    throw new Exception(error["error"]);
-                if (error.Keys.Contains("error_message"))
-                    throw new Exception(error["error_message"]);
+                HttpResponseMessage message = client.SendAsync(reqMessage).Result;
+                string responseContent = message.Content.ReadAsStringAsync().Result;
+                if (message.StatusCode == HttpStatusCode.NoContent || message.StatusCode == HttpStatusCode.OK)
+                    return;
+                else
+                {
+                    Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                    if (error.Keys.Contains("error"))
+                        throw new Exception(error["error"]);
+                    if (error.Keys.Contains("error_message"))
+                        throw new Exception(error["error_message"]);
+                }
+            }
+            catch (AggregateException)
+            {
+                throw new Exception("Error de Conexion");
             }
         }
 
@@ -73,16 +80,23 @@ namespace MuseoCliente.Connection
 
         public string fetch()
         {
-            HttpClient client = CreateRequest();
-            HttpResponseMessage message = client.GetAsync(server + BaseUri).Result;
-            string content = message.Content.ReadAsStringAsync().Result;
-            if(message.StatusCode == HttpStatusCode.OK)
-                return content;
-            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string,string>>(content);
-            if(error.Keys.Contains("error"))
-                throw new Exception(error["error"]);
-            if (error.Keys.Contains("error_message"))
-                throw new Exception(error["error_message"]);
+            HttpClient client = CreateRequest();           
+            try
+            {
+                HttpResponseMessage message = client.GetAsync(server + BaseUri).Result;
+                string content = message.Content.ReadAsStringAsync().Result;
+                if (message.StatusCode == HttpStatusCode.OK)
+                    return content;
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
+            }
+            catch (AggregateException e)
+            {
+                throw new Exception("Error de Conexion");
+            }
             return "";
         }
 
@@ -90,15 +104,23 @@ namespace MuseoCliente.Connection
         {
             HttpClient client = CreateRequest();
             string absoluteUri = server + BaseUri;
-            HttpResponseMessage message = client.GetAsync(absoluteUri+"?offset="+offset+"&limit="+limit).Result;
-            string content = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode == HttpStatusCode.OK)
-                return content;
-            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
-            if (error.Keys.Contains("error"))
-                throw new Exception(error["error"]);
-            if (error.Keys.Contains("error_message"))
-                throw new Exception(error["error_message"]);
+            try
+            {
+
+                HttpResponseMessage message = client.GetAsync(absoluteUri + "?offset=" + offset + "&limit=" + limit).Result;
+                string content = message.Content.ReadAsStringAsync().Result;
+                if (message.StatusCode == HttpStatusCode.OK)
+                    return content;
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
+            }
+            catch (AggregateException)
+            {
+                throw new Exception("Error de Conexion");
+            }
             return "";
         }
 
@@ -106,15 +128,23 @@ namespace MuseoCliente.Connection
         {
             HttpClient client = CreateRequest();
             string absoluteUri = server + BaseUri;
-            HttpResponseMessage message = client.GetAsync(absoluteUri + direccion).Result;
-            string content = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode == HttpStatusCode.OK)
-                return content;
-            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
-            if (error.Keys.Contains("error"))
-                throw new Exception(error["error"]);
-            if (error.Keys.Contains("error_message"))
-                throw new Exception(error["error_message"]);
+            try
+            {
+
+                HttpResponseMessage message = client.GetAsync(absoluteUri + direccion).Result;
+                string content = message.Content.ReadAsStringAsync().Result;
+                if (message.StatusCode == HttpStatusCode.OK)
+                    return content;
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
+            }
+            catch (AggregateException)
+            {
+                throw new Exception("Error de Conexion");
+            }
             return "";
         }
 
@@ -123,16 +153,25 @@ namespace MuseoCliente.Connection
             HttpClient client = CreateRequest();
             HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Post, server + BaseUri);
             reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
-            HttpResponseMessage message = client.SendAsync(reqMessage).Result;
-            string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode == HttpStatusCode.Created || message.StatusCode == HttpStatusCode.OK)
-                return responseContent;
-            Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-            if (error.Keys.Contains("error"))
-                throw new Exception(error["error"]);
-            if (error.Keys.Contains("error_message"))
-                throw new Exception(error["error_message"]);
+            try
+            {
+                HttpResponseMessage message = client.SendAsync(reqMessage).Result;
+                string responseContent = message.Content.ReadAsStringAsync().Result;
+                if (message.StatusCode == HttpStatusCode.Created || message.StatusCode == HttpStatusCode.OK)
+                    return responseContent;
+                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                if (error.Keys.Contains("error"))
+                    throw new Exception(error["error"]);
+                if (error.Keys.Contains("error_message"))
+                    throw new Exception(error["error_message"]);
+            }
+            catch (AggregateException )
+            {
+
+                throw new Exception("Error de Conexion");
+            }
             return "";
+            
         }
 
         public void edit(string id, string content)
@@ -140,17 +179,25 @@ namespace MuseoCliente.Connection
             HttpClient client = CreateRequest();
             HttpRequestMessage reqMessage = new HttpRequestMessage(HttpMethod.Put, server + BaseUri + id +"/");
             reqMessage.Content = new StringContent(content, Encoding.UTF8, "application/json");
-            HttpResponseMessage message = client.SendAsync(reqMessage).Result;
-            string responseContent = message.Content.ReadAsStringAsync().Result;
-            if (message.StatusCode == HttpStatusCode.NoContent || message.StatusCode == HttpStatusCode.OK)
-                return;
-            else
+            try
             {
-                Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
-                if (error.Keys.Contains("error"))
-                    throw new Exception(error["error"]);
-                if (error.Keys.Contains("error_message"))
-                    throw new Exception(error["error_message"]);
+
+                HttpResponseMessage message = client.SendAsync(reqMessage).Result;
+                string responseContent = message.Content.ReadAsStringAsync().Result;
+                if (message.StatusCode == HttpStatusCode.NoContent || message.StatusCode == HttpStatusCode.OK)
+                    return;
+                else
+                {
+                    Dictionary<string, string> error = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                    if (error.Keys.Contains("error"))
+                        throw new Exception(error["error"]);
+                    if (error.Keys.Contains("error_message"))
+                        throw new Exception(error["error_message"]);
+                }
+            }
+            catch (AggregateException)
+            {
+                throw new Exception("Error de Conexion");
             }
         }
 
