@@ -16,7 +16,7 @@ namespace MuseoCliente
 	/// <summary>
 	/// Lógica de interacción para modLimpieza.xaml
 	/// </summary>
-	public partial class modTratamientos : Window
+    public partial class modTratamientos : UserControl
 	{
 		public modTratamientos()
 		{
