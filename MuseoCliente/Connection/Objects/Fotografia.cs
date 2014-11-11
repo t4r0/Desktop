@@ -13,7 +13,7 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int mantenimiento { get; set; }
         [JsonProperty]
-        public int pieza { get; set; }
+        public string pieza { get; set; }
         [JsonProperty]
         public Int16 tipo { get; set; }  // ya
         [JsonProperty]
@@ -24,6 +24,11 @@ namespace MuseoCliente.Connection.Objects
         public Fotografia()
             : base("/api/v1/fotografias/")
         {
+        }
+
+        public bool ShouldSerializemantenimiento()
+        {
+            return !(tipo == 1);
         }
 
         public void guardar()

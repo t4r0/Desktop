@@ -11,7 +11,7 @@
 	<Border x:Name="LayoutRoot" Background="{DynamicResource White}" VerticalAlignment="Top">
 		<StackPanel Margin="10" Orientation="Vertical">
 			<Label FontSize="16.888" Foreground="{DynamicResource Black}" Content="TRATAMIENTOS REALIZADOS" HorizontalContentAlignment="Center" FontWeight="Bold" HorizontalAlignment="Left"/>
-            <ScrollViewer Height="200" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+            
                 <StackPanel>
                     <Border BorderBrush="{DynamicResource DarkGray}" BorderThickness="1,1,1,0">
                         <DockPanel>
@@ -90,7 +90,6 @@
                     </Border>
                     <Label/>
                 </StackPanel>
-            </ScrollViewer>
         </StackPanel>
 	</Border>
 </UserControl>

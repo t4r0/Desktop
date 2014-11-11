@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl xmlns:Designer="clr-namespace:MuseoCliente.Designer" 
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
 	mc:Ignorable="d"
 	x:Class="MuseoCliente.modPieza"
 	x:Name="UserControl"
-	d:DesignWidth="640" Height="891">
+	d:DesignWidth="640" Loaded="UserControl_Loaded">
 
     <UserControl.DataContext>
         <Objects:Pieza/>
@@ -15,15 +15,15 @@
 
     <DockPanel x:Name="LayoutRoot" Background="{DynamicResource White}" Loaded="LayoutRoot_Loaded">
         <Border DockPanel.Dock="Top" Margin="0" Height="50" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
-            <DockPanel>
-                <Label x:Name="lblOperaciones" Margin="10,0,0,0" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource DarkGray}" Content="[Op] Pieza"/>
-                <Button x:Name="btnCancelar" Height="27" FontSize="18" FontWeight="Bold" Style="{DynamicResource PinkButton}" Margin="5,10" Width="69" DockPanel.Dock="Right">
+            <DockPanel VerticalAlignment="Top" Height="50">
+                <Label x:Name="lblOperaciones" Margin="10,0,0,0" DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource DarkGray}" Content="Piezas"/>
+                <Button x:Name="btnCancelar" Height="27" FontSize="18" FontWeight="Bold" Style="{DynamicResource PinkButton}" Margin="5,10" Width="69" DockPanel.Dock="Right" Click="btnCancelar_Click">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="❌ "/></TextBlock>
                         <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Salir"/></TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="btnGuardar" Height="27" FontSize="30" FontWeight="Bold" Style="{DynamicResource BlueButton}" Margin="0,10" Width="78" FontFamily="/MuseoCliente;component/Font/#Entypo" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <Button x:Name="btnGuardar" Height="27" FontSize="30" FontWeight="Bold" Style="{DynamicResource BlueButton}" Margin="0,10" Width="78" FontFamily="/MuseoCliente;component/Font/#Entypo" DockPanel.Dock="Right" HorizontalAlignment="Right" Click="btnGuardar_Click">
                     <StackPanel Orientation="Horizontal" Width="78">
                         <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="💾 "/></TextBlock>
                         <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Guardar"/></TextBlock>
@@ -31,42 +31,44 @@
                 </Button>
             </DockPanel>
         </Border>
-        <ScrollViewer MaxHeight="550" DockPanel.Dock="Top" PanningMode="VerticalFirst" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" CanContentScroll="True">
-            <Grid Height="459">
+        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" CanContentScroll="True">
+            <Grid Height="Auto">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="186"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="199"/>
-                    <RowDefinition Height="173"/>
-                    <RowDefinition Height="Auto" MinHeight="86"/>
+                    <RowDefinition Height="345"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Vertical">
-                    <Border BorderThickness="1" HorizontalAlignment="Center" Height="120" Margin="0,15,0,0" VerticalAlignment="Top" Width="120" Background="{DynamicResource LightGray}" BorderBrush="{DynamicResource Gray}" CornerRadius="2">
-                        <Image Source="{Binding fotografia, Mode=TwoWay}"/>
+                    <Border BorderThickness="1" HorizontalAlignment="Center" Height="120" Margin="0,15,0,0" VerticalAlignment="Top" Width="120" MouseUp="Image_MouseUp_1" Background="{DynamicResource LightGray}" BorderBrush="{DynamicResource Gray}" CornerRadius="2" Cursor="Hand" ToolTip="Haz clic para añadir una foto">
+                        <Image x:Name="foto" Source="{Binding fotografia, Mode=TwoWay}" Width="120" Height="120"/>
                     </Border>
                     <Label Content="{Binding codigo}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" HorizontalAlignment="Center" Foreground="{DynamicResource PureBlue}" Margin="0,0,0,5"/>
-                    <CheckBox Content="Maestra" HorizontalAlignment="Left" Style="{DynamicResource CustomCheckBox}" Margin="35,0,0,0"/>
+                    <CheckBox IsChecked="{Binding maestra, Mode=TwoWay}" Content="Maestra" HorizontalAlignment="Left" Style="{DynamicResource CustomCheckBox}" Margin="35,0,0,0"/>
                 </StackPanel>
                 <Label Content="Nombre" Grid.Column="1" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="58"/>
                 <TextBox Grid.Column="1" Height="23" Margin="19,43,25
-                         ,0" TextWrapping="Wrap" Text="{Binding nombre, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
+                         ,0" TextWrapping="Wrap" Text="{Binding nombre, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" ToolTip="El nombre de la pieza"/>
                 <Label Content="Resumen" Grid.Column="1" HorizontalAlignment="Left" Margin="19,71,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="65"/>
-                <TextBox Grid.Column="1" Height="23" Margin="19,104,25,0" TextWrapping="Wrap" Text="{Binding resumen, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
+                <TextBox Grid.Column="1" Height="23" Margin="19,104,25,0" TextWrapping="Wrap" Text="{Binding resumen, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" ToolTip="Una breve descripción para la web"/>
                 <Label Content="Pais" Grid.Column="1" HorizontalAlignment="Left" Margin="19,132,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="65"/>
                 <Label Content="Descripcion" Grid.Row="1" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="89"/>
-                <TextBox Height="124" Margin="25,45,25,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding descripcion}" VerticalAlignment="Top" Grid.ColumnSpan="2" Style="{DynamicResource CustomTextBox}"/>
-                <ComboBox Grid.Column="1" Margin="19,160,25,0" Style="{DynamicResource CustomComboBox}" Height="23" VerticalAlignment="Top" /><DockPanel Grid.ColumnSpan="2" Margin="25,4,25,0" Grid.Row="2" LastChildFill="True">
+                <TextBox Height="124" Margin="25,45,25,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding descripcion, Mode=TwoWay}" VerticalAlignment="Top" Grid.ColumnSpan="2" Style="{DynamicResource CustomTextBox}" ToolTip="Una descripción para nuestros visitantes"/>
+                <Label Content="Observaciones sobre el registro" Grid.Row="1" HorizontalAlignment="Left" Margin="25,174,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="209" Grid.ColumnSpan="2"/>
+                <TextBox Height="124" Margin="25,207,25,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding observaciones, Mode=TwoWay}" VerticalAlignment="Top" Grid.ColumnSpan="2" Style="{DynamicResource CustomTextBox}" Grid.RowSpan="2" ToolTip="Observaciones de control interno"/>
+               <ComboBox x:Name="cmbPais" Grid.Column="1" SelectedValue="{Binding pais, Mode= TwoWay}" Margin="19,160,25,0" Style="{DynamicResource CustomComboBox}" Height="23" VerticalAlignment="Top" ToolTip="El pais de origen" /><DockPanel Grid.ColumnSpan="2" Margin="25,4,25,0" Grid.Row="2" LastChildFill="True">
                     <Border DockPanel.Dock="Top">
-                        <Expander Header="Procedencia de la Pieza" Style="{DynamicResource CustomExpander}" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14">
+                        <Expander Header="Procedencia de la Pieza" Style="{DynamicResource CustomExpander}" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" IsExpanded="True">
                             <Grid Background="{DynamicResource White}" VerticalAlignment="Top">
                                 <Label Content="Procedencia" Margin="0" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-                                <TextBox Height="23" Margin="10,38,10,0" TextWrapping="Wrap" Text="{Binding procedencia, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
+                                <TextBox Height="23" Margin="10,38,10,0" TextWrapping="Wrap" Text="{Binding procedencia, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" ToolTip="Información de la procedencia de la pieza"/>
                                 <Label Content="Fechamiento" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Foreground="{DynamicResource DarkGray}"/>
-                                <TextBox Height="23" Margin="10,95,10,0" TextWrapping="Wrap" Text="{Binding fechamiento, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
+                                <TextBox Height="23" Margin="10,95,10,0" TextWrapping="Wrap" Text="{Binding fechamiento, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" ToolTip="¿De qué epoca es esta pieza?"/>
                                 <Label Content="Region Cultural" HorizontalAlignment="Left" Margin="10,124,0,0" VerticalAlignment="Top" Foreground="{DynamicResource DarkGray}"/>
-                                <ComboBox Style="{DynamicResource CustomComboBox}" Margin="10,152,10,10" Height="23">
+                                <ComboBox Style="{DynamicResource CustomComboBox}" SelectedIndex="{Binding regionCultural, Mode=TwoWay}" Margin="10,152,10,10" Height="23" ToolTip="El origen cultural de la pieza">
                                     <ComboBoxItem Content="Valle de Quetzaltenango" Style="{DynamicResource CustomComboBoxItem}"/>
                                     <ComboBoxItem Content="Costa Sur" Style="{DynamicResource CustomComboBoxItem}"/>
                                     <ComboBoxItem Content="Tierras Altas" Style="{DynamicResource CustomComboBoxItem}"/>
@@ -83,18 +85,51 @@
                         </Expander>
                     </Border>
                     <Border Margin="0" DockPanel.Dock="Top">
-                        <Expander Header="IDAEH" Style="{DynamicResource CustomExpander}" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14">
-                            <Grid Width="Auto" VerticalAlignment="Stretch" Background="{DynamicResource White}" Margin="0">
-                                <Label Content="Codigo IDAEH" Margin="0" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-                                <TextBox Height="23" Margin="10,25,10,0" TextWrapping="Wrap" Text="{Binding codigoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
-                                <Label Content="Archivo de regitro IDAEH" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Foreground="{DynamicResource DarkGray}"/>
-                                <TextBox Height="23" Margin="10,95,10,0" TextWrapping="Wrap" Text="{Binding fechamiento, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>                            
+                        <Expander Header="Registro IDAEH" Style="{DynamicResource CustomExpander}" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" IsExpanded="True">
+                            <Grid Width="Auto" VerticalAlignment="Stretch" Background="{DynamicResource White}" Margin="0" Height="156">
+                                <CheckBox Content="Registro IDAEH" IsChecked="{Binding registroIDAEH, Mode=TwoWay}" Margin="10,10,16,125" Style="{DynamicResource CustomCheckBox}" RenderTransformOrigin="0.5,0.5" Foreground="{DynamicResource DarkGray}">
+                                    <CheckBox.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-0.011"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </CheckBox.RenderTransform>
+                                </CheckBox>
+                                <Label Content="Codigo IDAEH" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Left" Margin="10,34,0,60"/>
+                                <TextBox Height="23" Margin="10,62,10,0" TextWrapping="Wrap" Text="{Binding codigoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
+                                <Label Content="Archivo de regitro IDAEH" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Foreground="{DynamicResource DarkGray}"/>
+                                <TextBox Height="23" Margin="10,121,54,-22" TextWrapping="Wrap" Text="{Binding archivoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" IsUndoEnabled="True" IsEnabled="False"/>
+                                <Button Content="..." Margin="0,121,10,0" VerticalAlignment="Top" Style="{DynamicResource BlueButton}" Height="23" HorizontalAlignment="Right" Width="39" ToolTip="Pulsa para subir un archivo" Cursor="Hand" Click="Button_Click_1"/>
                             </Grid>
                         </Expander>
                     </Border>
                     <Border Margin="0" DockPanel.Dock="Top">
-                        <Expander Header="Dimensiones" Style="{DynamicResource CustomExpander}" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Height="Auto">
-                            <Grid Width="Auto" Background="{DynamicResource Black}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                        <Expander Header="Dimensiones" Style="{DynamicResource CustomExpander}" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Height="Auto" Margin="0,0,0,10" IsExpanded="True">
+                            <Grid Width="Auto" Background="{DynamicResource White}" Height="63">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Altura" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+                                <Designer:MaskedTextBox Grid.Row="1" Text="{Binding altura, Mode=TwoWay}" Style="{DynamicResource CustomMaskedTextBox}" VerticalAlignment="Center" Margin="10,5" AllowedType="Number" />
+                                <Label Content="Ancho" Grid.Column="1" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+                                <Designer:MaskedTextBox  Grid.Column="1" Text="{Binding ancho, Mode=TwoWay}" Grid.Row="1" Style="{DynamicResource CustomMaskedTextBox}" VerticalAlignment="Center" Margin="10,5" AllowedType="Number" />
+                                <Label Content="Grosor" Grid.Column="2" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+                                <Designer:MaskedTextBox  Grid.Column="2" Grid.Row="1" Text="{Binding grosor, Mode=TwoWay}" Style="{DynamicResource CustomMaskedTextBox}" VerticalAlignment="Center" Margin="10,5" AllowedType="Number" />
+                                <Label Content="Largo" Grid.Column="3" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+                                <Designer:MaskedTextBox  Grid.Column="3" Grid.Row="1" Text="{Binding largo, Mode=TwoWay}" Style="{DynamicResource CustomMaskedTextBox}" VerticalAlignment="Center" Margin="10,5" AllowedType="Number" />
+                                <Label Content="Diametro" Grid.Column="4" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+                                <Designer:MaskedTextBox  Grid.Column="4" Grid.Row="1" Text="{Binding diametro, Mode=TwoWay}" Style="{DynamicResource CustomMaskedTextBox}" VerticalAlignment="Center" Margin="10,5" AllowedType="Number" />
+                            </Grid>
                         </Expander>
                     </Border>
                 </DockPanel>                

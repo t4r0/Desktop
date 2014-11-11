@@ -16,11 +16,11 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public DateTime fechaInicio { get; set; }
         [JsonProperty]
-        public DateTime fechaFinal { get; set; }
+        public DateTime fechaFin { get; set; }
         [JsonProperty]
         public string responsable { get; set; }
         [JsonProperty]
-        public string codigoPieza { get; set; }
+        public string pieza { get; set; }
 
         public Consolidacion(): base("/api/v1/consolidacion/")
         {
@@ -126,6 +126,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
+                this.resource_uri = this.resource_uri + id + "/";
                 Consolidacion consolidacionTemp = this.Get();
                 if (consolidacionTemp == null)
                 {
@@ -135,10 +136,10 @@ namespace MuseoCliente.Connection.Objects
                 this.id = consolidacionTemp.id;
                 this.limpieza = consolidacionTemp.limpieza;
                 this.fechaInicio = consolidacionTemp.fechaInicio;
-                this.fechaFinal = consolidacionTemp.fechaFinal;
+                this.fechaFin = consolidacionTemp.fechaFin;
                 this.responsable = consolidacionTemp.responsable;
-                this.codigoPieza = consolidacionTemp.codigoPieza;
-
+                this.pieza = consolidacionTemp.pieza;
+                this.resource_uri = resource_uri;
             }
             catch (Exception e)
             {
@@ -156,7 +157,7 @@ namespace MuseoCliente.Connection.Objects
             ArrayList listaNueva = null;
             try
             {
-                listaNueva = new ArrayList(this.GetAsCollection());
+                listaNueva = new ArrayList(this.fetchAll());
             }
             catch (Exception e)
             {

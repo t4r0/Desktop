@@ -1217,20 +1217,21 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <DataTemplate x:Key="PiezaTemplate">
-        <Border x:Name="Border" Width="Auto" Height="Auto" BorderBrush="{DynamicResource PureBlue}" Background="{DynamicResource White}">
-            <Grid d:DesignWidth="245" d:DesignHeight="120" Height="120" Width="245">
+    <DataTemplate x:Key="PiezaTemplate">        
+        <Border x:Name="Border" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" BorderBrush="{DynamicResource PureBlue}" Background="{DynamicResource White}">
+            <Grid d:DesignWidth="245" d:DesignHeight="120" Height="Auto" Width="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="38*"/>
                     <RowDefinition Height="63*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="121*"/>
-                    <ColumnDefinition Width="124*"/>
+                    <ColumnDefinition Width="150*"/>
                 </Grid.ColumnDefinitions>
                 <Image Margin="0" Width="120" Height="120" VerticalAlignment="Stretch" Source="{Binding fotografia}" Grid.RowSpan="2" Stretch="UniformToFill"/>
-                <TextBlock Grid.Column="1" Margin="0,0,0,18" TextWrapping="Wrap" Text="{Binding nombre}" VerticalAlignment="Stretch" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro"/>
-                <TextBlock Grid.Column="1" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding codigo}" VerticalAlignment="Stretch" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="10"/>
+                <TextBlock Grid.Column="1" Margin="0,0,0,18" TextWrapping="Wrap" Text="{Binding nombre}" VerticalAlignment="Stretch" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14"/>
+                <TextBlock Grid.Column="1" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding codigo}" VerticalAlignment="Stretch" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="12"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Margin="0,20,0,0" TextWrapping="Wrap" Text="{Binding resumen}" VerticalAlignment="Stretch" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="10" FontStyle="Italic"/>
             </Grid>
         </Border>
         <DataTemplate.Triggers>

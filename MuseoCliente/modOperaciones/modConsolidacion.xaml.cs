@@ -27,8 +27,14 @@ namespace MuseoCliente
         Pieza piezas = new Pieza();
         Pieza pieza = new Pieza(); //Pieza para consolidacion
         //Mantenimientos
-
+        Mantenimiento mante1 = new Mantenimiento();
+        Mantenimiento mante2 = new Mantenimiento();
+        Mantenimiento mante3 = new Mantenimiento();
+        Mantenimiento mante4 = new Mantenimiento();
+        Mantenimiento mante5 = new Mantenimiento();
+        Mantenimiento mante6 = new Mantenimiento();
         //
+        public int id;
         public UserControl anterior;
         public Border borde;
         public bool modificar = false;
@@ -58,8 +64,8 @@ namespace MuseoCliente
                 gvPiezas.ItemsSource = null;
                 rbLimpieza.IsChecked = false;
                 rbRestaurar.IsChecked = false;
-                dpInicio.SelectedDate = null;
-                dpFin.SelectedDate = null;
+                txtCodigoPieza.Text = "";
+                txtNombrePieza.Text = "";
             }
         }
 
@@ -93,6 +99,7 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             consolidacion = (Consolidacion)this.DataContext;
+            consolidacion.pieza = txtCodigoPieza.Text;
             consolidacion.responsable = "Migue4";
             if (modificar == false)
             {
@@ -109,23 +116,203 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Consolidación correcta");
-                borde.Child = anterior;
             }
             if (rbLimpieza.IsChecked == true)
             {
-                Mantenimiento mante = new Mantenimiento();
-                mante.procedimiento = 1;
-                mante.metodoMaterial = txtLimpieza.Text;
-                mante.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
-                mante.consolidacion = consolidacion.id;
+                mante1.procedimiento = 1;
+                mante1.metodoMaterial = txtLimpieza.Text;
+                mante1.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
+                mante1.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante1.guardar();
+                }
+                else
+                {
+                    mante1.modificar();
+                }
             }
             if (rbConsolidacion.IsChecked == true)
             {
-                Mantenimiento mante = new Mantenimiento();
-                mante.procedimiento = 2;
-                mante.metodoMaterial = txtConsolidacion.Text;
-                mante.fecha = dpFechaConsol.SelectedDate.Value.Date;
-                mante.consolidacion = consolidacion.id;
+                mante2.procedimiento = 2;
+                mante2.metodoMaterial = txtConsolidacion.Text;
+                mante2.fecha = dpFechaConsol.SelectedDate.Value.Date;
+                mante2.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante2.guardar();
+                }
+                else
+                {
+                    mante2.modificar();
+                }
+            }
+            if (rbEliminacion.IsChecked == true)
+            {
+                mante3.procedimiento = 3;
+                mante3.metodoMaterial = txtEliminacion.Text;
+                mante3.fecha = dpFechaEliminacion.SelectedDate.Value.Date;
+                mante3.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante3.guardar();
+                }
+                else
+                {
+                    mante3.modificar();
+                }
+            }
+            if (rbUnion.IsChecked == true)
+            {
+                mante4.procedimiento = 4;
+                mante4.metodoMaterial = txtUnion.Text;
+                mante4.fecha = dpFechaUnion.SelectedDate.Value.Date;
+                mante4.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante4.guardar();
+                }
+                else
+                {
+                    mante4.modificar();
+                }
+            }
+            if (rbOtro.IsChecked == true)
+            {
+                mante5.procedimiento = 5;
+                mante5.metodoMaterial = txtOtro.Text;
+                mante5.fecha = dpFechaOtro.SelectedDate.Value.Date;
+                mante5.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante5.guardar();
+                }
+                else
+                {
+                    mante5.modificar();
+                }
+            }
+            if (txtObservaciones.Text.Length > 10)
+            {
+                mante6.procedimiento = 6;
+                mante6.metodoMaterial = txtObservaciones.Text;
+                mante6.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante6.guardar();
+                }
+                else
+                {
+                    mante6.modificar();
+                }
+            }
+            if (Connection.Objects.Error.isActivo())
+            {
+                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+            }
+            else
+            {
+                MessageBox.Show("Mantenimientos ingresados");
+                borde.Child = anterior;
+            }
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (modificar == true)
+            {
+                lblOperacion.Content = "Modificar Consolidación";
+                //Consolidacion
+                Consolidacion temp = new Consolidacion();
+                temp.regresarObjeto(id);
+                txtCodigoPieza.Text = temp.pieza;
+                Pieza temp2 = new Pieza();
+                temp2.regresarObjeto(temp.pieza);
+                txtNombrePieza.Text = temp2.nombre;
+                //Mantenimientos
+                ArrayList mantenimientos = consolidacion.regresarMantenimiento();
+                for (int i = 0; i < mantenimientos.Count; i++)
+                {
+                    Mantenimiento tempMant = (Mantenimiento)mantenimientos[i];
+                    //Limpieza
+                    if (tempMant.procedimiento == 1)
+                    {
+                        rbLimpieza.IsChecked = true;
+                        txtLimpieza.Text = tempMant.metodoMaterial;
+                        dpFechaLimpieza.SelectedDate = tempMant.fecha;
+                    }
+                    else
+                    {
+                        rbLimpieza.IsChecked = false;
+                        txtLimpieza.Text = "";
+                        dpFechaLimpieza.SelectedDate = null;
+                    }
+                    //Consolidacion
+                    if (tempMant.procedimiento == 2)
+                    {
+                        rbConsolidacion.IsChecked = true;
+                        txtConsolidacion.Text = tempMant.metodoMaterial;
+                        dpFechaConsol.SelectedDate = tempMant.fecha;
+                    }
+                    else
+                    {
+                        rbConsolidacion.IsChecked = false;
+                        txtConsolidacion.Text = "";
+                        dpFechaConsol.SelectedDate = null;
+                    }
+                    //Eliminacion
+                    if (tempMant.procedimiento == 3)
+                    {
+                        rbEliminacion.IsChecked = true;
+                        txtEliminacion.Text = tempMant.metodoMaterial;
+                        dpFechaEliminacion.SelectedDate = tempMant.fecha;
+                    }
+                    else
+                    {
+                        rbEliminacion.IsChecked = false;
+                        txtEliminacion.Text = "";
+                        dpFechaEliminacion.SelectedDate = tempMant.fecha;
+                    }
+                    //Union
+                    if (tempMant.procedimiento == 4)
+                    {
+                        rbUnion.IsChecked = true;
+                        txtUnion.Text = tempMant.metodoMaterial;
+                        dpFechaUnion.SelectedDate = tempMant.fecha;
+                    }
+                    else
+                    {
+                        rbUnion.IsChecked = false;
+                        txtUnion.Text = "";
+                        dpFechaUnion.SelectedDate = null;
+                    }
+                    //Otro
+                    if (tempMant.procedimiento == 5)
+                    {
+                        rbOtro.IsChecked = true;
+                        txtOtro.Text = tempMant.metodoMaterial;
+                        dpFechaOtro.SelectedDate = tempMant.fecha;
+                    }
+                    else
+                    {
+                        rbOtro.IsChecked = false;
+                        txtOtro.Text = "";
+                        dpFechaOtro.SelectedDate = null;
+                    }
+                    //Observaciones
+                    if (tempMant.procedimiento == 6)
+                    {
+                        txtObservaciones.Text = tempMant.metodoMaterial;
+                    }
+                    else
+                    {
+                        txtObservaciones.Text = "";
+                    }
+                }
+            }
+            else
+            {
+                lblOperacion.Content = "Nueva Consolidación";
             }
         }
 	}
