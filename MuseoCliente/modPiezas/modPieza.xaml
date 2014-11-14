@@ -47,7 +47,7 @@
                         <Image x:Name="foto" Source="{Binding fotografia, Mode=TwoWay}" Width="120" Height="120"/>
                     </Border>
                     <Label Content="{Binding codigo}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" HorizontalAlignment="Center" Foreground="{DynamicResource PureBlue}" Margin="0,0,0,5"/>
-                    <CheckBox IsChecked="{Binding maestra, Mode=TwoWay}" Content="Maestra" HorizontalAlignment="Left" Style="{DynamicResource CustomCheckBox}" Margin="35,0,0,0"/>
+                    <CheckBox IsChecked="{Binding maestra, Mode=TwoWay}" Content="Maestra" HorizontalAlignment="Left" Style="{DynamicResource CustomCheckBox}" Margin="35,0,0,0" Foreground="{DynamicResource DarkGray}"/>
                 </StackPanel>
                 <Label Content="Nombre" Grid.Column="1" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="58"/>
                 <TextBox Grid.Column="1" Height="23" Margin="19,43,25

@@ -43,7 +43,7 @@ namespace MuseoCliente
                 Visibility.Visible : Visibility.Collapsed;
             itemInsta.Visibility = Settings.permisos.Contains("traslados.add_traslado") ?
                 Visibility.Visible : Visibility.Collapsed;
-            itemEventos.Visibility = Settings.permisos.Contains("eventos.add_evento") ?
+            itemEventos.Visibility = Settings.permisos.Contains("eventos.add_eventos") ?
                 Visibility.Visible : Visibility.Collapsed;
             itemUsuarios.Visibility = Settings.permisos.Contains("auth.add_user") ?
                 Visibility.Visible : Visibility.Collapsed;
@@ -175,6 +175,11 @@ namespace MuseoCliente
             modOperaciones frm = new modOperaciones();
             frm.borde = bdrContenedor;
             bdrContenedor.Child = frm;
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.github.com/museoXela/");
         }
     }
 }
