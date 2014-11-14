@@ -76,9 +76,9 @@ namespace MuseoCliente
         {
             Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => paises.regresarTodos());
             await task;
-            cmbPais.DisplayMemberPath = "name";
+            cmbPais.DisplayMemberPath = "printable_name";
             cmbPais.SelectedValuePath = "iso";
-            cmbPais.ItemsSource = paises.regresarTodos();
+            cmbPais.ItemsSource = task.Result;
         }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {

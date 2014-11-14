@@ -116,8 +116,11 @@ namespace MuseoCliente
             modAutor frm = new modAutor();
             frm.borde = borde;
             frm.anterior = this;
-            frm.modificar = true;
-            frm.id = Convert.ToInt16(gvVoluntarios.SelectedValue.ToString());
+            if (gvVoluntarios.SelectedValue != null)
+            {
+                frm.modificar = true;
+                frm.id = Convert.ToInt16(gvVoluntarios.SelectedValue.ToString());
+            }
             borde.Child = frm;
         }
 	}
