@@ -22,6 +22,7 @@ namespace MuseoCliente.Connection.Objects
         public Mantenimiento()
             : base("/api/v1/mantenimiento/")
         {
+            id = 0;
         }
 
         public void guardar()
