@@ -202,6 +202,14 @@ namespace MuseoCliente.Connection.Objects
 
             return listaNueva;
         }
+        public void ingresarMantenimiento(List<Mantenimiento> mante)
+        {
+            mantenimientos.Clear();
+            foreach (Mantenimiento temp in mante)
+            {
+                mantenimientos.Add(temp);
+            }
+        }
 
         
     }
