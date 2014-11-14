@@ -65,7 +65,7 @@ namespace MuseoCliente.Connection.Objects
             List<Eventos> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre__icontains=" + nombre;
+                string consultarNombre = "?nombre__icontains=" + nombre +"&fecha__gte=" + DateTime.Today;
                 listaNueva = this.GetAsCollection( consultarNombre );
 
             }

@@ -34,25 +34,6 @@ namespace MuseoCliente
             cargarAutores();
         }
 
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btnNuevoAu_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void gvActivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void btnNuevoUsuario_Click(object sender, RoutedEventArgs e)
         {

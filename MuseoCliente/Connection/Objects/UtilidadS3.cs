@@ -97,6 +97,21 @@ namespace MuseoCliente.Connection.Objects
 
             return url;
         }
+        public String subirImagenFicha(string nombre, string rutaArchivo)
+        {
+            string KEY_NAME = "";
+            KEY_NAME += "media/fichas/" + nombre;
+            url += "/" + KEY_NAME;
+            try
+            {
+                this.uploadFile(KEY_NAME, rutaArchivo);
+            }
+            catch
+            {
+                url = "";
+            }
+            return url;
+        }
 
     }
 }

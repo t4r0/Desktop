@@ -12,37 +12,42 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="50" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left" Foreground="{DynamicResource DarkGray}" FontSize="16" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" VerticalAlignment="Center" Margin="10,0,0,0">Eventos</Label>				
-				<Button x:Name="btnNuevo" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Click="btnNuevo_Click" Style="{DynamicResource BlueForegrounButton}" DockPanel.Dock="Right" Margin="0,10,9,10" FontFamily="/MuseoCliente;component/Font/#Entypo">&#10133;</Button>
-				<Button x:Name="btnBuscar" HorizontalAlignment="Center" FontSize="26" FontWeight="Bold" Click="btnBuscar_Click" Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" DockPanel.Dock="Right" Margin="0,14,10,10" Width="30">&#128269;</Button>
-				<TextBox x:Name="txtBuscar" Width="262" HorizontalAlignment="Right" Margin="0,14,5,10" Style="{DynamicResource CustomTextBox}"/>
 			</DockPanel>
 		</Border>
-		<StackPanel>
-			<Label Height="20"/>
-			<StackPanel Height="205">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14">Próximos Eventos:</Label>
-                <DataGrid x:Name="gvProximos" IsReadOnly="True" Margin="10,0" Height="153" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Background="{DynamicResource LightGray}" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=id}" Header="#"/>
-                        <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>
-                        <DataGridTextColumn Binding="{Binding Path=fecha, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Fecha"/>
-                        <DataGridTextColumn Binding="{Binding Path=hora, StringFormat={}\{0:hh:mm\}}" Header="Hora"/>
-                        <DataGridTextColumn Binding="{Binding Path=usuario}" Header="Responsable"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-			<StackPanel Height="205">
-				<Label VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Eventos Concluidos:</Label>
-                <DataGrid x:Name="gvConcluidos"  IsReadOnly="True" AutoGenerateColumns="False" Margin="15,0,15,0" Height="153" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Background="{DynamicResource LightGray}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=id}" Header="#"/>
-                        <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>
-                        <DataGridTextColumn Binding="{Binding Path=fecha, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Fecha"/>
-                        <DataGridTextColumn Binding="{Binding Path=hora, StringFormat={}\{0:hh:mm\}}" Header="Hora"/>
-                        <DataGridTextColumn Binding="{Binding Path=usuario}" Header="Responsable"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="119*"/>
+                <RowDefinition Height="119*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="10,10,0,0" Foreground="{DynamicResource PureBlue}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" HorizontalAlignment="Left" Width="310">Próximos Eventos:</Label>
+            <Button x:Name="btnNuevoEvento" Height="27" HorizontalAlignment="Right" FontSize="36" FontWeight="Bold" Margin="0,9,15,0" Style="{DynamicResource BlueForegrounButton}" VerticalAlignment="Top" Grid.Column="2" Width="20" FontFamily="/MuseoCliente;component/Font/#Entypo" Click="btnNuevoEvento_Click">&#10133;</Button>
+            <Button x:Name="btnEditarEvento" Height="27" HorizontalAlignment="Right" FontSize="36" FontWeight="Bold" Margin="0,9,40,0" Style="{DynamicResource BlueForegrounButton}" VerticalAlignment="Top" Grid.Column="2" Width="20" FontFamily="/MuseoCliente;component/Font/#Entypo" Click="btnEditarEvento_Click">&#9998;</Button>
+            <TextBox Grid.Column="2" Grid.Row="0" x:Name="txtBuscarEventos" Height="27" Margin="0,10,99,0" Style="{StaticResource CustomTextBox}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="213" TextChanged="txtBuscarEventos_TextChanged"/>
+            <Button x:Name="btnBuscarEventos" Grid.Column="2" Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="26" Height="27" VerticalAlignment="Top" VerticalContentAlignment="Top" Margin="0,10,65,0" HorizontalAlignment="Right" Width="29" Click="btnBuscarEventos_Click">&#128269;</Button>
+            <DataGrid Grid.Column="0" Grid.Row="0" x:Name="gvProximos" IsReadOnly="True" Margin="10,43,10,10" Foreground="{DynamicResource DarkGray}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Background="{DynamicResource LightGray}" AutoGenerateColumns="False" Grid.ColumnSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=id}" Header="#"/>
+                    <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>
+                    <DataGridTextColumn Binding="{Binding Path=fecha, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Fecha"/>
+                    <DataGridTextColumn Binding="{Binding Path=hora, StringFormat={}\{0:hh:mm\}}" Header="Hora"/>
+                    <DataGridTextColumn Binding="{Binding Path=usuario}" Header="Responsable"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="10,10,0,0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource PureBlue}" HorizontalAlignment="Left" Width="310">Eventos Concluidos:</Label>
+            <DataGrid Grid.Column="0" Grid.Row="1" x:Name="gvConcluidos"  IsReadOnly="True" AutoGenerateColumns="False" Margin="10,43,10,10" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Background="{DynamicResource LightGray}" Grid.ColumnSpan="2">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=id}" Header="#"/>
+                    <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>
+                    <DataGridTextColumn Binding="{Binding Path=fecha, StringFormat={}\{0:dd/MM/yyyy\}}" Header="Fecha"/>
+                    <DataGridTextColumn Binding="{Binding Path=hora, StringFormat={}\{0:hh:mm\}}" Header="Hora"/>
+                    <DataGridTextColumn Binding="{Binding Path=usuario}" Header="Responsable"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 	</DockPanel>
 </UserControl>

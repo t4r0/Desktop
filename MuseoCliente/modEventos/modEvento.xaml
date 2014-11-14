@@ -33,34 +33,31 @@
                 </Button>
             </DockPanel>
         </Border>
-        <StackPanel>
-            <DockPanel>
-                <Border Height="100" Width="115" Margin="10,8,0,10" VerticalAlignment="Top" Background="#FFF0F0F0" CornerRadius="10" MouseUp="Border_MouseUp_1">
-                    <Image x:Name="imageAfiche" Source="{Binding afiche, Mode=TwoWay}" MouseLeftButtonUp="imageAfiche_MouseLeftButtonUp"/>
-                </Border>
-                <StackPanel>
-                    <DockPanel Margin="10,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
-                        <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="81,0,0,0" Content="Sala:"/>
-                        <ComboBox x:Name="cmbSala" Height="25" Width="300" Margin="0" HorizontalAlignment="Right" SelectedValue="{Binding sala, Mode=TwoWay}" Style="{DynamicResource CustomComboBox}"/>
-                    </DockPanel>
-                    <DockPanel Margin="10,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
-                        <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Nombre del Evento:"/>
-                        <TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Text="{Binding nombre, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}"/>
-                    </DockPanel>
-                    <DockPanel Margin="10,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
-                        <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="13,0,0,0" Content="Fecha del Evento:"/>
-                        <DatePicker x:Name="dpFecha" Height="25" Width="300" HorizontalAlignment="Right" SelectedDate="{Binding fecha, Mode=TwoWay}"/>
-                    </DockPanel>
-                    <DockPanel Margin="10,0,80,0" Height="35" Width="421" HorizontalAlignment="Center">
-                        <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="80,0,0,0">Hora:</Label>
-                        <Designer:MaskedTextBox Height="30" Width="300" TextWrapping="Wrap" Text="{Binding hora, Mode=TwoWay}" Style="{DynamicResource CustomMaskedTextBox}" AllowedType="Date"/>
-                    </DockPanel>
-                </StackPanel>
-            </DockPanel>
-            <StackPanel Margin="80,10,80,0">
-                <Label Content="Descripción:"/>
-                <TextBox x:Name="txtDescripcion" Height="115" Text="{Binding descripcion, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}"/>
-            </StackPanel>
-        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="132"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="120*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" Height="100" Width="115" Margin="10,8,0,10" VerticalAlignment="Top" Background="#FFF0F0F0" CornerRadius="10" MouseUp="Border_MouseUp_1">
+                <Image x:Name="imageAfiche" Source="{Binding afiche, Mode=TwoWay}" MouseLeftButtonUp="imageAfiche_MouseLeftButtonUp"/>
+            </Border>
+            <Label Grid.Column="1" Grid.Row="0" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Content="Sala:"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" x:Name="cmbSala" Height="25" Margin="10,32,10,0" SelectedValue="{Binding sala, Mode=TwoWay}" Style="{DynamicResource CustomComboBox}" VerticalAlignment="Top"/>
+
+            <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Nombre del Evento:" Margin="10,62,0,0"/>
+            <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtNombre" Height="26" DockPanel.Dock="Left" VerticalAlignment="Top" Margin="10,88,10,0" Text="{Binding nombre, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}"/>
+
+            <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Margin="10,119,0,-13" Content="Fecha del Evento:" Height="27" VerticalAlignment="Top"/>
+            <DatePicker Grid.Column="1" Grid.Row="0" x:Name="dpFecha" Height="26" SelectedDate="{Binding fecha, Mode=TwoWay}" Margin="10,147,10,-45" VerticalAlignment="Top"/>
+
+            <Label Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,-74" Height="24">Hora:</Label>
+            <Designer:MaskedTextBox Grid.Column="1" Grid.Row="0" Height="26" TextWrapping="Wrap" Text="{Binding hora, Mode=TwoWay}" Style="{DynamicResource CustomMaskedTextBox}" AllowedType="Date" Margin="10,212,10,-105" VerticalAlignment="Top"/>
+
+            <Label Grid.Column="1" Grid.Row="0" Content="Descripción:" HorizontalAlignment="Left" Width="88" Margin="10,252,0,-146" Height="27" VerticalAlignment="Top"/>
+            <TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" x:Name="txtDescripcion" Text="{Binding descripcion, Mode=TwoWay}" Style="{DynamicResource CustomTextBox}" Margin="10,284,10,-287"/>
+        </Grid>
     </DockPanel>
 </UserControl>
