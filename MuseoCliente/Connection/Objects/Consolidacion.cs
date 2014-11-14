@@ -78,7 +78,10 @@ namespace MuseoCliente.Connection.Objects
                 foreach (Mantenimiento te in mantenimientos)
                 {
                     if (te.id == 0)
+                    {
+                        te.consolidacion = this.id;
                         temp.Add(te);
+                    }
                     else
                         te.modificar();
                 }
