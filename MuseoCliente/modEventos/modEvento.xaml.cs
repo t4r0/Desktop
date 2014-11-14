@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection.Objects;
 using System.Globalization;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace MuseoCliente
 {
@@ -75,9 +77,7 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbSala.DisplayMemberPath = "nombre";
-            cmbSala.SelectedValuePath = "nombre";
-            cmbSala.ItemsSource = salas.regresarTodos();
+            cargarSalas();
             //Si es para modificar
             if (modificar == true)
             {
@@ -88,7 +88,14 @@ namespace MuseoCliente
                 lblOperacion.Content = "Nuevo Evento";
             }
         }
-
+        private async void cargarSalas()
+        {
+            cmbSala.DisplayMemberPath = "nombre";
+            cmbSala.SelectedValuePath = "nombre";
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => salas.regresarTodos());
+            await task;
+            cmbSala.ItemsSource = task.Result;
+        }
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             borde.Child = anterior;
