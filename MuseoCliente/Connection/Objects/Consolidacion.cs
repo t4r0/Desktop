@@ -21,21 +21,51 @@ namespace MuseoCliente.Connection.Objects
         public string responsable { get; set; }
         [JsonProperty]
         public string pieza { get; set; }
+        [JsonProperty]
+        public List<Mantenimiento> mantenimientos { get; set; }
+
+        private List<Mantenimiento> manNuevo;
+
+        private void igualarLista(List<Mantenimiento> nuevo, List<Mantenimiento> viejo)
+        {
+            nuevo.Clear();
+            foreach (Mantenimiento temp in viejo)
+            {
+                temp.consolidacion = this.id;
+                nuevo.Add(temp);
+            }
+            viejo.Clear();
+        }
 
         public Consolidacion(): base("/api/v1/consolidacion/")
         {
+            mantenimientos = new List<Mantenimiento>();
+            manNuevo = new List<Mantenimiento>();
         }
 
          public void guardar() //Crear un Usuario
         {
             try
             {
+                igualarLista(manNuevo, mantenimientos);
                 this.id = Deserialize(this.Create()).id;
             }
             catch (Exception e)
             {
                 Error.ingresarError(e.Message);
             }
+            igualarLista(mantenimientos, manNuevo);
+            try
+            {
+
+                foreach (Mantenimiento man in mantenimientos)
+                    man.guardar();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(e.Message);
+            }
+             
         }
 
 
@@ -139,6 +169,7 @@ namespace MuseoCliente.Connection.Objects
                 this.fechaFin = consolidacionTemp.fechaFin;
                 this.responsable = consolidacionTemp.responsable;
                 this.pieza = consolidacionTemp.pieza;
+                igualarLista(this.mantenimientos, consolidacionTemp.mantenimientos);
                 this.resource_uri = resource_uri;
             }
             catch (Exception e)
