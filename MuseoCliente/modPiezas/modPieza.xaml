@@ -47,7 +47,7 @@
                         <Image x:Name="foto" Source="{Binding fotografia, Mode=TwoWay}" Width="120" Height="120"/>
                     </Border>
                     <Label Content="{Binding codigo}" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" HorizontalAlignment="Center" Foreground="{DynamicResource PureBlue}" Margin="0,0,0,5"/>
-                    <CheckBox IsChecked="{Binding maestra, Mode=TwoWay}" Content="Maestra" HorizontalAlignment="Left" Style="{DynamicResource CustomCheckBox}" Margin="35,0,0,0"/>
+                    <CheckBox IsChecked="{Binding maestra, Mode=TwoWay}" Content="Maestra" HorizontalAlignment="Left" Style="{DynamicResource CustomCheckBox}" Margin="35,0,0,0" Foreground="{DynamicResource DarkGray}"/>
                 </StackPanel>
                 <Label Content="Nombre" Grid.Column="1" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="58"/>
                 <TextBox Grid.Column="1" Height="23" Margin="19,43,25
@@ -100,7 +100,7 @@
                                 <Label Content="Codigo IDAEH" Foreground="{DynamicResource DarkGray}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalAlignment="Left" Margin="10,34,0,60"/>
                                 <TextBox Height="23" Margin="10,62,10,0" TextWrapping="Wrap" Text="{Binding codigoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}"/>
                                 <Label Content="Archivo de regitro IDAEH" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Foreground="{DynamicResource DarkGray}"/>
-                                <TextBox Height="23" Margin="10,121,54,-22" TextWrapping="Wrap" Text="{Binding archivoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" IsUndoEnabled="True" IsEnabled="False"/>
+                                <TextBox x:Name="fileTxt" Height="23" Margin="10,121,54,-22" TextWrapping="Wrap" Text="{Binding archivoIDAEH, Mode=TwoWay}" VerticalAlignment="Top" Style="{DynamicResource CustomTextBox}" IsUndoEnabled="True" IsEnabled="False"/>
                                 <Button Content="..." Margin="0,121,10,0" VerticalAlignment="Top" Style="{DynamicResource BlueButton}" Height="23" HorizontalAlignment="Right" Width="39" ToolTip="Pulsa para subir un archivo" Cursor="Hand" Click="Button_Click_1"/>
                             </Grid>
                         </Expander>

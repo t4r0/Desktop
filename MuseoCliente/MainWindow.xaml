@@ -10,9 +10,13 @@
     <DockPanel>
         <StackPanel HorizontalAlignment="Left" Width="209" Margin="0,45,0,0" Background="{x:Null}">
             <Grid>
-            <Border Height="100" Width="100" CornerRadius="50" Background="{DynamicResource LightGray}" Margin="0,10" HorizontalAlignment="Center">
-                <Image Source="{Binding fotografia}"/>
-            </Border>
+                <Border Height="100" Width="100" CornerRadius="50" Background="{DynamicResource LightGray}" Margin="0,10" HorizontalAlignment="Center">
+                    <Image Source="{Binding fotografia}">
+                        <Image.Clip>
+                            <EllipseGeometry RadiusX="50" RadiusY="50" Center="50,50"/>
+                        </Image.Clip>
+                    </Image>
+                </Border>
                 <Button HorizontalAlignment="Left" Margin="134,10,0,0" VerticalAlignment="Top" Width="75" Style="{DynamicResource BlueForegrounButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="36" Click="Button_Click_2">
                     &#9998;
                 </Button>
@@ -88,9 +92,12 @@
                 <Button Style="{DynamicResource WhiteForegroundButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="36" Margin="10,0,0,0" Click="Button_Click_1" ToolTip="Inicio">
                     &#8962;
                 </Button>
-                <Button Style="{DynamicResource WhiteForegroundButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="36" Margin="0,0,0,0" Click="Button_Click_3" DockPanel.Dock="Right" ToolTip="Cerrar Sesión">
-                    &#59200;
+                <Button Style="{DynamicResource WhiteForegroundButton}" FontFamily="/MuseoCliente;component/Font/#Entypo Social" FontSize="36" Margin="0,0,10,0" ToolTip="El proyecto en github" DockPanel.Dock="Right" Click="Button_Click_6">
+                    &#62208;
                 </Button>
+                <Button Style="{DynamicResource WhiteForegroundButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="36" Margin="0,0,10,0" Click="Button_Click_3" DockPanel.Dock="Right" ToolTip="Cerrar Sesión">
+                    &#59200;
+                </Button>               
             </DockPanel>
         </Border>
         <Border x:Name="bdrContenedor" BorderThickness="1,0,0,0" Background="{DynamicResource White}" BorderBrush="{DynamicResource Gray}">

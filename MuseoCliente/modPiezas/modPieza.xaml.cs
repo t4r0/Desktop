@@ -171,7 +171,7 @@ namespace MuseoCliente
             Task<string> t = Task<string>.Factory.StartNew(()
                 => utilidad.subirArchivoPieza(pieza.codigo, ruta, nombre, false));
             await t;
-            pieza.archivoIDAEH = t.Result;
+            fileTxt.Text = t.Result;
         }
 	}
 }

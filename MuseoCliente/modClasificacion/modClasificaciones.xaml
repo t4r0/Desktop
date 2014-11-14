@@ -27,22 +27,38 @@
 			</DockPanel>
 		</Border>
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-		<Grid>
+		<Grid Height="514">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label VerticalAlignment="Top" Margin="10,18,422,0" Grid.Row="0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Colecciones Existentes:</Label>
-            <DataGrid x:Name="gvColecciones"  Grid.Row="0" Margin="15,51,15,22" Height="63" VerticalAlignment="Center" Style="{DynamicResource CustomDataGrid}"/>
-            <Button x:Name="btnNuevaColec" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaColec_Click" Margin="0,14,17,174" Style="{DynamicResource BlueForegrounButton}">&#10133;</Button>
-            <Button x:Name="btnNuevaCat" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaCateg_Click" Margin="0,7,17,0" Style="{DynamicResource BlueForegrounButton}" Grid.Row="1" VerticalAlignment="Top">&#10133;</Button>
-			<Label VerticalAlignment="Top" Margin="15,10,437,0" Grid.Row="1" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Categorías Existentes:</Label>
-            <DataGrid x:Name="gvCategorias" Grid.Row="1" Margin="15,41,15,10" Style="{DynamicResource CustomDataGrid}"/>
-            <Button x:Name="btnNuevaClas" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaClas_Click" Margin="0,7,17,0" Style="{DynamicResource BlueForegrounButton}" Grid.Row="2" VerticalAlignment="Top">&#10133;</Button>
-            <Label VerticalAlignment="Top" Margin="15,10,437,0" Grid.Row="2" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}">Clasificaciones Existentes:</Label>
-            <DataGrid x:Name="gvClasificaciones" Grid.Row="2" Margin="15,41,15,10" Style="{DynamicResource CustomDataGrid}"/>
-        </Grid>
+            <Label VerticalAlignment="Top" Margin="10,18,422,0" Grid.Row="0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}" Height="28">Colecciones Existentes:</Label>
+                <DataGrid x:Name="gvColecciones"  Grid.Row="0" Margin="13,51,17,17" Style="{DynamicResource CustomDataGrid}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding id}" Header="#"/>
+                        <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>                       
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnNuevaColec" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaColec_Click" Margin="0,14,17,174" Style="{DynamicResource BlueForegrounButton}" Width="20">&#10133;</Button>
+            <Button x:Name="btnNuevaCat" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaCateg_Click" Margin="0,7,17,0" Style="{DynamicResource BlueForegrounButton}" Grid.Row="1" VerticalAlignment="Top" Width="20">&#10133;</Button>
+			<Label VerticalAlignment="Top" Margin="15,10,437,0" Grid.Row="1" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}" Height="28">Categorías Existentes:</Label>
+                <DataGrid x:Name="gvCategorias" Grid.Row="1" Margin="15,41,15,10" Style="{DynamicResource CustomDataGrid}" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding id}" Header="#"/>
+                        <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>                       
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button x:Name="btnNuevaClas" Height="27" HorizontalAlignment="Right" FontSize="18" FontWeight="Bold" Click="btnNuevaClas_Click" Margin="0,7,17,0" Style="{DynamicResource BlueForegrounButton}" Grid.Row="2" VerticalAlignment="Top" Width="20">&#10133;</Button>
+            <Label VerticalAlignment="Top" Margin="15,10,437,0" Grid.Row="2" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource PureBlue}" Height="28">Clasificaciones Existentes:</Label>
+                <DataGrid x:Name="gvClasificaciones" Grid.Row="2" Margin="15,41,15,10" Style="{DynamicResource CustomDataGrid}" AutoGenerateColumns="False" IsReadOnly="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=id}" Header="#"/>
+                        <DataGridTextColumn Binding="{Binding nombre}" Header="Nombre"/>
+                        <DataGridTextColumn Binding="{Binding codigo}" Header="Codigo"/>
+                    </DataGrid.Columns>                                      
+                </DataGrid>
+            </Grid>
         </ScrollViewer>
     </DockPanel>
 </UserControl>

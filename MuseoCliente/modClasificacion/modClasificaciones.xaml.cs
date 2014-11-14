@@ -11,7 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection.Objects;
-
+using System.Threading.Tasks;
+using System.Collections;
 namespace MuseoCliente
 {
 	/// <summary>
@@ -30,11 +31,31 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvCategorias.ItemsSource = categ.regresarTodo();
-            gvColecciones.ItemsSource = colec.regresarTodo();
-            gvClasificaciones.ItemsSource = clasif.regresarTodo();
+            CargarCategorias();
+            CargarColecciones();
+            CargarClasificaciones();
         }
 
+        private async void CargarCategorias()
+        {
+            Task<ArrayList> t = Task<ArrayList>.Factory.StartNew(() => categ.regresarTodo());
+            await t;
+            gvCategorias.ItemsSource = t.Result;
+        }
+
+        private async void CargarColecciones()
+        {
+            Task<ArrayList> t = Task<ArrayList>.Factory.StartNew(() => colec.regresarTodo());
+            await t;
+            gvColecciones.ItemsSource  = t.Result;
+        }
+
+        private async void CargarClasificaciones()
+        {
+            Task<ArrayList> t = Task<ArrayList>.Factory.StartNew(() => clasif.regresarTodo());
+            await t;
+            gvClasificaciones.ItemsSource = t.Result;
+        }
         private void btnNuevaCateg_Click(object sender, RoutedEventArgs e)
         {
             modCategoria frm = new modCategoria();
