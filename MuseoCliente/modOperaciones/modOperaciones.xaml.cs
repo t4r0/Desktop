@@ -29,6 +29,7 @@ namespace MuseoCliente
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             gvConsolidaciones.ItemsSource = consolidaciones.regresarTodo();
+            gvConsolidaciones.SelectedValuePath = "id";
         }
 
         private void btnNuevaCons_Click(object sender, RoutedEventArgs e)
@@ -37,6 +38,17 @@ namespace MuseoCliente
             frm.borde = borde;
             frm.anterior = this;
             borde.Child = frm;
+        }
+
+        private void btnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            modConsolidacion frm = new modConsolidacion();
+            frm.borde = borde;
+            frm.anterior = this;
+            frm.modificar = true;
+            frm.id = (int)gvConsolidaciones.SelectedValue;
+            borde.Child = frm;
+            frm.DataContext = gvConsolidaciones.SelectedItem;
         }
 	}
 }

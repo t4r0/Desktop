@@ -15,6 +15,7 @@
                 <Label DockPanel.Dock="Left" Content="Operaciones" VerticalContentAlignment="Center" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource DarkGray}" BorderThickness="10,0,0,0"/>
                 <Button x:Name="btnNuevaCons" Height="27" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Click="btnNuevaCons_Click" Content="➕" DockPanel.Dock="Right" Margin="0,0,10,0" Style="{DynamicResource BlueForegrounButton}" FontFamily="/MuseoCliente;component/Font/#Entypo"/>
                 <Button x:Name="btnEditar" Height="27" HorizontalAlignment="Right" FontSize="36" FontWeight="Bold" Content="✎" Style="{DynamicResource BlueForegrounButton}" Margin="0,0,10,0" FontFamily="/MuseoCliente;component/Font/#Entypo"/>
+                <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" Height="20" Width="120"></TextBox>
             </DockPanel>
         </Border>
         <StackPanel>
