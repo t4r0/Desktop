@@ -52,17 +52,25 @@ namespace MuseoCliente.Connection.Objects
             // newalto = es el nuevo alto de la imagen
             // nuevonombre = es el nuevo nombre de laimagen ya tratada por la funcion esta sera proporcionada por matul
             string dir = "C:/imagenes2";
-            System.IO.Directory.CreateDirectory(dir);
-
-
-            System.Drawing.Image image = null;
-            image = System.Drawing.Image.FromFile(dirIN);
-            //Redimensionamos la imagen
-            image = this.Redimensionar(image, newancho, newalto);
-            image.Save(string.Format(@"{0}{1}", dir + "/", nuevonombre));
-            image.Dispose();
             string dirimagen;
-            dirimagen = dir + "\\" + nuevonombre;
+            try
+            {
+                System.IO.Directory.CreateDirectory(dir);
+
+
+                System.Drawing.Image image = null;
+                image = System.Drawing.Image.FromFile(dirIN);
+                //Redimensionamos la imagen
+                image = this.Redimensionar(image, newancho, newalto);
+                image.Save(string.Format(@"{0}{1}", dir + "/", nuevonombre));
+                image.Dispose();
+                dirimagen = dir + "\\" + nuevonombre;
+            }
+            catch(Exception)
+            {
+                dirimagen = "";
+            }
+           
 
             return dirimagen;
 

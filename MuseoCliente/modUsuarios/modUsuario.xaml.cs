@@ -12,6 +12,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MuseoCliente.Connection.Objects;
 using Microsoft.Win32;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace MuseoCliente
 {
@@ -57,7 +59,14 @@ namespace MuseoCliente
                 lblOperacion.Content = "Nuevo Usuario";
             }
         }
-
+        private async void cargarPaises()
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => paises.regresarTodos());
+            await task;
+            cmbPais.DisplayMemberPath = "printable_name";
+            cmbPais.SelectedValuePath = "iso";
+            cmbPais.ItemsSource = task.Result;
+        }
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             UtilidadS3 utilidad = new UtilidadS3();
