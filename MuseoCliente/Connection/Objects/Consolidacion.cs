@@ -71,8 +71,19 @@ namespace MuseoCliente.Connection.Objects
 
         public void modificar() //Modifica datos de un pais
         {
+            List<Mantenimiento> temp = new List<Mantenimiento>();
             try
             {
+                temp.Clear();
+                foreach (Mantenimiento te in mantenimientos)
+                {
+                    if (te.id == 0)
+                        temp.Add(te);
+                    else
+                        te.modificar();
+                }
+                igualarLista(mantenimientos, temp);
+
                 this.Save(this.id.ToString());
             }
             catch (Exception e)
