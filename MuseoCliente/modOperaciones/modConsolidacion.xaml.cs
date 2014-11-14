@@ -117,6 +117,7 @@ namespace MuseoCliente
             {
                 MessageBox.Show("Consolidación correcta");
             }
+            //Limpieza
             if (rbLimpieza.IsChecked == true)
             {
                 mante1.procedimiento = 1;
@@ -132,9 +133,25 @@ namespace MuseoCliente
                     mante1.modificar();
                 }
             }
+            else
+            {
+                mante1.procedimiento = 2;
+                mante1.metodoMaterial = "";
+                mante1.fecha = System.DateTime.Now;
+                mante1.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante1.guardar();
+                }
+                else
+                {
+                    mante1.modificar();
+                }
+            }
+            //Consolidación
             if (rbConsolidacion.IsChecked == true)
             {
-                mante2.procedimiento = 2;
+                mante2.procedimiento = 3;
                 mante2.metodoMaterial = txtConsolidacion.Text;
                 mante2.fecha = dpFechaConsol.SelectedDate.Value.Date;
                 mante2.consolidacion = consolidacion.id;
@@ -147,9 +164,25 @@ namespace MuseoCliente
                     mante2.modificar();
                 }
             }
+            else
+            {
+                mante2.procedimiento = 4;
+                mante2.metodoMaterial = "";
+                mante2.fecha = System.DateTime.Now;
+                mante2.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante2.guardar();
+                }
+                else
+                {
+                    mante2.modificar();
+                }
+            }
+            //Eliminación
             if (rbEliminacion.IsChecked == true)
             {
-                mante3.procedimiento = 3;
+                mante3.procedimiento = 5;
                 mante3.metodoMaterial = txtEliminacion.Text;
                 mante3.fecha = dpFechaEliminacion.SelectedDate.Value.Date;
                 mante3.consolidacion = consolidacion.id;
@@ -162,9 +195,25 @@ namespace MuseoCliente
                     mante3.modificar();
                 }
             }
+            else
+            {
+                mante3.procedimiento = 6;
+                mante3.metodoMaterial = "";
+                mante3.fecha = System.DateTime.Now;
+                mante3.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante3.guardar();
+                }
+                else
+                {
+                    mante3.modificar();
+                }
+            }
+            //Unión
             if (rbUnion.IsChecked == true)
             {
-                mante4.procedimiento = 4;
+                mante4.procedimiento = 7;
                 mante4.metodoMaterial = txtUnion.Text;
                 mante4.fecha = dpFechaUnion.SelectedDate.Value.Date;
                 mante4.consolidacion = consolidacion.id;
@@ -177,9 +226,25 @@ namespace MuseoCliente
                     mante4.modificar();
                 }
             }
+            else
+            {
+                mante4.procedimiento = 8;
+                mante4.metodoMaterial = "";
+                mante4.fecha = System.DateTime.Now;
+                mante4.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante4.guardar();
+                }
+                else
+                {
+                    mante4.modificar();
+                }
+            }
+            //Otro
             if (rbOtro.IsChecked == true)
             {
-                mante5.procedimiento = 5;
+                mante5.procedimiento = 9;
                 mante5.metodoMaterial = txtOtro.Text;
                 mante5.fecha = dpFechaOtro.SelectedDate.Value.Date;
                 mante5.consolidacion = consolidacion.id;
@@ -192,10 +257,42 @@ namespace MuseoCliente
                     mante5.modificar();
                 }
             }
+            else
+            {
+                mante5.procedimiento = 10;
+                mante5.metodoMaterial = "";
+                mante5.fecha = System.DateTime.Now;
+                mante5.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante5.guardar();
+                }
+                else
+                {
+                    mante5.modificar();
+                }
+            }
+            //Observaciones
             if (txtObservaciones.Text.Length > 10)
             {
-                mante6.procedimiento = 6;
+                mante6.procedimiento = 11;
                 mante6.metodoMaterial = txtObservaciones.Text;
+                mante6.fecha = System.DateTime.Now;
+                mante6.consolidacion = consolidacion.id;
+                if (modificar == false)
+                {
+                    mante6.guardar();
+                }
+                else
+                {
+                    mante6.modificar();
+                }
+            }
+            else
+            {
+                mante6.procedimiento = 12;
+                mante6.metodoMaterial = "";
+                mante6.fecha = System.DateTime.Now;
                 mante6.consolidacion = consolidacion.id;
                 if (modificar == false)
                 {
