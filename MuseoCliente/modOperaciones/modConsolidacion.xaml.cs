@@ -108,7 +108,10 @@ namespace MuseoCliente
             {
                 mante1.procedimiento = 1;
                 mante1.metodoMaterial = txtLimpieza.Text;
-                mante1.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
+                if (dpFechaLimpieza.SelectedDate != null)
+                    mante1.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
+                else
+                    mante1.fecha = dpInicio.SelectedDate.Value.Date;
             }
             else
             {
@@ -122,7 +125,10 @@ namespace MuseoCliente
             {
                 mante2.procedimiento = 3;
                 mante2.metodoMaterial = txtConsolidacion.Text;
-                mante2.fecha = dpFechaConsol.SelectedDate.Value.Date;
+                if (dpFechaConsol.SelectedDate != null)
+                    mante2.fecha = dpFechaConsol.SelectedDate.Value.Date;
+                else
+                    mante2.fecha = dpInicio.SelectedDate.Value.Date;
             }
             else
             {
@@ -136,7 +142,10 @@ namespace MuseoCliente
             {
                 mante3.procedimiento = 5;
                 mante3.metodoMaterial = txtEliminacion.Text;
-                mante3.fecha = dpFechaEliminacion.SelectedDate.Value.Date;
+                if (dpFechaEliminacion.SelectedDate != null)
+                    mante3.fecha = dpFechaEliminacion.SelectedDate.Value.Date;
+                else
+                    mante3.fecha = dpInicio.SelectedDate.Value.Date;
             }
             else
             {
@@ -150,7 +159,10 @@ namespace MuseoCliente
             {
                 mante4.procedimiento = 7;
                 mante4.metodoMaterial = txtUnion.Text;
-                mante4.fecha = dpFechaUnion.SelectedDate.Value.Date;
+                if (dpFechaUnion.SelectedDate != null)
+                    mante4.fecha = dpFechaUnion.SelectedDate.Value.Date;
+                else
+                    mante4.fecha = dpInicio.SelectedDate.Value.Date;
             }
             else
             {
@@ -164,7 +176,10 @@ namespace MuseoCliente
             {
                 mante5.procedimiento = 9;
                 mante5.metodoMaterial = txtOtro.Text;
-                mante5.fecha = dpFechaOtro.SelectedDate.Value.Date;
+                if (dpFechaOtro.SelectedDate != null)
+                    mante5.fecha = dpFechaOtro.SelectedDate.Value.Date;
+                else
+                    mante5.fecha = dpInicio.SelectedDate.Value.Date;
             }
             else
             {
