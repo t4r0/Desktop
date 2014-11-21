@@ -12,17 +12,22 @@
         <Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
             <DockPanel Height="28" VerticalAlignment="Top">
                 <Label x:Name="lblOperacion" DockPanel.Dock="Left" Content="[Op] Investigación"/>
-                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-                    <Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Content="❌"/>
-                </Label>
-                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-                    <Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click" Content="💾"/>
-                </Label>
-                <Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right"/>
+                <Button x:Name="btnCancelar" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Style="{DynamicResource PinkButton}" Margin="5,0,10,1" Width="63" DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="❌ "/></TextBlock>
+                        <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Salir"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click" Style="{DynamicResource BlueButton}" DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal" Width="78">
+                        <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="💾 "/></TextBlock>
+                        <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Guardar"/></TextBlock>
+                    </StackPanel>
+                </Button>
             </DockPanel>
         </Border>
-        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-            <Grid>
+        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True" Grid.IsSharedSizeScope="True">
+            <Grid FocusManager.FocusedElement="{Binding ElementName=txtTitulo}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="419*"/>
                     <RowDefinition Height="424*"/>
@@ -34,28 +39,28 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="26" Width="43" Content="Título:"/>
-                <TextBox Grid.Column="0" x:Name="txtTitulo" Height="25" VerticalAlignment="Top" Margin="10,41,10,0" Text="{Binding titulo, Mode=TwoWay}"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" Grid.Column="0" x:Name="txtTitulo" Height="25" VerticalAlignment="Top" Margin="10,41,10,0" Text="{Binding titulo, Mode=TwoWay}"/>
                 <Label Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,71,0,0" Height="26" Width="42" Content="Autor:"/>
-                <ComboBox Grid.Column="0" x:Name="cmbAutor" Margin="10,102,10,0" Height="25" VerticalAlignment="Top"/>
+                <ComboBox Style="{DynamicResource CustomComboBox}" Grid.Column="0" x:Name="cmbAutor" Margin="10,102,10,0" Height="25" VerticalAlignment="Top"/>
                 <Label Grid.Column="0" Margin="10,132,0,0" Height="26" VerticalAlignment="Top" Content="Resumen:" HorizontalAlignment="Left" Width="156"/>
-                <TextBox Grid.Column="0" x:Name="txtResumen" Grid.ColumnSpan="3" Margin="10,163,10,0" Height="75" VerticalAlignment="Top" Text="{Binding resumen, Mode=TwoWay}"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" Grid.Column="0" x:Name="txtResumen" Grid.ColumnSpan="3" Margin="10,163,10,0" Height="75" VerticalAlignment="Top" Text="{Binding resumen, Mode=TwoWay}"/>
                 <Label Grid.Column="0" Margin="10,243,0,0" Height="26" VerticalAlignment="Top" Content="Descripción:" HorizontalAlignment="Left" Width="144"/>
-                <TextBox Grid.Column="0" x:Name="txtDescripcion" Grid.ColumnSpan="3" Margin="10,269,10,0" Height="150" VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding contenido, Mode=TwoWay}"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" Grid.Column="0" x:Name="txtDescripcion" Grid.ColumnSpan="3" Margin="10,269,10,0" Height="150" VerticalAlignment="Top" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding contenido, Mode=TwoWay}"/>
                 <CheckBox Grid.Column="2" Grid.Row="0" x:Name="chkPublicado" VerticalAlignment="Center" Margin="10,16,0,388" Content="Publicada" IsChecked="{Binding publicado, Mode=TwoWay}"/>
 
                 <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="11,11,0,0" HorizontalAlignment="Left" Width="82" Height="26" Content="Codigo Pieza:"/>
-                <TextBox Grid.Row="1" Grid.Column="0" x:Name="txtCodigo" Height="24" Width="192" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,36,0,0" TextChanged="txtCodigo_TextChanged"/>
-                <Button Grid.Row="1" Grid.Column="0" x:Name="btnSeleccionar" Margin="216,36,10,0" Content="Buscar" Height="24" VerticalAlignment="Top" Click="btnSeleccionar_Click"/>
-                <Label Grid.Row="1" Grid.Column="0" Margin="11,69,242,208" Content="Piezas:"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" Grid.Row="1" Grid.Column="0" x:Name="txtCodigo" Height="24" Width="192" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="11,36,0,0" TextChanged="txtCodigo_TextChanged"/>
+                <Button Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="26" Grid.Row="1" Grid.Column="0" x:Name="btnSeleccionar" Margin="208,36,0,0" Height="24" VerticalAlignment="Top" Click="btnSeleccionar_Click" HorizontalAlignment="Left" Width="29">&#128269;</Button>
+                <Label Grid.Row="1" Grid.Column="0" Margin="11,69,0,208" Content="Piezas:" HorizontalAlignment="Left" Width="58"/>
                 <DataGrid AutoGenerateColumns="False" Grid.Row="1" Grid.Column="0" x:Name="gvPiezas" Margin="11,95,9,14" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=codigo}" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding Path=nombre}" Header="Nombre"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Content="S" Grid.Column="1" HorizontalAlignment="Left" Margin="0,170,0,0" Grid.Row="1" VerticalAlignment="Top" Width="30" Click="Button_Click_1"/>
-                <Button Content="A" Grid.Column="1" Margin="0,195,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Click="Button_Click_2"/>
-                <Label Grid.Row="1" Grid.Column="2" Margin="10,69,93,218" RenderTransformOrigin="0.515,1.914" Content="Piezas en esta investigacion:"/>
+                <Button Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="26" Height="27" Grid.Column="1" HorizontalAlignment="Left" Margin="0,163,0,0" Grid.Row="1" VerticalAlignment="Top" Width="30" Click="Button_Click_1">&#59230;</Button>
+                <Button Style="{DynamicResource BlueButton}" FontFamily="/MuseoCliente;component/Font/#Entypo" FontSize="26" Height="27" Grid.Column="1" Margin="0,195,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Click="Button_Click_2">&#59229;</Button>
+                <Label Grid.Row="1" Grid.Column="2" Margin="10,69,0,218" RenderTransformOrigin="0.515,1.914" Content="Piezas en esta investigacion:" HorizontalAlignment="Left" Width="202"/>
                 <DataGrid AutoGenerateColumns="False" Grid.Row="1" Grid.Column="2" x:Name="gvPiezasGuardadas" Margin="10,95,10,13" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=codigo}" Header="Código"/>
