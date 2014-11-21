@@ -25,7 +25,7 @@ namespace MuseoCliente
         
         public Border borde;
         public UIElement anterior;
-        string ruta;
+        string ruta="";
         public bool Crear
         {
             get;
@@ -48,7 +48,8 @@ namespace MuseoCliente
             {
                 pieza.responsableRegistro = Settings.user.username;
                 pieza.guardar();
-                CrearFoto(ruta, pieza.codigo);
+                if(!ruta.Equals(""))
+                    CrearFoto(ruta, pieza.codigo);
             }
             else
             {
@@ -141,8 +142,11 @@ namespace MuseoCliente
             await t;
             if (!Error.isActivo())
             {
-                ImageSource imageSource = new BitmapImage(new Uri(fotografia.ruta));
-                foto.Source = imageSource;
+                if (ruta != "" )
+                {
+                    ImageSource imageSource = new BitmapImage(new Uri(fotografia.ruta));
+                    foto.Source = imageSource;
+                }
             }
             else
                 MessageBox.Show("Ocurrio un error al subir la fotografia");
