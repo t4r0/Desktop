@@ -29,7 +29,7 @@
 		<Grid>
             <DockPanel Height="35" HorizontalAlignment="Center" Margin="142,20,142,0" VerticalAlignment="Top">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Nombre:</Label>
-				<TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			</DockPanel>
         </Grid>
 	</DockPanel>

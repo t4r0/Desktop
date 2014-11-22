@@ -34,23 +34,23 @@
         <StackPanel>
             <Label Height="20"/>
             <DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <TextBox x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding codigo, Mode=TwoWay}"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding codigo, Mode=TwoWay}"/>
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0" Content="Código:"/>
             </DockPanel>
             <DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <ComboBox x:Name="cmbFicha" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding ficha, Mode=TwoWay}"/>
+                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbFicha" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding ficha, Mode=TwoWay}"/>
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50,0,0,0" Content="Ficha:"/>
             </DockPanel>
             <DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <ComboBox x:Name="cmbCategoria" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding categoria, Mode=TwoWay}"/>
+                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbCategoria" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding categoria, Mode=TwoWay}"/>
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0" Content="Categoría:"/>
             </DockPanel>
             <DockPanel Height="35" Width="430" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <ComboBox x:Name="cmbColeccion" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding coleccion, Mode=TwoWay}"/>
+                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbColeccion" Height="20" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,24,0" SelectedValue="{Binding coleccion, Mode=TwoWay}"/>
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="28,0,0,0" Content="Colección:"/>
             </DockPanel>
             <DockPanel Height="35" Width="380" HorizontalAlignment="Center" Margin="0,10,0,0">
-                <TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding nombre, Mode=TwoWay}"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding nombre, Mode=TwoWay}"/>
                 <Label DockPanel.Dock="Right" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15,0,0,0" Content="Nombre:"/>
             </DockPanel>
             <Label Height="20"/>
