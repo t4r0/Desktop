@@ -32,8 +32,8 @@
 				<StackPanel>
 					<DockPanel Height="35" Width="500" HorizontalAlignment="Center">
 						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Codigo Pieza:</Label>
-						<TextBox x:Name="txtCodigoPieza" Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="txtCodigoPieza_TextChanged"/>
-						<Button x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right" Click="btnSeleccionar_Click">Seleccionar</Button>
+                        <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtCodigoPieza" Height="25" Width="150" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="txtCodigoPieza_TextChanged"/>
+                        <Button Style="{DynamicResource BlueButton}" x:Name="btnSeleccionar" DockPanel.Dock="Right" Height="25" Width="90" HorizontalAlignment="Right" Click="btnSeleccionar_Click">Seleccionar</Button>
 					</DockPanel>
 					<DockPanel Height="105" Width="510">
 						<StackPanel Margin="10">
@@ -47,8 +47,8 @@
 					</DockPanel>
 					<DockPanel Height="35" HorizontalAlignment="Center">
 						<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Pieza a trasladar:</Label>
-						<TextBox x:Name="txtCodigo" Height="25" Width="100" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="False"/>
-						<TextBox x:Name="txtNombrePieza" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"/>
+                        <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtCodigo" Height="25" Width="100" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" IsEnabled="False"/>
+                        <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtNombrePieza" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" IsEnabled="False"/>
 					</DockPanel>
 				</StackPanel>
 			</Border>
@@ -56,20 +56,20 @@
 				<StackPanel Margin="0,10">
 					<Border Width="500" HorizontalAlignment="Center" BorderBrush="{DynamicResource DarkGray}" BorderThickness="1">
 						<StackPanel Margin="0,10">
-                            <RadioButton x:Name="rbBodega" VerticalAlignment="Center" Margin="10,0,10,0" Checked="rbBodega_Checked">En Bodega</RadioButton>
+                            <RadioButton Style="{DynamicResource CustomRadioButton}" x:Name="rbBodega" VerticalAlignment="Center" Margin="10,0,10,0" Checked="rbBodega_Checked">En Bodega</RadioButton>
                             <DockPanel Height="35">
                                 <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">Número de Caja:</Label>
-                                <ComboBox x:Name="cmbCaja" Height="20" Width="300" Margin="5,0,0,0"/>
+                                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbCaja" Height="20" Width="300" Margin="5,0,0,0"/>
                             </DockPanel>
                             <Label Height="20"/>
-                            <RadioButton x:Name="rbVitrina" VerticalAlignment="Center" Margin="10,0,10,0">En Vitrina</RadioButton>
+                            <RadioButton Style="{DynamicResource CustomRadioButton}" x:Name="rbVitrina" VerticalAlignment="Center" Margin="10,0,10,0">En Vitrina</RadioButton>
                             <DockPanel Height="35">
                                 <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">Sala:</Label>
-                                <ComboBox x:Name="cmbSala" Height="20" Width="300" Margin="5,0,0,0" SelectionChanged="cmbSala_SelectionChanged"/>
+                                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbSala" Height="20" Width="300" Margin="5,0,0,0" SelectionChanged="cmbSala_SelectionChanged"/>
                             </DockPanel>
                             <DockPanel Height="35">
                                 <Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0">Vitrina:</Label>
-                                <ComboBox x:Name="cmbVitrina" Height="20" Width="300" Margin="-8,0,0,0"/>
+                                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbVitrina" Height="20" Width="300" Margin="-8,0,0,0"/>
                             </DockPanel>
                         </StackPanel>
 					</Border>

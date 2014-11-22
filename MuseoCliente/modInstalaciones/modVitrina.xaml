@@ -30,11 +30,11 @@
 			<Label Height="20"/>
 			<DockPanel Width="280" Height="35" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Sala:</Label>
-				<ComboBox x:Name="cmbSala" Height="20" Width="200" Margin="5,0,0,0"/>
+                <ComboBox Style="{DynamicResource CustomComboBox}" x:Name="cmbSala" Height="20" Width="200" Margin="5,0,0,0"/>
 			</DockPanel>
 			<DockPanel Width="280" Height="35" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Número:</Label>
-				<TextBox x:Name="txtNumero" Height="25" Width="50" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtNumero" Height="25" Width="50" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0"/>
 			</DockPanel>
 			<Label Height="20"></Label>
 		</StackPanel>

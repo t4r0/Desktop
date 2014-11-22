@@ -30,7 +30,7 @@
 			<Label Height="20"/>
 			<DockPanel Height="35" HorizontalAlignment="Center">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Código Caja:</Label>
-				<TextBox x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox Style="{DynamicResource CustomTextBox}" x:Name="txtCodigo" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			</DockPanel>
 			<Label Height="20"></Label>
 		</StackPanel>

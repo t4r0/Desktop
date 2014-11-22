@@ -44,9 +44,9 @@
                 <Image x:Name="imageSala" Source="{Binding fotografia, Mode=TwoWay}"/>
             </Border>
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Nombre:" Margin="10,10,0,0" Grid.Column="1" Width="55"/>
-            <TextBox Grid.Column="1"  x:Name="txtNombre" Height="25" VerticalAlignment="Top" Text="{Binding nombre, Mode=TwoWay}" Margin="10,36,195,0"/>
+            <TextBox Style="{DynamicResource CustomTextBox}" Grid.Column="1"  x:Name="txtNombre" Height="25" VerticalAlignment="Top" Text="{Binding nombre, Mode=TwoWay}" Margin="10,36,195,0"/>
             <Label Grid.Column="1" Content="Descripción:" Margin="10,66,0,15.791" HorizontalAlignment="Left" Width="74"/>
-            <TextBox Grid.Column="1"  x:Name="txtDescripcion" Text="{Binding descripcion, Mode=TwoWay}" Margin="10,101,10,104" Grid.RowSpan="2"/>
+            <TextBox Style="{DynamicResource CustomTextBox}" Grid.Column="1"  x:Name="txtDescripcion" Text="{Binding descripcion, Mode=TwoWay}" Margin="10,101,10,104" Grid.RowSpan="2"/>
             <Label Height="20" Margin="0,30.209,0,143" Grid.Row="1"/>
         </Grid>
     </DockPanel>
