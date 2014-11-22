@@ -103,12 +103,21 @@ namespace MuseoCliente
 
         private void btnEditarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            modUsuario frm = new modUsuario();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.modificar = true;
-            borde.Child = frm;
-            frm.DataContext = gvActivos.SelectedItem;
+            if (gvActivos.SelectedItem == null)
+            {
+                modNuevoU frm = new modNuevoU();
+                frm.ShowDialog();
+            }
+            else
+            {
+                modUsuario frm = new modUsuario();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.modificar = true;
+                borde.Child = frm;
+                frm.DataContext = gvActivos.SelectedItem;
+            }
+            
         }
 
         private void btnEditarAutor_Click(object sender, RoutedEventArgs e)

@@ -39,7 +39,7 @@ namespace MuseoCliente
         {
             Connection.Connector conector = new Connection.Connector("/api/v1/registrar/");
             dict["username"] = txtUserName.Text;
-            dict["password"] = txtContra.Text;
+            dict["password"] = txtContra.Password;
             dict["email"] = txtCorreo.Text;
             string content = JsonConvert.SerializeObject(dict, Formatting.Indented);
             conector.create(content);
