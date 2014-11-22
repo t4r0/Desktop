@@ -12,16 +12,22 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="30" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label x:Name="lblOperacion" DockPanel.Dock="Left">[Op] Colección</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnCancelar" Height="27" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click">&#10060;</Button>
-				</Label>
-				<Label Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0" Style="{DynamicResource CustomLabel}" DockPanel.Dock="Right">
-					<Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click">&#128190;</Button>
-				</Label>
-			</DockPanel>
+                <Button x:Name="btnCancelar" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Click="btnCancelar_Click" Style="{DynamicResource PinkButton}" Margin="5,0,10,1" Width="63" DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="❌ "/></TextBlock>
+                        <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Salir"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnGuardar" Height="27" HorizontalAlignment="Right" FontSize="20" FontWeight="Bold" Click="btnGuardar_Click" Style="{DynamicResource BlueButton}" DockPanel.Dock="Right">
+                    <StackPanel Orientation="Horizontal" Width="78">
+                        <TextBlock VerticalAlignment="Center" Style="{DynamicResource Icons}" FontSize="30"><Run Text="💾 "/></TextBlock>
+                        <TextBlock Style="{DynamicResource SourceSans}" FontSize="14" VerticalAlignment="Center" FontWeight="Normal"><Run Text="Guardar"/></TextBlock>
+                    </StackPanel>
+                </Button>
+            </DockPanel>
 		</Border>
 		<Grid>
-            <DockPanel Height="35" HorizontalAlignment="Center">
+            <DockPanel Height="35" HorizontalAlignment="Center" Margin="142,20,142,0" VerticalAlignment="Top">
 				<Label DockPanel.Dock="Left" HorizontalAlignment="Center" VerticalAlignment="Center">Nombre:</Label>
 				<TextBox x:Name="txtNombre" Height="25" Width="300" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 			</DockPanel>

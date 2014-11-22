@@ -184,7 +184,7 @@ namespace MuseoCliente
             if (gvClasificaciones.SelectedValue != null)
             {
                 frm.modificar = true;
-                frm.id = Convert.ToInt16(gvClasificaciones.SelectedValue.ToString());
+                frm.DataContext = gvClasificaciones.SelectedItem;
             }
             borde.Child = frm;
         }
