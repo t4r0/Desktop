@@ -43,25 +43,33 @@ namespace MuseoCliente
                 nuevaDir = op.cambia(direccionImagen, 800, 800, sala.nombre);
                 sala.fotografia = utilidad.subirSalaoEvento(sala.nombre, direccionImagen, sala.nombre + "." + nombreImagen.Split('.')[1], true);
             }
-            if (modificar == false)
+            if ((!txtNombre.Text.Equals("")) && (!txtDescripcion.Text.Equals("")))
             {
-                sala.guardar();
-                modificarImagen = false;
+                if (modificar == false)
+                {
+                    sala.guardar();
+                    modificarImagen = false;
+                }
+                else
+                {
+                    sala.modificar();
+                    modificarImagen = false;
+                }
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                }
+                else
+                {
+                    MessageBox.Show("Se han guardado los datos correctamente");
+                    borde.Child = anterior;
+                }
             }
             else
             {
-                sala.modificar();
-                modificarImagen = false;
+                MessageBox.Show("No se ha rellenado uno o varios campos obligatorios");
             }
-            if (Connection.Objects.Error.isActivo())
-            {
-                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
-            }
-            else
-            {
-                MessageBox.Show("Se han guardado los datos correctamente");
-                borde.Child = anterior;
-            }
+            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

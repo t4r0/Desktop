@@ -51,24 +51,31 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             //vitrina.sala = Convert.ToInt16(cmbSala.SelectedValue.ToString());
-            vitrina.sala = (int)cmbSala.SelectedValue;
-            vitrina.numero = txtNumero.Text;
-            if (modificar == false)
+            if ((cmbSala.SelectedValue != null) && (!txtNumero.Text.Equals("")))
             {
-                vitrina.guardar();
+                vitrina.sala = (int)cmbSala.SelectedValue;
+                vitrina.numero = txtNumero.Text;
+                if (modificar == false)
+                {
+                    vitrina.guardar();
+                }
+                else
+                {
+                    vitrina.modificar();
+                }
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se han guardado los datos correctamente");
+                    borde.Child = anterior;
+                }
             }
             else
             {
-                vitrina.modificar();
-            }
-            if (Connection.Objects.Error.isActivo())
-            {
-                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
-            }
-            else
-            {
-                MessageBox.Show("Se han guardado los datos correctamente");
-                borde.Child = anterior;
+                MessageBox.Show("No se ha rellenado uno o varios campos obligatorios");
             }
         }
 

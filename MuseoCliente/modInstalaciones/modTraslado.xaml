@@ -37,7 +37,7 @@
 					</DockPanel>
 					<DockPanel Height="105" Width="510">
 						<StackPanel Margin="10">
-                            <DataGrid AutoGenerateColumns="False" x:Name="gvPiezas" Height="85">
+                            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="gvPiezas" Height="85">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding Path=codigo}" Header="Código"/>
                                     <DataGridTextColumn Binding="{Binding Path=nombre}" Header="Nombre"/>
