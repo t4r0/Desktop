@@ -32,29 +32,22 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             colec.nombre = txtNombre.Text;
-            if (!txtNombre.Text.Equals(""))
+            if (modificar == false)
             {
-                if (modificar == false)
-                {
-                    colec.guardar();
-                }
-                else
-                {
-                    colec.modificar();
-                }
-                if (Connection.Objects.Error.isActivo())
-                {
-                    MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
-                }
-                else
-                {
-                    MessageBox.Show("Correcto");
-                    borde.Child = anterior;
-                }
+                colec.guardar();
             }
             else
             {
-                MessageBox.Show("No se ha rellenado el campo necesario para guardar el registro");
+                colec.modificar();
+            }
+            if (Connection.Objects.Error.isActivo())
+            {
+                MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+            }
+            else
+            {
+                MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
         }
 
