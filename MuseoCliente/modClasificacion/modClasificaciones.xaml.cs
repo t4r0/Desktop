@@ -117,28 +117,36 @@ namespace MuseoCliente
 
         private void btnEditarColeccion_Click(object sender, RoutedEventArgs e)
         {
-            modColeccion frm = new modColeccion();
-            frm.borde = borde;
-            frm.anterior = this;
             if (gvColecciones.SelectedValue != null)
             {
+                modColeccion frm = new modColeccion();
+                frm.borde = borde;
+                frm.anterior = this;
                 frm.modificar = true;
                 frm.id = Convert.ToInt16(gvColecciones.SelectedValue.ToString());
+                borde.Child = frm;
             }
-            borde.Child = frm;
+            else
+            {
+                MessageBox.Show("Debe seleccionar una colección para editar", "Advertencia");
+            }
         }
 
         private void btnEditarCategoria_Click(object sender, RoutedEventArgs e)
         {
-            modCategoria frm = new modCategoria();
-            frm.borde = borde;
-            frm.anterior = this;
-            if (gvCategorias.SelectedValue != null)
+            if (gvCategorias.SelectedItem != null)
             {
+                modCategoria frm = new modCategoria();
+                frm.borde = borde;
+                frm.anterior = this;
                 frm.modificar = true;
                 frm.id = Convert.ToInt16(gvCategorias.SelectedValue.ToString());
+                borde.Child = frm;
             }
-            borde.Child = frm;
+            else
+            {
+                MessageBox.Show("Debe seleccionar una categoría para editar", "Advertencia");
+            }
         }
 
         private void txtBuscarCategoria_TextChanged(object sender, TextChangedEventArgs e)
@@ -169,15 +177,88 @@ namespace MuseoCliente
 
         private void btnEditarClasificacion_Click(object sender, RoutedEventArgs e)
         {
-            modClasificacion frm = new modClasificacion();
-            frm.borde = borde;
-            frm.anterior = this;
             if (gvClasificaciones.SelectedValue != null)
             {
+                modClasificacion frm = new modClasificacion();
+                frm.borde = borde;
+                frm.anterior = this;
                 frm.modificar = true;
                 frm.DataContext = gvClasificaciones.SelectedItem;
+                borde.Child = frm;
             }
-            borde.Child = frm;
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clasificación para editar", "Advertencia");
+            }
+        }
+
+        private void btnEliminarClasificacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvClasificaciones.SelectedValue != null)
+            {
+                Clasificacion clasificacion = new Clasificacion();
+                clasificacion = (Clasificacion)gvClasificaciones.SelectedItem;
+                clasificacion.eliminar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    CargarColecciones();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clasificación antes de eliminar", "Advertencia");
+            }
+        }
+
+        private void btnEliminarCategoria_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvCategorias.SelectedItem != null)
+            {
+                Categoria categoria = new Categoria();
+                categoria = (Categoria)gvCategorias.SelectedItem;
+                //categoria
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    CargarCategorias();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una categoría antes de eliminar", "Advertencia");
+            }
+        }
+
+        private void btnEliminarColeccion_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvColecciones.SelectedValue != null)
+            {
+                Coleccion coleccion = new Coleccion();
+                coleccion = (Coleccion)gvColecciones.SelectedItem;
+                //coleccion
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    CargarCategorias();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una colección antes de eliminar", "Advertencia");
+            }
         }
 	}
 }
