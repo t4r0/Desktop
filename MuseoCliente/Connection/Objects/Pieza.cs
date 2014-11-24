@@ -497,7 +497,7 @@ namespace MuseoCliente.Connection.Objects
         {
             try
             {
-                if (this.codigo == 0)
+                if (this.codigo == "")
                 {
                     Error.ingresarError(2, "No existe la Pieza en la base de datos para poder Eliminarla ");
                     return;

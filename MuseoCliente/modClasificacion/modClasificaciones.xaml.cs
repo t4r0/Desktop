@@ -206,7 +206,7 @@ namespace MuseoCliente
                 else
                 {
                     MessageBox.Show("Se ha eliminado correctamente", "Correcto");
-                    CargarColecciones();
+                    actualizarTablas();
                 }
             }
             else
@@ -221,7 +221,7 @@ namespace MuseoCliente
             {
                 Categoria categoria = new Categoria();
                 categoria = (Categoria)gvCategorias.SelectedItem;
-                //categoria
+                categoria.eliminar();
                 if (Connection.Objects.Error.isActivo())
                 {
                     MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
@@ -229,7 +229,7 @@ namespace MuseoCliente
                 else
                 {
                     MessageBox.Show("Se ha eliminado correctamente", "Correcto");
-                    CargarCategorias();
+                    actualizarTablas();
                 }
             }
             else
@@ -244,7 +244,7 @@ namespace MuseoCliente
             {
                 Coleccion coleccion = new Coleccion();
                 coleccion = (Coleccion)gvColecciones.SelectedItem;
-                //coleccion
+                coleccion.eliminar();
                 if (Connection.Objects.Error.isActivo())
                 {
                     MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
@@ -252,13 +252,20 @@ namespace MuseoCliente
                 else
                 {
                     MessageBox.Show("Se ha eliminado correctamente", "Correcto");
-                    CargarCategorias();
+                    actualizarTablas();
                 }
             }
             else
             {
                 MessageBox.Show("Debe seleccionar una colección antes de eliminar", "Advertencia");
             }
+        }
+
+        public void actualizarTablas()
+        {
+            CargarCategorias();
+            CargarClasificaciones();
+            CargarColecciones();
         }
 	}
 }
