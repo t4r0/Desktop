@@ -225,6 +225,22 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Consolidacion para Eliminar");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado con exito" + e.Message);
+            }
+        }
         
     }
 }

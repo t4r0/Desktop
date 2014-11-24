@@ -143,5 +143,22 @@ namespace MuseoCliente.Connection.Objects
         {
             regresarObjeto(this.id);
         }
+
+         public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Categoria en la base de datos para poder Eliminarla " );
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado la Categoria Seleccionada " + e.Message);
+            }
+        }
     }
 }

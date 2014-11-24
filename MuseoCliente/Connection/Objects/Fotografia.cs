@@ -262,6 +262,23 @@ namespace MuseoCliente.Connection.Objects
             this.pieza = Temp.pieza;
             this.resource_uri = Temp.resource_uri;
         }
+
+         public void eliminar()
+         {
+             try
+             {
+                 if (this.id == 0)
+                 {
+                     Error.ingresarError(2, "No existe la Fotografia en la base de datos para poder Eliminarla ");
+                     return;
+                 }
+                 this.del();
+             }
+             catch (Exception e)
+             {
+                 Error.ingresarError(2, "No se ha eliminado la Fotografia Seleccionada " + e.Message);
+             }
+         }
     
 
     }

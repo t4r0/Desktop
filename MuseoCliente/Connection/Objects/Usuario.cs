@@ -140,6 +140,23 @@ namespace MuseoCliente.Connection.Objects
         {
             return false;
         }
+
+        public void eliminar()
+        {
+            try
+            {
+                if (this.username == "")
+                {
+                    Error.ingresarError(2, "No existe el Usuario en la base de datos para poder Eliminarla ");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado el Usuario Seleccionada " + e.Message);
+            }
+        }
     }
 }
 

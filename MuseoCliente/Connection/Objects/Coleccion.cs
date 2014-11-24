@@ -153,5 +153,21 @@ namespace MuseoCliente.Connection.Objects
             }
             return null;
         }
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Coleccion en la base de datos para poder Eliminarla ");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado la Coleccion Seleccionada " + e.Message);
+            }
+        }
     }
 }

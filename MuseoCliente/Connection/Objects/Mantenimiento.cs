@@ -178,5 +178,22 @@ namespace MuseoCliente.Connection.Objects
             }
             return consol;
         }
+
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe el Mantenimiento seleccionado ");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se elimino el objeto " + e.Message);
+            }
+        }
     }
 }
