@@ -48,10 +48,10 @@ namespace MuseoCliente
                 nuevaDir = op.cambia(direccionImagen, 800, 800, evento.nombre);
                 evento.afiche = utilidad.subirSalaoEvento(evento.nombre, nuevaDir, evento.nombre + "." + nombreImagen.Split('.')[1], false);
             }
-            evento.usuario = Settings.user.username;
             evento.fecha = dpFecha.SelectedDate.Value.Date;
             if (modificar == false)
             {
+                evento.usuario = Settings.user.username;
                 evento.guardar();
                 modificarImagen = false;
             }
