@@ -61,23 +61,31 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             clasificacion = (Clasificacion)this.DataContext;
-            if (modificar == false)
+            if (!txtCodigo.Text.Equals("") && (!txtNombre.Text.Equals("")) && (cmbFicha.SelectedValue != null) && (cmbCategoria.SelectedValue != null) && (cmbColeccion.SelectedValue != null))
             {
-                clasificacion.guardar();
+                if (modificar == false)
+                {
+                    clasificacion.guardar();
+                }
+                else
+                {
+                    clasificacion.modificar();
+                }
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Correcto");
+                    borde.Child = anterior;
+                }
             }
             else
             {
-                clasificacion.modificar();
+                MessageBox.Show("No se ha rellenado los campos necesarios para guardar el registro");
             }
-            if (Connection.Objects.Error.isActivo())
-            {
-                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
-            }
-            else
-            {
-                MessageBox.Show("Correcto");
-                borde.Child = anterior;
-            }
+            
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)

@@ -19,6 +19,10 @@ namespace MuseoCliente.Connection.Objects
         [JsonProperty]
         public int id { get; set; }
 
+        public ResourceObject()
+        {
+        }
+
         protected ResourceObject( string resourceUri )
         {
             conector.BaseUri = resourceUri;

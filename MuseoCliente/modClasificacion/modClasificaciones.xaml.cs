@@ -94,15 +94,6 @@ namespace MuseoCliente
             borde.Child = frm;
         }
 
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-            modResultadosClas frm = new modResultadosClas();
-            frm.busqueda = txtBuscar.Text;
-            frm.borde = borde;
-            frm.anterior = this;
-            borde.Child = frm;
-        }
-
         private void btnNuevaClas_Click(object sender, RoutedEventArgs e)
         {
             modClasificacion frm = new modClasificacion();
@@ -184,7 +175,7 @@ namespace MuseoCliente
             if (gvClasificaciones.SelectedValue != null)
             {
                 frm.modificar = true;
-                frm.id = Convert.ToInt16(gvClasificaciones.SelectedValue.ToString());
+                frm.DataContext = gvClasificaciones.SelectedItem;
             }
             borde.Child = frm;
         }

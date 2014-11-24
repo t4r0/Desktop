@@ -12,19 +12,7 @@
 		<Border DockPanel.Dock="Top" Margin="0" Height="50" VerticalAlignment="Top" BorderBrush="{DynamicResource Gray}" BorderThickness="0,0,0,2">
 			<DockPanel>
 				<Label DockPanel.Dock="Left" Margin="10,0,0,0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="16" Foreground="{DynamicResource DarkGray}" VerticalAlignment="Center">Clasificaciones</Label>
-                <Button x:Name="btnBuscar"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Click="btnBuscar_Click" DockPanel.Dock="Right" Style="{DynamicResource BlueButton}" Width="29" Margin="5,0,10,0">
-                    <TextBlock TextTrimming="CharacterEllipsis" RenderTransformOrigin="0.5,0.5">
-                        <TextBlock.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform/>
-                                <TranslateTransform Y="-3"/>
-                            </TransformGroup>
-                        </TextBlock.RenderTransform>🔍</TextBlock>
-                </Button>
-				<TextBox x:Name="txtBuscar" Height="25" Width="206" HorizontalAlignment="Right" Margin="0" Style="{StaticResource CustomTextBox}"/>
-			</DockPanel>
+            </DockPanel>
 		</Border>
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
 		<Grid>

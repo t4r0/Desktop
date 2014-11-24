@@ -12,7 +12,7 @@
 			<Label Margin="10,0,0,0">Nombre de Usuario:</Label>
 			<TextBox x:Name="txtUserName" Margin="10,0,20,0"/>
 			<Label Margin="10,0,0,0">Contraseña:</Label>
-            <TextBox x:Name="txtContra" Margin="10,0,20,0"/>
+            <PasswordBox x:Name="txtContra" Margin="10,0,20,0"/>
 			<Label Margin="10,0,0,0">Correo:</Label>
             <TextBox x:Name="txtCorreo" Margin="10,0,20,20"/>
 			<DockPanel Width="300" HorizontalAlignment="Center">
