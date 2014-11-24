@@ -205,5 +205,22 @@ namespace MuseoCliente.Connection.Objects
             return ( clase );
         }
 
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Clasificacion en la base de datos para poder Eliminarla " );
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con link: " + e.Message);
+            }
+        }
+
     }
 }
