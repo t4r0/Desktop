@@ -277,5 +277,22 @@ namespace MuseoCliente.Connection.Objects
             piezas.Add(diccionario);
         }
 
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Investigacion en la base de datos para poder Eliminarla ");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado la Investigacion Seleccionada " + e.Message);
+            }
+        }
+
     }
 }

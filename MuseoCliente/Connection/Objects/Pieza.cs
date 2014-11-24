@@ -493,5 +493,22 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList( listaNueva );
         }
 
+        public void eliminar()
+        {
+            try
+            {
+                if (this.codigo == 0)
+                {
+                    Error.ingresarError(2, "No existe la Pieza en la base de datos para poder Eliminarla ");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado la Pieza Seleccionada " + e.Message);
+            }
+        }
+
     }
 }
