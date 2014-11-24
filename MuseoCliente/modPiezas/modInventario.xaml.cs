@@ -71,6 +71,7 @@ namespace MuseoCliente
             await t;
             listColecciones.ItemsSource = t.Result;
             listColecciones.DisplayMemberPath = "nombre";
+          
         }
 
         private void listColecciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,7 +109,7 @@ namespace MuseoCliente
             {
                 if (cat != null && col!=null)
                 {
-                    CargarClasificaciones(cat);
+                    CargarClasificaciones(cat, col);
                     CargarPiezas("?coleccion=" + col.id + "&categoria=" + cat.id);
                 }
             }
@@ -120,9 +121,10 @@ namespace MuseoCliente
             await t;
             listPiezas.ItemsSource = t.Result;
         }
-        private async void CargarClasificaciones(Categoria cat)
+        private async void CargarClasificaciones(Categoria cat, Coleccion col)
         {
-            Task<List<Clasificacion>> t = Task<List<Clasificacion>>.Factory.StartNew(() => cat.regresarClasificacion());
+
+            Task<List<Clasificacion>> t = Task<List<Clasificacion>>.Factory.StartNew(() => cat.regresarClasificacion(col.id.ToString()));
             await t;
             clasPanel.Visibility = Visibility.Visible;
             listClas.ItemsSource = t.Result;

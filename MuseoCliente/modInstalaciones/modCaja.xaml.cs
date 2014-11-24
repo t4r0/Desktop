@@ -21,23 +21,27 @@ namespace MuseoCliente
         private void btnGuardar_Click( object sender, RoutedEventArgs e )
         {
             caja.codigo = txtCodigo.Text;
-            if( modificar == false )
+            if (!txtCodigo.Text.Equals(""))
             {
-                caja.guardar();
+                if (modificar == false)
+                {
+                    caja.guardar();
+                }
+                else
+                {
+                    caja.modificar();
+                }
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha guardado exitosamente");
+                    borde.Child = anterior;
+                }
             }
-            else
-            {
-                caja.modificar();
-            }
-            if( Connection.Objects.Error.isActivo() )
-            {
-                MessageBox.Show( Connection.Objects.Error.nombreError, Connection.Objects.Error.descripcionError );
-            }
-            else
-            {
-                MessageBox.Show( "Se ha guardado exitosamente" );
-                borde.Child = anterior;
-            }
+            
         }
 
         private void LayoutRoot_Loaded( object sender, RoutedEventArgs e )

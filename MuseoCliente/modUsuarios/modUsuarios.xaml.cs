@@ -34,25 +34,6 @@ namespace MuseoCliente
             cargarAutores();
         }
 
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void btnNuevoAu_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void gvActivos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
         private void btnNuevoUsuario_Click(object sender, RoutedEventArgs e)
         {
@@ -122,12 +103,21 @@ namespace MuseoCliente
 
         private void btnEditarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            modUsuario frm = new modUsuario();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.modificar = true;
-            borde.Child = frm;
-            frm.DataContext = gvActivos.SelectedItem;
+            if (gvActivos.SelectedItem == null)
+            {
+                modNuevoU frm = new modNuevoU();
+                frm.ShowDialog();
+            }
+            else
+            {
+                modUsuario frm = new modUsuario();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.modificar = true;
+                borde.Child = frm;
+                frm.DataContext = gvActivos.SelectedItem;
+            }
+            
         }
 
         private void btnEditarAutor_Click(object sender, RoutedEventArgs e)
@@ -135,8 +125,11 @@ namespace MuseoCliente
             modAutor frm = new modAutor();
             frm.borde = borde;
             frm.anterior = this;
-            frm.modificar = true;
-            frm.id = Convert.ToInt16(gvVoluntarios.SelectedValue.ToString());
+            if (gvVoluntarios.SelectedValue != null)
+            {
+                frm.modificar = true;
+                frm.id = Convert.ToInt16(gvVoluntarios.SelectedValue.ToString());
+            }
             borde.Child = frm;
         }
 	}

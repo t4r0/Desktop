@@ -58,7 +58,7 @@ namespace MuseoCliente
             }
             else
             {
-                lblOperacion.Content = "Nueva Categoría";
+                lblOperacion.Content = "Nueva Investigación";
                 gvPiezasGuardadas.ItemsSource = new ArrayList();
             }
         }
@@ -67,11 +67,11 @@ namespace MuseoCliente
         {
             investigacion = (Investigacion) this.DataContext;
             investigacion.autor = (int) cmbAutor.SelectedValue;
-            investigacion.editor = Settings.user.username;
             List<string> listado = LinksReferencia.GetOptions();
             ArrayList piezas = (ArrayList) gvPiezasGuardadas.ItemsSource;
             if (modificar == false)
             {
+                investigacion.editor = Settings.user.username;
                 investigacion.ingresarPiezas(piezas.ToList<Pieza>());
                 foreach(string link in LinksReferencia.GetOptions())
                     if (!link.Equals("Opcion"))
@@ -152,10 +152,11 @@ namespace MuseoCliente
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Pieza piezaSeleccionada = (Pieza) gvPiezas.SelectedItem;
-
-            gvPiezasGuardadas.ItemsSource = this.verificarPieza(piezaSeleccionada);
-            gvPiezasGuardadas.Items.Refresh();
-            //gvPiezasGuardadas.Items.Add(piezaSeleccionada);
+            if (piezaSeleccionada != null)
+            {
+                gvPiezasGuardadas.ItemsSource = this.verificarPieza(piezaSeleccionada);
+                gvPiezasGuardadas.Items.Refresh();
+            }
         }
         private ArrayList verificarPieza(Pieza pieza)
         {
@@ -184,13 +185,16 @@ namespace MuseoCliente
         {
             ArrayList listado = (ArrayList)gvPiezasGuardadas.ItemsSource;
             Pieza piezaSeleccionada = (Pieza) gvPiezasGuardadas.SelectedItem;
-            for (int i = 0; i < listado.Count; i++)
+            if (piezaSeleccionada != null)
             {
-                Pieza piezaActual = (Pieza)listado[i];
-                if (piezaActual.codigo == piezaSeleccionada.codigo)
+                for (int i = 0; i < listado.Count; i++)
                 {
-                    listado.RemoveAt(i);
-                    break;
+                    Pieza piezaActual = (Pieza)listado[i];
+                    if (piezaActual.codigo == piezaSeleccionada.codigo)
+                    {
+                        listado.RemoveAt(i);
+                        break;
+                    }
                 }
             }
             gvPiezasGuardadas.ItemsSource = listado;

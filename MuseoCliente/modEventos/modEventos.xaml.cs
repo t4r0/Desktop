@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading.Tasks;
+using System.Collections;
 
 namespace MuseoCliente
 {
@@ -27,11 +29,30 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvProximos.ItemsSource = eventos.regresarEventosProximos();
-            gvConcluidos.ItemsSource = eventos.regresarEventosFinalizados();
+            cargarEventosProximos();
+            cargarEventosConcluidos();
         }
 
-        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        private async void cargarEventosProximos()
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => eventos.regresarEventosProximos());
+            await task;
+            gvProximos.ItemsSource = task.Result;
+        }
+        private async void cargarEventosConcluidos()
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => eventos.regresarEventosFinalizados());
+            await task;
+            gvConcluidos.ItemsSource = task.Result;
+        }
+        private async void buscarEventos(string nombre)
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => eventos.consultarNombre(nombre));
+            await task;
+            gvProximos.ItemsSource = task.Result;
+        }
+
+        private void btnNuevoEvento_Click(object sender, RoutedEventArgs e)
         {
             modEvento frm = new modEvento();
             frm.borde = borde;
@@ -39,13 +60,31 @@ namespace MuseoCliente
             borde.Child = frm;
         }
 
-        private void btnBuscar_Click(object sender, RoutedEventArgs e)
+        private void btnEditarEvento_Click(object sender, RoutedEventArgs e)
         {
-            modResultadosEvs frm = new modResultadosEvs();
-            frm.busqueda = txtBuscar.Text;
+            modEvento frm = new modEvento();
             frm.borde = borde;
             frm.anterior = this;
+            if (gvProximos.SelectedItem != null)
+            {
+                frm.modificar = true;
+                frm.DataContext = gvProximos.SelectedItem;
+            }
             borde.Child = frm;
+            
+        }
+
+        private void txtBuscarEventos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtBuscarEventos.Text.Length > 3)
+                buscarEventos(txtBuscarEventos.Text);
+            else
+                cargarEventosProximos();
+        }
+
+        private void btnBuscarEventos_Click(object sender, RoutedEventArgs e)
+        {
+            buscarEventos(txtBuscarEventos.Text);
         }
 	}
 }

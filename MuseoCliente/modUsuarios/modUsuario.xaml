@@ -37,7 +37,7 @@
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Nombres:" Margin="10,10,0,0" Grid.Column="1" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="67"/>
             <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="Apellidos:" Margin="13,10,0,0" Grid.Column="2" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28" Width="68"/>
             <Label x:Name="lblUserName" Content="{Binding username, Mode=TwoWay}" Margin="10,105,10,1" Grid.Column="0" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" Foreground="{DynamicResource PureBlue}"/>
-            <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="País:" Margin="10,79,0,0" Grid.Column="2" Width="74" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource Gray}" Height="28"/>
+            <Label HorizontalAlignment="Left" VerticalAlignment="Top" Content="País:" Margin="10,79,0,0" Grid.Column="2" Width="74" FontFamily="/MuseoCliente;component/Font/#Source Sans Pro" FontSize="14" Foreground="{DynamicResource DarkGray}" Height="28"/>
             <Border HorizontalAlignment="Center" Cursor="Hand" ToolTip="Haz clic para cambiar la imagen"  Height="100" Margin="10,8,25,0" VerticalAlignment="Top" Width="100" Background="#FFF0F0F0" CornerRadius="50" MouseUp="Border_MouseUp">
                 <Image x:Name="imageUser" Source="{Binding fotografia, Mode=TwoWay}">
                     <Image.Clip>

@@ -100,9 +100,112 @@ namespace MuseoCliente
         {
             consolidacion = (Consolidacion)this.DataContext;
             consolidacion.pieza = txtCodigoPieza.Text;
-            consolidacion.responsable = "Migue4";
+            //////////////////////Mantenimientos//////////////////////////////
+            List<Mantenimiento> mantens = new List<Mantenimiento>();
+            //Limpieza
+            if (rbLimpieza.IsChecked == true)
+            {
+                mante1.procedimiento = 1;
+                mante1.metodoMaterial = txtLimpieza.Text;
+                if (dpFechaLimpieza.SelectedDate != null)
+                    mante1.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
+                else
+                    mante1.fecha = dpInicio.SelectedDate.Value.Date;
+            }
+            else
+            {
+                mante1.procedimiento = 2;
+                mante1.metodoMaterial = "";
+                mante1.fecha = System.DateTime.Now;
+            }
+            mantens.Add(mante1);
+            //Consolidación
+            if (rbConsolidacion.IsChecked == true)
+            {
+                mante2.procedimiento = 3;
+                mante2.metodoMaterial = txtConsolidacion.Text;
+                if (dpFechaConsol.SelectedDate != null)
+                    mante2.fecha = dpFechaConsol.SelectedDate.Value.Date;
+                else
+                    mante2.fecha = dpInicio.SelectedDate.Value.Date;
+            }
+            else
+            {
+                mante2.procedimiento = 4;
+                mante2.metodoMaterial = "";
+                mante2.fecha = System.DateTime.Now;
+            }
+            mantens.Add(mante2);
+            //Eliminación
+            if (rbEliminacion.IsChecked == true)
+            {
+                mante3.procedimiento = 5;
+                mante3.metodoMaterial = txtEliminacion.Text;
+                if (dpFechaEliminacion.SelectedDate != null)
+                    mante3.fecha = dpFechaEliminacion.SelectedDate.Value.Date;
+                else
+                    mante3.fecha = dpInicio.SelectedDate.Value.Date;
+            }
+            else
+            {
+                mante3.procedimiento = 6;
+                mante3.metodoMaterial = "";
+                mante3.fecha = System.DateTime.Now;
+            }
+            mantens.Add(mante3);
+            //Unión
+            if (rbUnion.IsChecked == true)
+            {
+                mante4.procedimiento = 7;
+                mante4.metodoMaterial = txtUnion.Text;
+                if (dpFechaUnion.SelectedDate != null)
+                    mante4.fecha = dpFechaUnion.SelectedDate.Value.Date;
+                else
+                    mante4.fecha = dpInicio.SelectedDate.Value.Date;
+            }
+            else
+            {
+                mante4.procedimiento = 8;
+                mante4.metodoMaterial = "";
+                mante4.fecha = System.DateTime.Now;
+            }
+            mantens.Add(mante4);
+            //Otro
+            if (rbOtro.IsChecked == true)
+            {
+                mante5.procedimiento = 9;
+                mante5.metodoMaterial = txtOtro.Text;
+                if (dpFechaOtro.SelectedDate != null)
+                    mante5.fecha = dpFechaOtro.SelectedDate.Value.Date;
+                else
+                    mante5.fecha = dpInicio.SelectedDate.Value.Date;
+            }
+            else
+            {
+                mante5.procedimiento = 10;
+                mante5.metodoMaterial = "";
+                mante5.fecha = System.DateTime.Now;
+            }
+            mantens.Add(mante5);
+            //Observaciones
+            if (txtObservaciones.Text.Length > 10)
+            {
+                mante6.procedimiento = 11;
+                mante6.metodoMaterial = txtObservaciones.Text;
+                mante6.fecha = System.DateTime.Now;
+            }
+            else
+            {
+                mante6.procedimiento = 12;
+                mante6.metodoMaterial = "";
+                mante6.fecha = System.DateTime.Now;
+            }
+            mantens.Add(mante6);
+            consolidacion.ingresarMantenimiento(mantens);
+            //Modificar o Guardar
             if (modificar == false)
             {
+                consolidacion.responsable = Settings.user.username;
                 consolidacion.guardar();
             }
             else
@@ -116,103 +219,6 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Consolidación correcta");
-            }
-            if (rbLimpieza.IsChecked == true)
-            {
-                mante1.procedimiento = 1;
-                mante1.metodoMaterial = txtLimpieza.Text;
-                mante1.fecha = dpFechaLimpieza.SelectedDate.Value.Date;
-                mante1.consolidacion = consolidacion.id;
-                if (modificar == false)
-                {
-                    mante1.guardar();
-                }
-                else
-                {
-                    mante1.modificar();
-                }
-            }
-            if (rbConsolidacion.IsChecked == true)
-            {
-                mante2.procedimiento = 2;
-                mante2.metodoMaterial = txtConsolidacion.Text;
-                mante2.fecha = dpFechaConsol.SelectedDate.Value.Date;
-                mante2.consolidacion = consolidacion.id;
-                if (modificar == false)
-                {
-                    mante2.guardar();
-                }
-                else
-                {
-                    mante2.modificar();
-                }
-            }
-            if (rbEliminacion.IsChecked == true)
-            {
-                mante3.procedimiento = 3;
-                mante3.metodoMaterial = txtEliminacion.Text;
-                mante3.fecha = dpFechaEliminacion.SelectedDate.Value.Date;
-                mante3.consolidacion = consolidacion.id;
-                if (modificar == false)
-                {
-                    mante3.guardar();
-                }
-                else
-                {
-                    mante3.modificar();
-                }
-            }
-            if (rbUnion.IsChecked == true)
-            {
-                mante4.procedimiento = 4;
-                mante4.metodoMaterial = txtUnion.Text;
-                mante4.fecha = dpFechaUnion.SelectedDate.Value.Date;
-                mante4.consolidacion = consolidacion.id;
-                if (modificar == false)
-                {
-                    mante4.guardar();
-                }
-                else
-                {
-                    mante4.modificar();
-                }
-            }
-            if (rbOtro.IsChecked == true)
-            {
-                mante5.procedimiento = 5;
-                mante5.metodoMaterial = txtOtro.Text;
-                mante5.fecha = dpFechaOtro.SelectedDate.Value.Date;
-                mante5.consolidacion = consolidacion.id;
-                if (modificar == false)
-                {
-                    mante5.guardar();
-                }
-                else
-                {
-                    mante5.modificar();
-                }
-            }
-            if (txtObservaciones.Text.Length > 10)
-            {
-                mante6.procedimiento = 6;
-                mante6.metodoMaterial = txtObservaciones.Text;
-                mante6.consolidacion = consolidacion.id;
-                if (modificar == false)
-                {
-                    mante6.guardar();
-                }
-                else
-                {
-                    mante6.modificar();
-                }
-            }
-            if (Connection.Objects.Error.isActivo())
-            {
-                MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
-            }
-            else
-            {
-                MessageBox.Show("Mantenimientos ingresados");
                 borde.Child = anterior;
             }
         }
@@ -222,91 +228,118 @@ namespace MuseoCliente
             if (modificar == true)
             {
                 lblOperacion.Content = "Modificar Consolidación";
-                //Consolidacion
+                //Obtener Consolidacion
                 Consolidacion temp = new Consolidacion();
                 temp.regresarObjeto(id);
                 txtCodigoPieza.Text = temp.pieza;
                 Pieza temp2 = new Pieza();
                 temp2.regresarObjeto(temp.pieza);
                 txtNombrePieza.Text = temp2.nombre;
+                if (temp.limpieza == false)
+                {
+                    rbLimpieza.IsChecked = false;
+                    rbRestaurar.IsChecked = true;
+                }
                 //Mantenimientos
-                ArrayList mantenimientos = consolidacion.regresarMantenimiento();
+                List<Mantenimiento> mantenimientos = new List<Mantenimiento>();
+                mantenimientos = temp.mantenimientos;
                 for (int i = 0; i < mantenimientos.Count; i++)
                 {
-                    Mantenimiento tempMant = (Mantenimiento)mantenimientos[i];
                     //Limpieza
-                    if (tempMant.procedimiento == 1)
+                    if (mantenimientos[i].procedimiento == 1)
                     {
                         rbLimpieza.IsChecked = true;
-                        txtLimpieza.Text = tempMant.metodoMaterial;
-                        dpFechaLimpieza.SelectedDate = tempMant.fecha;
+                        rbNN1.IsChecked = false;
+                        txtLimpieza.Text = mantenimientos[i].metodoMaterial;
+                        dpFechaLimpieza.SelectedDate = mantenimientos[i].fecha;
+                        mante1 = mantenimientos[i];
                     }
-                    else
+                    if (mantenimientos[i].procedimiento == 2)
                     {
                         rbLimpieza.IsChecked = false;
+                        rbNN1.IsChecked = true;
                         txtLimpieza.Text = "";
                         dpFechaLimpieza.SelectedDate = null;
+                        mante1 = mantenimientos[i];
                     }
-                    //Consolidacion
-                    if (tempMant.procedimiento == 2)
+                    //Consolidación
+                    if (mantenimientos[i].procedimiento == 3)
                     {
                         rbConsolidacion.IsChecked = true;
-                        txtConsolidacion.Text = tempMant.metodoMaterial;
-                        dpFechaConsol.SelectedDate = tempMant.fecha;
+                        rbNN2.IsChecked = false;
+                        txtConsolidacion.Text = mantenimientos[i].metodoMaterial;
+                        dpFechaConsol.SelectedDate = mantenimientos[i].fecha;
+                        mante2 = mantenimientos[i];
                     }
-                    else
+                    if (mantenimientos[i].procedimiento == 4)
                     {
                         rbConsolidacion.IsChecked = false;
+                        rbNN2.IsChecked = true;
                         txtConsolidacion.Text = "";
                         dpFechaConsol.SelectedDate = null;
+                        mante2 = mantenimientos[i];
                     }
-                    //Eliminacion
-                    if (tempMant.procedimiento == 3)
+                    //Eliminación
+                    if (mantenimientos[i].procedimiento == 5)
                     {
                         rbEliminacion.IsChecked = true;
-                        txtEliminacion.Text = tempMant.metodoMaterial;
-                        dpFechaEliminacion.SelectedDate = tempMant.fecha;
+                        rbNN3.IsChecked = false;
+                        txtEliminacion.Text = mantenimientos[i].metodoMaterial;
+                        dpFechaEliminacion.SelectedDate = mantenimientos[i].fecha;
+                        mante3 = mantenimientos[i];
                     }
-                    else
+                    if (mantenimientos[i].procedimiento == 6)
                     {
                         rbEliminacion.IsChecked = false;
+                        rbNN3.IsChecked = true;
                         txtEliminacion.Text = "";
-                        dpFechaEliminacion.SelectedDate = tempMant.fecha;
+                        dpFechaEliminacion.SelectedDate = null;
+                        mante3 = mantenimientos[i];
                     }
-                    //Union
-                    if (tempMant.procedimiento == 4)
+                    //Unión
+                    if (mantenimientos[i].procedimiento == 7)
                     {
                         rbUnion.IsChecked = true;
-                        txtUnion.Text = tempMant.metodoMaterial;
-                        dpFechaUnion.SelectedDate = tempMant.fecha;
+                        rbNN4.IsChecked = false;
+                        txtUnion.Text = mantenimientos[i].metodoMaterial;
+                        dpFechaUnion.SelectedDate = mantenimientos[i].fecha;
+                        mante4 = mantenimientos[i];
                     }
-                    else
+                    if (mantenimientos[i].procedimiento == 8)
                     {
                         rbUnion.IsChecked = false;
+                        rbNN4.IsChecked = true;
                         txtUnion.Text = "";
                         dpFechaUnion.SelectedDate = null;
+                        mante4 = mantenimientos[i];
                     }
-                    //Otro
-                    if (tempMant.procedimiento == 5)
+                    //Otros
+                    if (mantenimientos[i].procedimiento == 9)
                     {
                         rbOtro.IsChecked = true;
-                        txtOtro.Text = tempMant.metodoMaterial;
-                        dpFechaOtro.SelectedDate = tempMant.fecha;
+                        rbNN5.IsChecked = false;
+                        txtOtro.Text = mantenimientos[i].metodoMaterial;
+                        dpFechaOtro.SelectedDate = mantenimientos[i].fecha;
+                        mante5 = mantenimientos[i];
                     }
-                    else
+                    if (mantenimientos[i].procedimiento == 10)
                     {
                         rbOtro.IsChecked = false;
+                        rbNN5.IsChecked = true;
                         txtOtro.Text = "";
                         dpFechaOtro.SelectedDate = null;
+                        mante5 = mantenimientos[i];
                     }
                     //Observaciones
-                    if (tempMant.procedimiento == 6)
+                    if (mantenimientos[i].procedimiento == 11)
                     {
-                        txtObservaciones.Text = tempMant.metodoMaterial;
+                        txtObservaciones.Text = mantenimientos[i].metodoMaterial;
+                        mante6 = mantenimientos[i];
                     }
-                    else
+                    if (mantenimientos[i].procedimiento == 12)
                     {
                         txtObservaciones.Text = "";
+                        mante6 = mantenimientos[i];
                     }
                 }
             }

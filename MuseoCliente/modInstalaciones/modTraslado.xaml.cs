@@ -14,6 +14,9 @@ using System.Threading;
 using MuseoCliente.Connection.Objects;
 using System.Collections;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using MuseoCliente.Properties;
+
 namespace MuseoCliente
 {
 	/// <summary>
@@ -43,7 +46,6 @@ namespace MuseoCliente
             if (traslado.regresarPiezas(pieza.codigo).Count > 0)
             {
                 traslado.pieza = pieza.codigo;
-                traslado.responsable = "Migue4";
                 traslado.fecha = System.DateTime.Today;
                 if (rbBodega.IsChecked == true)
                 {
@@ -74,7 +76,7 @@ namespace MuseoCliente
             else //Nuevo
             {
                 traslado.pieza = pieza.codigo;
-                traslado.responsable = "Migue4";
+                traslado.responsable = Settings.user.username;
                 traslado.fecha = System.DateTime.Today;
                 if (rbBodega.IsChecked == true)
                 {
@@ -143,12 +145,11 @@ namespace MuseoCliente
             if (txtCodigoPieza.Text.Length > 3 && !CargarPiezas.IsBusy)
             {
                 nombreP = txtCodigoPieza.Text;
-                InitializePiezasLoader();
-                CargarPiezas.RunWorkerAsync(piezas);
+                buscarPiezas(nombreP);
             }
             else
             {
-                gvPiezas.ItemsSource = null;
+                cargarPiezas();
                 txtCodigo.Text = "";
                 txtNombrePieza.Text = "";
                 rbVitrina.IsChecked = false;
@@ -175,7 +176,20 @@ namespace MuseoCliente
         void CargarPiezas_DoWork(object sender, DoWorkEventArgs e)
         {
             Pieza pieza = (Pieza)e.Argument;
-            e.Result = pieza.buscarNombre(nombreP);
+            e.Result = pieza.buscarCodigo(nombreP);
+        }
+
+        private async void buscarPiezas(string codigo)
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => piezas.buscarCodigo(codigo));
+            await task;
+            gvPiezas.ItemsSource = task.Result;
+        }
+        private async void cargarPiezas()
+        {
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => piezas.regresarTodos());
+            await task;
+            gvPiezas.ItemsSource = task.Result;
         }
 
         private void btnSeleccionar_Click(object sender, RoutedEventArgs e)

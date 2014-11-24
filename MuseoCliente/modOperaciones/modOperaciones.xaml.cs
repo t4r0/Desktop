@@ -42,13 +42,20 @@ namespace MuseoCliente
 
         private void btnEditar_Click(object sender, RoutedEventArgs e)
         {
-            modConsolidacion frm = new modConsolidacion();
-            frm.borde = borde;
-            frm.anterior = this;
-            frm.modificar = true;
-            frm.id = (int)gvConsolidaciones.SelectedValue;
-            borde.Child = frm;
-            frm.DataContext = gvConsolidaciones.SelectedItem;
+            if (gvConsolidaciones.SelectedItem != null)
+            {
+                modConsolidacion frm = new modConsolidacion();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.modificar = true;
+                frm.id = (int)gvConsolidaciones.SelectedValue;
+                borde.Child = frm;
+                frm.DataContext = gvConsolidaciones.SelectedItem;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una consolidación para editar","Advertencia");
+            }
         }
 	}
 }
