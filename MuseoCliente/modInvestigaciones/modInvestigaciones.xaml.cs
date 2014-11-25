@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading.Tasks;
 using System.Collections;
+using MuseoCliente.Connection.Objects;
 
 namespace MuseoCliente
 {
@@ -65,6 +66,10 @@ namespace MuseoCliente
                 frm.modificar = true;
                 borde.Child = frm;
             }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una investigación para editar", "Advertencia");
+            }
         }
 
         private void btnBuscarInvestigacion_Click(object sender, RoutedEventArgs e)
@@ -94,6 +99,29 @@ namespace MuseoCliente
             else
             {
                 cargarInvestigaciones();
+            }
+        }
+
+        private void btnEliminarInvestigacion_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvResultados.SelectedItem != null)
+            {
+                Investigacion invT = new Investigacion();
+                invT = (Investigacion)gvResultados.SelectedItem;
+                invT.eliminar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    cargarInvestigaciones();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clasificación antes de eliminar", "Advertencia");
             }
         }
 	}
