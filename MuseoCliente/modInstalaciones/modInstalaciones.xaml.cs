@@ -105,7 +105,7 @@ namespace MuseoCliente
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una sala para editar", "Advertencia");
+                MessageBox.Show("Debe seleccionar una caja para editar", "Advertencia");
             }
         }
 
@@ -122,7 +122,7 @@ namespace MuseoCliente
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una sala para editar", "Advertencia");
+                MessageBox.Show("Debe seleccionar una vitrina para editar", "Advertencia");
             }
         }
 
