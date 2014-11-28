@@ -28,8 +28,7 @@ namespace MuseoCliente
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            gvConsolidaciones.ItemsSource = consolidaciones.regresarTodo();
-            gvConsolidaciones.SelectedValuePath = "id";
+            actualizar();
         }
 
         private void btnNuevaCons_Click(object sender, RoutedEventArgs e)
@@ -56,6 +55,35 @@ namespace MuseoCliente
             {
                 MessageBox.Show("Debe seleccionar una consolidación para editar","Advertencia");
             }
+        }
+
+        private void btnEliminarCons_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvConsolidaciones.SelectedItem != null)
+            {
+                Consolidacion consT = new Consolidacion();
+                consT = (Consolidacion)gvConsolidaciones.SelectedItem;
+                consT.eliminar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    actualizar();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clasificación antes de eliminar", "Advertencia");
+            }
+        }
+
+        public void actualizar()
+        {
+            gvConsolidaciones.ItemsSource = consolidaciones.regresarTodo();
+            gvConsolidaciones.SelectedValuePath = "id";
         }
 	}
 }

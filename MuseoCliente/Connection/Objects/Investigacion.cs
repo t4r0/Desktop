@@ -72,18 +72,6 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void eliminar()
-        {
-            try
-            {
-                this.del();
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(e.Message);
-            }
-        }
-
         private void elminarLinks()
         {
             List<LinkInvestigacion> lista = this.regresarLinkInvestigacion().ToList<LinkInvestigacion>();
