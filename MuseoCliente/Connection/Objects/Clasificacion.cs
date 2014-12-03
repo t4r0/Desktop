@@ -89,12 +89,9 @@ namespace MuseoCliente.Connection.Objects
             List<Clasificacion> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre__contains=" + nombre;
-                listaNueva = this.GetAsCollection( consultarNombre );
-
-
-                if( listaNueva == null )
-                    Error.ingresarError( 2, "No se encontro" );
+                listaNueva = this.GetAsCollection("?nombre__icontains=" + nombre);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch( Exception e )
             {
@@ -105,8 +102,6 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError( 2, "No se encontro la busqueda" );
                 return null;
             }
-
-
             return new ArrayList( listaNueva );
         }
 

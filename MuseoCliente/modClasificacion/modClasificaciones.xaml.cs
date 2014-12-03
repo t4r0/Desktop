@@ -66,18 +66,21 @@ namespace MuseoCliente
             await task;
             gvColecciones.ItemsSource = task.Result;
         }
+
         private async void buscarCategorias(string nombre)
         {
             Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => categ.consultarNombre(nombre));
             await task;
             gvCategorias.ItemsSource = task.Result;
         }
+
         private async void buscarClasificacion(string nombre)
         {
             Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => clasif.consultarNombre(nombre));
             await task;
             gvClasificaciones.ItemsSource = task.Result;
         }
+
         private void btnNuevaCateg_Click(object sender, RoutedEventArgs e)
         {
             modCategoria frm = new modCategoria();
@@ -112,7 +115,7 @@ namespace MuseoCliente
 
         private void btnBuscarColecciones_Click(object sender, RoutedEventArgs e)
         {
-            buscarColecciones(txtBuscarColecciones.Text);
+            //buscarColecciones(txtBuscarColecciones.Text);
         }
 
         private void btnEditarColeccion_Click(object sender, RoutedEventArgs e)
@@ -167,12 +170,12 @@ namespace MuseoCliente
 
         private void btnBuscarCategoria_Click(object sender, RoutedEventArgs e)
         {
-            buscarCategorias(txtBuscarCategoria.Text);
+            //buscarCategorias(txtBuscarCategoria.Text);
         }
 
         private void btnBuscarClasificacion_Click(object sender, RoutedEventArgs e)
         {
-            buscarClasificacion(txtBuscarClasificacion.Text);
+            //buscarClasificacion(txtBuscarClasificacion.Text);
         }
 
         private void btnEditarClasificacion_Click(object sender, RoutedEventArgs e)
