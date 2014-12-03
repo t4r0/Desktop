@@ -71,7 +71,7 @@ namespace MuseoCliente
 
         private async void buscarPiezas(string codigo)
         {
-            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => piezas.buscarNombre(codigo));
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => piezas.buscarCodigo(codigo));
             await task;
             gvPiezas.ItemsSource = task.Result;
         }
