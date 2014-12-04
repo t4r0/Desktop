@@ -39,11 +39,11 @@
                 </DockPanel>
                 <StackPanel Width="400" HorizontalAlignment="Center" Margin="0">
                     <Label DockPanel.Dock="Left" VerticalAlignment="Center" Content="Fecha de Inicio:"/>
-                    <DatePicker x:Name="dpInicio" Height="25" SelectedDate="{Binding fechaInicio, Mode=TwoWay}"/>
+                    <DatePicker x:Name="dpInicio" Height="25"/>
                 </StackPanel>
                 <StackPanel Width="400" HorizontalAlignment="Center" Margin="0,5,0,10">
                     <Label DockPanel.Dock="Left" VerticalAlignment="Center" Content="Fecha Fin:"/>
-                    <DatePicker x:Name="dpFin" Height="25" Margin="0,0,0,0" SelectedDate="{Binding fechaFin, Mode=TwoWay}"/>
+                    <DatePicker x:Name="dpFin" Height="25" Margin="0,0,0,0"/>
                 </StackPanel>
             </StackPanel>
             <Border BorderBrush="{DynamicResource DarkGray}" BorderThickness="1">

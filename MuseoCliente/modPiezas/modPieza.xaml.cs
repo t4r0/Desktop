@@ -63,6 +63,7 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Guardado con éxito");
+                borde.Child = anterior;
             }
         }
 
