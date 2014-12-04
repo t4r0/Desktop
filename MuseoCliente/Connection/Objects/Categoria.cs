@@ -43,10 +43,12 @@ namespace MuseoCliente.Connection.Objects
 
         public ArrayList consultarNombre( String nombre )
         {
-            ArrayList listaNueva = null;
+            List<Categoria> listaNueva = null;
             try
             {
-                listaNueva = new ArrayList( this.GetAsCollection( "?nombre_icontains=" + nombre ) );
+                listaNueva = this.GetAsCollection( "?nombre__icontains=" + nombre );
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch( Exception e )
             {
@@ -57,7 +59,7 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError(2, "No se encontraron Categorias con el nombre: "+nombre);
                 return null;
             }
-            return listaNueva;
+            return new ArrayList(listaNueva);
         }
 
         public List<Clasificacion> regresarClasificacion()

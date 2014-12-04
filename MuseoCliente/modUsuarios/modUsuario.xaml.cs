@@ -92,12 +92,8 @@ namespace MuseoCliente
             else
             {
                 MessageBox.Show("Correcto");
+                borde.Child = anterior;
             }
-            /* Pendiente voluntario
-            if (chkVoluntario.IsChecked == true)
-            {
-                //
-            }*/
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
