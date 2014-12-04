@@ -7,10 +7,10 @@ using System.Windows;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjuntos de atributos. Cambie los valores de estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("MuseoCliente")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Bicefalo")]
+[assembly: AssemblyDescription("Aplicacion del Museo")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("MEVEH")]
 [assembly: AssemblyProduct("MuseoCliente")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
@@ -53,3 +53,4 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguageAttribute("es-GT")]
