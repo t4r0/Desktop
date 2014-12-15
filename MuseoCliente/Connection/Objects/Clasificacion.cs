@@ -89,12 +89,9 @@ namespace MuseoCliente.Connection.Objects
             List<Clasificacion> listaNueva = null;
             try
             {
-                string consultarNombre = "?nombre__contains=" + nombre;
-                listaNueva = this.GetAsCollection( consultarNombre );
-
-
-                if( listaNueva == null )
-                    Error.ingresarError( 2, "No se encontro" );
+                listaNueva = this.GetAsCollection("?nombre__icontains=" + nombre);
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro nombre similares");
             }
             catch( Exception e )
             {
@@ -105,8 +102,6 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError( 2, "No se encontro la busqueda" );
                 return null;
             }
-
-
             return new ArrayList( listaNueva );
         }
 
@@ -203,6 +198,23 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError( 2, "no se encontraron coincidencias con sala: " + ficha );
             }
             return ( clase );
+        }
+
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Clasificacion en la base de datos para poder Eliminarla " );
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "no se encontraron coincidencias con link: " + e.Message);
+            }
         }
 
     }

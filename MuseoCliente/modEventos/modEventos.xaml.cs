@@ -62,16 +62,19 @@ namespace MuseoCliente
 
         private void btnEditarEvento_Click(object sender, RoutedEventArgs e)
         {
-            modEvento frm = new modEvento();
-            frm.borde = borde;
-            frm.anterior = this;
             if (gvProximos.SelectedItem != null)
             {
+                modEvento frm = new modEvento();
+                frm.borde = borde;
+                frm.anterior = this;
                 frm.modificar = true;
                 frm.DataContext = gvProximos.SelectedItem;
+                borde.Child = frm;
             }
-            borde.Child = frm;
-            
+            else
+            {
+                MessageBox.Show("Debe seleccionar un evento para editar", "Advertencia");
+            }
         }
 
         private void txtBuscarEventos_TextChanged(object sender, TextChangedEventArgs e)
@@ -85,6 +88,71 @@ namespace MuseoCliente
         private void btnBuscarEventos_Click(object sender, RoutedEventArgs e)
         {
             buscarEventos(txtBuscarEventos.Text);
+        }
+
+        private void btnEliminarEvento_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvProximos.SelectedValue != null)
+            {
+                Connection.Objects.Eventos evento = new Connection.Objects.Eventos();
+                evento = (Connection.Objects.Eventos)gvProximos.SelectedItem;
+                evento.eliminar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    cargarEventosConcluidos();
+                    cargarEventosProximos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clasificación antes de eliminar", "Advertencia");
+            }
+        }
+
+        private void btnEliminarEvt_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvConcluidos.SelectedValue != null)
+            {
+                Connection.Objects.Eventos evento = new Connection.Objects.Eventos();
+                evento = (Connection.Objects.Eventos)gvConcluidos.SelectedItem;
+                evento.eliminar();
+                if (Connection.Objects.Error.isActivo())
+                {
+                    MessageBox.Show(Connection.Objects.Error.descripcionError, Connection.Objects.Error.nombreError);
+                }
+                else
+                {
+                    MessageBox.Show("Se ha eliminado correctamente", "Correcto");
+                    cargarEventosConcluidos();
+                    cargarEventosProximos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una clasificación antes de eliminar", "Advertencia");
+            }
+        }
+
+        private void btnEditarEvt_Click(object sender, RoutedEventArgs e)
+        {
+            if (gvConcluidos.SelectedItem != null)
+            {
+                modEvento frm = new modEvento();
+                frm.borde = borde;
+                frm.anterior = this;
+                frm.modificar = true;
+                frm.DataContext = gvConcluidos.SelectedItem;
+                borde.Child = frm;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un evento para editar", "Advertencia");
+            }
         }
 	}
 }

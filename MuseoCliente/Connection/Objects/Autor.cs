@@ -164,5 +164,16 @@ namespace MuseoCliente.Connection.Objects
                 Error.ingresarError(e.Message);
             }
         }
+        public void eliminar()
+        {
+            try
+            {
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado el Autor seleccionado " + e.Message);
+            }
+        }
     }
 }

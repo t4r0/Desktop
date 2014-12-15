@@ -72,18 +72,6 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
-        public void eliminar()
-        {
-            try
-            {
-                this.del();
-            }
-            catch (Exception e)
-            {
-                Error.ingresarError(e.Message);
-            }
-        }
-
         private void elminarLinks()
         {
             List<LinkInvestigacion> lista = this.regresarLinkInvestigacion().ToList<LinkInvestigacion>();
@@ -275,6 +263,23 @@ namespace MuseoCliente.Connection.Objects
             Dictionary<string, string> diccionario = new Dictionary<string,string>();
             diccionario["codigo"] = pieza.codigo;
             piezas.Add(diccionario);
+        }
+
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Investigacion en la base de datos para poder Eliminarla ");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado la Investigacion Seleccionada " + e.Message);
+            }
         }
 
     }

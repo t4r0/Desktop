@@ -165,6 +165,31 @@ namespace MuseoCliente.Connection.Objects
             return new ArrayList(listaNueva);
         }
 
+        public ArrayList consultarCodigoPieza(string codigo)//1
+        {
+            List<Consolidacion> listaNueva = null;
+            try
+            {
+                string consultarResponsable = this.resource_uri + "?pieza=" + codigo;
+                listaNueva = this.GetAsCollection(consultarResponsable);
+
+
+                if (listaNueva == null)
+                    Error.ingresarError(2, "No se encontro");
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(e.Message);
+            }
+            if (listaNueva == null)
+            {
+                Error.ingresarError(2, "No se encontro la busqueda");
+                return null;
+            }
+
+            return new ArrayList(listaNueva);
+        }
+
 
         public void regresarObjeto(int id)//2
         {
@@ -225,6 +250,22 @@ namespace MuseoCliente.Connection.Objects
             }
         }
 
+        public void eliminar()
+        {
+            try
+            {
+                if (this.id == 0)
+                {
+                    Error.ingresarError(2, "No existe la Consolidacion para Eliminar");
+                    return;
+                }
+                this.del();
+            }
+            catch (Exception e)
+            {
+                Error.ingresarError(2, "No se ha eliminado con exito" + e.Message);
+            }
+        }
         
     }
 }

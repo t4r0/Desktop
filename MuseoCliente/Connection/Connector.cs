@@ -13,7 +13,7 @@ namespace MuseoCliente.Connection
 {
     public class Connector
     {
-        private string server="http://104.131.99.190";// al final no lleva el slash para no crear dos veces el mismo
+        private string server="http://api.museoxela.com";// al final no lleva el slash para no crear dos veces el mismo
 
         public string Server{
             get{return server;}

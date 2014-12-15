@@ -71,7 +71,7 @@ namespace MuseoCliente
 
         private async void buscarPiezas(string codigo)
         {
-            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => piezas.buscarNombre(codigo));
+            Task<ArrayList> task = Task<ArrayList>.Factory.StartNew(() => piezas.buscarCodigo(codigo));
             await task;
             gvPiezas.ItemsSource = task.Result;
         }
@@ -99,8 +99,9 @@ namespace MuseoCliente
         private void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
             consolidacion = (Consolidacion)this.DataContext;
+            consolidacion.fechaInicio = dpInicio.SelectedDate.Value.Date;
+            consolidacion.fechaFin = dpFin.SelectedDate.Value.Date;
             consolidacion.pieza = txtCodigoPieza.Text;
-            consolidacion.responsable = "Migue4";
             //////////////////////Mantenimientos//////////////////////////////
             List<Mantenimiento> mantens = new List<Mantenimiento>();
             //Limpieza
@@ -206,6 +207,7 @@ namespace MuseoCliente
             //Modificar o Guardar
             if (modificar == false)
             {
+                consolidacion.responsable = Settings.user.username;
                 consolidacion.guardar();
             }
             else
@@ -240,6 +242,8 @@ namespace MuseoCliente
                     rbLimpieza.IsChecked = false;
                     rbRestaurar.IsChecked = true;
                 }
+                dpInicio.SelectedDate = temp.fechaInicio;
+                dpFin.SelectedDate = temp.fechaFin;
                 //Mantenimientos
                 List<Mantenimiento> mantenimientos = new List<Mantenimiento>();
                 mantenimientos = temp.mantenimientos;

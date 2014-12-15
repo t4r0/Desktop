@@ -38,7 +38,7 @@ namespace MuseoCliente
         {
             modPieza frm = new modPieza();
             frm.borde = borde;
-            //frm.anterior = this;
+            frm.anterior = new modInventario();
             borde.Child = frm;
         }
 
